@@ -1,0 +1,4286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>708</width>
+    <height>555</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>708</width>
+    <height>555</height>
+   </size>
+  </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string>Systemdump Viewer</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonIconOnly</enum>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <property name="spacing">
+     <number>4</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QComboBox" name="combo_SelectMenu">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <item>
+       <property name="text">
+        <string comment="1">Dump Info</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string comment="2">System</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string comment="3">Software</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string comment="4">Hardware</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Motion</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string comment="5">Logger</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string comment="6">Profiler</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item>
+     <widget class="QStackedWidget" name="stacked_MainFrame">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="page_DumpInfo">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>5</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTabWidget" name="tabWidget_DumpInfo">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="tabsClosable">
+           <bool>false</bool>
+          </property>
+          <property name="movable">
+           <bool>false</bool>
+          </property>
+          <widget class="QWidget" name="tab_DumpOverview">
+           <attribute name="title">
+            <string>Overview</string>
+           </attribute>
+           <widget class="QGroupBox" name="group_GeneralDumpInfo">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>8</y>
+              <width>265</width>
+              <height>81</height>
+             </rect>
+            </property>
+            <property name="title">
+             <string>General Dump Information</string>
+            </property>
+            <widget class="QLabel" name="text_General_Version">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>36</y>
+               <width>71</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Version:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_General_Version">
+             <property name="geometry">
+              <rect>
+               <x>130</x>
+               <y>36</y>
+               <width>131</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_General_Timestamp">
+             <property name="geometry">
+              <rect>
+               <x>130</x>
+               <y>52</y>
+               <width>131</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_General_Generator">
+             <property name="geometry">
+              <rect>
+               <x>130</x>
+               <y>20</y>
+               <width>131</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_General_TimeStamp">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>52</y>
+               <width>71</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Timestamp:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_General_Generator">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>20</y>
+               <width>71</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Generator:</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QWidget" name="widget_overview" native="true">
+            <property name="geometry">
+             <rect>
+              <x>240</x>
+              <y>0</y>
+              <width>441</width>
+              <height>441</height>
+             </rect>
+            </property>
+            <widget class="QWidget" name="widget_overview_Target" native="true">
+             <property name="geometry">
+              <rect>
+               <x>81</x>
+               <y>4</y>
+               <width>180</width>
+               <height>182</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QWidget" name="widget_overview_Center" native="true">
+             <property name="geometry">
+              <rect>
+               <x>145</x>
+               <y>116</y>
+               <width>180</width>
+               <height>182</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QWidget" name="widget_overview_Hardware" native="true">
+             <property name="geometry">
+              <rect>
+               <x>231</x>
+               <y>32</y>
+               <width>180</width>
+               <height>182</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QWidget" name="widget_overview_Motion" native="true">
+             <property name="geometry">
+              <rect>
+               <x>250</x>
+               <y>184</y>
+               <width>180</width>
+               <height>182</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QWidget" name="widget_overview_AppStatus" native="true">
+             <property name="geometry">
+              <rect>
+               <x>112</x>
+               <y>248</y>
+               <width>180</width>
+               <height>182</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QWidget" name="widget_overview_CPUMode" native="true">
+             <property name="geometry">
+              <rect>
+               <x>9</x>
+               <y>138</y>
+               <width>180</width>
+               <height>182</height>
+              </rect>
+             </property>
+            </widget>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Sysetm">
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>5</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTabWidget" name="tabWidget_System">
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <property name="tabsClosable">
+           <bool>false</bool>
+          </property>
+          <property name="movable">
+           <bool>false</bool>
+          </property>
+          <widget class="QWidget" name="tab_General">
+           <attribute name="title">
+            <string>General</string>
+           </attribute>
+           <widget class="QGroupBox" name="group_OperationalValues">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>8</y>
+              <width>301</width>
+              <height>153</height>
+             </rect>
+            </property>
+            <property name="title">
+             <string>Operational Values</string>
+            </property>
+            <widget class="QLabel" name="label_Values_OPV_NodeNumber">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>20</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_OPV_CPUMode">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>36</y>
+               <width>151</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Current CPU mode:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_OPV_BattStatus">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>52</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_OPV_TargetTime">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>84</y>
+               <width>151</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Target time:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_OPV_OPHours">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>112</y>
+               <width>151</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Operating hours:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_OPV_OPHours">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>112</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_OPV_TargetTime">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>84</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_OPV_CPUTemp">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>68</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_OPV_CPUTemp">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>68</y>
+               <width>151</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>CPU temperature:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_OPV_BattStatus">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>52</y>
+               <width>151</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Battery status:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_OPV_NodeNumber">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>20</y>
+               <width>151</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Node number:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_OPV_CPUMode">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>36</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_OPV_PowerCycles">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>128</y>
+               <width>151</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Power-on cycles:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_OPV_PowerCycles">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>128</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QGroupBox" name="group_CPUConfiguration">
+            <property name="geometry">
+             <rect>
+              <x>320</x>
+              <y>8</y>
+              <width>361</width>
+              <height>233</height>
+             </rect>
+            </property>
+            <property name="title">
+             <string>CPU Configuration</string>
+            </property>
+            <widget class="QLabel" name="label_Values_CPUConf_HostName">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>18</y>
+               <width>131</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_CPUConf_USBRemote">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>194</y>
+               <width>181</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>USB remote install:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_CPUConf_cfremote">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>210</y>
+               <width>131</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_CPUConf_ftp">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>178</y>
+               <width>131</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_CPUConf_defdomain">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>34</y>
+               <width>131</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_CPUConf_AftReset">
+             <property name="geometry">
+              <rect>
+               <x>32</x>
+               <y>82</y>
+               <width>161</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>after reset:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_CPUConf_pvchangecf">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>146</y>
+               <width>131</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_CPUConf_powerfail">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>98</y>
+               <width>131</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_CPUConf_afterReset">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>82</y>
+               <width>131</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_CPUConf_ModeSwitch">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>50</y>
+               <width>181</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>CPU mode switch:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_CPUConf_profiling">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>162</y>
+               <width>131</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_CPUConf_AftReset_2">
+             <property name="geometry">
+              <rect>
+               <x>32</x>
+               <y>98</y>
+               <width>161</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>after powerfail:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_CPUConf_HostName">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>18</y>
+               <width>181</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Host name:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_CPUConf_CPUmodeSwitch">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>50</y>
+               <width>131</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_CPUConf_DefaultDomain">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>34</y>
+               <width>181</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Default domain:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_CPUConf_Reboot">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>66</y>
+               <width>181</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Reboot mode</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_CPUConf_AftReset_3">
+             <property name="geometry">
+              <rect>
+               <x>32</x>
+               <y>114</y>
+               <width>161</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>after change of CF/HD:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_CPUConf_AftReset_5">
+             <property name="geometry">
+              <rect>
+               <x>32</x>
+               <y>146</y>
+               <width>161</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>after change of CF/HD:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_CPUConf_usbremote">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>194</y>
+               <width>131</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_CPUConf_FTP">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>178</y>
+               <width>181</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>FTP:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Values_CPUConf_changecf">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>114</y>
+               <width>131</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_CPUConf_Profiling">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>162</y>
+               <width>181</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Profiling:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_CPUConf_AftReset_4">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>130</y>
+               <width>251</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Preserve permanent PV memory</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_Values_CPUConf_CFRemote">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>210</y>
+               <width>181</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>CF remote install:</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QGroupBox" name="group_TimeSync">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>168</y>
+              <width>301</width>
+              <height>169</height>
+             </rect>
+            </property>
+            <property name="title">
+             <string>Time Synchronisation</string>
+            </property>
+            <widget class="QLabel" name="text_TimeSync_Zone">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>18</y>
+               <width>151</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Time zone:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_TimeSync_SNTPServer">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>34</y>
+               <width>151</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>SNTP server:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_TimeSync_sntpclient">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>50</y>
+               <width>151</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>SNTP client:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_TimeSync_sntpClServer1">
+             <property name="geometry">
+              <rect>
+               <x>32</x>
+               <y>66</y>
+               <width>141</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>SNTP server 1:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_TimeSync_sntpClServer2">
+             <property name="geometry">
+              <rect>
+               <x>32</x>
+               <y>82</y>
+               <width>141</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>SNTP server 2:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_TimeSync_sntpClServer3">
+             <property name="geometry">
+              <rect>
+               <x>32</x>
+               <y>98</y>
+               <width>141</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>SNTP server 3:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_TimeSync_sntpClServer4">
+             <property name="geometry">
+              <rect>
+               <x>32</x>
+               <y>114</y>
+               <width>141</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>SNTP server 4:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_TimeSync_sntpsynciv">
+             <property name="geometry">
+              <rect>
+               <x>32</x>
+               <y>130</y>
+               <width>141</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>SNTP sync interval:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_TimeSync_rtcsync">
+             <property name="geometry">
+              <rect>
+               <x>32</x>
+               <y>146</y>
+               <width>141</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>RTC sync interval:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_TimeSync_TimeZone">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>18</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_TimeSync_SNTPServer">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>34</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_TimeSync_SNTPClient">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>50</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_TimeSync_SNTPClient_Server1">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>66</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_TimeSync_SNTPClient_rtcSync">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>146</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_TimeSync_SNTPClient_sntpSync">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>130</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_TimeSync_SNTPClient_Server4">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>114</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_TimeSync_SNTPClient_Server3">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>98</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_TimeSync_SNTPClient_Server2">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>82</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QGroupBox" name="group_SwVersions">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>344</y>
+              <width>301</width>
+              <height>89</height>
+             </rect>
+            </property>
+            <property name="title">
+             <string>Software Versions</string>
+            </property>
+            <widget class="QLabel" name="text_SW_AR">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>18</y>
+               <width>61</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>AR:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_SW_VC">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>34</y>
+               <width>61</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>VC:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_SW_MC">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>50</y>
+               <width>61</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>MC:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_SW_CNC">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>66</y>
+               <width>61</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>CNC:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Software_AR">
+             <property name="geometry">
+              <rect>
+               <x>80</x>
+               <y>18</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Software_VC">
+             <property name="geometry">
+              <rect>
+               <x>80</x>
+               <y>34</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Software_MC">
+             <property name="geometry">
+              <rect>
+               <x>80</x>
+               <y>50</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_Software_CNC">
+             <property name="geometry">
+              <rect>
+               <x>80</x>
+               <y>66</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QGroupBox" name="groupBox">
+            <property name="geometry">
+             <rect>
+              <x>320</x>
+              <y>248</y>
+              <width>361</width>
+              <height>185</height>
+             </rect>
+            </property>
+            <property name="title">
+             <string>Network Interfaces</string>
+            </property>
+            <widget class="QTabWidget" name="tabWidget_EthernetInterfaces">
+             <property name="geometry">
+              <rect>
+               <x>6</x>
+               <y>48</y>
+               <width>350</width>
+               <height>132</height>
+              </rect>
+             </property>
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="tab">
+              <attribute name="title">
+               <string>IF-1</string>
+              </attribute>
+              <widget class="QLabel" name="text_EthIf_RemoteInstall">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>0</y>
+                 <width>171</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Remote install:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_EthIf_IFID">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>16</y>
+                 <width>171</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Interface ID:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_EthIf_IPADR">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>32</y>
+                 <width>171</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>IP adress:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_EthIf_IPConf">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>64</y>
+                 <width>171</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>IP configuration:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_EthIf_SNMPConf">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>80</y>
+                 <width>171</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>SNMP configuration:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_EthIf_IPadress">
+               <property name="geometry">
+                <rect>
+                 <x>208</x>
+                 <y>32</y>
+                 <width>131</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_EthIf_IFID">
+               <property name="geometry">
+                <rect>
+                 <x>208</x>
+                 <y>16</y>
+                 <width>131</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_EthIf_RemoteInstall">
+               <property name="geometry">
+                <rect>
+                 <x>208</x>
+                 <y>0</y>
+                 <width>131</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_EthIf_Subnet">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>48</y>
+                 <width>171</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>SubNet mask:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_EthIf_IPConfig">
+               <property name="geometry">
+                <rect>
+                 <x>208</x>
+                 <y>64</y>
+                 <width>131</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_EthIf_SubnetMask">
+               <property name="geometry">
+                <rect>
+                 <x>208</x>
+                 <y>48</y>
+                 <width>131</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_EthIf_SNMPConfig">
+               <property name="geometry">
+                <rect>
+                 <x>208</x>
+                 <y>80</y>
+                 <width>131</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+            </widget>
+            <widget class="QLabel" name="text_EthIf_DefaultGateway">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>20</y>
+               <width>181</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Default Gateway:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_EthIf_DefaultGateway">
+             <property name="geometry">
+              <rect>
+               <x>208</x>
+               <y>20</y>
+               <width>131</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="tab_Memory">
+           <attribute name="title">
+            <string>Memory</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QGroupBox" name="group_Memory_Partitions">
+              <property name="title">
+               <string>Partition CF/HD</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_5">
+               <item row="3" column="1">
+                <widget class="QLabel" name="label_Memory_Partitions_NoOfSectors">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>110</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="text_Memory_Partitions_NoOfSectors">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>110</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <underline>false</underline>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Number of sectors:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="label_Memory_Partitions_SizePerSector">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>110</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLabel" name="label_Memory_Partitions_TotalCapacity">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>110</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="text_Memory_Partitions_SizePerSector">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>110</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Size per sector:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLabel" name="label_Memory_Partitions_NoOfPartitions">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>110</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="text_Memory_Partitions_NoOfPartitions">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>110</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Number of partitions:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="text_Memory_Partitions_TotalCapacity">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>110</width>
+                   <height>11</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Total capacity:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="2">
+                <widget class="Line" name="line_Memory_Partition_Seperator">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>198</width>
+                   <height>2</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>2</height>
+                  </size>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0" colspan="2">
+                <widget class="QScrollArea" name="scrollArea_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="horizontalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAlwaysOff</enum>
+                 </property>
+                 <property name="widgetResizable">
+                  <bool>true</bool>
+                 </property>
+                 <widget class="QWidget" name="scrollAreaWidgetContents_2">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>98</width>
+                    <height>28</height>
+                   </rect>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_12">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QWidget" name="widget_Partitions" native="true">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>1677716</width>
+                       <height>1677716</height>
+                      </size>
+                     </property>
+                     <layout class="QGridLayout" name="gridLayoutPartitions"/>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="group_Memory_DRAM">
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="title">
+               <string>DRAM</string>
+              </property>
+              <widget class="QLabel" name="text_Memory_DRAM_Size">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>20</y>
+                 <width>101</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Size:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_DRAM_Size">
+               <property name="geometry">
+                <rect>
+                 <x>127</x>
+                 <y>20</y>
+                 <width>81</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_DRAM_LBlock">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>68</y>
+                 <width>101</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <underline>false</underline>
+                </font>
+               </property>
+               <property name="text">
+                <string>Larg. avlbl. block:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_DRAM_Used">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>36</y>
+                 <width>101</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Used:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_DRAM_Available">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>52</y>
+                 <width>101</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Available:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_DRAM_Used">
+               <property name="geometry">
+                <rect>
+                 <x>127</x>
+                 <y>36</y>
+                 <width>81</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_DRAM_available">
+               <property name="geometry">
+                <rect>
+                 <x>127</x>
+                 <y>52</y>
+                 <width>81</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_DRAM_LBlock">
+               <property name="geometry">
+                <rect>
+                 <x>127</x>
+                 <y>68</y>
+                 <width>81</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="group_Memory_SRAM">
+              <property name="title">
+               <string>SRAM</string>
+              </property>
+              <widget class="QLabel" name="text_Memory_DRAM_Size_2">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>20</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Size:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_DRAM_Used_2">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>36</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Not configured:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_SRAM_Size">
+               <property name="geometry">
+                <rect>
+                 <x>128</x>
+                 <y>20</y>
+                 <width>80</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_SRAM_NotUsed">
+               <property name="geometry">
+                <rect>
+                 <x>128</x>
+                 <y>36</y>
+                 <width>80</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_SRAM_USERRAM">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>60</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>USERRAM</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_SRAM_REMMEM">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>164</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>REMMEM</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_SRAM_USERRAM_Size">
+               <property name="geometry">
+                <rect>
+                 <x>32</x>
+                 <y>76</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Size:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_SRAM_USERRAM_Used">
+               <property name="geometry">
+                <rect>
+                 <x>32</x>
+                 <y>92</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Used:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_SRAM_USERRAM_Available">
+               <property name="geometry">
+                <rect>
+                 <x>32</x>
+                 <y>108</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Available:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_SRAM_USERRAM_LBlock">
+               <property name="geometry">
+                <rect>
+                 <x>32</x>
+                 <y>124</y>
+                 <width>91</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Larg. avlbl. block:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_SRAM_USERRAM_Device">
+               <property name="geometry">
+                <rect>
+                 <x>32</x>
+                 <y>140</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Device:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_USERRAM_Size">
+               <property name="geometry">
+                <rect>
+                 <x>128</x>
+                 <y>76</y>
+                 <width>80</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_USERRAM_Used">
+               <property name="geometry">
+                <rect>
+                 <x>128</x>
+                 <y>92</y>
+                 <width>80</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_USERRAM_Available">
+               <property name="geometry">
+                <rect>
+                 <x>128</x>
+                 <y>108</y>
+                 <width>80</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_USERRAM_LBlock">
+               <property name="geometry">
+                <rect>
+                 <x>128</x>
+                 <y>124</y>
+                 <width>80</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_USERRAM_Device">
+               <property name="geometry">
+                <rect>
+                 <x>128</x>
+                 <y>140</y>
+                 <width>80</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_SRAM_REMMEM_RemGlobal">
+               <property name="geometry">
+                <rect>
+                 <x>32</x>
+                 <y>228</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Rem. global:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_SRAM_REMMEM_Permanent">
+               <property name="geometry">
+                <rect>
+                 <x>32</x>
+                 <y>196</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Permanent:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_SRAM_REMMEM_RemLocal">
+               <property name="geometry">
+                <rect>
+                 <x>32</x>
+                 <y>212</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Rem. local:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_SRAM_REMMEM_Available">
+               <property name="geometry">
+                <rect>
+                 <x>32</x>
+                 <y>244</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Available:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_SRAM_REMMEM_Size">
+               <property name="geometry">
+                <rect>
+                 <x>32</x>
+                 <y>180</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Size:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_SRAM_REMMEM_Device">
+               <property name="geometry">
+                <rect>
+                 <x>32</x>
+                 <y>276</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Device:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Memory_SRAM_REMMEM_LBlock">
+               <property name="geometry">
+                <rect>
+                 <x>32</x>
+                 <y>260</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Larg. avlbl. block:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_SRAM_REMMEM_RemGlobal">
+               <property name="geometry">
+                <rect>
+                 <x>128</x>
+                 <y>228</y>
+                 <width>80</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_SRAM_REMMEM_Available">
+               <property name="geometry">
+                <rect>
+                 <x>128</x>
+                 <y>244</y>
+                 <width>80</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_SRAM_REMMEM_Size">
+               <property name="geometry">
+                <rect>
+                 <x>128</x>
+                 <y>180</y>
+                 <width>80</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_SRAM_REMMEM_RemLocal">
+               <property name="geometry">
+                <rect>
+                 <x>128</x>
+                 <y>212</y>
+                 <width>80</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_SRAM_REMMEM_Permanent">
+               <property name="geometry">
+                <rect>
+                 <x>128</x>
+                 <y>196</y>
+                 <width>80</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_SRAM_REMMEM_Device">
+               <property name="geometry">
+                <rect>
+                 <x>128</x>
+                 <y>276</y>
+                 <width>80</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Memory_SRAM_REMMEM_LBlock">
+               <property name="geometry">
+                <rect>
+                 <x>128</x>
+                 <y>260</y>
+                 <width>80</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_Timing">
+           <attribute name="title">
+            <string>Timing</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_11">
+            <item>
+             <widget class="QGroupBox" name="group_TimerConfiguration">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>80</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="title">
+               <string>Timer Configuration</string>
+              </property>
+              <widget class="QLabel" name="text_TimerConf_SystemTimer">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>20</y>
+                 <width>251</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>System timer:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_TimerConf_SystemTick">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>36</y>
+                 <width>251</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>System tick:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_TimerConf_mvostc">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>52</y>
+                 <width>251</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Multiple value of system timer cycle:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_TimerConf_SystemTimer">
+               <property name="geometry">
+                <rect>
+                 <x>270</x>
+                 <y>20</y>
+                 <width>91</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_TimerConf_mvostc">
+               <property name="geometry">
+                <rect>
+                 <x>270</x>
+                 <y>52</y>
+                 <width>91</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_TimerConf_SystemTick">
+               <property name="geometry">
+                <rect>
+                 <x>270</x>
+                 <y>36</y>
+                 <width>91</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_TimerConf_TaskClassIdleTime">
+               <property name="geometry">
+                <rect>
+                 <x>394</x>
+                 <y>36</y>
+                 <width>131</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Task class idle time:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_TimerConf_IdleTaskClass">
+               <property name="geometry">
+                <rect>
+                 <x>394</x>
+                 <y>20</y>
+                 <width>131</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Idle task class:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_TimerConf_IdleTaskClass">
+               <property name="geometry">
+                <rect>
+                 <x>540</x>
+                 <y>20</y>
+                 <width>97</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_TimerConf_TaskClassIdleTime">
+               <property name="geometry">
+                <rect>
+                 <x>540</x>
+                 <y>36</y>
+                 <width>97</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="table_TaskClasses">
+              <property name="editTriggers">
+               <set>QAbstractItemView::NoEditTriggers</set>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_CPUUsage">
+           <attribute name="title">
+            <string>CPU Usage</string>
+           </attribute>
+           <widget class="QGroupBox" name="group_UsageBox">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>8</y>
+              <width>377</width>
+              <height>81</height>
+             </rect>
+            </property>
+            <property name="title">
+             <string>Settings</string>
+            </property>
+            <widget class="QComboBox" name="combo_CpuUsage">
+             <property name="geometry">
+              <rect>
+               <x>16</x>
+               <y>38</y>
+               <width>121</width>
+               <height>21</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_CPUUsage_Id">
+             <property name="geometry">
+              <rect>
+               <x>184</x>
+               <y>20</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>ID:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_CPUUsage_Average">
+             <property name="geometry">
+              <rect>
+               <x>184</x>
+               <y>36</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Average:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="text_CPUUsage_Maximum">
+             <property name="geometry">
+              <rect>
+               <x>184</x>
+               <y>52</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Maximum:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_CPUUsage_Id">
+             <property name="geometry">
+              <rect>
+               <x>256</x>
+               <y>20</y>
+               <width>105</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_CPUUsage_Maximum">
+             <property name="geometry">
+              <rect>
+               <x>256</x>
+               <y>52</y>
+               <width>105</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_CPUUsage_Average">
+             <property name="geometry">
+              <rect>
+               <x>256</x>
+               <y>36</y>
+               <width>105</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Software">
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>5</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTabWidget" name="tabWidget_Software">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="tabsClosable">
+           <bool>false</bool>
+          </property>
+          <property name="movable">
+           <bool>false</bool>
+          </property>
+          <widget class="QWidget" name="tab_SoftwareOverview">
+           <attribute name="title">
+            <string>Software</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_3">
+            <property name="bottomMargin">
+             <number>9</number>
+            </property>
+            <item row="0" column="3">
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Maximum</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>105</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="1">
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="2" column="0" colspan="6">
+             <widget class="QTableWidget" name="table_Software">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Sunken</enum>
+              </property>
+              <property name="lineWidth">
+               <number>0</number>
+              </property>
+              <property name="midLineWidth">
+               <number>0</number>
+              </property>
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QAbstractScrollArea::AdjustIgnored</enum>
+              </property>
+              <property name="editTriggers">
+               <set>QAbstractItemView::NoEditTriggers</set>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="5">
+             <spacer name="horizontalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="0" rowspan="2">
+             <widget class="QTreeWidget" name="tree_ApplicationModules">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>130</height>
+               </size>
+              </property>
+              <column>
+               <property name="text">
+                <string>Application Modules</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+            <item row="1" column="3">
+             <widget class="QComboBox" name="combo_softwareFilter">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>150</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>20</height>
+               </size>
+              </property>
+              <item>
+               <property name="text">
+                <string comment="0">All objects</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string comment="1">Cyclic objects</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string comment="2">Data objects</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string comment="3">Motion objects</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string comment="4">Config objects</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string comment="5">Other objects</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Hardware">
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>5</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTabWidget" name="tabWidget_Hardware">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="tabsClosable">
+           <bool>false</bool>
+          </property>
+          <property name="movable">
+           <bool>false</bool>
+          </property>
+          <widget class="QWidget" name="tab_HardwareOverview">
+           <attribute name="title">
+            <string>Hardware</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="2" column="1">
+             <widget class="QGroupBox" name="group_Hardware_ChannelInfo">
+              <property name="title">
+               <string>Channel Information</string>
+              </property>
+              <widget class="QLabel" name="text_Hardware_Channel_Diagnose">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>20</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Diagnose:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_Channel_IECType">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>84</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>IEC type:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_Channel_ID">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>68</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>ID:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_Channel_ForceStatus">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>36</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Force status:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_Channel_ForceValue">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>52</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Force value:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_Channel_IECValue">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>100</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>IEC value:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_Channel_Name">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>116</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Name:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_Channel_PhysicalValue">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>132</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Physical value:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_Channel_Type">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>148</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Type:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Channel_Diagnose">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>20</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Channel_ForceStatus">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>36</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Channel_ForceValue">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>52</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Channel_ID">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>68</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Channel_IECType">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>84</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Channel_IECValue">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>100</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Channel_Name">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>116</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Channel_PhysicalValue">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>132</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Channel_Type">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>148</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QGroupBox" name="group_Hardware_ModuleDetails">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>130</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>Module Details</string>
+              </property>
+              <widget class="QLabel" name="text_Hardware_Firmware">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>52</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Firmware version:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_SerialNumber">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>36</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>B&amp;R serial number:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_ModulePath">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>20</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Module path:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_EquipmentID">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>100</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Equipment ID:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_HwVariant">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>84</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Hardware variant:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_HwRevision">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>68</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Hardware revision:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_ModulePath">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>20</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Serialnumber">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>36</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Firmware">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>52</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_HwRevision">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>68</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_HwVariant">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>84</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_EquipmentID">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>100</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QGroupBox" name="group_Hardware_ModuleStatus">
+              <property name="minimumSize">
+               <size>
+                <width>400</width>
+                <height>100</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>Module Status</string>
+              </property>
+              <widget class="QLabel" name="text_Hardware_ModuleOK">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>20</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Module Ok:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_Configured">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>36</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Configured:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_Plugged">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>52</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Plugged:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_ModuleOk">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>20</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Configured">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>36</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Plugged">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>52</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_Supervised">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>68</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Supervised:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Supervised">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>68</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QTreeWidget" name="tree_Hardware_Channels">
+              <column>
+               <property name="text">
+                <string>IO Information</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+            <item row="0" column="0" rowspan="2">
+             <widget class="QTreeWidget" name="tree_Hardware">
+              <property name="contextMenuPolicy">
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
+              <column>
+               <property name="text">
+                <string>Hardware Tree</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Motion">
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>5</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTabWidget" name="tabWidget_Motion">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="tabsClosable">
+           <bool>false</bool>
+          </property>
+          <property name="movable">
+           <bool>false</bool>
+          </property>
+          <widget class="QWidget" name="tab_Motion">
+           <attribute name="title">
+            <string>Motion</string>
+           </attribute>
+           <widget class="QWidget" name="widget_Axis" native="true">
+            <property name="geometry">
+             <rect>
+              <x>125</x>
+              <y>0</y>
+              <width>561</width>
+              <height>441</height>
+             </rect>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_NegEndSw">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>341</y>
+              <width>111</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: #FFDBB2;
+	border-top: 1px solid white;
+	border-left: 1px solid black;
+    border-bottom: 1px solid white;
+	border-right: 1px solid black;
+}</string>
+            </property>
+            <property name="text">
+             <string>Negative endswitch</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_Address">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>45</y>
+              <width>113</width>
+              <height>16</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1,
+    stop: 0 #FFAC4D,
+    stop: 1 #FF8800 );
+	border-top: 0px solid black;
+    border-left: 1px solid black;
+	border-bottom: 1px solid black;
+ 	border-bottom-left-radius: 5px;
+	border-right: 1px solid black;
+	border-bottom-right-radius: 5px;
+}</string>
+            </property>
+            <property name="text">
+             <string>Address:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_Simulation">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>133</y>
+              <width>111</width>
+              <height>33</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: #FFDBB2;
+	border-top: 1px solid white;
+    border-bottom: 1px solid white;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}</string>
+            </property>
+            <property name="text">
+             <string>Simulation</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_Name">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>7</y>
+              <width>113</width>
+              <height>19</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1,
+    stop: 0 #ffffff,
+    stop: 1 #FFDBB2 );
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+ 	border-top-left-radius: 5px;
+	border-right: 1px solid black;
+	border-top-right-radius: 5px;
+}</string>
+            </property>
+            <property name="text">
+             <string>Name:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_Controller">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>101</y>
+              <width>111</width>
+              <height>33</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: #FFDBB2;
+	border-top:1px solid white;
+    border-bottom: 1px solid white;
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+}</string>
+            </property>
+            <property name="text">
+             <string>Controller</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_Trigger2">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>293</y>
+              <width>111</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: #FFDBB2;
+	border-top: 1px solid white;
+	border-left: 1px solid black;
+    border-bottom: 1px solid white;
+	border-right: 1px solid black;
+}</string>
+            </property>
+            <property name="text">
+             <string>Trigger 2</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_Alarm">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>389</y>
+              <width>111</width>
+              <height>33</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: white;
+	border-top: 1px solid white;	
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+ 	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}</string>
+            </property>
+            <property name="text">
+             <string>Alarm</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_Homing">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>69</y>
+              <width>111</width>
+              <height>33</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: #FFDBB2;
+	border-top: 1px solid black;	
+	border-bottom: 1px solid white;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+ 	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}</string>
+            </property>
+            <property name="text">
+             <string>Homing</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_Position">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>197</y>
+              <width>111</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: white;
+	border-top: 1px solid #FFDBB2;
+	border-left: 1px solid black;
+    border-bottom: 1px solid #FFDBB2;
+	border-right: 1px solid black;
+}</string>
+            </property>
+            <property name="text">
+             <string>Act. position [Units]</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_PosEndSw">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>317</y>
+              <width>111</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: #FFDBB2;
+	border-top: 1px solid white;
+	border-left: 1px solid black;
+    border-bottom: 1px solid white;
+	border-right: 1px solid black;
+}</string>
+            </property>
+            <property name="text">
+             <string>Positive endswitch</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_RefSw">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>365</y>
+              <width>111</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: #FFDBB2;
+	border-top: 1px solid white;
+	border-left: 1px solid black;
+    border-bottom: 1px solid white;
+	border-right: 1px solid black;
+}</string>
+            </property>
+            <property name="text">
+             <string>Reference switch</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_Speed">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>221</y>
+              <width>111</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: white;
+	border-top: 1px solid #FFDBB2;
+	border-left: 1px solid black;
+    border-bottom: 1px solid #FFDBB2;
+	border-right: 1px solid black;
+}</string>
+            </property>
+            <property name="text">
+             <string>Act. speed [Units/s]</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_Movement">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>165</y>
+              <width>111</width>
+              <height>33</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: white;
+	border-top: 1px solid #FFDBB2;
+	border-left: 1px solid black;
+    border-bottom: 1px solid #FFDBB2;
+	border-right: 1px solid black;
+}</string>
+            </property>
+            <property name="text">
+             <string>Movement status</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_Drive">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>26</y>
+              <width>113</width>
+              <height>19</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1,
+    stop: 0 #FFDBB2,
+	stop: 0.4999 #FFCF99,
+	stop: 0.5 #FFB866,
+    stop: 1 #FFAC4D );
+	border-top: 0px solid white;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}</string>
+            </property>
+            <property name="text">
+             <string>Drive:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_Enable">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>245</y>
+              <width>111</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: #FFDBB2;
+	border-top: 1px solid white;
+	border-left: 1px solid black;
+    border-bottom: 1px solid white;
+	border-right: 1px solid black;
+}</string>
+            </property>
+            <property name="text">
+             <string>Enable</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="text_Axis_Trigger1">
+            <property name="geometry">
+             <rect>
+              <x>8</x>
+              <y>269</y>
+              <width>111</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+    background: #FFDBB2;
+	border-top: 1px solid white;
+	border-left: 1px solid black;
+    border-bottom: 1px solid white;
+	border-right: 1px solid black;
+}</string>
+            </property>
+            <property name="text">
+             <string>Trigger 1</string>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="tab_AxisError">
+           <attribute name="title">
+            <string>Axis Error</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_2">
+            <item row="0" column="0">
+             <widget class="QComboBox" name="combo_AxisError">
+              <property name="minimumSize">
+               <size>
+                <width>120</width>
+                <height>0</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="2" column="0" colspan="2">
+             <widget class="QTableWidget" name="table_AxisError">
+              <property name="editTriggers">
+               <set>QAbstractItemView::NoEditTriggers</set>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Logger">
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>5</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTabWidget" name="tabWidget_Logger">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="tabsClosable">
+           <bool>false</bool>
+          </property>
+          <property name="movable">
+           <bool>false</bool>
+          </property>
+          <widget class="QWidget" name="tab_Logger">
+           <attribute name="title">
+            <string>Logger</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="2" column="1" rowspan="7">
+             <widget class="QTableWidget" name="table_Logger">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QAbstractScrollArea::AdjustToContents</enum>
+              </property>
+              <property name="editTriggers">
+               <set>QAbstractItemView::NoEditTriggers</set>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="0">
+             <spacer name="verticalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::MinimumExpanding</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>100</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="7" column="0">
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Press F1 to open the &lt;br/&gt;selected error number &lt;br/&gt;in the B&amp;amp;R Online Help!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QGroupBox" name="grp_LoggerModules">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>150</width>
+                <height>150</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>150</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>Logger-Modules</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout">
+               <property name="spacing">
+                <number>4</number>
+               </property>
+               <property name="sizeConstraint">
+                <enum>QLayout::SetMinAndMaxSize</enum>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QScrollArea" name="scrollArea">
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="widgetResizable">
+                  <bool>true</bool>
+                 </property>
+                 <widget class="QWidget" name="scrollAreaWidgetContents">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>144</width>
+                    <height>127</height>
+                   </rect>
+                  </property>
+                  <layout class="QVBoxLayout" name="vertLayoutLogger">
+                   <property name="sizeConstraint">
+                    <enum>QLayout::SetMinAndMaxSize</enum>
+                   </property>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <spacer name="verticalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Maximum</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Profiler">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>5</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTabWidget" name="tabWidget_Profiler">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="tabsClosable">
+           <bool>false</bool>
+          </property>
+          <property name="movable">
+           <bool>false</bool>
+          </property>
+          <widget class="QWidget" name="tab_Profiler">
+           <attribute name="title">
+            <string>Profiler</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_10">
+            <item>
+             <widget class="QTableWidget" name="table_Profiler">
+              <property name="editTriggers">
+               <set>QAbstractItemView::NoEditTriggers</set>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+   <zorder>stacked_MainFrame</zorder>
+   <zorder>combo_SelectMenu</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>708</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="locale">
+    <locale language="German" country="Germany"/>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="title">
+     <string>File</string>
+    </property>
+    <widget class="QMenu" name="menu_openRecent">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Open recent ...</string>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/images/ico_openrecent.png</normaloff>:/images/ico_openrecent.png</iconset>
+     </property>
+    </widget>
+    <widget class="QMenu" name="menu_openDownloaded">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Open downloaded ...</string>
+     </property>
+    </widget>
+    <addaction name="actionLoad_xml"/>
+    <addaction name="actionLoad_from_PLC"/>
+    <addaction name="menu_openDownloaded"/>
+    <addaction name="menu_openRecent"/>
+    <addaction name="actionClose_xml"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionHelp"/>
+    <addaction name="actionAbout"/>
+    <addaction name="actionCheck_for_updates"/>
+   </widget>
+   <widget class="QMenu" name="menuExtras">
+    <property name="title">
+     <string>Extras</string>
+    </property>
+    <addaction name="actionOptions"/>
+    <addaction name="actionSave_position"/>
+   </widget>
+   <widget class="QMenu" name="menuExport">
+    <property name="title">
+     <string>Export</string>
+    </property>
+    <widget class="QMenu" name="menu_SaveDataObj">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Save data object</string>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/images/ico_dataobject.png</normaloff>:/images/ico_dataobject.png</iconset>
+     </property>
+    </widget>
+    <addaction name="actionSave_xml_as"/>
+    <addaction name="menu_SaveDataObj"/>
+    <addaction name="actionSave_all_as"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave_PDF_Report"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuExport"/>
+   <addaction name="menuExtras"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+  </widget>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/ico_exit.png</normaloff>:/images/ico_exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="toolTip">
+    <string>Quit program</string>
+   </property>
+  </action>
+  <action name="actionLoad_xml">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/ico_openxml.png</normaloff>:/images/ico_openxml.png</iconset>
+   </property>
+   <property name="text">
+    <string>Load .xml</string>
+   </property>
+   <property name="toolTip">
+    <string>Opens a Systemdump.xml file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/ico_about.png</normaloff>:/images/ico_about.png</iconset>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+   <property name="toolTip">
+    <string>Shows program information</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="icon">
+    <iconset theme="i" resource="images.qrc">
+     <normaloff>:/images/ico_help.png</normaloff>:/images/ico_help.png</iconset>
+   </property>
+   <property name="text">
+    <string>Help</string>
+   </property>
+  </action>
+  <action name="actionOptions">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/ico_settings.png</normaloff>:/images/ico_settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>Options</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionClose_xml">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/ico_close.png</normaloff>:/images/ico_close.png</iconset>
+   </property>
+   <property name="text">
+    <string>Close .xml</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="actionLoad_from_PLC">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/ico_openplc.png</normaloff>:/images/ico_openplc.png</iconset>
+   </property>
+   <property name="text">
+    <string>Load from PLC</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionSave_position">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/ico_savepos.png</normaloff>:/images/ico_savepos.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save position</string>
+   </property>
+  </action>
+  <action name="actionSave_xml_as">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/ico_saveas.png</normaloff>:/images/ico_saveas.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save .xml as ...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSave_all_as">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/ico_zip.png</normaloff>:/images/ico_zip.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save all as ...</string>
+   </property>
+  </action>
+  <action name="actionSave_PDF_Report">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/ico_pdf.png</normaloff>:/images/ico_pdf.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save PDF Report ...</string>
+   </property>
+  </action>
+  <action name="actionCheck_for_updates">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/ico_update.png</normaloff>:/images/ico_update.png</iconset>
+   </property>
+   <property name="text">
+    <string>Check for updates ...</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>combo_SelectMenu</tabstop>
+  <tabstop>tabWidget_DumpInfo</tabstop>
+  <tabstop>tabWidget_System</tabstop>
+  <tabstop>tabWidget_EthernetInterfaces</tabstop>
+  <tabstop>tabWidget_Software</tabstop>
+  <tabstop>tree_ApplicationModules</tabstop>
+  <tabstop>combo_softwareFilter</tabstop>
+  <tabstop>table_Software</tabstop>
+  <tabstop>tabWidget_Hardware</tabstop>
+  <tabstop>tree_Hardware</tabstop>
+  <tabstop>tree_Hardware_Channels</tabstop>
+  <tabstop>tabWidget_Motion</tabstop>
+  <tabstop>tabWidget_Logger</tabstop>
+  <tabstop>table_Logger</tabstop>
+  <tabstop>tabWidget_Profiler</tabstop>
+  <tabstop>table_Profiler</tabstop>
+  <tabstop>table_TaskClasses</tabstop>
+  <tabstop>combo_CpuUsage</tabstop>
+  <tabstop>combo_AxisError</tabstop>
+  <tabstop>table_AxisError</tabstop>
+ </tabstops>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
+ <connections/>
+</ui>

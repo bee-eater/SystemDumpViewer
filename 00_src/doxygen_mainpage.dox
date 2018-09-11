@@ -1,0 +1,5 @@
+/**
+\mainpage BR.Systemdump.Viewer documentation
+
+The following documentation was created via the doxygen software packgage, and is supposed to ease the further development of the application. It is always the aim, to comment all functions, classes or variables in the source code, so you easily can see and understand the functionality of the software.
+*/

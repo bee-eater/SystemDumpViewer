@@ -1,0 +1,80 @@
+// Error Numbers
+// ----------------------------------------------------
+20101   Values->Operational Values
+20102   Values->Time Synchronisation
+20103   Values->Time Synchronisation->Client
+20104   Values->Software
+20105   Values->CPU Configuration->Parameter
+20106   Values->CPU Configuration->Reboot
+20107   Values->CPU Configuration->Preserve
+20108   Values->CPU Configuration
+20109   Values->Application Information
+20110   Values
+
+20201   Ethernet->Parameter
+20202   Ethernet->Interface
+20203   Ethernet
+
+20301   Memory->Compact Flash
+20302   Memory->Compact Flash->Partition
+20303   Memory->DRAM
+20304   Memory->SRAM->Attributes
+20305   Memory->SRAM->Not configured
+20306   Memory->SRAM->USERRAM
+20307   Memory->SRAM->REMMEM
+20308   Memory->SRAM
+20309   Memory
+
+20401   Timing->Timer configuration
+20402   Timing->TaskClass configuration->TaskClass
+20403   Timing->TaskClass configuration
+20404   Timing
+
+20501   CpuUsage->Interval
+20502   CpuUsage
+20503   CpuUsage->Node
+
+20601   Software->ApplicationModule->Module
+20602   Software->ApplicationModule
+20603   Software
+20604   Software->Module
+
+20701   Hardware->Node->Attributes
+20702   Hardware->Node->Module Status
+20703   Hardware->Node->IO Information
+20704   Hardware->Node->IO Info->Channel
+20705   Hardware->Node->IO Info
+20706   Hardware->Node
+20707   Hardware
+
+20801   Motion
+20802   Motion->Attributes
+20803   Motion->Axis
+20804   Motion->Nodes
+20805   Motion->Alarm->Error
+20806   Motion->Alarm
+
+20901   Logger
+20902   Logger->Attributes
+20903   Logger->Node
+20904   Logger->Entry->Attributes
+
+21001   Profiler->Node
+21002   Profiler->Module->Attributes
+
+29001   Memory allocation Ethernet Interface
+29002   Memory allocation CF Partition
+29003   Memory allocation Task Class
+29004   Memory allocation Cpu-Usage interval
+29005   Memory allocation Software Module
+29006   Memory allocation Application Module
+29007   Memory allocation IO Channel
+29008   Memory allocation Hardware Node
+29009   Memory allocation Motion Axis
+29010   Memory allocation Motion Axis Alarm
+29011   Memory allocation Logger module
+29012   Memory allocation Logger module entry
+29013   Memory allocation Profiler module
+29014   Memory allocation Software Module 2
+
+30100   Help Form Path is invalid... Check with spy++

@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+    <!-- Seitentitel -->
+    <title>General: Opening a Systemdump</title>
+
+    <!-- Stylesheets und Scripte -->
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <SCRIPT language="JavaScript" SRC="../_content_folding.js"></SCRIPT>
+    <SCRIPT language="JavaScript" SRC="../_switchSection.js"></SCRIPT>
+    
+    <link rel="stylesheet" type="text/css" href="../prettify/prettify.css"/>
+    <SCRIPT language="JavaScript" SRC="../prettify/prettify.js"></SCRIPT>
+    
+    <script src="../lightbox/js/jquery-1.11.0.min.js"></script>
+    <script src="../lightbox/js/lightbox.min.js"></script> 
+    <link href="../lightbox/css/lightbox.css" rel="stylesheet" />
+    
+</head>
+
+<body onload="prettyPrint()"><!-- Seitenüberschrift und ein einfacher Absatz -->
+    <h1>Opening a Systemdump.xml file</h1>
+
+    <p class="tips">
+        <b>Hints:</b><br>
+        • Open a Systemdump directly from the PLC by entering the IP-address!<BR>
+        • Drag and drop the Systemdump.xml directly on the main window to open it!<BR>
+    </p>
+
+    In order to open a Systemdump you have various different possibilties. If there should be any new attributes, through developments by B&amp;R for example, you will get noticed and I'd be happy to receive the information. Please send me a short notice and the Systemdump.xml as attachment.
+    <h4 style="MARGIN-BOTTOM: 3pt; PADDING-BOTTOM: 0pt; MARGIN-TOP: 12pt">1. File dialog</h4>
+    
+    <IMG src="images/sdv_startscreen_loadxml.png" height=185>
+    <IMG src="images/sdv_file_menu_loadxml.png"> <BR>
+
+    If you click on the "Load.xml" button directly on the start screen or select the "Load.xml" entry from the "File" menu a dialog will open where you can navigate to a .xml file you already downloaded from a PLC and open it. 
+
+    <h4 style="MARGIN-BOTTOM: 3pt; PADDING-BOTTOM: 0pt; MARGIN-TOP: 12pt">2. Drag'n Drop</h4>
+    You can also just drag and drop your .xml file onto the main screen of the Systemdump Viewer and it will automatically open the Systemdump.
+
+    <h4 style="MARGIN-BOTTOM: 3pt; PADDING-BOTTOM: 0pt; MARGIN-TOP: 12pt">3. File association / open with ...</h4>
+    It is also possible to directly open the Systemdump.xml file with the Systemdump Viewer.
+
+    <h4 style="MARGIN-BOTTOM: 3pt; PADDING-BOTTOM: 0pt; MARGIN-TOP: 12pt">4. From PLC</h4>
+    <IMG src="images/sdv_ipconnect.png"> <BR>Last but not least you can let the Systemdump Viewer do the 
+work and download the Systemdump from the PLC by providing a correct IP address. 
+Therefore you select "Load from PLC" in the "File" menu or press Ctrl+E. When 
+using this feature it is also possible to let the SdV download the complete 
+package incl. dataobjects (logger modules, network commmand trace, profiler 
+objects). You can switch this this behaviour on or off in the dialog. 
+
+    <!-- Navigation menu -->
+    <p class="Navigation">Further links:</p>
+    <table class="Navigation">
+        <tr><td class="Navigation">• <a href="../index.html">../Startpage</a></td></tr>
+        <!-- <tr><td class="Navigation">• <a href="opening_main.html">General: Opening a Systemdump.xml</a></td></tr>-->
+        <tr><td class="Navigation">• <a href="useful_hints.html">General: Useful hints</a></td></tr>
+        <tr><td class="Navigation">• <a href="planned_stuff.html">General: Planned developments</a></td></tr>
+        <tr><td class="Navigation">• <a href="version_history.html">General: Version history</a></td></tr>
+    </table>
+
+</body>
+</html>

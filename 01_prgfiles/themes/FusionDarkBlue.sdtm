@@ -1,0 +1,15 @@
+[SDVTheme]
+name = Fusion Dark Blue
+col_Window = 53,53,53
+col_WindowText = 255,255,255
+col_Base = 25,25,25
+col_AlternateBase = 53,53,53
+col_ToolTipBase = 255,255,255
+col_ToolTipText = 255,255,255
+col_Text = 255,255,255
+col_Button = 53,53,53
+col_ButtonText = 255,255,255
+col_BrightText = 120,120,120
+col_Link = 42, 130, 218
+col_Highlight = 42, 130, 218
+col_HighlightedText = 0,0,0

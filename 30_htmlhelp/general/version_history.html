@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Seitentitel -->
+    <title>General: Version history</title>
+
+    <!-- Stylesheets und Scripte -->
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <SCRIPT language="JavaScript" SRC="../_content_folding.js"></SCRIPT>
+    <SCRIPT language="JavaScript" SRC="../_switchSection.js"></SCRIPT>
+    
+    <link rel="stylesheet" type="text/css" href="../prettify/prettify.css"/>
+    <SCRIPT language="JavaScript" SRC="../prettify/prettify.js"></SCRIPT>
+    
+    <script src="../lightbox/js/jquery-1.11.0.min.js"></script>
+    <script src="../lightbox/js/lightbox.min.js"></script> 
+    <link href="../lightbox/css/lightbox.css" rel="stylesheet" />
+    
+</head>
+
+<body onload="prettyPrint()">
+
+    <!-- Seitenüberschrift und ein einfacher Absatz -->
+    <h1>Version history</h1>
+    
+    <!-- Versionstabelle -->
+    <table border="1" class="parameter_tab">
+         <tr>
+            <th class="parameter_tab">
+               <div><b>Version</b></div>
+            </th>
+            <th class="parameter_tab">
+               <div><b>Description</b></div>
+            </th>
+            <th class="parameter_tab">
+               <div><b>Date</b></div>
+            </th>
+         </tr>
+         <tr>
+            <td class="parameter_tab">1.00.0</td>
+            <td class="parameter_tab">BrdhgDumpViewer v1.00.25.20084<br>----------------------------------------------------------------------<br>
+                First release of the Software<br>
+                - no known Bugs
+            </td>
+            <td class="parameter_tab">25.03.2014</td>
+         </tr>
+         <tr>
+            <td class="parameter_tab">1.00.1</td>
+            <td class="parameter_tab">BrdhgDumpViewer v1.00.26.20084<br>----------------------------------------------------------------------<br>
+                Added string values for CPUMode(4) == RUN etc...<br>
+                Complete overview is still in work.
+            </td>
+            <td class="parameter_tab">25.03.2014</td>
+         </tr>
+         <tr>
+            <td class="parameter_tab">1.00.2</td>
+            <td class="parameter_tab">BrdhgDumpViewer v1.00.29.20084<br>----------------------------------------------------------------------<br>
+                Added double-click feature in the Hardware-Tree
+            </td>
+            <td class="parameter_tab">25.03.2014</td>
+         </tr>
+         <tr>
+            <td class="parameter_tab">1.00.3</td>
+            <td class="parameter_tab">BrdhgDumpViewer v1.00.30.20091<br>----------------------------------------------------------------------<br>
+                - Changed program icon<br>
+                - Added/Changed icons in the hardware tree
+            </td>
+            <td class="parameter_tab">01.04.2014</td>
+         </tr>
+         <tr>
+            <td class="parameter_tab">1.01.0</td>
+            <td class="parameter_tab">BrdhgDumpViewer v1.01.32.20092<br>----------------------------------------------------------------------<br>
+                - Added Drag'n Drop feature<br>
+                - Added file verification<br>
+                - Fixed bug: Application crashes when opening Systemdump.xml from ARsim<br>   
+                -> IpConfiguration was 255, FileType was qint8
+            </td>
+            <td class="parameter_tab">02.04.2014</td>
+         </tr>
+         <tr>
+            <td class="parameter_tab">1.01.1</td>
+            <td class="parameter_tab">BrdhgDumpViewer v1.01.35.20094<br>----------------------------------------------------------------------<br>
+                - Added option window<br>
+                - Added search in help feature<br>
+                - Added splash screen
+            </td>
+            <td class="parameter_tab">04.04.2014</td>
+         </tr>
+         <tr>
+            <td class="parameter_tab">1.01.2</td>
+            <td class="parameter_tab">BrdhgDumpViewer v1.01.36.20098<br>----------------------------------------------------------------------<br>
+                - Fixed bug: Crashing when opening dump with unknown sections
+            </td>
+            <td class="parameter_tab">08.04.2014</td>
+         </tr>
+         <tr>
+            <td class="parameter_tab">1.01.3</td>
+            <td class="parameter_tab">BrdhgDumpViewer v1.01.37.20101<br>----------------------------------------------------------------------<br>
+                - Fixed bug: Wrong symbol in Hardware tree<br>
+                - Fixed bug: Motion header keeps its size when first opening a systemdump with and then one without Motion.<br>
+                - Added error description column in Logger
+            </td>
+            <td class="parameter_tab">11.04.2014</td>
+         </tr>
+         <tr>
+            <td class="parameter_tab">1.01.4</td>
+            <td class="parameter_tab">Systemdump Viewer V1.01.38.20104<br>----------------------------------------------------------------------<br>
+                - Changed Software Name<br>
+                - Changed program icon<br>
+                - Fixed bug: Help path was wrong
+            </td>
+            <td class="parameter_tab">15.04.2014</td>
+         </tr>
+         <tr>
+            <td class="parameter_tab">1.01.5</td>
+            <td class="parameter_tab">Systemdump Viewer V1.01.39.20112<br>----------------------------------------------------------------------<br>
+                - Fixed bug: Hardware error in overview, but nothing wrong!<br>
+                - Added Bitmap to CycleClass Table
+            </td>
+            <td class="parameter_tab">22.04.2014</td>
+         </tr>
+         <tr>
+            <td class="parameter_tab">1.01.6</td>
+            <td class="parameter_tab">Systemdump Viewer V1.01.40.20135<br>----------------------------------------------------------------------<br>
+                - Fixed bug: Dividing value of system timer cycle was not recognized!
+            </td>
+            <td class="parameter_tab">15.05.2014</td>
+         </tr>
+         <tr>
+            <td class="parameter_tab">1.01.7</td>
+            <td class="parameter_tab">Systemdump Viewer V1.02.42.20209<br>----------------------------------------------------------------------<br>
+                - Made window resizable
+            </td>
+            <td class="parameter_tab">28.07.2014</td>
+         </tr>
+         <tr>
+            <td class="parameter_tab">1.01.8</td>
+            <td class="parameter_tab">Systemdump Viewer V2.0.80.20295<br>----------------------------------------------------------------------<br>
+                - Added import from PLC</br>
+                - Language support (English, German, French, Polish, Russian)</br>
+                - New export functions (Dataobjects, PDF Reports)</br>
+                - New options</br>
+                - Color schemes
+            </td>
+            <td class="parameter_tab">01.11.2014</td>
+         </tr>
+      </table>
+
+    <!-- Navigation menu -->
+    <p class="Navigation">Further links:</p>
+    <table class="Navigation">
+        <tr><td class="Navigation">• <a href="../index.html">../Startpage</a></td></tr>
+        <tr><td class="Navigation">• <a href="opening_main.html">General: Opening a Systemdump.xml</a></td></tr>
+        <tr><td class="Navigation">• <a href="useful_hints.html">General: Useful hints</a></td></tr>
+        <tr><td class="Navigation">• <a href="planned_stuff.html">General: Planned developments</a></td></tr>
+        <!-- <tr><td class="Navigation">• <a href="version_history.html">General: Version history</a></td></tr> -->
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+[SDVTheme]
+name = Fusion Light Orange
+col_Window = 245,245,245
+col_WindowText = 25,25,25
+col_Base = 235,235,235
+col_AlternateBase = 245,245,245
+col_ToolTipBase = 235,235,235
+col_ToolTipText = 25,25,25
+col_Text = 25,25,25
+col_Button = 245,245,245
+col_ButtonText = 25,25,25
+col_BrightText = 120,120,120
+col_Link = 255,0,0
+col_Highlight = 255,128,0
+col_HighlightedText = 235,235,235

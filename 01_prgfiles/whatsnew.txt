@@ -1,0 +1,17 @@
+<b>Whats new?</b>
+<br/>
+<br/>
+<ul>
+    <li>Fixed 20904: New entries in logger (mapp)</li>
+	<li>Fixed wrong icons in hardware-tree </li>
+</ul>
+<ul>
+    <li>Added dynamic size to logger-list</li>
+	<li>Added dynamic size to partition-list</li>
+</ul>
+<br/>
+<br/>
+Just look around or check out the documentation! If you should experience any bugs or have some nice ideas I'd be happy if you'd let me know!
+<br/>
+<br/>
+The Author :-)

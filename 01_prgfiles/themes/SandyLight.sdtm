@@ -1,0 +1,15 @@
+[SDVTheme]
+name = Sandy Light
+col_Window = 212,175,106            
+col_WindowText = 85,55,0
+col_Base = 190,150,87
+col_AlternateBase = 212,175,106
+col_ToolTipBase = 170,130,57
+col_ToolTipText = 85,55,0
+col_Text = 85,55,0
+col_Button = 212,175,106
+col_ButtonText = 85,55,0
+col_BrightText = 0,0,0
+col_Link = 255,0,0
+col_Highlight = 255,255,170
+col_HighlightedText = 170,130,57

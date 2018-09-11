@@ -1,0 +1,127 @@
+/*==================================================
+  Allgemeine Definitionen von Absatz-Tags
+*/
+body {
+    background-color: #ffffff;
+     font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 9pt;  }
+p, li, ul, ol, td, th { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt; }
+h1, h2, h3, h4, h5 { font-family: Arial, Helvetica, sans-serif; }
+h1 { font-size: 14pt; border-bottom: 1pt solid; margin-bottom: 20pt;}
+h2 { font-size: 12pt; margin-top: 30pt;}
+h3 { font-size: 12pt; margin-top: 30pt; font-style: italic;}
+h4 { font-size: 11pt; margin-top: 30pt;}
+h5 { font-size: 10pt; margin-top: 30pt; font-style: italic;}
+img { margin-top:6pt;margin-bottom:6pt;margin-right:6pt;}
+
+pre { font-family: Courier New, monospace; font-size: 9pt; }
+
+
+/*==================================================
+  Style für SourceCode Beispiele mit ...
+     ... nicht-proportionaler Schrift => pre.SourceCode
+     ... proportionaler Schrift       => p.SourceCode
+  Schriftart und Schriftgröße sind bereits in den p bzw. pre Definitionen festgelegt.
+*/
+pre.SourceCode, p.pSourceCode {
+    margin: 1em 0; padding: 8px;
+    background-color:#EEEEEE;
+}
+
+
+/*==================================================
+  Style-Definitionen für Tipps, Tricks, Hinweise und wichtige Texte
+
+  Zuerst die Defintion von seitlichem Abstand und Hintergrund
+  für .tips und .important:
+*/
+p.tips, p.important, p.demo {
+    margin:1em 0; padding:8px;
+    background-color:#eeeeee;
+    margin-top:25px;
+    margin-bottom:15px;
+
+}
+
+/* Formatdefinitionen zum Drucken */
+@media print {
+ .DoNotPrintNavItems { display: none; }
+}
+
+
+/* Blauer Rahmen für Hinweise und Tricks  */
+p.tips      { border: 3px solid #6699ff; }
+/* Roter Rahmen für wichtige Textpassagen  */
+p.important { border: 3px solid #ff0000; }
+/* Grüner Rahmen für Hinweis auf Demo-Programm  */
+p.demo      { border: 3px solid #08f21d; }
+
+
+/*==================================================
+  Formate für Tabellen !
+
+  Zuerst allgemeine Definitionen,
+  die für alle Tabellen gleich sind:
+*/
+table.parameter_tab, table.num_tab {
+    border: 1px outset;
+    margin-top: 8pt;
+    width: 100%;
+    margin-top: 20pt;    
+    margin-bottom: 15pt;
+}
+th.parameter_tab, th.num_tab, td.parameter_tab, td.num_tab {
+    padding-left: 6px; padding-right:  6px;
+    padding-top:  4px; padding-bottom: 4px;
+    text-align: left;
+    vertical-align: top;
+    border: 0px solid #ffffff;
+}
+th.parameter_tab, th.num_tab {
+    background-color:#EEEEEE;
+}
+td.parameter_tab, td.num_tab {}
+
+/* Tabelle für Parameterbeschreibung */
+.parameter_tab {}
+table.parameter_tab { background-color: #f7f7f7; }
+th.parameter_tab    { border: 1px solid #000000; }
+td.parameter_tab    {
+    border: 1px solid #000000; border-top:0px solid #000000;
+    background-color:#FFFFFF;
+}
+
+/* Tabelle für Aufzählungen */
+.num_tab {}
+table.num_tab { background-color:#f7f7f7; }
+th.num_tab    { border-right:1px solid #c0c0c0; }
+td.num_tab    {
+    border-top: 1px solid #c0c0c0; border-right:1px solid #c0c0c0;
+    background-color:#EEEEEE;
+}
+
+/* Formatdefinitionen zum Drucken */
+@media print {
+ .DoNotPrintNavItems { display: none; }
+}
+
+
+/*Ueberschrift für Navigation*/
+p.Navigation { font-size: 10pt; font-weight: bold;}
+/* Tabelle für Navigationseinträge */
+table.Navigation        { background-color: #f7f7f7; width: 100%; }
+td.Navigation           { background-color:#f7f7f7; }
+td.Navigation a         { text-decoration: none; }
+td.Navigation a:hover   { text-decoration: underline; }
+
+div.ManualTitle { 
+	position: absolute; 
+	top: 0px; right: 0px; 
+	padding: 2px 16px; 
+	background-color: #e7e7e7; 
+	font-size: 8pt;
+	font-weight: bold;
+	border-left: 1px solid #b0b0b0;
+	border-bottom: 1px solid #b0b0b0;
+}
+div.img_float { margin-top: 8px; }
