@@ -1,6 +1,8 @@
 # SystemDumpViewer
 Viewer for SystemDump.xml files of [B&amp;R](https://www.br-automation.com) PLCs with a few nice features...
 
+![SystemDumpViewer](https://github.com/bee-eater/SystemDumpViewer/blob/master/99_projinfo/Screenshot_211022169.png)
+
 # How to compile
 1. Get Qt 5.6.X from here: [Download](http://download.qt.io/official_releases/qt/5.6/5.6.3/qt-opensource-windows-x86-mingw492-5.6.3.exe)
 1. Install Qt with mingw492_32
