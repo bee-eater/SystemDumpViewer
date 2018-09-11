@@ -1,16 +1,17 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <qwt_plot_curve.h>
-#include <qwt_legend.h>
-#include <qwt_abstract_scale_draw.h>
-#include <qwt_scale_draw.h>
-#include <qwt_plot_grid.h>
-#include <qwt_plot_picker.h>
 #include <QCheckBox>
 #include <QGraphicsDropShadowEffect>
 #include <QVariant>
 #include <QStringRef>
 #include <QIcon>
+
+#include "qwt_plot_curve.h"
+#include "qwt_legend.h"
+#include "qwt_abstract_scale_draw.h"
+#include "qwt_scale_draw.h"
+#include "qwt_plot_grid.h"
+#include "qwt_plot_picker.h"
 
 #include <algorithm>
 
@@ -26,10 +27,6 @@ bool MainWindow::displayValues(){
     ui->label_General_Generator->setText(this->SysDump.Generator);
     ui->label_General_Timestamp->setText(this->SysDump.Timestamp);
     ui->label_General_Version->setText(this->SysDump.Version);
-
-    // Overview
-    //qDeleteAll(ui->widget_overview->findChildren<QWidget*>());
-    this->draw_Overview();
 
     // System
         // General :: Operational Values
@@ -264,6 +261,10 @@ bool MainWindow::displayValues(){
 
             this->add_ProfilerModules();
 
+    // Overview
+        //qDeleteAll(ui->widget_overview->findChildren<QWidget*>());
+        this->draw_Overview();
+
     return 0;
 }
 
@@ -333,6 +334,9 @@ int MainWindow::add_Hardware(){
 
     unsigned int i = 0;
 
+    // reset harware error
+    this->SysDump.Sections.Hardware.HwError = false;
+    // add items
     while(i<this->SysDump.Sections.Hardware.vNode.size()){
         // Get path from actual element
         actualPath = this->SysDump.Sections.Hardware.vNode[i].IOInformation.ModulePath.toStdString();
@@ -393,11 +397,15 @@ int MainWindow::add_Hardware(){
         // Status 5:        Something Plugged / not configured -> "question"
         if(this->SysDump.Sections.Hardware.vNode[*index].Status == 0 || this->SysDump.Sections.Hardware.vNode[*index].Status == 1){
             treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_ok.png")));
+        } else if(this->SysDump.Sections.Hardware.vNode[*index].Status == 8 && this->SysDump.Sections.Hardware.vNode[*index].ModuleStatus.Configured == "X20ZF0000"){
+            treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_ok.png")));
         } else if(this->SysDump.Sections.Hardware.vNode[*index].Status == 2 && !(this->SysDump.Sections.Hardware.vNode[*index].ModuleStatus.Configured == "not configured")) {
             treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_err.png")));
+            this->SysDump.Sections.Hardware.HwError = true;
             this->vHardwareErrorPaths.push_back(QStringList());
-            this->vHardwareErrorPaths[this->vHardwareErrorPaths.size()-1] = this->SysDump.Sections.Hardware.vNode[(*index)].IOInformation.ModulePath.split(QString("."));
+            this->vHardwareErrorPaths[this->vHardwareErrorPaths.size()-1] = this->SysDump.Sections.Hardware.vNode[(*index)].IOInformation.ModulePath.split(QString("."));            
         } else {
+            this->SysDump.Sections.Hardware.HwError = true;
             treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_warn.png")));
         }
 
@@ -443,11 +451,15 @@ int MainWindow::add_Hardware(){
         // Status 5:        Something Plugged / not configured -> "question"
         if(this->SysDump.Sections.Hardware.vNode[*index].Status == 0 || this->SysDump.Sections.Hardware.vNode[*index].Status == 1){
             treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_ok.png")));
-        } else if(this->SysDump.Sections.Hardware.vNode[*index].Status == 2) {
+        } else if(this->SysDump.Sections.Hardware.vNode[*index].Status == 8 && this->SysDump.Sections.Hardware.vNode[*index].ModuleStatus.Configured == "X20ZF0000"){
+            treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_ok.png")));
+        } else if(this->SysDump.Sections.Hardware.vNode[*index].Status == 2 && !(this->SysDump.Sections.Hardware.vNode[*index].ModuleStatus.Configured == "not configured")) {
             treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_err.png")));
+            this->SysDump.Sections.Hardware.HwError = true;
             this->vHardwareErrorPaths.push_back(QStringList());
             this->vHardwareErrorPaths[this->vHardwareErrorPaths.size()-1] = this->SysDump.Sections.Hardware.vNode[(*index)].IOInformation.ModulePath.split(QString("."));
         } else {
+            this->SysDump.Sections.Hardware.HwError = true;
             treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_warn.png")));
         }
 
@@ -850,7 +862,7 @@ int MainWindow::add_LoggerModules(){
     // DEPENDING ON VERSION OF THE LOGGER, DIFFERENT COLUMNS ARE SET
     // FIRST LOGGER DECIDES VERSION FOR ALL!! NO DIFFERENT VERSIONS SUPPORTED AT THIS TIME!!
     if(this->SysDump.Sections.Logger.vModule.size()>0){
-        if(this->SysDump.Sections.Logger.vModule[0].Version=="1.00.0"){
+        if(this->SysDump.Sections.Logger.vModule[0].Version=="1.00.0" || this->SysDump.Sections.Logger.vModule[0].Version=="1.01.0"){
 
             // Delete old stuff
             this->vLogSortView.clear();
@@ -949,7 +961,7 @@ int MainWindow::add_LoggerModules(){
 
             // Could be deleted, sorting is done by TableView
             // Just for nicer initial view
-            std::sort(this->vLogSortViewV2.begin(), this->vLogSortViewV2.end(), this->sort_LogSortByTimeStampRevV2);
+            //std::sort(this->vLogSortViewV2.begin(), this->vLogSortViewV2.end(), this->sort_LogSortByTimeStampRevV2);
 
             for(unsigned int j=0;j<this->vLogSortViewV2.size();j++){
 
@@ -1175,7 +1187,7 @@ int MainWindow::draw_Overview(){
     clickLabel *Outside[5];// = new QLabel[5*sizeof(QLabel)];
     clickLabel *LabelOutside_Heading;
 
-    bool HwError = false;
+    //bool HwError = false;
     int AxisErrCnt = 0;
 
     for(int i=0; i<5; i++){
@@ -1241,11 +1253,13 @@ int MainWindow::draw_Overview(){
                         LabelOutside_Sub[j] = new clickLabel(i+1,this,ui->widget_overview_Hardware);
                     }
                     LabelOutside_Sub[1]->setFont(normal);
-                    for(unsigned int j=0;j<this->SysDump.Sections.Hardware.vNode.size();j++){
+                    // 30.01.2017 :: krausertm
+                    // Fehlerbit direkt beim Auslesen der Datei bilden und hier nur noch abfragen!
+                    /*for(unsigned int j=0;j<this->SysDump.Sections.Hardware.vNode.size();j++){
                         if(this->SysDump.Sections.Hardware.vNode[j].ModuleStatus.ModuleOk == 0 || (this->SysDump.Sections.Hardware.vNode[j].Status != 0 && this->SysDump.Sections.Hardware.vNode[j].Status != 1))
                             HwError = true;
-                    }
-                    if(HwError==false){
+                    }*/
+                    if(!this->SysDump.Sections.Hardware.HwError){
                         Outside[i]->setPixmap(QPixmap("://images/Outside_Green_S.png"));
                         LabelOutside_Sub[1]->setText("OK");
                     } else {

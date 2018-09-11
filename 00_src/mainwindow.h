@@ -130,8 +130,8 @@
  * -------------------------------*/
 #include <winsock2.h>
 #include <windows.h>
-#include <qwt_plot.h>
-#include <qwt_plot_picker.h>
+#include "qwt_plot.h"
+#include "qwt_plot_picker.h"
 #include <array>
 #include <map>
 #include <string>

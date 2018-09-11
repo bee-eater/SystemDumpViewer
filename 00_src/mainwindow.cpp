@@ -35,7 +35,7 @@
 #include <QStyleFactory>
 #include <QTextDocument>
 
-#include <qwt_plot.h>
+#include "qwt_plot.h"
 
 #include <./includes/SimpleIni.h>
 #include "stdio.h"
@@ -552,8 +552,8 @@ void MainWindow::on_actionAbout_triggered()
 
     about.setWindowTitle(tr("About ..."));
     about.setTextFormat(Qt::RichText);
-    about.setText(QString("<br/><br/>")+tr("This application is not an official B&R product! For this reason the use is at your own risk and there is NO claim on support or maintenance. <br/><br/>Version: %1 <br/><br/>App path: %2").arg(this->Version,qApp->applicationFilePath()));
-    about.setInformativeText(tr("Developed with Qt 5.6.1<br/><br/>")+tr("This program uses parts of the following Projects: ") + QString("<br/>- <a href='http://qwt.sf.net'>Qwt Project</a> (CPU-Usage graph)<br/>- <a href='http://rapidxml.sourceforge.net'>RapidXml</a><br/>- <a href='https://github.com/brofield/simpleini'>SimpleIni</a><br/><br/>Copyright %1 <a href='mailto:marcel_krausert@freenet.de'>Marcel Krausert</a> 2016").arg(QString::fromUtf8("\u00A9")));
+    about.setText(QString("<br/><br/>")+tr("This application is not an official B&R product! For this reason the use is at your own risk and there is NO claim on support or maintenance.")+QString("<br/><br/>Version: %1 <br/><br/>App: %2").arg(this->Version,qApp->applicationFilePath()));
+    about.setInformativeText(tr("Developed with Qt 5.6")+QString("<br/><br/>")+tr("This program uses parts of the following Projects: ") + QString("<br/>- <a href='http://qwt.sf.net'>Qwt Project</a> (CPU-Usage graph)<br/>- <a href='http://rapidxml.sourceforge.net'>RapidXml</a><br/>- <a href='https://github.com/brofield/simpleini'>SimpleIni</a><br/><br/>Copyright %1 <a href='mailto:marcel_krausert@freenet.de'>Marcel Krausert</a> 2016").arg(QString::fromUtf8("\u00A9")+QString("<br/><br/>")+tr("This work is licensed under the")+QString("<br/>&emsp;&emsp;&emsp;<a href='https://www.gnu.org/licenses/gpl-3.0.de.html'>GNU GENERAL PUBLIC LICENSE, Version 3</a><br/><br/>")+tr("Visit us on")+QString("<a href='https://github.com/bee-eater/SystemDumpViewer'>GitHub</a>!")));
     about.setStandardButtons(QMessageBox::Ok);
     about.setIconPixmap(QPixmap("://images/about.png").scaledToWidth(128));
     about.setDefaultButton(QMessageBox::Ok);
@@ -823,81 +823,83 @@ void MainWindow::on_actionCheck_for_updates_triggered()
     textHttpPOSTBody.setBody(httpBody.toLatin1());
     httpMultiPart.append(textHttpPOSTBody);
     QString url;
-    if(this->settings->value("updateserver","mk-s.ddns.net:81").toString() != QString("")){
-        url = QString("http://" + this->settings->value("updateserver","mk-s.ddns.net:81").toString() + "/sdvupdate.php");
-    } else {
-        url = QString("http://mk-s.ddns.net:81/sdvupdate.php");
-    }
 
-    if(this->netHttpPOST(url,&httpMultiPart)){
+    if(this->settings->value("updateserver","").toString() != QString("")){
+        url = QString("http://" + this->settings->value("updateserver","").toString() + "/sdvupdate.php");
 
-        qDebug() << this->netReplyPOST;
+        if(this->netHttpPOST(url,&httpMultiPart)){
 
-        if(this->netReplyPOST == QString("sdvNoUpdate")){
-            QMessageBox::information(this,tr("Checking for updates ..."),tr("Congratulations! You are using the newest version!"));
-        } else {
+            qDebug() << this->netReplyPOST;
 
-            // Check if starts with xml header!
-            if(this->netReplyPOST.indexOf("<?xml")!=0){
-                QMessageBox::warning(this,tr("Error!"),tr("Error reading server answer!"));
-
+            if(this->netReplyPOST == QString("sdvNoUpdate")){
+                QMessageBox::information(this,tr("Checking for updates ..."),tr("Congratulations! You are using the newest version!"));
             } else {
 
-                // Read version and download link
-                QString newVersion;
-                QString downloadLink;
-
-                doc.parse<0>(this->netReplyPOST.toLocal8Bit().QByteArray::data());
-
-                // Check nodes before accessing
-                if(doc.first_node("sdvWgMessage") != NULL){
-                    if(doc.first_node("sdvWgMessage")->first_node("Version") != NULL) {
-                        newVersion = QString::fromUtf8(doc.first_node("sdvWgMessage")->first_node("Version")->value());
-                    } else {
-                        QMessageBox::warning(this,tr("Error!"),tr("Error reading server answer!"));
-                        return;
-                    }
-
-                    if(doc.first_node("sdvWgMessage")->first_node("Download") != NULL) {
-                        downloadLink = QString::fromUtf8(doc.first_node("sdvWgMessage")->first_node("Download")->value());
-                    } else {
-                        QMessageBox::warning(this,tr("Error!"),tr("Error reading server answer!"));
-                        return;
-                    }
-
-                    // Ask for installation
-                    QMessageBox::StandardButton bUpdate;
-                    bUpdate = QMessageBox::question(this, tr("Checking for updates ..."), tr("A newer version of this Application was found!\n\nYour version: %1\nNew version: %2\n\nDo you want to download and install the newer Systemdump Viewer?").arg(this->Version,newVersion),
-                                                  QMessageBox::Yes|QMessageBox::No);
-
-                    if (bUpdate == QMessageBox::Yes) {
-                        if(!QDir(this->extractionPath).exists())
-                            QDir().mkdir(this->extractionPath);
-                        QString updateFile = this->extractionPath+"/"+QDir::cleanPath(downloadLink).split("/").at(QDir::cleanPath(downloadLink).split("/").size()-1);
-                        QStringList arguments;
-                        arguments.append("/SILENT");
-
-                        if(this->netHttpDownload(downloadLink,updateFile)){
-                            this->settings->setValue("updated",true);
-                            this->settings->setValue("updatefile",updateFile);
-                            this->trigger_ApplicationQt(updateFile,arguments);
-                            this->close();
-                        } else {
-                            QMessageBox::warning(this,tr("Error!"),tr("Oooops... Something went wrong downloading the update!"));
-                            return;
-                        }
-                    }
+                // Check if starts with xml header!
+                if(this->netReplyPOST.indexOf("<?xml")!=0){
+                    QMessageBox::warning(this,tr("Error!"),tr("Error reading server answer!"));
 
                 } else {
-                    QMessageBox::warning(this,tr("Error!"),tr("Error reading server answer!"));
-                    return;
+
+                    // Read version and download link
+                    QString newVersion;
+                    QString downloadLink;
+
+                    doc.parse<0>(this->netReplyPOST.toLocal8Bit().QByteArray::data());
+
+                    // Check nodes before accessing
+                    if(doc.first_node("sdvWgMessage") != NULL){
+                        if(doc.first_node("sdvWgMessage")->first_node("Version") != NULL) {
+                            newVersion = QString::fromUtf8(doc.first_node("sdvWgMessage")->first_node("Version")->value());
+                        } else {
+                            QMessageBox::warning(this,tr("Error!"),tr("Error reading server answer!"));
+                            return;
+                        }
+
+                        if(doc.first_node("sdvWgMessage")->first_node("Download") != NULL) {
+                            downloadLink = QString::fromUtf8(doc.first_node("sdvWgMessage")->first_node("Download")->value());
+                        } else {
+                            QMessageBox::warning(this,tr("Error!"),tr("Error reading server answer!"));
+                            return;
+                        }
+
+                        // Ask for installation
+                        QMessageBox::StandardButton bUpdate;
+                        bUpdate = QMessageBox::question(this, tr("Checking for updates ..."), tr("A newer version of this Application was found!\n\nYour version: %1\nNew version: %2\n\nDo you want to download and install the newer Systemdump Viewer?").arg(this->Version,newVersion),
+                                                      QMessageBox::Yes|QMessageBox::No);
+
+                        if (bUpdate == QMessageBox::Yes) {
+                            if(!QDir(this->extractionPath).exists())
+                                QDir().mkdir(this->extractionPath);
+                            QString updateFile = this->extractionPath+"/"+QDir::cleanPath(downloadLink).split("/").at(QDir::cleanPath(downloadLink).split("/").size()-1);
+                            QStringList arguments;
+                            arguments.append("/SILENT");
+
+                            if(this->netHttpDownload(downloadLink,updateFile)){
+                                this->settings->setValue("updated",true);
+                                this->settings->setValue("updatefile",updateFile);
+                                this->trigger_ApplicationQt(updateFile,arguments);
+                                this->close();
+                            } else {
+                                QMessageBox::warning(this,tr("Error!"),tr("Oooops... Something went wrong downloading the update!"));
+                                return;
+                            }
+                        }
+
+                    } else {
+                        QMessageBox::warning(this,tr("Error!"),tr("Error reading server answer!"));
+                        return;
+                    }
                 }
             }
+        } else {
+            QMessageBox::warning(this,tr("Error!"),this->netError);
+            return;
         }
     } else {
-        QMessageBox::warning(this,tr("Error!"),this->netError);
-        return;
+        QMessageBox::information(this,tr("Error!"),tr("No update server specified in options!"));
     }
+
 }
 
 void MainWindow::on_actionClose_xml_triggered()
@@ -1736,6 +1738,8 @@ void MainWindow::startScreenShow(bool enabled){
         this->start_stripe->setVisible(true);
         this->start_sdvLogo->setVisible(true);
         this->start_brLogo->setVisible(true);
+        this->start_textopenplc->setVisible(true);
+        this->start_textopenxml->setVisible(true);
 
     } else {
 
@@ -1750,6 +1754,8 @@ void MainWindow::startScreenShow(bool enabled){
         this->start_stripe->setVisible(false);
         this->start_sdvLogo->setVisible(false);
         this->start_brLogo->setVisible(false);
+        this->start_textopenplc->setVisible(false);
+        this->start_textopenxml->setVisible(false);
 
     }
 }
@@ -1765,8 +1771,15 @@ bool MainWindow::sort_LogSortByTimeStampRevV2(const sLogModuleEntryV2 &lhs, cons
 void MainWindow::splashScreenShow(int time){
     QPixmap pixmap("://images/splash.png");
     QSplashScreen splash(pixmap);
+    splash.setFont(QFont("Helvetica", 8, QFont::Normal));
     splash.show();
+    splash.showMessage(
+          QString("Version: ") + Version,
+          Qt::AlignRight|Qt::AlignTop,
+          Qt::white
+       );
     qApp->processEvents();
+
     Sleep(time);
     splash.finish(this);
 }

@@ -443,6 +443,7 @@ using namespace std;
      */
     struct sHardware{
         std::vector<sNode> vNode; /**< Vector for hardware nodes */
+        bool HwError = false;
     };
 
 // Motion
