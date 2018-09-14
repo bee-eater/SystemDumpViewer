@@ -1675,8 +1675,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>98</width>
-                    <height>28</height>
+                    <width>22</width>
+                    <height>22</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -3916,8 +3916,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>144</width>
-                    <height>127</height>
+                    <width>148</width>
+                    <height>132</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="vertLayoutLogger">
@@ -4014,13 +4014,13 @@
      <x>0</x>
      <y>0</y>
      <width>708</width>
-     <height>20</height>
+     <height>26</height>
     </rect>
    </property>
    <property name="maximumSize">
     <size>
      <width>16777215</width>
-     <height>20</height>
+     <height>80</height>
     </size>
    </property>
    <property name="locale">
