@@ -159,8 +159,10 @@ bool MainWindow::displayValues(){
     // Systen CPU Usage
         // Add filter entries
             ui->combo_CpuUsage->clear();
-            for(unsigned int i = 0;i<this->SysDump.Sections.CpuUsage.vZoomInterval.size();i++){
-                ui->combo_CpuUsage->addItem(this->SysDump.Sections.CpuUsage.vZoomInterval[i].description);
+
+            for( auto zi : SysDump.Sections.CpuUsage.vZoomInterval )
+            {
+                ui->combo_CpuUsage->addItem(zi.description.replace(' ','_'));                 // I don't know why QCombo crashes with ' ', but it does :-(
             }
         // Draw points
             this->draw_CpuUsage();
