@@ -88,7 +88,7 @@
     <item>
      <widget class="QStackedWidget" name="stacked_MainFrame">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page_DumpInfo">
        <property name="styleSheet">
@@ -305,7 +305,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget_System">
           <property name="currentIndex">
-           <number>1</number>
+           <number>3</number>
           </property>
           <property name="tabsClosable">
            <bool>false</bool>
@@ -1675,8 +1675,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>22</width>
-                    <height>22</height>
+                    <width>196</width>
+                    <height>306</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -3917,7 +3917,7 @@
                     <x>0</x>
                     <y>0</y>
                     <width>148</width>
-                    <height>132</height>
+                    <height>136</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="vertLayoutLogger">
@@ -4014,7 +4014,7 @@
      <x>0</x>
      <y>0</y>
      <width>708</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="maximumSize">

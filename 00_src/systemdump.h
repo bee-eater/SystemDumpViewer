@@ -93,6 +93,8 @@ using namespace std;
         bool FTP;
         bool USBremoteInstall;
         bool CFremoteInstall;
+        bool USBArwinInstall;
+        bool UserPartitionInstall;
     };
 
     /**
@@ -126,6 +128,7 @@ using namespace std;
         qint16 IpConfig;
         qint16 SNMPConfig;
         bool EthernetRemoteInstall;
+        bool NetworkInstall;
         sInterface(){
                 this->EthernetRemoteInstall = false;
                 this->InterfaceID = QString("");
@@ -294,7 +297,6 @@ using namespace std;
         sUsageValues values;
         sZoomInterval(){
             this->average = 0;
-            this->description = QString("");
             this->average = 0;
             this->maximum = 0;
         }

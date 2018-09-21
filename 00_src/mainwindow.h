@@ -246,7 +246,7 @@ public:
     static std::map<std::string, en_SectionValuesCpuConfPreserve> map_007_CpuConfigurationPreserve;
 
     enum en_SectionValuesCpuConfParam {VALUE_008_ERR, VALUE_008_HOSTNAME, VALUE_008_DEFDOMAIN, VALUE_008_CPUMODESWITCH, VALUE_008_PROFILING,
-                                       VALUE_008_FTP, VALUE_008_USBREMOTEINSTALL, VALUE_008_CFREMOTEINSTALL};
+                                       VALUE_008_FTP, VALUE_008_USBREMOTEINSTALL, VALUE_008_CFREMOTEINSTALL, VALUE_008_USBARWININSTALL, VALUE_008_USERPARTITIONINSTALL };
     static std::map<std::string, en_SectionValuesCpuConfParam> map_008_CpuConfigurationParam;
 
     enum en_SectionValuesAppInfo {VALUE_009_ERR, VALUE_009_APPLINK, VALUE_009_APPSTATUS};
@@ -259,7 +259,7 @@ public:
     static std::map<std::string, en_SectionEthernetPar> map_011_EthernetPar;
 
     enum en_SectionEthernetInterface {ETHERNET_001_ERR, ETHERNET_001_IPADRESS, ETHERNET_001_SUBNET, ETHERNET_001_IPCONF, ETHERNET_001_SNMPCONF,
-                                      ETHERNET_001_ETHREMOTEINSTALL};
+                                      ETHERNET_001_ETHREMOTEINSTALL, ETHERNET_001_NETWORKINSTALL};
     static std::map<std::string, en_SectionEthernetInterface> map_012_EthernetIf;
 
     enum en_SectionMemory {MEMORY_ERR, MEMORY_CF, MEMORY_DRAM, MEMORY_SRAM};

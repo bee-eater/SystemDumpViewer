@@ -126,6 +126,8 @@ void MainWindow::init_Maps(){
     map_008_CpuConfigurationParam["ftp"] = VALUE_008_FTP;
     map_008_CpuConfigurationParam["usb remote install"] = VALUE_008_USBREMOTEINSTALL;
     map_008_CpuConfigurationParam["cf remote install"] = VALUE_008_CFREMOTEINSTALL;
+    map_008_CpuConfigurationParam["usb/arwin install"] = VALUE_008_USBARWININSTALL;
+    map_008_CpuConfigurationParam["user-partition install"] = VALUE_008_USERPARTITIONINSTALL;
 
     map_009_ApplicationInfo["application link"] = VALUE_009_APPLINK;
     map_009_ApplicationInfo["application status"] = VALUE_009_APPSTATUS;
@@ -140,6 +142,7 @@ void MainWindow::init_Maps(){
     map_012_EthernetIf["ip configuration"] = ETHERNET_001_IPCONF;
     map_012_EthernetIf["snmp configuration"] = ETHERNET_001_SNMPCONF;
     map_012_EthernetIf["ethernet remote install"] = ETHERNET_001_ETHREMOTEINSTALL;
+    map_012_EthernetIf["network install"] = ETHERNET_001_NETWORKINSTALL;
 
     map_013_Memory["cf"] = MEMORY_CF;
     map_013_Memory["dram"] = MEMORY_DRAM;

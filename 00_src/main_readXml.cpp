@@ -423,6 +423,14 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                         this->SysDump.Sections.Values.CpuConfiguration.CFremoteInstall = (bool)atoi(tmpString2.c_str());
                                         break;
 
+                                    case VALUE_008_USBARWININSTALL:
+                                        this->SysDump.Sections.Values.CpuConfiguration.USBArwinInstall = (bool)atoi(tmpString2.c_str());
+                                        break;
+
+                                    case VALUE_008_USERPARTITIONINSTALL:
+                                        this->SysDump.Sections.Values.CpuConfiguration.UserPartitionInstall = (bool)atoi(tmpString2.c_str());
+                                        break;
+
                                     case VALUE_008_ERR:
                                         this->ErrorNr = 20105;
                                         this->Error = QString::fromStdString(tmpString);
@@ -610,6 +618,11 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                 case ETHERNET_001_ETHREMOTEINSTALL:
                                     this->SysDump.Sections.Ethernet.vInterface[index].EthernetRemoteInstall = (bool)atoi(tmpString2.c_str());
                                     break;
+
+                                case ETHERNET_001_NETWORKINSTALL:
+                                    this->SysDump.Sections.Ethernet.vInterface[index].NetworkInstall = (bool)atoi(tmpString2.c_str());
+                                    break;
+
 
                                 case ETHERNET_001_ERR:
                                     this->ErrorNr = 20202;
