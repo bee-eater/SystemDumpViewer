@@ -10,7 +10,7 @@
 #include <QMessageBox>
 #include <QDebug>
 
-bool MainWindow::readXML(const char* filename){
+bool MainWindow::readXML(const char* filename, bool updateRecentFileNameList ){
     int result=0;
     QString msgStr;
     this->ErrorNr=0;
@@ -32,7 +32,8 @@ bool MainWindow::readXML(const char* filename){
         setWindowTitle(tr("Systemdump Viewer") + " - " + this->currentFileString);
 
         // Add to recent files list
-        recentSetCurrentFile(this->currentFileString);
+        if( updateRecentFileNameList )
+            recentSetCurrentFile(this->currentFileString);
 
         std::ifstream file(filename);
         if(file){

@@ -3916,8 +3916,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>148</width>
-                    <height>136</height>
+                    <width>100</width>
+                    <height>30</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="vertLayoutLogger">
@@ -4126,7 +4126,7 @@
      <normaloff>:/images/ico_openxml.png</normaloff>:/images/ico_openxml.png</iconset>
    </property>
    <property name="text">
-    <string>Load .xml</string>
+    <string>Load .xml / tar.gz</string>
    </property>
    <property name="toolTip">
     <string>Opens a Systemdump.xml file</string>

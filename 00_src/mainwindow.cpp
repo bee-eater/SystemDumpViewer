@@ -377,7 +377,8 @@ bool MainWindow::readTarGz(QString sourceFile)
     if(result){
         result = this->extractTarGz( tempPath+"/"+ fileInfo.baseName() + ".tar", tempPath ); // extract .tar
         if(result){
-            this->readXML(QString( tempPath +"/Systemdump.xml").toStdString().c_str());
+            this->readXML(QString( tempPath +"/Systemdump.xml").toStdString().c_str(), false);
+            recentSetCurrentFile(sourceFile);
         }
         QDir(tempPath).removeRecursively(); // cleanup temp- dir
     }
@@ -1150,8 +1151,18 @@ void MainWindow::on_recen_openFile()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if(action){
+        bool result = false;
+        QString fileName = action->data().toString();
+        QFileInfo fileInfo(fileName);
+        QString fileExtension = fileInfo.completeSuffix();
 
-        bool result = this->readXML(action->data().toString().toStdString().c_str());
+        if( fileExtension == "xml")
+            result = this->readXML(fileName.toStdString().c_str());
+        else
+            result = readTarGz(fileName);
+
+
+        //bool result = this->readXML(fileName.toStdString().c_str());
 
         if(result){
             QStringList recentFilesList = this->settings->value("recentFileList").toStringList();

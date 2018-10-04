@@ -177,7 +177,7 @@ public:
 
 
     // READ AND DISPLAY XML
-    bool readXML(const char* filename);         /**< Function that reads the xml file */
+    bool readXML(const char* filename, bool updateRecentFileNameList = true );         /**< Function that reads the xml file */
     bool displayValues();                       /**< Function that sends / writes / arranges etc. the read stuff on the window */
 
 
