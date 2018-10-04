@@ -18,6 +18,7 @@
 #include <QDragEnterEvent>
 #include <QDropEvent>
 #include <QFileDialog>
+#include <QFileInfo>
 #include <QFontDatabase>
 #include <QGraphicsEffect>
 #include <QHttpPart>
@@ -365,6 +366,26 @@ bool MainWindow::extractTarGz(QString sourceFile, QString targetDir){
 
 }
 
+bool MainWindow::readTarGz(QString sourceFile)
+{
+    QFileInfo fileInfo(sourceFile);
+    QString tempPath = QDir::temp().absolutePath() + "/" + "sdvtemp";
+    QDir(tempPath).removeRecursively(); // cleanup temp- dir
+    QDir::temp().mkdir("sdvtemp");  // create subdir
+
+    bool result = extractTarGz(sourceFile, tempPath );  // extract .tar.gz to .tar
+    if(result){
+        result = this->extractTarGz( tempPath+"/"+ fileInfo.baseName() + ".tar", tempPath ); // extract .tar
+        if(result){
+            this->readXML(QString( tempPath +"/Systemdump.xml").toStdString().c_str());
+        }
+        QDir(tempPath).removeRecursively(); // cleanup temp- dir
+    }
+    return result;
+}
+
+
+
 bool MainWindow::eventFilter(QObject *obj, QEvent *event){
     if (event->type() == QEvent::Enter){
         if((QLabel *)obj == this->start_openxml){
@@ -711,9 +732,15 @@ void MainWindow::on_actionLoad_xml_triggered()
 {
     QStringList PathList = QStandardPaths::standardLocations(QStandardPaths::DesktopLocation);
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open Systemdump.xml ..."),
-                                                    PathList.at(0), tr("Files (*.xml)"));
+                                                    PathList.at(0), tr("Files (*.xml *tar.gz)"));
     if(QFile(fileName).exists() && fileName != QString("")){
-        this->readXML(fileName.toStdString().c_str());
+        QFileInfo fileInfo(fileName);
+        QString fileExtension = fileInfo.completeSuffix();
+
+        if( fileExtension == "xml")
+            this->readXML(fileName.toStdString().c_str());
+        else
+            readTarGz(fileName);
 
         // Set UI
         ui->combo_SelectMenu->setCurrentIndex(0);
@@ -1678,7 +1705,7 @@ void MainWindow::startScreenInit(){
     ypos = ypos + iconLength;
     this->start_textopenxml->setFont(font);
     this->start_textopenxml->setAlignment(Qt::AlignCenter);
-    this->start_textopenxml->setText(tr("Load .xml"));
+    this->start_textopenxml->setText(tr("Load .xml / .tar.gz"));
     this->start_textopenxml->resize(STARTPAGE_LABEL_WIDTH,STARTPAGE_LABEL_HEIGHT);
     this->start_textopenxml->move(xpos,ypos);
     this->start_textopenxml->setVisible(false);

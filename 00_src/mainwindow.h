@@ -590,6 +590,7 @@ private:
 
     // DUMP EXTRACTION
     bool extractTarGz(QString sourceFile, QString targetDir);
+    bool readTarGz(QString sourceFile);
     QString extractionPath;
 
 
