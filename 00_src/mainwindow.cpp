@@ -1758,7 +1758,7 @@ void MainWindow::startScreenInit(){
     ypos = ypos + 50;
     this->start_sdvLogo->move(xpos,ypos);
     this->start_sdvLogo->setAlignment(Qt::AlignCenter);
-    this->start_sdvLogo->setText("SdV v2.1");
+    this->start_sdvLogo->setText("SdV v2.2");
 
     this->start_brLogo = new QLabel(this);
     this->start_brLogo->resize(118,67);
