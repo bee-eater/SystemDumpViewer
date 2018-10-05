@@ -560,13 +560,13 @@ int MainWindow::add_PartitionBar(int x, int y, int index){
     int width = 0.8*ui->group_Memory_Partitions->width();
 
     // Create labels
-    QLabel *partitionName = new QLabel();
-    QLabel *partitionSizeText = new QLabel();
-    QLabel *partitionSize = new QLabel();
-    QLabel *partitionAvailableText = new QLabel();
-    QLabel *partitionAvailable = new QLabel();
-    QLabel *partitionUsedText = new QLabel();
-    QLabel *partitionUsed = new QLabel();
+    QLabel *partitionName = new QLabel(this);
+    QLabel *partitionSizeText = new QLabel(this);
+    QLabel *partitionSize = new QLabel(this);
+    QLabel *partitionAvailableText = new QLabel(this);
+    QLabel *partitionAvailable = new QLabel(this);
+    QLabel *partitionUsedText = new QLabel(this);
+    QLabel *partitionUsed = new QLabel(this);
 
     // Header
     partitionName->setFont(header);
@@ -574,7 +574,7 @@ int MainWindow::add_PartitionBar(int x, int y, int index){
     partitionName->setGeometry(x,y,PARTITION_LABEL_WIDTH,PARTITION_LABEL_HEIGHT);
 
     // Bargraph of used size
-    QProgressBar *pBar = new QProgressBar();
+    QProgressBar *pBar = new QProgressBar(this);
     pBar->setMinimum(0);
     pBar->setMaximum(this->SysDump.Sections.Memory.CompactFlash.vPartition[index].size);
     pBar->setValue(this->SysDump.Sections.Memory.CompactFlash.vPartition[index].used);
@@ -702,7 +702,7 @@ int MainWindow::get_SoftwareModules(int uuid, int filter){
 int MainWindow::add_TaskClass(unsigned int index){
 
     QPixmap cyclePixmap("://images/cycleClass.png");
-    QLabel *cyclePmLabel = new QLabel;
+    QLabel *cyclePmLabel = new QLabel(this);
     cyclePmLabel->setPixmap(cyclePixmap.scaledToWidth(20));
     cyclePmLabel->setAlignment(Qt::AlignCenter);
     cyclePmLabel->setStyleSheet("background-color: rgba(255, 255, 255, 0);");
@@ -890,7 +890,7 @@ int MainWindow::add_LoggerModules(){
 
                 for(int cidx=0;cidx<LOGGER_TABLE_COLUMNS;cidx++){
                     QTableWidgetItem* item = new QTableWidgetItem();
-                    QLabel *levelLabel = new QLabel;
+                    QLabel *levelLabel = new QLabel(this);
 
                     switch(cidx){
                         case LOGGER_IMAGE_COLUMN:
@@ -972,7 +972,7 @@ int MainWindow::add_LoggerModules(){
 
                 for(int cidx=0;cidx<LOGGER_V2_TABLE_COLUMNS;cidx++){
                     QTableWidgetItem* item = new QTableWidgetItem();
-                    QLabel *levelLabel = new QLabel;
+                    QLabel *levelLabel = new QLabel(this);
 
                     switch(cidx){
                         case LOGGER_V2_IMAGE_COLUMN:
