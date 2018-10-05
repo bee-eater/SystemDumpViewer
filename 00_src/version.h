@@ -1,8 +1,8 @@
 #ifndef VERSION_H
 #define VERSION_H
 
-#define MY_APP_VERSION 2,1,11,23030
-#define MY_APP_VERSION_STRING "2.1.11.23030"
+#define MY_APP_VERSION 2,2,15,24278
+#define MY_APP_VERSION_STRING "2.2.15.24278"
 
 /**
  * @brief The Version namespace contains the version information of the application.
@@ -13,9 +13,9 @@
 namespace Version
 {
 	static const int MAJOR = 2;		/**< Major version number */
-	static const int MINOR = 1;		/**< Minor version number */
-    static const int REVISION = 11;	/**< Git revision */
-	static const int BUILD = 23030;	/**< Number depending on day of build */
+    static const int MINOR = 2;		/**< Minor version number */
+    static const int REVISION = 15;	/**< Git revision */
+    static const int BUILD = 24278;	/**< Number depending on day of build */
 }
 
 #endif // VERSION_H
