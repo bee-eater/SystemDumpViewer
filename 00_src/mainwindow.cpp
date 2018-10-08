@@ -321,13 +321,10 @@ void MainWindow::dropEvent(QDropEvent* event)
 
         // Check file extension
         if(pathList[0].length() > 5){
-//            for(int i = 3; i>=0; i--){
-//                extension.append(pathList[0].at(pathList[0].length()-(i+1)));
-//            }
+
             QFileInfo fileInfo(pathList[0]);
             extension = fileInfo.completeSuffix();
 
-           // if(extension.compare(QString(".xml"))==0){
             if( extension == "xml")
             {
                 // call a function to open the files

@@ -2,12 +2,11 @@
 <br/>
 <br/>
 <ul>
-    <li>Fixed 20904: New entries in logger (mapp)</li>
-	<li>Fixed wrong icons in hardware-tree </li>
+    <li>Fixed some minor bugs</li>
+	<li>Added new xml nodes: USB ARWin install, Userpartition install, Network install</li>
 </ul>
 <ul>
-    <li>Added dynamic size to logger-list</li>
-	<li>Added dynamic size to partition-list</li>
+    <li>Added tar.gz file support</li>
 </ul>
 <br/>
 <br/>
