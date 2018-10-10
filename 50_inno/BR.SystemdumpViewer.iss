@@ -13,7 +13,7 @@
 [Setup]
 AppName=Systemdump Viewer
 AppId=29567720-C543-11E3-9C1A-0800200C9A66
-AppVerName={#BaseName} v{#VERSION_NAME}
+AppVerName={#BaseName}
 AppVersion={#AppVersion}
 VersionInfoVersion={#AppVersion}
 DefaultDirName={pf}\{#BaseName}
