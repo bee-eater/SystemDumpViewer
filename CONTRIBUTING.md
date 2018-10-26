@@ -7,11 +7,13 @@ email, or any other method with the owner of this repository before making a cha
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 
-## Pull Request Process
+## Guidelines and Pull Request Process
 
 1. Releases are published by the owner of this repository **only!**
+
+2. Keep the language files up to date, use tr("...") for strings that should be translated and QString("") for strings that should not be translated!
  
-2. Increase the version numbers in any examples files and the README.md to the new version that this
+3. Increase the version numbers in any examples files and the README.md to the new version that this
    Pull Request would represent. The versioning scheme we use is [SemVer+Build-Nr.](http://semver.org/).
    
    Given a version number MAJOR.MINOR.PATCH.BUILD, increment the:
@@ -21,7 +23,7 @@ Please note we have a code of conduct, please follow it in all your interactions
         3. PATCH version when you make backwards-compatible bug fixes.
         4. BUILD version depending on this formula (<currentyear> - 1994)*1000 + <dayofcurrentyear>
         
-3. You may merge the Pull Request in once you have the sign-off of another developer, or if you 
+4. You may merge the Pull Request in once you have the sign-off of another developer, or if you 
    do not have permission to do that, you may request the reviewer to merge it for you.
 
 ## Code of Conduct
