@@ -416,7 +416,7 @@ int MainWindow::add_Hardware(){
 
             string tmpString = this->SysDump.Sections.Hardware.vNode[(*index)+1].IOInformation.ModulePath.toStdString();
 
-            while(tmpString.find(*path) == 0 && (path->empty()) == 0){
+            while(tmpString.find(*path+".") == 0 && (path->empty()) == 0){
 
                 (*index)++;
 
@@ -470,7 +470,7 @@ int MainWindow::add_Hardware(){
 
             string tmpString = this->SysDump.Sections.Hardware.vNode[(*index)+1].IOInformation.ModulePath.toStdString();
 
-            while(tmpString.find(*path) == 0 && (path->empty()) == 0){
+            while(tmpString.find(*path+".") == 0 && (path->empty()) == 0){
 
                 (*index)++;
 
