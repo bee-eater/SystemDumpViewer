@@ -1,9 +1,12 @@
 # SystemDumpViewer [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 Viewer for SystemDump.xml files of [B&amp;R](https://www.br-automation.com) PLCs with a few nice features...
 
-**Contributors welcome**
-
 ![SystemDumpViewer](https://github.com/bee-eater/SystemDumpViewer/blob/master/99_projinfo/Screenshot_211022169.png)
+
+# Contributors welcome
+
+This project adheres to the Contributor Covenant [code of conduct](CONTRIBUTING.md).
+By participating, you are expected to uphold this code. Please report unacceptable behavior to [the owner](mailto:bee-eater@users.noreply.github.com).
 
 # How to compile
 1. Get Qt 5.6.X from here: [Download](http://download.qt.io/official_releases/qt/5.6/5.6.3/qt-opensource-windows-x86-mingw492-5.6.3.exe)
