@@ -10,7 +10,7 @@ void MainWindow::init_Names(){
     this->list_RebootMode << "-" << "warm start" << "cold start" << "-" << "service";
     this->list_RebootCF << "warm start" << "cold start";
     this->list_IpConfiguration << "static" << "DHCP";
-    this->list_SNMPConfiguration << "disabled" << "read-only" << "enalbed";
+    this->list_SNMPConfiguration << "disabled" << "read-only" << "enabled";
     this->list_ModuleOk << "TRUE" << "TRUE" << "FALSE" << "UNDEF" << "UNDEF" << "UNDEF";
     this->list_ChannelType << "DO" << "DI" << "AO" << "AI";
 

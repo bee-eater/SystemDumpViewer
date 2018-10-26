@@ -4,6 +4,7 @@
 <ul>
     <li>Fixed some minor bugs</li>
 	<li>Added new xml nodes: USB ARWin install, Userpartition install, Network install</li>
+    <li>Fixed a bug in hardware tree</li>
 </ul>
 <ul>
     <li>Added tar.gz file support</li>

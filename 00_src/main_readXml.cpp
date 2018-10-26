@@ -1900,7 +1900,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                 subindex = subcnt-1;
 
                                 // "OLD" Logger -> v1.00.0
-                                if(this->SysDump.Sections.Logger.vModule[index].Version==QString("1.00.0")){
+                                if(this->SysDump.Sections.Logger.vModule[index].Version==QString("1.00.0") || this->SysDump.Sections.Logger.vModule[index].Version==QString("1.01.0")){
 
                                     this->SysDump.Sections.Logger.vModule[index].vEntry.push_back(sLogModuleEntry());
 
