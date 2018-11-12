@@ -379,7 +379,7 @@
     <message>
         <location filename="../mainwindow.ui" line="4129"/>
         <source>Load .xml / tar.gz</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir.xml / tar.gz</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="4246"/>
@@ -851,7 +851,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="2082"/>
         <source>Load .xml</source>
-        <translation>Charge .xml</translation>
+        <translation>Ouvrir.xml</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="4132"/>
@@ -1355,7 +1355,7 @@ Dump</translation>
     <message>
         <location filename="../mainwindow.cpp" line="588"/>
         <source>This program uses parts of the following Projects: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ce programme utilise des parties des projets suivants:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="745"/>
@@ -1481,22 +1481,22 @@ Vérifier chemin dans les options!</translation>
     <message>
         <location filename="../mainwindow.cpp" line="587"/>
         <source>This application is not an official B&amp;R product! For this reason the use is at your own risk and there is NO claim on support or maintenance.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cette application n&apos;est pas un produit officiel de B&amp;R! Pour cette raison, l&apos;utilisation est à vos propres risques et il n&apos;y a AUCUNE réclamation pour support ou maintenance.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="588"/>
         <source>Developed with Qt 5.6</source>
-        <translation type="unfinished"></translation>
+        <translation>Développé avec Qt 5.6</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="588"/>
         <source>This work is licensed under the</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce travail est sous licence sous la</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="588"/>
         <source>Visit us on</source>
-        <translation type="unfinished"></translation>
+        <translation>Nous rendre visite sur</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="610"/>
@@ -1511,7 +1511,7 @@ Vérifier chemin dans les options!</translation>
     <message>
         <location filename="../mainwindow.cpp" line="746"/>
         <source>Files (*.xml *tar.gz)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers Dump (* .xml * tar.gz)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="826"/>
@@ -1560,7 +1560,7 @@ Voulez-vous télécharger et installer la plus récente Systemdump Viewer?</tran
     <message>
         <location filename="../mainwindow.cpp" line="938"/>
         <source>No update server specified in options!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucun serveur de mise à jour spécifié dans les options!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1255"/>
@@ -1595,7 +1595,7 @@ Erreur no.: 30200&lt;/p&gt;</translation>
     <message>
         <location filename="../mainwindow.cpp" line="1729"/>
         <source>Load .xml / .tar.gz</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir.xml / tar.gz</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1899"/>

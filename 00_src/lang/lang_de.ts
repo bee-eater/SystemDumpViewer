@@ -1357,7 +1357,7 @@ Dump</translation>
     <message>
         <location filename="../mainwindow.cpp" line="588"/>
         <source>This program uses parts of the following Projects: </source>
-        <translation type="unfinished"></translation>
+        <translation>Dieses Programm verwendet Teile der folgenden Projekte: </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="745"/>
@@ -1484,12 +1484,12 @@ Pfad in den Optionen prüfen!</translation>
     <message>
         <location filename="../mainwindow.cpp" line="587"/>
         <source>This application is not an official B&amp;R product! For this reason the use is at your own risk and there is NO claim on support or maintenance.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dieses Programm ist keine offizielle B&amp;R Applikation! Aus diesem Grund erfolgt die Verwendung auf eigene Gefahr und es besteht kein Anspruch auf Support oder Wartung.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="588"/>
         <source>Developed with Qt 5.6</source>
-        <translation type="unfinished"></translation>
+        <translation>Entwickelt mit Qt 5.6</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="588"/>
