@@ -88,7 +88,7 @@
     <item>
      <widget class="QStackedWidget" name="stacked_MainFrame">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_DumpInfo">
        <property name="styleSheet">
@@ -305,7 +305,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget_System">
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <property name="tabsClosable">
            <bool>false</bool>
@@ -1676,7 +1676,7 @@
                     <x>0</x>
                     <y>0</y>
                     <width>196</width>
-                    <height>306</height>
+                    <height>313</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -2773,6 +2773,304 @@
             <string>Hardware</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_4">
+            <item row="0" column="1">
+             <widget class="QGroupBox" name="group_Hardware_ModuleStatus">
+              <property name="minimumSize">
+               <size>
+                <width>400</width>
+                <height>100</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>400</width>
+                <height>100</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>Module Status</string>
+              </property>
+              <widget class="QLabel" name="text_Hardware_ModuleOK">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>20</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Module Ok:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_Configured">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>36</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Configured:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_Plugged">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>52</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Plugged:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_ModuleOk">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>20</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Configured">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>36</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Plugged">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>52</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_Supervised">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>68</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Supervised:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Supervised">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>68</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QGroupBox" name="group_Hardware_ModuleDetails">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>130</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>400</width>
+                <height>130</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>Module Details</string>
+              </property>
+              <widget class="QLabel" name="text_Hardware_Firmware">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>52</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Firmware version:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_SerialNumber">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>36</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>B&amp;R serial number:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_ModulePath">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>20</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Module path:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_EquipmentID">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>100</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Equipment ID:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_HwVariant">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>84</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Hardware variant:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text_Hardware_HwRevision">
+               <property name="geometry">
+                <rect>
+                 <x>16</x>
+                 <y>68</y>
+                 <width>111</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Hardware revision:</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_ModulePath">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>20</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Serialnumber">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>36</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_Firmware">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>52</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_HwRevision">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>68</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_HwVariant">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>84</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_Hardware_EquipmentID">
+               <property name="geometry">
+                <rect>
+                 <x>152</x>
+                 <y>100</y>
+                 <width>185</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+            </item>
             <item row="2" column="1">
              <widget class="QGroupBox" name="group_Hardware_ChannelInfo">
               <property name="title">
@@ -3014,311 +3312,52 @@
               </widget>
              </widget>
             </item>
-            <item row="1" column="1">
-             <widget class="QGroupBox" name="group_Hardware_ModuleDetails">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>130</height>
-               </size>
+            <item row="0" column="0" rowspan="3">
+             <widget class="QWidget" name="widget" native="true">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
-              <property name="title">
-               <string>Module Details</string>
-              </property>
-              <widget class="QLabel" name="text_Hardware_Firmware">
-               <property name="geometry">
-                <rect>
-                 <x>16</x>
-                 <y>52</y>
-                 <width>111</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>Firmware version:</string>
-               </property>
-              </widget>
-              <widget class="QLabel" name="text_Hardware_SerialNumber">
-               <property name="geometry">
-                <rect>
-                 <x>16</x>
-                 <y>36</y>
-                 <width>111</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>B&amp;R serial number:</string>
-               </property>
-              </widget>
-              <widget class="QLabel" name="text_Hardware_ModulePath">
-               <property name="geometry">
-                <rect>
-                 <x>16</x>
-                 <y>20</y>
-                 <width>111</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>Module path:</string>
-               </property>
-              </widget>
-              <widget class="QLabel" name="text_Hardware_EquipmentID">
-               <property name="geometry">
-                <rect>
-                 <x>16</x>
-                 <y>100</y>
-                 <width>111</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>Equipment ID:</string>
-               </property>
-              </widget>
-              <widget class="QLabel" name="text_Hardware_HwVariant">
-               <property name="geometry">
-                <rect>
-                 <x>16</x>
-                 <y>84</y>
-                 <width>111</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>Hardware variant:</string>
-               </property>
-              </widget>
-              <widget class="QLabel" name="text_Hardware_HwRevision">
-               <property name="geometry">
-                <rect>
-                 <x>16</x>
-                 <y>68</y>
-                 <width>111</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>Hardware revision:</string>
-               </property>
-              </widget>
-              <widget class="QLabel" name="label_Hardware_ModulePath">
-               <property name="geometry">
-                <rect>
-                 <x>152</x>
-                 <y>20</y>
-                 <width>185</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-              <widget class="QLabel" name="label_Hardware_Serialnumber">
-               <property name="geometry">
-                <rect>
-                 <x>152</x>
-                 <y>36</y>
-                 <width>185</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-              <widget class="QLabel" name="label_Hardware_Firmware">
-               <property name="geometry">
-                <rect>
-                 <x>152</x>
-                 <y>52</y>
-                 <width>185</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-              <widget class="QLabel" name="label_Hardware_HwRevision">
-               <property name="geometry">
-                <rect>
-                 <x>152</x>
-                 <y>68</y>
-                 <width>185</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-              <widget class="QLabel" name="label_Hardware_HwVariant">
-               <property name="geometry">
-                <rect>
-                 <x>152</x>
-                 <y>84</y>
-                 <width>185</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-              <widget class="QLabel" name="label_Hardware_EquipmentID">
-               <property name="geometry">
-                <rect>
-                 <x>152</x>
-                 <y>100</y>
-                 <width>185</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QGroupBox" name="group_Hardware_ModuleStatus">
-              <property name="minimumSize">
-               <size>
-                <width>400</width>
-                <height>100</height>
-               </size>
-              </property>
-              <property name="title">
-               <string>Module Status</string>
-              </property>
-              <widget class="QLabel" name="text_Hardware_ModuleOK">
-               <property name="geometry">
-                <rect>
-                 <x>16</x>
-                 <y>20</y>
-                 <width>111</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>Module Ok:</string>
-               </property>
-              </widget>
-              <widget class="QLabel" name="text_Hardware_Configured">
-               <property name="geometry">
-                <rect>
-                 <x>16</x>
-                 <y>36</y>
-                 <width>111</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>Configured:</string>
-               </property>
-              </widget>
-              <widget class="QLabel" name="text_Hardware_Plugged">
-               <property name="geometry">
-                <rect>
-                 <x>16</x>
-                 <y>52</y>
-                 <width>111</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>Plugged:</string>
-               </property>
-              </widget>
-              <widget class="QLabel" name="label_Hardware_ModuleOk">
-               <property name="geometry">
-                <rect>
-                 <x>152</x>
-                 <y>20</y>
-                 <width>185</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-              <widget class="QLabel" name="label_Hardware_Configured">
-               <property name="geometry">
-                <rect>
-                 <x>152</x>
-                 <y>36</y>
-                 <width>185</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-              <widget class="QLabel" name="label_Hardware_Plugged">
-               <property name="geometry">
-                <rect>
-                 <x>152</x>
-                 <y>52</y>
-                 <width>185</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-              <widget class="QLabel" name="text_Hardware_Supervised">
-               <property name="geometry">
-                <rect>
-                 <x>16</x>
-                 <y>68</y>
-                 <width>111</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>Supervised:</string>
-               </property>
-              </widget>
-              <widget class="QLabel" name="label_Hardware_Supervised">
-               <property name="geometry">
-                <rect>
-                 <x>152</x>
-                 <y>68</y>
-                 <width>185</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QTreeWidget" name="tree_Hardware_Channels">
-              <column>
-               <property name="text">
-                <string>IO Information</string>
-               </property>
-              </column>
-             </widget>
-            </item>
-            <item row="0" column="0" rowspan="2">
-             <widget class="QTreeWidget" name="tree_Hardware">
-              <property name="contextMenuPolicy">
-               <enum>Qt::CustomContextMenu</enum>
-              </property>
-              <column>
-               <property name="text">
-                <string>Hardware Tree</string>
-               </property>
-              </column>
+              <layout class="QVBoxLayout" name="verticalLayout_13">
+               <item>
+                <widget class="QSplitter" name="splitter">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <widget class="QTreeWidget" name="tree_Hardware">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="contextMenuPolicy">
+                   <enum>Qt::CustomContextMenu</enum>
+                  </property>
+                  <column>
+                   <property name="text">
+                    <string>Hardware Tree</string>
+                   </property>
+                  </column>
+                 </widget>
+                 <widget class="QTreeWidget" name="tree_Hardware_Channels">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <column>
+                   <property name="text">
+                    <string>IO Information</string>
+                   </property>
+                  </column>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
            </layout>
@@ -3916,8 +3955,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>100</width>
-                    <height>30</height>
+                    <width>148</width>
+                    <height>132</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="vertLayoutLogger">
@@ -4267,8 +4306,6 @@
   <tabstop>combo_softwareFilter</tabstop>
   <tabstop>table_Software</tabstop>
   <tabstop>tabWidget_Hardware</tabstop>
-  <tabstop>tree_Hardware</tabstop>
-  <tabstop>tree_Hardware_Channels</tabstop>
   <tabstop>tabWidget_Motion</tabstop>
   <tabstop>tabWidget_Logger</tabstop>
   <tabstop>table_Logger</tabstop>
