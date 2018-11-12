@@ -1251,10 +1251,10 @@ void MainWindow::on_tree_Hardware_custom_openOnHomepage(){
     QVariant UUID = ui->tree_Hardware->currentItem()->data(0,Qt::UserRole);
     QString link;
     if(this->settings->value("hwsearchfor",0).toInt() == HW_PLUGGED){
-        link = this->settings->value("brsearchwebprefix","http://www.br-automation.com/de/search/?stype=1&key=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toInt()].ModuleStatus.Plugged+this->settings->value("brsearchwebsuffix","").toString();
+        link = this->settings->value("brsearchwebprefix","https://www.br-automation.com/de/search/?tx_solr[q]=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toInt()].ModuleStatus.Plugged+this->settings->value("brsearchwebsuffix","").toString();
         this->statusbar->showMessage(tr("Searching for hardware \"%1\" on B&R homepage ...").arg(this->SysDump.Sections.Hardware.vNode[UUID.toInt()].ModuleStatus.Plugged),DEFAULT_MESSAGE_TIME);
     } else {
-        link = this->settings->value("brsearchwebprefix","http://www.br-automation.com/de/search/?stype=1&key=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toInt()].ModuleStatus.Configured+this->settings->value("brsearchwebsuffix","").toString();
+        link = this->settings->value("brsearchwebprefix","https://www.br-automation.com/de/search/?tx_solr[q]=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toInt()].ModuleStatus.Configured+this->settings->value("brsearchwebsuffix","").toString();
         this->statusbar->showMessage(tr("Searching for hardware \"%1\" on B&R homepage ...").arg(this->SysDump.Sections.Hardware.vNode[UUID.toInt()].ModuleStatus.Configured),DEFAULT_MESSAGE_TIME);
     }
     QDesktopServices::openUrl(QUrl(link));
@@ -1263,7 +1263,7 @@ void MainWindow::on_tree_Hardware_custom_openOnHomepage(){
 
 void MainWindow::on_tree_Hardware_custom_openSerialOnHomepage(){
     QVariant UUID = ui->tree_Hardware->currentItem()->data(0,Qt::UserRole);
-    QString link = this->settings->value("brsearchserprefix","http://www.br-automation.com/de/search/?stype=2&key=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toInt()].IOInformation.Serialnumber+this->settings->value("brsearchsersuffix","").toString();
+    QString link = this->settings->value("brsearchserprefix","https://www.br-automation.com/de/search/?tx_solr[q]=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toInt()].IOInformation.Serialnumber+this->settings->value("brsearchsersuffix","").toString();
     this->statusbar->showMessage(tr("Searching for serial \"%1\" on B&R homepage ...").arg(this->SysDump.Sections.Hardware.vNode[UUID.toInt()].IOInformation.Serialnumber),DEFAULT_MESSAGE_TIME);
     QDesktopServices::openUrl(QUrl(link));
 }
