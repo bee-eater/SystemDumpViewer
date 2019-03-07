@@ -90,6 +90,7 @@
  * OTHER CONSTANTS
  *
  * -------------------------------*/
+#define BYTE_PER_GB 1073741824
 #define BYTE_PER_MB 1048576
 #define BYTE_PER_KB 1024
 
@@ -178,8 +179,7 @@ public:
 
     // READ AND DISPLAY XML
     bool readXML(const char* filename, bool updateRecentFileNameList = true );         /**< Function that reads the xml file */
-    bool displayValues();                       /**< Function that sends / writes / arranges etc. the read stuff on the window */
-
+    bool displayValues();                       /**< Function that sends / writes / arranges etc. the read stuff on the window */    
 
     // DUMP AND INFORMATION STORAGE
     sSystemDump SysDump;                        /**< Variable to store complete SystemDump information in. All values from the read XML-File are going in here! */
@@ -611,4 +611,10 @@ signals:
 
 };
 
+
+// HELPER FUNCTIONS
+void writeByteToLabel(QLabel *pLabel, long long size);
+
+
 #endif // MAINWINDOW_H
+

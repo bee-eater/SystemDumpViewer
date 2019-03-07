@@ -93,38 +93,42 @@ bool MainWindow::displayValues(){
         // CF/HD Partitions
             ui->label_Memory_Partitions_NoOfPartitions->setText(QString::number(this->SysDump.Sections.Memory.CompactFlash.NumberOfPartitions));
             ui->label_Memory_Partitions_NoOfSectors->setText(QString::number(this->SysDump.Sections.Memory.CompactFlash.NumberOfSectors));
-            ui->label_Memory_Partitions_SizePerSector->setText(QString::number(this->SysDump.Sections.Memory.CompactFlash.SizePerSector) + tr(" Byte"));
-            ui->label_Memory_Partitions_TotalCapacity->setText(QString::number((qreal)this->SysDump.Sections.Memory.CompactFlash.Size/BYTE_PER_MB,'f',3)+tr(" MB"));
+            writeByteToLabel(ui->label_Memory_Partitions_SizePerSector, this->SysDump.Sections.Memory.CompactFlash.SizePerSector);
+            writeByteToLabel(ui->label_Memory_Partitions_TotalCapacity, this->SysDump.Sections.Memory.CompactFlash.Size);
             qDeleteAll(ui->gridLayoutPartitions->findChildren<QWidget*>());
             for(unsigned int i=0;i<this->SysDump.Sections.Memory.CompactFlash.vPartition.size();i++){
                 this->add_PartitionBar(10,(12+i*(4*PARTITION_LABEL_HEIGHT+45)),i);
             }
         // DRAM
-            ui->label_Memory_DRAM_Size->setText(QString::number((qreal)this->SysDump.Sections.Memory.DRAM.size/BYTE_PER_MB,'f',3)+tr(" MB"));
+            writeByteToLabel(ui->label_Memory_DRAM_Size, this->SysDump.Sections.Memory.DRAM.size);
             ui->label_Memory_DRAM_Size->setAlignment(Qt::AlignRight | Qt::AlignCenter);
-            ui->label_Memory_DRAM_Used->setText(QString::number((qreal)this->SysDump.Sections.Memory.DRAM.used/BYTE_PER_MB,'f',3)+tr(" MB"));
+
+            writeByteToLabel(ui->label_Memory_DRAM_Used, this->SysDump.Sections.Memory.DRAM.used);
             ui->label_Memory_DRAM_Used->setAlignment(Qt::AlignRight | Qt::AlignCenter);
-            ui->label_Memory_DRAM_available->setText(QString::number((qreal)this->SysDump.Sections.Memory.DRAM.available/BYTE_PER_MB,'f',3)+tr(" MB"));
+
+            writeByteToLabel(ui->label_Memory_DRAM_available, this->SysDump.Sections.Memory.DRAM.available);
             ui->label_Memory_DRAM_available->setAlignment(Qt::AlignRight | Qt::AlignCenter);
-            ui->label_Memory_DRAM_LBlock->setText(QString::number((qreal)this->SysDump.Sections.Memory.DRAM.LargestAvailableBlock/BYTE_PER_MB,'f',3)+tr(" MB"));
+
+            writeByteToLabel(ui->label_Memory_DRAM_LBlock, this->SysDump.Sections.Memory.DRAM.LargestAvailableBlock);
             ui->label_Memory_DRAM_LBlock->setAlignment(Qt::AlignRight | Qt::AlignCenter);
+
         // SRAM
-            ui->label_Memory_SRAM_Size->setText(QString::number(this->SysDump.Sections.Memory.SRAM.size,'f',0)+tr(" Byte"));
-            ui->label_Memory_SRAM_NotUsed->setText(QString::number(this->SysDump.Sections.Memory.SRAM.notConfigured,'f',0)+tr(" Byte"));
+            writeByteToLabel(ui->label_Memory_SRAM_Size, this->SysDump.Sections.Memory.SRAM.size);
+            writeByteToLabel(ui->label_Memory_SRAM_NotUsed, this->SysDump.Sections.Memory.SRAM.notConfigured);
             // USERROM
-                ui->label_Memory_USERRAM_Available->setText(QString::number(this->SysDump.Sections.Memory.SRAM.USERRAM.available,'f',0)+tr(" Byte"));
+                writeByteToLabel(ui->label_Memory_USERRAM_Available, this->SysDump.Sections.Memory.SRAM.USERRAM.available);
                 ui->label_Memory_USERRAM_Device->setText(this->SysDump.Sections.Memory.SRAM.USERRAM.device);
-                ui->label_Memory_USERRAM_LBlock->setText(QString::number(this->SysDump.Sections.Memory.SRAM.USERRAM.LargestAvailableBlock) + tr(" Byte"));
-                ui->label_Memory_USERRAM_Size->setText(QString::number(this->SysDump.Sections.Memory.SRAM.USERRAM.size,'f',0)+tr(" Byte"));
-                ui->label_Memory_USERRAM_Used->setText(QString::number(this->SysDump.Sections.Memory.SRAM.USERRAM.used,'f',0)+tr(" Byte"));
+                writeByteToLabel(ui->label_Memory_USERRAM_LBlock, this->SysDump.Sections.Memory.SRAM.USERRAM.LargestAvailableBlock);
+                writeByteToLabel(ui->label_Memory_USERRAM_Size, this->SysDump.Sections.Memory.SRAM.USERRAM.size);
+                writeByteToLabel(ui->label_Memory_USERRAM_Used, this->SysDump.Sections.Memory.SRAM.USERRAM.used);
             // REMMEM
-                ui->label_Memory_SRAM_REMMEM_Available->setText(QString::number(this->SysDump.Sections.Memory.SRAM.REMMEM.available,'f',0)+tr(" Byte"));
+                writeByteToLabel(ui->label_Memory_SRAM_REMMEM_Available, this->SysDump.Sections.Memory.SRAM.REMMEM.available);
                 ui->label_Memory_SRAM_REMMEM_Device->setText(this->SysDump.Sections.Memory.SRAM.REMMEM.device);
-                ui->label_Memory_SRAM_REMMEM_LBlock->setText(QString::number(this->SysDump.Sections.Memory.SRAM.REMMEM.LargestAvailableBlock) + tr(" Byte"));
-                ui->label_Memory_SRAM_REMMEM_Size->setText(QString::number(this->SysDump.Sections.Memory.SRAM.REMMEM.size,'f',0)+tr(" Byte"));
-                ui->label_Memory_SRAM_REMMEM_Permanent->setText(QString::number(this->SysDump.Sections.Memory.SRAM.REMMEM.permanent,'f',0)+tr(" Byte"));
-                ui->label_Memory_SRAM_REMMEM_RemGlobal->setText(QString::number(this->SysDump.Sections.Memory.SRAM.REMMEM.remGlobal,'f',0)+tr(" Byte"));
-                ui->label_Memory_SRAM_REMMEM_RemLocal->setText(QString::number(this->SysDump.Sections.Memory.SRAM.REMMEM.remLocal,'f',0)+tr(" Byte"));
+                writeByteToLabel(ui->label_Memory_SRAM_REMMEM_LBlock, this->SysDump.Sections.Memory.SRAM.REMMEM.LargestAvailableBlock);
+                writeByteToLabel(ui->label_Memory_SRAM_REMMEM_Size, this->SysDump.Sections.Memory.SRAM.REMMEM.size);
+                writeByteToLabel(ui->label_Memory_SRAM_REMMEM_Permanent, this->SysDump.Sections.Memory.SRAM.REMMEM.permanent);
+                writeByteToLabel(ui->label_Memory_SRAM_REMMEM_RemGlobal, this->SysDump.Sections.Memory.SRAM.REMMEM.remGlobal);
+                writeByteToLabel(ui->label_Memory_SRAM_REMMEM_RemLocal, this->SysDump.Sections.Memory.SRAM.REMMEM.remLocal);
 
     // System :: Timing
         // Timer Configuration
@@ -586,7 +590,7 @@ int MainWindow::add_PartitionBar(int x, int y, int index){
     partitionSizeText->setGeometry(x,(y+PARTITION_LABEL_HEIGHT+35),89,PARTITION_LABEL_HEIGHT);
     partitionSize->setFont(normal);
     partitionSize->setAlignment(Qt::AlignRight | Qt::AlignCenter);
-    partitionSize->setText(QString::number((qreal)this->SysDump.Sections.Memory.CompactFlash.vPartition[index].size/BYTE_PER_MB,'f',3)+tr(" MB"));
+    writeByteToLabel(partitionSize,this->SysDump.Sections.Memory.CompactFlash.vPartition[index].size);
     partitionSize->setGeometry((x+PARTITION_LABEL_WIDTH),(y+PARTITION_LABEL_HEIGHT+35),62,PARTITION_LABEL_HEIGHT);
 
     // Used label / text
@@ -595,7 +599,7 @@ int MainWindow::add_PartitionBar(int x, int y, int index){
     partitionUsedText->setGeometry(x,(y+2*PARTITION_LABEL_HEIGHT+35),89,PARTITION_LABEL_HEIGHT);
     partitionUsed->setFont(normal);
     partitionUsed->setAlignment(Qt::AlignRight | Qt::AlignCenter);
-    partitionUsed->setText(QString::number((qreal)this->SysDump.Sections.Memory.CompactFlash.vPartition[index].used/BYTE_PER_MB,'f',3)+tr(" MB"));
+    writeByteToLabel(partitionUsed,this->SysDump.Sections.Memory.CompactFlash.vPartition[index].used);
     partitionUsed->setGeometry((x+PARTITION_LABEL_WIDTH),(y+2*PARTITION_LABEL_HEIGHT+35),62,PARTITION_LABEL_HEIGHT);
 
     // Available label / text
@@ -604,7 +608,7 @@ int MainWindow::add_PartitionBar(int x, int y, int index){
     partitionAvailableText->setGeometry(x,(y+3*PARTITION_LABEL_HEIGHT+35),89,PARTITION_LABEL_HEIGHT);
     partitionAvailable->setFont(normal);
     partitionAvailable->setAlignment(Qt::AlignRight | Qt::AlignCenter);
-    partitionAvailable->setText(QString::number((qreal)this->SysDump.Sections.Memory.CompactFlash.vPartition[index].available/BYTE_PER_MB,'f',3)+tr(" MB"));
+    writeByteToLabel(partitionAvailable,this->SysDump.Sections.Memory.CompactFlash.vPartition[index].available);
     partitionAvailable->setGeometry((x+PARTITION_LABEL_WIDTH),(y+3*PARTITION_LABEL_HEIGHT+35),62,PARTITION_LABEL_HEIGHT);
 
     // Add the widgets to the grid layout (has ScrollArea!)
@@ -1561,4 +1565,19 @@ int MainWindow::add_AxisErrorsToUi(){
         }
     }
     return 0;
+}
+
+
+void writeByteToLabel(QLabel *pLabel, long long size){
+
+    if(size >= BYTE_PER_GB){
+        pLabel->setText(QString::number((qreal)size/BYTE_PER_GB,'f',3)+(" GB"));
+    } else if(size >= BYTE_PER_MB){
+        pLabel->setText(QString::number((qreal)size/BYTE_PER_MB,'f',2)+(" MB"));
+    } else if(size >= BYTE_PER_KB){
+        pLabel->setText(QString::number((qreal)size/BYTE_PER_KB,'f',2)+(" KByte"));
+    } else {
+        pLabel->setText(QString::number(size)+(" Byte"));
+    }
+
 }

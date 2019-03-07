@@ -2,6 +2,7 @@
 <br/>
 <br/>
 <ul>
+    <li>Fixed bug in memory section (negative numbers)</li>
     <li>Made hardware tree resizable</li>
     <li>Loggers with v1.01.0 were not opened correctly</li>
     <li>Fixed some minor bugs</li>

@@ -155,9 +155,9 @@ using namespace std;
     struct sPartition{
         QString description;
         QString id;
-        qint32 size;
-        qint32 available;
-        qint32 used;
+        qint64 size;
+        qint64 available;
+        qint64 used;
         sPartition(){
             this->available = 0;
             this->size = 0;
@@ -172,54 +172,87 @@ using namespace std;
      */
     struct sCompactFlash{
         qint16 NumberOfPartitions;
-        qint32 NumberOfSectors;
-        qint32 Size;
-        qint32 SizePerSector;
+        qint64 NumberOfSectors;
+        qint64 Size;
+        qint64 SizePerSector;
         std::vector<sPartition> vPartition;
+        sCompactFlash(){
+            this->Size = 0;
+            this->SizePerSector = 0;
+            this->NumberOfPartitions = 0;
+            this->NumberOfSectors = 0;
+            std::vector<sPartition>().swap(this->vPartition);
+        }
     };
 
     /**
      * @brief The sUSERRAM struct
      */
     struct sUSERRAM{
-        qint32 size;
-        qint32 available;
-        qint32 used;
-        qint32 LargestAvailableBlock;
+        qint64 size;
+        qint64 available;
+        qint64 used;
+        qint64 LargestAvailableBlock;
         QString device;
+        sUSERRAM(){
+            this->size = 0;
+            this->available = 0;
+            this->used = 0;
+            this->LargestAvailableBlock = 0;
+            this->device = QString("");
+        }
     };
 
     /**
      * @brief The sREMMEM struct
      */
     struct sREMMEM{
-        qint32 size;
-        qint32 available;
-        qint32 LargestAvailableBlock;
-        qint32 permanent;
-        qint32 remGlobal;
-        qint32 remLocal;
+        qint64 size;
+        qint64 available;
+        qint64 LargestAvailableBlock;
+        qint64 permanent;
+        qint64 remGlobal;
+        qint64 remLocal;
         QString device;
+        sREMMEM(){
+            this->size = 0;
+            this->available = 0;
+            this->LargestAvailableBlock = 0;
+            this->permanent = 0;
+            this->remGlobal = 0;
+            this->remLocal = 0;
+            this->device = QString("");
+        }
     };
 
     /**
      * @brief The sDRAM struct
      */
     struct sDRAM{
-        qint32 size;
-        qint32 available;
-        qint32 used;
-        qint32 LargestAvailableBlock;
+        qint64 size;
+        qint64 available;
+        qint64 used;
+        qint64 LargestAvailableBlock;
+        sDRAM(){
+            this->size = 0;
+            this->available = 0;
+            this->used = 0;
+            this->LargestAvailableBlock = 0;
+        }
     };
 
     /**
      * @brief The sSRAM struct
      */
     struct sSRAM{
-        qint32 size;
-        qint32 notConfigured;
+        qint64 size;
+        qint64 notConfigured;
         sUSERRAM USERRAM;
         sREMMEM REMMEM;
+        sSRAM(){
+            this->size = 0;
+            this->notConfigured = 0;
+        }
     };
 
     /**
@@ -242,6 +275,13 @@ using namespace std;
         qint16 MultipleValueOfSTC;
         qint16 systemTick;
         qint16 TaskClassIdleTime;
+        sTimerConfig(){
+            this->SystemTimer = QString("");
+            this->IdleTaskClass = 0;
+            this->MultipleValueOfSTC = 0;
+            this->systemTick = 0;
+            this->TaskClassIdleTime = 0;
+        }
     };
 
     /**

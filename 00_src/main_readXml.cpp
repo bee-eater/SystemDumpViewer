@@ -239,11 +239,11 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                         break;
 
                                     case VALUE_001_OPHOURS:
-                                        this->SysDump.Sections.Values.OperationalValues.OperatingHours = (qint32)atoi(tmpString2.c_str());
+                                        this->SysDump.Sections.Values.OperationalValues.OperatingHours = QString::fromStdString(tmpString2.c_str()).toLong();
                                         break;
 
                                     case VALUE_001_POWERCYCLES:
-                                        this->SysDump.Sections.Values.OperationalValues.PowerOnCycles = (qint32)atoi(tmpString2.c_str());
+                                        this->SysDump.Sections.Values.OperationalValues.PowerOnCycles = QString::fromStdString(tmpString2.c_str()).toLong();
                                         break;
 
                                     case VALUE_001_ERR:
@@ -674,15 +674,15 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                 break;
 
                             case MEMORY_002_SIZE:
-                                this->SysDump.Sections.Memory.CompactFlash.Size = (qint32)atoi(pAttribute->value());
+                                this->SysDump.Sections.Memory.CompactFlash.Size = QString::fromUtf8(pAttribute->value()).toLongLong();
                                 break;
 
                             case MEMORY_002_NUMBEROFSECTORS:
-                                this->SysDump.Sections.Memory.CompactFlash.NumberOfSectors = (qint32)atoi(pAttribute->value());
+                                this->SysDump.Sections.Memory.CompactFlash.NumberOfSectors = QString::fromStdString(pAttribute->value()).toLongLong();
                                 break;
 
                             case MEMORY_002_SIZEPERSECTOR:
-                                this->SysDump.Sections.Memory.CompactFlash.SizePerSector = (qint32)atoi(pAttribute->value());
+                                this->SysDump.Sections.Memory.CompactFlash.SizePerSector = QString::fromStdString(pAttribute->value()).toLongLong();
                                 break;
 
                             case MEMORY_002_ERR:
@@ -710,7 +710,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                 switch(map_030_PartitionAttributes[tmpString]){
                                 case MEMORY_003_AVAILABLE:
-                                    this->SysDump.Sections.Memory.CompactFlash.vPartition[index].available = (qint32)atoi(pAttribute->value());
+                                    this->SysDump.Sections.Memory.CompactFlash.vPartition[index].available = QString::fromUtf8(pAttribute->value()).toLongLong();
                                     break;
 
                                 case MEMORY_003_DESCRIPTION:
@@ -722,11 +722,11 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                     break;
 
                                 case MEMORY_003_SIZE:
-                                    this->SysDump.Sections.Memory.CompactFlash.vPartition[index].size = (qint32)atoi(pAttribute->value());
+                                    this->SysDump.Sections.Memory.CompactFlash.vPartition[index].size = QString::fromStdString(pAttribute->value()).toLongLong();
                                     break;
 
                                 case MEMORY_003_USED:
-                                    this->SysDump.Sections.Memory.CompactFlash.vPartition[index].used = (qint32)atoi(pAttribute->value());
+                                    this->SysDump.Sections.Memory.CompactFlash.vPartition[index].used = QString::fromStdString(pAttribute->value()).toLongLong();
                                     break;
 
                                 case MEMORY_003_ERR:
@@ -752,19 +752,19 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                             switch(map_031_DRAMAttributes[tmpString]){
                             case MEMORY_004_AVAILABLE:
-                                this->SysDump.Sections.Memory.DRAM.available = (qint32)atoi(pAttribute->value());
+                                this->SysDump.Sections.Memory.DRAM.available = QString::fromStdString(pAttribute->value()).toLongLong();
                                 break;
 
                             case MEMORY_004_LARGESTBLOCK:
-                                this->SysDump.Sections.Memory.DRAM.LargestAvailableBlock = (qint32)atoi(pAttribute->value());
+                                this->SysDump.Sections.Memory.DRAM.LargestAvailableBlock = QString::fromStdString(pAttribute->value()).toLongLong();
                                 break;
 
                             case MEMORY_004_SIZE:
-                                this->SysDump.Sections.Memory.DRAM.size = (qint32)atoi(pAttribute->value());
+                                this->SysDump.Sections.Memory.DRAM.size = QString::fromStdString(pAttribute->value()).toLongLong();
                                 break;
 
                             case MEMORY_004_USED:
-                                this->SysDump.Sections.Memory.DRAM.used = (qint32)atoi(pAttribute->value());
+                                this->SysDump.Sections.Memory.DRAM.used = QString::fromStdString(pAttribute->value()).toLongLong();
                                 break;
 
                             case MEMORY_004_ERR:
@@ -788,7 +788,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                             switch(map_032_SRAMAttributes[tmpString]){
                             case MEMORY_005_SIZE:
-                                this->SysDump.Sections.Memory.SRAM.size = (qint32)atoi(pAttribute->value());
+                                this->SysDump.Sections.Memory.SRAM.size = QString::fromStdString(pAttribute->value()).toLongLong();
                                 break;
 
                             case MEMORY_005_ERR:
@@ -817,7 +817,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                     switch(map_035_NotConfigured[tmpString]){
                                     case MEMORY_008_SIZE:
-                                        this->SysDump.Sections.Memory.SRAM.notConfigured = (qint32)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Memory.SRAM.notConfigured = QString::fromStdString(pAttribute->value()).toLongLong();
                                         break;
 
                                     case MEMORY_008_ERR:
@@ -840,7 +840,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                     switch(map_033_USERRAMAttributes[tmpString]){
                                     case MEMORY_006_AVAILABLE:
-                                        this->SysDump.Sections.Memory.SRAM.USERRAM.available = (qint32)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Memory.SRAM.USERRAM.available = QString::fromStdString(pAttribute->value()).toLongLong();
                                         break;
 
                                     case MEMORY_006_DEVICE:
@@ -848,15 +848,15 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                         break;
 
                                     case MEMORY_006_LARGESTBLOCK:
-                                        this->SysDump.Sections.Memory.SRAM.USERRAM.LargestAvailableBlock = (qint32)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Memory.SRAM.USERRAM.LargestAvailableBlock = QString::fromStdString(pAttribute->value()).toLongLong();
                                         break;
 
                                     case MEMORY_006_SIZE:
-                                        this->SysDump.Sections.Memory.SRAM.USERRAM.size = (qint32)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Memory.SRAM.USERRAM.size = QString::fromStdString(pAttribute->value()).toLongLong();
                                         break;
 
                                     case MEMORY_006_USED:
-                                        this->SysDump.Sections.Memory.SRAM.USERRAM.used = (qint32)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Memory.SRAM.USERRAM.used = QString::fromStdString(pAttribute->value()).toLongLong();
                                         break;
 
                                     case MEMORY_006_ERR:
@@ -879,7 +879,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                     switch(map_034_REMMEMAttributes[tmpString]){
                                     case MEMORY_007_AVAILABLE:
-                                        this->SysDump.Sections.Memory.SRAM.REMMEM.available = (qint32)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Memory.SRAM.REMMEM.available = QString::fromStdString(pAttribute->value()).toLongLong();
                                         break;
 
                                     case MEMORY_007_DEVICE:
@@ -887,23 +887,23 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                         break;
 
                                     case MEMORY_007_LARGESTBLOCK:
-                                        this->SysDump.Sections.Memory.SRAM.REMMEM.LargestAvailableBlock = (qint32)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Memory.SRAM.REMMEM.LargestAvailableBlock = QString::fromStdString(pAttribute->value()).toLongLong();
                                         break;
 
                                     case MEMORY_007_PERMANENT:
-                                        this->SysDump.Sections.Memory.SRAM.REMMEM.permanent = (qint32)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Memory.SRAM.REMMEM.permanent = QString::fromStdString(pAttribute->value()).toLongLong();
                                         break;
 
                                     case MEMORY_007_REMGLOBAL:
-                                        this->SysDump.Sections.Memory.SRAM.REMMEM.remGlobal = (qint32)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Memory.SRAM.REMMEM.remGlobal = QString::fromStdString(pAttribute->value()).toLongLong();
                                         break;
 
                                     case MEMORY_007_REMLOCAL:
-                                        this->SysDump.Sections.Memory.SRAM.REMMEM.remLocal = (qint32)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Memory.SRAM.REMMEM.remLocal = QString::fromStdString(pAttribute->value()).toLongLong();
                                         break;
 
                                     case MEMORY_007_SIZE:
-                                        this->SysDump.Sections.Memory.SRAM.REMMEM.size = (qint32)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Memory.SRAM.REMMEM.size = QString::fromStdString(pAttribute->value()).toLongLong();
                                         break;
 
                                     case MEMORY_007_ERR:
@@ -1020,7 +1020,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                     switch(map_037_TimingTaskClassConfiguration[tmpString]){
                                     case TIMING_002_CYCLETIME:
-                                        this->SysDump.Sections.Timing.vTaskClass[index].CycleTime = (qint32)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Timing.vTaskClass[index].CycleTime = QString::fromStdString(pAttribute->value()).toLong();
                                         break;
 
                                     case TIMING_002_CYCLIC:
@@ -1040,7 +1040,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                         break;
 
                                     case TIMING_002_TOLERANCE:
-                                        this->SysDump.Sections.Timing.vTaskClass[index].Tolerance = (qint32)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Timing.vTaskClass[index].Tolerance = QString::fromStdString(pAttribute->value()).toLong();
                                         break;
 
                                     case TIMING_002_ERR:
@@ -1235,7 +1235,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                         break;
 
                                     case SOFTWARE_001_SIZE:
-                                        this->SysDump.Sections.Software.vAppModule[index].vModules[subindex].size = (qint32)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Software.vAppModule[index].vModules[subindex].size = QString::fromStdString(pAttribute->value()).toLong();
                                         break;
 
                                     case SOFTWARE_001_TIMESTAMP:
@@ -1308,7 +1308,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                 break;
 
                             case SOFTWARE_001_SIZE:
-                                this->SysDump.Sections.Software.vAppModule[0].vModules[index].size = (qint32)atoi(pAttribute->value());
+                                this->SysDump.Sections.Software.vAppModule[0].vModules[index].size = QString::fromStdString(pAttribute->value()).toLong();
                                 break;
 
                             case SOFTWARE_001_TIMESTAMP:
@@ -1637,11 +1637,11 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                                 switch(map_045_MotionAxisAttribute[tmpString]){
                                                 case MOTION_001_ACTPOS:
-                                                    this->SysDump.Sections.Motion.vAxis[index].ActPosition = (qint32)atoi(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[index].ActPosition = QString::fromStdString(pAttribute2->value()).toLong();
                                                     break;
 
                                                 case MOTION_001_ACTSPEED:
-                                                    this->SysDump.Sections.Motion.vAxis[index].ActSpeed = (qint32)atoi(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[index].ActSpeed = QString::fromStdString(pAttribute2->value()).toLong();
                                                     break;
 
                                                 case MOTION_001_ADRESS:
@@ -1925,7 +1925,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                         case LOGGER_002_EVENTID:
                                         case LOGGER_002_ERRORNR:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntry[subindex].ErrorNr = (qint32)atoi(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[index].vEntry[subindex].ErrorNr = QString::fromStdString(pAttribute->value()).toLong();
                                             break;
 
                                         case LOGGER_002_OBJECTID:
@@ -1933,7 +1933,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                             break;
 
                                         case LOGGER_002_ID:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntry[subindex].ID = (qint32)atoi(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[index].vEntry[subindex].ID = QString::fromStdString(pAttribute->value()).toLong();
                                             break;
 
                                         case LOGGER_002_LEVEL:
@@ -1996,11 +1996,11 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                             break;
 
                                         case LOGGER_202_FACILITY:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].Facility = (qint32)atoi(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].Facility = QString::fromStdString(pAttribute->value()).toLong();
                                             break;
 
                                         case LOGGER_202_ID:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].ID = (qint32)atoi(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].ID = QString::fromStdString(pAttribute->value()).toLong();
                                             break;
 
                                         case LOGGER_202_INFO:
@@ -2008,11 +2008,11 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                             break;
 
                                         case LOGGER_202_ORIGINRECORDID:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].OriginRecID = (qint32)atoi(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].OriginRecID = QString::fromStdString(pAttribute->value()).toLong();
                                             break;
 
                                         case LOGGER_202_SEVERITY:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].Severity = (qint32)atoi(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].Severity = QString::fromStdString(pAttribute->value()).toLong();
                                             break;
 
                                         case LOGGER_202_TIMESTAMP:
@@ -2093,7 +2093,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                 break;
 
                             case PROFILER_000_SIZE:
-                                this->SysDump.Sections.Profiler.vModule[index].Size = (qint32)atoi(pAttribute->value());
+                                this->SysDump.Sections.Profiler.vModule[index].Size = QString::fromStdString(pAttribute->value()).toLong();
                                 break;
 
                             case PROFILER_000_TIMESTAMP:
