@@ -23,6 +23,16 @@ using namespace std;
         QString TargetTime;
         qint32 OperatingHours;
         qint32 PowerOnCycles;
+        sOperationalValues(){
+            this->NodeNumber = QString("");
+            this->CurrentCpuMode = 0;
+            this->BatteryStatus = 0;
+            this->CPUtemperature = 0;
+            this->CurrentCpuUsage = 0;
+            this->TargetTime = QString("");
+            this->OperatingHours = 0;
+            this->PowerOnCycles = 0;
+        }
     };
 
     /**
@@ -36,6 +46,15 @@ using namespace std;
         QString SNTPserver4;
         qint16 SNTPsynchInterval;
         qint16 RTCsynchInterval;
+        sSNTPClient(){
+            this->SNTPclient = QString("");
+            this->SNTPserver1 = QString("");
+            this->SNTPserver2 = QString("");
+            this->SNTPserver3 = QString("");
+            this->SNTPserver4 = QString("");
+            this->SNTPsynchInterval = 0;
+            this->RTCsynchInterval = 0;
+        }
     };
 
     /**
@@ -71,6 +90,11 @@ using namespace std;
         qint16 AfterReset;
         qint16 AfterPowerFail;
         qint16 AfterCFChange;
+        sRebootMode(){
+            this->AfterCFChange = 0;
+            this->AfterReset = 0;
+            this->AfterPowerFail = 0;
+        }
     };
 
     /**
@@ -78,6 +102,9 @@ using namespace std;
      */
     struct sPreservePVMemory{
         qint16 AfterCFChange;
+        sPreservePVMemory(){
+            this->AfterCFChange = 0;
+        }
     };
 
     /**
@@ -103,6 +130,9 @@ using namespace std;
     struct sApplicationInfo{
         QString ApplicationLink;
         qint16 ApplicationStatus;
+        sApplicationInfo(){
+            this->ApplicationStatus = 0;
+        }
     };
 
     /**
@@ -145,6 +175,9 @@ using namespace std;
     struct sEthernet{
         QString DefaultGateway;
         std::vector<sInterface> vInterface;
+        sEthernet(){
+            this->DefaultGateway = QString("");
+        }
     };
 
 // Memory
@@ -404,6 +437,12 @@ using namespace std;
         QString Plugged;    /**< Plugged module name */
         qint16 Supervised;  /**< Module is supervised */
         qint16 ModuleOk;    /**< ModuleOk flag */
+        sModuleStatus(){
+            this->Configured = QString("");
+            this->Plugged = QString("");
+            this->Supervised = 0;
+            this->ModuleOk = 0;
+        }
     };
 
     /**
@@ -416,6 +455,14 @@ using namespace std;
         QString HardwareVariant;
         QString ModulePath;
         QString Serialnumber;
+        sIOInformation(){
+            this->EquipmentID = QString("");
+            this->FwVersion = QString("");
+            this->HardwareRevision = QString("");
+            this->HardwareVariant = QString("");
+            this->ModulePath = QString("");
+            this->Serialnumber = QString("");
+        }
     };
 
     /**
