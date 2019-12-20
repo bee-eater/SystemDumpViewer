@@ -5,7 +5,7 @@
 #include "reportsettings.h"
 #include "ui_reportsettings.h"
 
-#include <Windowsx.h>
+#include <windowsx.h>
 #include <cstdio>
 #include <tlhelp32.h>
 #include <commctrl.h>
@@ -108,7 +108,7 @@ bool MainWindow::check_IsHelpOpen()
     PROCESSENTRY32 entry;
     entry.dwSize = sizeof(PROCESSENTRY32);
 
-    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, (DWORD)NULL);
+    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, static_cast<DWORD>(NULL));
 
     if (Process32First(snapshot, &entry))
         while (Process32Next(snapshot, &entry))
@@ -387,7 +387,7 @@ bool MainWindow::readTarGz(QString sourceFile)
     if(result){
         result = this->extractTarGz( tempPath+"/"+ fileInfo.baseName() + ".tar", tempPath ); // extract .tar
         if(result){
-            this->readXML(QString( tempPath +"/Systemdump.xml").toStdString().c_str(), false);
+            this->readXML(QString( tempPath +"/Systemdump.xml").toStdString().c_str(), false,sourceFile);
             recentSetCurrentFile(sourceFile);
         }
         QDir(tempPath).removeRecursively(); // cleanup temp- dir
@@ -399,12 +399,12 @@ bool MainWindow::readTarGz(QString sourceFile)
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event){
     if (event->type() == QEvent::Enter){
-        if((QLabel *)obj == this->start_openxml){
+        if(static_cast<QLabel *>(obj) == this->start_openxml){
             this->start_openxml->setText(QString("<html><img src='://images/start_openxml_hov.png'/></html>"));
             this->start_textopenxml->setVisible(true);
 
             return true;
-        } else if((QLabel *)obj == this->start_openplc){
+        } else if(static_cast<QLabel *>(obj) == this->start_openplc){
             this->start_openplc->setText(QString("<html><img src='://images/start_openplc_hov.png' /></html>"));
             this->start_textopenplc->setVisible(true);
             return true;
@@ -413,11 +413,11 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
         }
 
     } else if (event->type() == QEvent::Leave){
-        if((QLabel *)obj == this->start_openxml){
+        if(static_cast<QLabel *>(obj) == this->start_openxml){
             this->start_openxml->setText(QString("<html><img src='://images/start_openxml.png' /></html>"));
             this->start_textopenxml->setVisible(false);
             return true;
-        } else if((QLabel *)obj == this->start_openplc){
+        } else if(static_cast<QLabel *>(obj) == this->start_openplc){
             this->start_openplc->setText(QString("<html><img src='://images/start_openplc.png' /></html>"));
             this->start_textopenplc->setVisible(false);
             return true;
@@ -426,13 +426,13 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
         }
 
     } else if (event->type() == QEvent::MouseButtonRelease){
-        if((QLabel *)obj == this->start_openxml){
+        if(static_cast<QLabel *>(obj) == this->start_openxml){
             this->on_actionLoad_xml_triggered();
             this->start_openxml->setText(QString("<html><img src='://images/start_openxml.png' /></html>"));
             this->start_textopenxml->setVisible(false);
             return QObject::eventFilter(obj, event);
 
-        } else if((QLabel *)obj == this->start_openplc){
+        } else if(static_cast<QLabel *>(obj) == this->start_openplc){
             this->on_actionLoad_from_PLC_triggered();
             this->start_openplc->setText(QString("<html><img src='://images/start_openplc.png' /></html>"));
             this->start_textopenplc->setVisible(false);
@@ -443,7 +443,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
         }
 
     }else if(event->type() == QEvent::Resize){
-        if(((QMainWindow *)obj) == this){
+        if((static_cast<QMainWindow *>(obj)) == this){
             this->startScreenCenter();
             return QObject::eventFilter(obj, event);
         }
@@ -505,7 +505,7 @@ bool MainWindow::netHttpGET(QString GET){
             return 0;
         }
     } else {
-        netReply->abort();;
+        netReply->abort();
         this->netError = tr("Timeout! No network connection or server not reachable!");
         return 0;
     }
@@ -530,7 +530,7 @@ bool MainWindow::netHttpPOST(QString ipPOST, QHttpMultiPart *httpPart){
             return 0;
         }
     } else {
-        netReply->abort();;
+        netReply->abort();
         this->netError = tr("Timeout! No network connection or server not reachable!");
         return 0;
     }
@@ -541,8 +541,8 @@ bool MainWindow::netHttpDownload(QString url, QString filePath){
     this->netRequestDownload.setUrl(QUrl(url));
     QNetworkReply *netReply = this->netAccManDownload.get(this->netRequestDownload);
     netReply->connect(netReply, &QNetworkReply::downloadProgress, [&](qint64 received, qint64 total){
-        this->progressBar.setMaximum(total);
-        this->progressBar.setValue(received);
+        this->progressBar.setMaximum(static_cast<int>(total));
+        this->progressBar.setValue(static_cast<int>(received));
         this->netTimeout.start(NET_TIMEOUT);
     });
     this->setStatusBarEnabled(true,tr("Downloading ..."));
@@ -660,8 +660,8 @@ void MainWindow::on_actionLoad_from_PLC_triggered()
                         if(result){
                             liveSign = liveSign+2;
 
-                            QString sysDumpProgress = this->netReplyPOST.mid(this->netReplyPOST.toStdString().find("<SDM_sysDump_progress><Text>")+QString("<SDM_sysDump_progress><Text>").toStdString().length(),(this->netReplyPOST.toStdString().find("</Text></SDM_sysDump_progress>"))-(this->netReplyPOST.toStdString().find("<SDM_sysDump_progress><Text>")+QString("<SDM_sysDump_progress><Text>").toStdString().length()));
-                            QString sysDumpExisting = this->netReplyPOST.mid(this->netReplyPOST.toStdString().find("<SDM_sysDump_existing><Text>")+QString("<SDM_sysDump_existing><Text>").toStdString().length(),(this->netReplyPOST.toStdString().find("</Text></SDM_sysDump_existing>"))-(this->netReplyPOST.toStdString().find("<SDM_sysDump_existing><Text>")+QString("<SDM_sysDump_existing><Text>").toStdString().length()));
+                            QString sysDumpProgress = this->netReplyPOST.mid(static_cast<int>(this->netReplyPOST.toStdString().find("<SDM_sysDump_progress><Text>")+QString("<SDM_sysDump_progress><Text>").toStdString().length()),static_cast<int>((this->netReplyPOST.toStdString().find("</Text></SDM_sysDump_progress>"))-(this->netReplyPOST.toStdString().find("<SDM_sysDump_progress><Text>")+QString("<SDM_sysDump_progress><Text>").toStdString().length())));
+                            QString sysDumpExisting = this->netReplyPOST.mid(static_cast<int>(this->netReplyPOST.toStdString().find("<SDM_sysDump_existing><Text>")+QString("<SDM_sysDump_existing><Text>").toStdString().length()),static_cast<int>((this->netReplyPOST.toStdString().find("</Text></SDM_sysDump_existing>"))-(this->netReplyPOST.toStdString().find("<SDM_sysDump_existing><Text>")+QString("<SDM_sysDump_existing><Text>").toStdString().length())));
                             this->emitProgress(sysDumpProgress.toInt());
 
                             //qDebug() << sysDumpProgress << " - " << sysDumpExisting;
@@ -676,7 +676,7 @@ void MainWindow::on_actionLoad_from_PLC_triggered()
                             if(this->netReplyPOST != "")
                                 liveLimit = liveLimit+2;
 
-                            if(sysDumpProgress.toInt()==100 && (bool)sysDumpExisting.toInt()==true){
+                            if(sysDumpProgress.toInt()==100 && static_cast<bool>(sysDumpExisting.toInt()==true)){
                                 this->setStatusBarEnabled(false);
 
                                 // When temporary file is selected in the options, check if dir exists, otherwise create
@@ -886,15 +886,15 @@ void MainWindow::on_actionCheck_for_updates_triggered()
                     doc.parse<0>(this->netReplyPOST.toLocal8Bit().QByteArray::data());
 
                     // Check nodes before accessing
-                    if(doc.first_node("sdvWgMessage") != NULL){
-                        if(doc.first_node("sdvWgMessage")->first_node("Version") != NULL) {
+                    if(doc.first_node("sdvWgMessage") != nullptr){
+                        if(doc.first_node("sdvWgMessage")->first_node("Version") != nullptr) {
                             newVersion = QString::fromUtf8(doc.first_node("sdvWgMessage")->first_node("Version")->value());
                         } else {
                             QMessageBox::warning(this,tr("Error!"),tr("Error reading server answer!"));
                             return;
                         }
 
-                        if(doc.first_node("sdvWgMessage")->first_node("Download") != NULL) {
+                        if(doc.first_node("sdvWgMessage")->first_node("Download") != nullptr) {
                             downloadLink = QString::fromUtf8(doc.first_node("sdvWgMessage")->first_node("Download")->value());
                         } else {
                             QMessageBox::warning(this,tr("Error!"),tr("Error reading server answer!"));
@@ -1131,9 +1131,9 @@ void MainWindow::on_logger_pressed_f1(){
     if(!selectedList.isEmpty()){
         int index = selectedList.at(0).data(Qt::UserRole).toInt();
         if(this->SysDump.Sections.Logger.vModule[0].Version==QString("1.00.0")){
-            this->openInBuRHelp(QString::number(this->vLogSortView[index].ErrorNr));
+            this->openInBuRHelp(QString::number(this->vLogSortView[static_cast<unsigned int>(index)].ErrorNr));
         } else {
-            this->openInBuRHelp(this->vLogSortViewV2[index].EventID);
+            this->openInBuRHelp(this->vLogSortViewV2[static_cast<unsigned int>(index)].EventID);
         }
     }
 }
@@ -1223,7 +1223,7 @@ void MainWindow::on_tree_Hardware_itemDoubleClicked()
 
 void MainWindow::on_tree_Hardware_customContextMenuRequested(const QPoint &pos)
 {
-    if(ui->tree_Hardware->currentItem() != NULL){
+    if(ui->tree_Hardware->currentItem() != nullptr){
         QMenu *menu=new QMenu(this);
 
         QAction *openOnHomepage = new QAction(this->HwDoubleClickActions.at(0), this);
@@ -1251,11 +1251,11 @@ void MainWindow::on_tree_Hardware_custom_openOnHomepage(){
     QVariant UUID = ui->tree_Hardware->currentItem()->data(0,Qt::UserRole);
     QString link;
     if(this->settings->value("hwsearchfor",0).toInt() == HW_PLUGGED){
-        link = this->settings->value("brsearchwebprefix","https://www.br-automation.com/de/search/?tx_solr[q]=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toInt()].ModuleStatus.Plugged+this->settings->value("brsearchwebsuffix","").toString();
-        this->statusbar->showMessage(tr("Searching for hardware \"%1\" on B&R homepage ...").arg(this->SysDump.Sections.Hardware.vNode[UUID.toInt()].ModuleStatus.Plugged),DEFAULT_MESSAGE_TIME);
+        link = this->settings->value("brsearchwebprefix","https://www.br-automation.com/de-de/search/?q=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].ModuleStatus.Plugged+this->settings->value("brsearchwebsuffix","").toString();
+        this->statusbar->showMessage(tr("Searching for hardware \"%1\" on B&R homepage ...").arg(this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].ModuleStatus.Plugged),DEFAULT_MESSAGE_TIME);
     } else {
-        link = this->settings->value("brsearchwebprefix","https://www.br-automation.com/de/search/?tx_solr[q]=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toInt()].ModuleStatus.Configured+this->settings->value("brsearchwebsuffix","").toString();
-        this->statusbar->showMessage(tr("Searching for hardware \"%1\" on B&R homepage ...").arg(this->SysDump.Sections.Hardware.vNode[UUID.toInt()].ModuleStatus.Configured),DEFAULT_MESSAGE_TIME);
+        link = this->settings->value("brsearchwebprefix","https://www.br-automation.com/de-de/search/?q=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].ModuleStatus.Configured+this->settings->value("brsearchwebsuffix","").toString();
+        this->statusbar->showMessage(tr("Searching for hardware \"%1\" on B&R homepage ...").arg(this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].ModuleStatus.Configured),DEFAULT_MESSAGE_TIME);
     }
     QDesktopServices::openUrl(QUrl(link));
 
@@ -1263,25 +1263,25 @@ void MainWindow::on_tree_Hardware_custom_openOnHomepage(){
 
 void MainWindow::on_tree_Hardware_custom_openSerialOnHomepage(){
     QVariant UUID = ui->tree_Hardware->currentItem()->data(0,Qt::UserRole);
-    QString link = this->settings->value("brsearchserprefix","https://www.br-automation.com/de/search/?tx_solr[q]=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toInt()].IOInformation.Serialnumber+this->settings->value("brsearchsersuffix","").toString();
-    this->statusbar->showMessage(tr("Searching for serial \"%1\" on B&R homepage ...").arg(this->SysDump.Sections.Hardware.vNode[UUID.toInt()].IOInformation.Serialnumber),DEFAULT_MESSAGE_TIME);
+    QString link = this->settings->value("brsearchserprefix","https://www.br-automation.com/serial/").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].IOInformation.Serialnumber+this->settings->value("brsearchsersuffix","").toString();
+    this->statusbar->showMessage(tr("Searching for serial \"%1\" on B&R homepage ...").arg(this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].IOInformation.Serialnumber),DEFAULT_MESSAGE_TIME);
     QDesktopServices::openUrl(QUrl(link));
 }
 
 void MainWindow::on_tree_Hardware_custom_openInHelp(){
     QVariant UUID = ui->tree_Hardware->currentItem()->data(0,Qt::UserRole);
     if(this->settings->value("hwsearchfor",0).toInt() == HW_PLUGGED){
-        this->openInBuRHelp(this->SysDump.Sections.Hardware.vNode[UUID.toInt()].ModuleStatus.Plugged);
+        this->openInBuRHelp(this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].ModuleStatus.Plugged);
     } else {
-        this->openInBuRHelp(this->SysDump.Sections.Hardware.vNode[UUID.toInt()].ModuleStatus.Configured);
+        this->openInBuRHelp(this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].ModuleStatus.Configured);
     }
 }
 
 void MainWindow::on_tree_Hardware_custom_copySerial(){
     QVariant UUID = ui->tree_Hardware->currentItem()->data(0,Qt::UserRole);
     QClipboard *clipboard = QApplication::clipboard();
-    clipboard->setText(this->SysDump.Sections.Hardware.vNode[UUID.toInt()].IOInformation.Serialnumber);
-    this->statusbar->showMessage(tr("Copied serial \"%1\" to clipboard ...").arg(this->SysDump.Sections.Hardware.vNode[UUID.toInt()].IOInformation.Serialnumber));
+    clipboard->setText(this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].IOInformation.Serialnumber);
+    this->statusbar->showMessage(tr("Copied serial \"%1\" to clipboard ...").arg(this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].IOInformation.Serialnumber));
 }
 
 void MainWindow::on_tree_Hardware_Channels_selectionChanged(){
@@ -1359,7 +1359,7 @@ BOOL CALLBACK MainWindow::EnumWindowsProc(HWND hwnd,LPARAM lparam){
     {
         QString Title;
         char buffer[21];
-        PTSTR pTitle = (PTSTR) malloc ( 20 * sizeof (TCHAR)) ;
+        PTSTR pTitle = static_cast<PTSTR>(malloc ( 20 * sizeof (TCHAR)));
         GetWindowText(hwnd,pTitle,20);
 
         // Copy title to QString
@@ -1382,7 +1382,7 @@ BOOL CALLBACK MainWindow::EnumChildWindowsProc(HWND hwnd, LPARAM lParam){
 
     QString ClassName;
     char buffer[30];
-    PTSTR pClassName = (PTSTR) malloc ( 30 * sizeof (TCHAR));
+    PTSTR pClassName = static_cast<PTSTR>(malloc ( 30 * sizeof (TCHAR)));
     GetClassName(hwnd,pClassName,30);
 
     // Copy class name to QString
@@ -1419,7 +1419,7 @@ void MainWindow::openInBuRHelp(QString search){
 
         // Should have hwnd of the COMBOBOX now!
         if(this->hwndComboBox){
-            HWND hwnd = FindWindowEx(GetParent(this->hwndComboBox), 0, NULL, NULL);
+            HWND hwnd = FindWindowEx(GetParent(this->hwndComboBox), nullptr, nullptr, nullptr);
             while(hwnd){
                 GetWindowText(hwnd, ButtonCaption, MAX_PATH);
 
@@ -1435,7 +1435,7 @@ void MainWindow::openInBuRHelp(QString search){
                     this->statusbar->showMessage(tr("Successfully connected to B&R help!"),DEFAULT_MESSAGE_TIME);
                 }
 
-                hwnd = FindWindowEx(GetParent(this->hwndComboBox), hwnd, NULL, NULL);
+                hwnd = FindWindowEx(GetParent(this->hwndComboBox), hwnd, nullptr, nullptr);
             }
         } else {
             QMessageBox::critical(this,tr("Error!"),tr("<p>Internal error!\n\nError nr.: 30200</p>"));
@@ -1649,7 +1649,7 @@ void MainWindow::startScreenCenter(){
     this->start_stripe->move(xpos,ypos);
 
     xpos = (this->width()/2 - iconLength);
-    ypos = (this->height()/2 - (int)(0.5*iconLength));
+    ypos = (this->height()/2 - static_cast<int>(0.5*iconLength));
     this->start_openxml->move(xpos,ypos);
 
     xpos = xpos - ((STARTPAGE_LABEL_WIDTH/2)-(iconLength/2));
@@ -1657,7 +1657,7 @@ void MainWindow::startScreenCenter(){
     this->start_textopenxml->move(xpos,ypos);
 
     xpos = (this->width()/2);
-    ypos = (this->height()/2 - (int)(0.5*iconLength));
+    ypos = (this->height()/2 - static_cast<int>(0.5*iconLength));
     this->start_openplc->move(xpos,ypos);
 
 
@@ -1716,7 +1716,7 @@ void MainWindow::startScreenInit(){
 
     this->start_openxml = new QLabel(this);
     xpos = (this->width()/2 - iconLength);
-    ypos = (this->height()/2 - (int)(0.5*iconLength));
+    ypos = (this->height()/2 - static_cast<int>(0.5*iconLength));
     this->start_openxml->setText(QString("<html><img src='://images/start_openxml.png'/></html>"));
     this->start_openxml->resize(iconLength,iconLength);
     this->start_openxml->move(xpos,ypos);
@@ -1733,7 +1733,7 @@ void MainWindow::startScreenInit(){
 
     this->start_openplc = new QLabel(this);
     xpos = (this->width()/2);
-    ypos = (this->height()/2 - (int)(0.5*iconLength));
+    ypos = (this->height()/2 - static_cast<int>(0.5*iconLength));
     this->start_openplc->setText(QString("<html><img src='://images/start_openplc.png'/></html>"));
     this->start_openplc->resize(iconLength,iconLength);
     this->start_openplc->move(xpos,ypos);
@@ -1828,7 +1828,7 @@ void MainWindow::splashScreenShow(int time){
        );
     qApp->processEvents();
 
-    Sleep(time);
+    Sleep(static_cast<DWORD>(time));
     splash.finish(this);
 }
 
@@ -1845,13 +1845,13 @@ bool MainWindow::start_Application(LPCTSTR lpApplicationName)
 
      // start the program up
      if(!CreateProcess( lpApplicationName,   // the path
-     NULL,           // Command line
-     NULL,           // Process handle not inheritable
-     NULL,           // Thread handle not inheritable
+     nullptr,           // Command line
+     nullptr,           // Process handle not inheritable
+     nullptr,           // Thread handle not inheritable
      FALSE,          // Set handle inheritance to FALSE
      NORMAL_PRIORITY_CLASS,           	// No creation flags
-     NULL,           // Use parent's environment block
-     NULL,           // Use parent's starting directory
+     nullptr,           // Use parent's environment block
+     nullptr,           // Use parent's starting directory
      &si,            // Pointer to STARTUPINFO structure
      &pi )           // Pointer to PROCESS_INFORMATION structure
      ){
@@ -1861,8 +1861,8 @@ bool MainWindow::start_Application(LPCTSTR lpApplicationName)
 
      // Sleep because :: When WaitForSingleObject fires, the window
      // sometimes is not built up completely yet... -> Hwnd errors...
-     Sleep(this->settings->value("ashelpwaittime",DEFAULT_ASHELP_WAITTIME).toInt());
-     WaitForSingleObject(pi.hProcess,(long)this->settings->value("ashelpwaittime",DEFAULT_ASHELP_WAITTIME).toInt());
+     Sleep(static_cast<DWORD>(this->settings->value("ashelpwaittime",DEFAULT_ASHELP_WAITTIME).toInt()));
+     WaitForSingleObject(pi.hProcess,static_cast<DWORD>(this->settings->value("ashelpwaittime",DEFAULT_ASHELP_WAITTIME).toInt()));
 
      this->HelpProcessId = pi.dwProcessId;
 
@@ -1911,23 +1911,23 @@ void MainWindow::translateQStringLists(){
 
 void MainWindow::updateColorTheme(int themeIndex){
     if(themeIndex >= 0){
-        qApp->setStyle(QStyleFactory::create(this->vColorThemes[themeIndex].name));
+        qApp->setStyle(QStyleFactory::create(this->vColorThemes[static_cast<unsigned int>(themeIndex)].name));
 
         QPalette themePalette;
-        themePalette.setColor(QPalette::Window, this->vColorThemes[themeIndex].cWindow);
-        themePalette.setColor(QPalette::WindowText, this->vColorThemes[themeIndex].cWindowText);
-        themePalette.setColor(QPalette::Base, this->vColorThemes[themeIndex].cBase);
-        themePalette.setColor(QPalette::AlternateBase, this->vColorThemes[themeIndex].cAlternateBase);
-        themePalette.setColor(QPalette::ToolTipBase, this->vColorThemes[themeIndex].cToolTipBase);
-        themePalette.setColor(QPalette::ToolTipText, this->vColorThemes[themeIndex].cToolTipText);
-        themePalette.setColor(QPalette::Text, this->vColorThemes[themeIndex].cText);
-        themePalette.setColor(QPalette::Button, this->vColorThemes[themeIndex].cButton);
-        themePalette.setColor(QPalette::ButtonText, this->vColorThemes[themeIndex].cButtonText);
-        themePalette.setColor(QPalette::BrightText, this->vColorThemes[themeIndex].cBrightText);
-        themePalette.setColor(QPalette::Link, this->vColorThemes[themeIndex].cLink);
-        themePalette.setColor(QPalette::Highlight, this->vColorThemes[themeIndex].cHighlight);
-        themePalette.setColor(QPalette::HighlightedText, this->vColorThemes[themeIndex].cHighlightedText);
-        themePalette.setColor(QPalette::Disabled,QPalette::Text,this->vColorThemes[themeIndex].cBrightText);
+        themePalette.setColor(QPalette::Window, this->vColorThemes[static_cast<unsigned int>(themeIndex)].cWindow);
+        themePalette.setColor(QPalette::WindowText, this->vColorThemes[static_cast<unsigned int>(themeIndex)].cWindowText);
+        themePalette.setColor(QPalette::Base, this->vColorThemes[static_cast<unsigned int>(themeIndex)].cBase);
+        themePalette.setColor(QPalette::AlternateBase, this->vColorThemes[static_cast<unsigned int>(themeIndex)].cAlternateBase);
+        themePalette.setColor(QPalette::ToolTipBase, this->vColorThemes[static_cast<unsigned int>(themeIndex)].cToolTipBase);
+        themePalette.setColor(QPalette::ToolTipText, this->vColorThemes[static_cast<unsigned int>(themeIndex)].cToolTipText);
+        themePalette.setColor(QPalette::Text, this->vColorThemes[static_cast<unsigned int>(themeIndex)].cText);
+        themePalette.setColor(QPalette::Button, this->vColorThemes[static_cast<unsigned int>(themeIndex)].cButton);
+        themePalette.setColor(QPalette::ButtonText, this->vColorThemes[static_cast<unsigned int>(themeIndex)].cButtonText);
+        themePalette.setColor(QPalette::BrightText, this->vColorThemes[static_cast<unsigned int>(themeIndex)].cBrightText);
+        themePalette.setColor(QPalette::Link, this->vColorThemes[static_cast<unsigned int>(themeIndex)].cLink);
+        themePalette.setColor(QPalette::Highlight, this->vColorThemes[static_cast<unsigned int>(themeIndex)].cHighlight);
+        themePalette.setColor(QPalette::HighlightedText, this->vColorThemes[static_cast<unsigned int>(themeIndex)].cHighlightedText);
+        themePalette.setColor(QPalette::Disabled,QPalette::Text,this->vColorThemes[static_cast<unsigned int>(themeIndex)].cBrightText);
 
         qApp->setPalette(themePalette);
         qApp->setStyleSheet("QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }");
@@ -1955,15 +1955,15 @@ void MainWindow::updateColorTheme(int themeIndex){
         ui->text_Axis_Speed->setStyleSheet(this->Styles.axisWhiteStyle);
 
         // Option BG
-        this->optionBgEffect.setColor(this->vColorThemes[themeIndex].cHighlight);
+        this->optionBgEffect.setColor(this->vColorThemes[static_cast<unsigned int>(themeIndex)].cHighlight);
         this->optionBgEffect.setStrength(1.0);
 
         // Report BG
-        this->reportBgEffect.setColor(this->vColorThemes[themeIndex].cHighlight);
+        this->reportBgEffect.setColor(this->vColorThemes[static_cast<unsigned int>(themeIndex)].cHighlight);
         this->reportBgEffect.setStrength(1.0);
 
         // Take over color for start page
-        this->startBgEffect.setColor(this->vColorThemes[themeIndex].cHighlight);
+        this->startBgEffect.setColor(this->vColorThemes[static_cast<unsigned int>(themeIndex)].cHighlight);
         this->startBgEffect.setStrength(1.0);
 
         // Dump has to be reopened in order to take over the axis design!
@@ -2017,7 +2017,7 @@ void MainWindow::updateLanguage(bool update) {
     QStringList nameFilter;
 
     // if autolanguage is active, try to derive language from system language
-    if((bool)this->settings->value("autolanguage",true).toBool()){
+    if(this->settings->value("autolanguage",true).toBool()){
 
         if(QLocale().name().toStdString().find("de")==0) local = QString("de");
         if(QLocale().name().toStdString().find("en")==0) local = QString("en");

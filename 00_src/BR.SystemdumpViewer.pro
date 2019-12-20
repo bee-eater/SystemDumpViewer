@@ -57,8 +57,7 @@ INCLUDEPATH += "$$PWD/libs/qwt/include"
 
 LIBS += -lws2_32 \
         -lpsapi \
-        "$$PWD/libs/qwt/libqwt.a" \
-        "$$PWD/libs/qwt/libqwtd.a"
+        "$$PWD/libs/qwt/libqwt.a"
 
 #-------------------------------------------------
 # Versioning
