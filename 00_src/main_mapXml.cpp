@@ -97,10 +97,15 @@ void MainWindow::init_Maps(){
     map_002_TimeSynchronisation["client"] = VALUE_002_CLIENT;
 
     map_003_TimeSynchClient["sntp client"] = VALUE_003_CLIENT;
+    map_003_TimeSynchClient["ntp client"] = VALUE_003_CLIENT;
     map_003_TimeSynchClient["sntp server 1"] = VALUE_003_SERVER1;
+    map_003_TimeSynchClient["ntp server 1"] = VALUE_003_SERVER1;
     map_003_TimeSynchClient["sntp server 2"] = VALUE_003_SERVER2;
+    map_003_TimeSynchClient["ntp server 2"] = VALUE_003_SERVER2;
     map_003_TimeSynchClient["sntp server 3"] = VALUE_003_SERVER3;
+    map_003_TimeSynchClient["ntp server 3"] = VALUE_003_SERVER3;
     map_003_TimeSynchClient["sntp server 4"] = VALUE_003_SERVER4;
+    map_003_TimeSynchClient["ntp server 4"] = VALUE_003_SERVER4;
     map_003_TimeSynchClient["sntp synchronisation interval"] = VALUE_003_SNTP_SYNC_INT;
     map_003_TimeSynchClient["rtc synchronisation interval"] = VALUE_003_RTC_SYNC_INT;
 
