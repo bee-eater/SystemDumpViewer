@@ -10,7 +10,7 @@
 #include <QMessageBox>
 #include <QDebug>
 
-bool MainWindow::readXML(const char* filename, bool updateRecentFileNameList ){
+bool MainWindow::readXML(const char* filename, bool updateRecentFileNameList, QString cWindowTitle){
     int result=0;
     QString msgStr;
     this->ErrorNr=0;
@@ -29,7 +29,11 @@ bool MainWindow::readXML(const char* filename, bool updateRecentFileNameList ){
         this->statusbar->showMessage(tr("Loading %1 ...").arg(this->currentFileString),DEFAULT_MESSAGE_TIME);
 
         // Change window title - is changed back on close!
-        setWindowTitle(tr("Systemdump Viewer") + " - " + this->currentFileString);
+        if(cWindowTitle != ""){
+            setWindowTitle(tr("Systemdump Viewer") + " - " + cWindowTitle);
+        } else {
+            setWindowTitle(tr("Systemdump Viewer") + " - " + this->currentFileString);
+        }
 
         // Add to recent files list
         if( updateRecentFileNameList )
