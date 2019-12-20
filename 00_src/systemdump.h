@@ -369,6 +369,7 @@ using namespace std;
         qint16 maximum;
         sUsageValues values;
         sZoomInterval(){
+            this->id = 0;
             this->average = 0;
             this->average = 0;
             this->maximum = 0;

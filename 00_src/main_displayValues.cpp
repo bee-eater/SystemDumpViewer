@@ -6,6 +6,8 @@
 #include <QStringRef>
 #include <QIcon>
 
+#include "qwt.h"
+#include "qwt_plot.h"
 #include "qwt_plot_curve.h"
 #include "qwt_legend.h"
 #include "qwt_abstract_scale_draw.h"
@@ -53,7 +55,7 @@ bool MainWindow::displayValues(){
             } else {
                 (this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterPowerFail < this->list_RebootMode.count()) ? ui->label_Values_CPUConf_powerfail->setText(this->list_RebootMode.at(this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterPowerFail)) : ui->label_Values_CPUConf_powerfail->setText(QString::number(this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterPowerFail)) ;
             }
-            (this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterCFChange < this->list_RebootCF.count() && this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterCFChange>=0)? ui->label_Values_CPUConf_changecf->setText(this->list_RebootCF.at(this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterCFChange)) : ui->label_Values_CPUConf_changecf->setText(QString::number(this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterCFChange));;
+            (this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterCFChange < this->list_RebootCF.count() && this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterCFChange>=0)? ui->label_Values_CPUConf_changecf->setText(this->list_RebootCF.at(this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterCFChange)) : ui->label_Values_CPUConf_changecf->setText(QString::number(this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterCFChange));
             this->SysDump.Sections.Values.CpuConfiguration.PreservePVMemory.AfterCFChange==0 ? ui->label_Values_CPUConf_pvchangecf->setText(tr("no")) : ui->label_Values_CPUConf_pvchangecf->setText(tr("yes"));
             this->SysDump.Sections.Values.CpuConfiguration.CFremoteInstall==0 ? ui->label_Values_CPUConf_cfremote->setText(tr("-")) : ui->label_Values_CPUConf_cfremote->setText(tr("enabled"));
             this->SysDump.Sections.Values.CpuConfiguration.USBremoteInstall==0 ? ui->label_Values_CPUConf_usbremote->setText(tr("-")) : ui->label_Values_CPUConf_usbremote->setText(tr("enabled"));
@@ -86,7 +88,7 @@ bool MainWindow::displayValues(){
             }
         //Create New Tabs
             for(unsigned int i=0;i<this->SysDump.Sections.Ethernet.vInterface.size();i++){
-                this->add_EthernetTab(i);
+                this->add_EthernetTab(static_cast<int>(i));
             }
 
     // System :: Memory
@@ -97,7 +99,7 @@ bool MainWindow::displayValues(){
             writeByteToLabel(ui->label_Memory_Partitions_TotalCapacity, this->SysDump.Sections.Memory.CompactFlash.Size);
             qDeleteAll(ui->gridLayoutPartitions->findChildren<QWidget*>());
             for(unsigned int i=0;i<this->SysDump.Sections.Memory.CompactFlash.vPartition.size();i++){
-                this->add_PartitionBar(10,(12+i*(4*PARTITION_LABEL_HEIGHT+45)),i);
+                this->add_PartitionBar(10,(12+static_cast<int>(i)*(4*PARTITION_LABEL_HEIGHT+45)),static_cast<int>(i));
             }
         // DRAM
             writeByteToLabel(ui->label_Memory_DRAM_Size, this->SysDump.Sections.Memory.DRAM.size);
@@ -166,7 +168,7 @@ bool MainWindow::displayValues(){
 
             for( auto zi : SysDump.Sections.CpuUsage.vZoomInterval )
             {
-                ui->combo_CpuUsage->addItem(zi.description.replace(' ','_'));                 // I don't know why QCombo crashes with ' ', but it does :-(
+                ui->combo_CpuUsage->addItem(zi.description);
             }
         // Draw points
             this->draw_CpuUsage();
@@ -215,7 +217,7 @@ bool MainWindow::displayValues(){
 
         // Add new axis
             for(unsigned int i=0;i<this->SysDump.Sections.Motion.vAxis.size();i++){
-                this->add_AxisToUi((12+i*(10+AXIS_LABEL_WIDTH)),i);
+                this->add_AxisToUi((12+static_cast<int>(i)*(10+AXIS_LABEL_WIDTH)),static_cast<int>(i));
                 ui->widget_Axis->adjustSize();
             }
             this->axisScrollArea->setWidget(ui->widget_Axis);
@@ -276,12 +278,12 @@ bool MainWindow::displayValues(){
 
 int MainWindow::add_EthernetTab(int index){
     if(index==0){
-        this->SysDump.Sections.Ethernet.vInterface[index].EthernetRemoteInstall==0 ? ui->label_EthIf_RemoteInstall->setText(tr("disabled")) : ui->label_EthIf_RemoteInstall->setText(tr("enabled"));
-        ui->label_EthIf_IPadress->setText(this->SysDump.Sections.Ethernet.vInterface[index].IpAddress);
-        ui->label_EthIf_IFID->setText(this->SysDump.Sections.Ethernet.vInterface[index].InterfaceID);
-        ui->label_EthIf_SubnetMask->setText(this->SysDump.Sections.Ethernet.vInterface[index].SubnetMask);
-        (this->SysDump.Sections.Ethernet.vInterface[index].IpConfig < this->list_IpConfiguration.count())? ui->label_EthIf_IPConfig->setText(this->list_IpConfiguration.at(this->SysDump.Sections.Ethernet.vInterface[index].IpConfig)) : ui->label_EthIf_IPConfig->setText(QString::number(this->SysDump.Sections.Ethernet.vInterface[index].IpConfig));
-        (this->SysDump.Sections.Ethernet.vInterface[index].SNMPConfig < this->list_SNMPConfiguration.count()) ? ui->label_EthIf_SNMPConfig->setText(this->list_SNMPConfiguration.at(this->SysDump.Sections.Ethernet.vInterface[index].SNMPConfig)) : ui->label_EthIf_SNMPConfig->setText(QString::number(this->SysDump.Sections.Ethernet.vInterface[index].SNMPConfig));
+        this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].EthernetRemoteInstall==0 ? ui->label_EthIf_RemoteInstall->setText(tr("disabled")) : ui->label_EthIf_RemoteInstall->setText(tr("enabled"));
+        ui->label_EthIf_IPadress->setText(this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].IpAddress);
+        ui->label_EthIf_IFID->setText(this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].InterfaceID);
+        ui->label_EthIf_SubnetMask->setText(this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].SubnetMask);
+        (this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].IpConfig < this->list_IpConfiguration.count())? ui->label_EthIf_IPConfig->setText(this->list_IpConfiguration.at(this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].IpConfig)) : ui->label_EthIf_IPConfig->setText(QString::number(this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].IpConfig));
+        (this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].SNMPConfig < this->list_SNMPConfiguration.count()) ? ui->label_EthIf_SNMPConfig->setText(this->list_SNMPConfiguration.at(this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].SNMPConfig)) : ui->label_EthIf_SNMPConfig->setText(QString::number(this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].SNMPConfig));
     } else {
         // Create new Tabs
         QWidget *EthIF=new QWidget(this);
@@ -302,32 +304,32 @@ int MainWindow::add_EthernetTab(int index){
         Text00_EthIf->move(QPoint(16,4));
         Label00_EthIf->move(QPoint(208,4));
         Text00_EthIf->setText(tr("Remote install:"));
-        this->SysDump.Sections.Ethernet.vInterface[index].EthernetRemoteInstall==0 ? Label00_EthIf->setText(tr("disabled")) : Label00_EthIf->setText(tr("enabled"));
+        this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].EthernetRemoteInstall==0 ? Label00_EthIf->setText(tr("disabled")) : Label00_EthIf->setText(tr("enabled"));
 
         Text01_EthIf->move(QPoint(16,20));
         Label01_EthIf->move(QPoint(208,20));
         Text01_EthIf->setText(tr("Interface ID:"));
-        Label01_EthIf->setText(this->SysDump.Sections.Ethernet.vInterface[index].InterfaceID);
+        Label01_EthIf->setText(this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].InterfaceID);
 
         Text02_EthIf->move(QPoint(16,36));
         Label02_EthIf->move(QPoint(208,36));
         Text02_EthIf->setText(tr("IP adress:"));
-        Label02_EthIf->setText(this->SysDump.Sections.Ethernet.vInterface[index].IpAddress);
+        Label02_EthIf->setText(this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].IpAddress);
 
         Text03_EthIf->move(QPoint(16,52));
         Label03_EthIf->move(QPoint(208,52));
         Text03_EthIf->setText(tr("SubNet mask:"));
-        Label03_EthIf->setText(this->SysDump.Sections.Ethernet.vInterface[index].SubnetMask);
+        Label03_EthIf->setText(this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].SubnetMask);
 
         Text04_EthIf->move(QPoint(16,68));
         Label04_EthIf->move(QPoint(208,68));
         Text04_EthIf->setText(tr("IP configuration:"));
-        (this->SysDump.Sections.Ethernet.vInterface[index].IpConfig < this->list_IpConfiguration.count()) ? Label04_EthIf->setText(this->list_IpConfiguration.at(this->SysDump.Sections.Ethernet.vInterface[index].IpConfig)) : Label04_EthIf->setText(QString::number(this->SysDump.Sections.Ethernet.vInterface[index].IpConfig));
+        (this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].IpConfig < this->list_IpConfiguration.count()) ? Label04_EthIf->setText(this->list_IpConfiguration.at(this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].IpConfig)) : Label04_EthIf->setText(QString::number(this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].IpConfig));
 
         Text05_EthIf->move(QPoint(16,84));
         Label05_EthIf->move(QPoint(208,84));
         Text05_EthIf->setText(tr("SNMP configuration:"));
-        (this->SysDump.Sections.Ethernet.vInterface[index].SNMPConfig < this->list_SNMPConfiguration.count()) ? Label05_EthIf->setText(this->list_SNMPConfiguration.at(this->SysDump.Sections.Ethernet.vInterface[index].SNMPConfig)) : Label05_EthIf->setText(QString::number(this->SysDump.Sections.Ethernet.vInterface[index].SNMPConfig));
+        (this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].SNMPConfig < this->list_SNMPConfiguration.count()) ? Label05_EthIf->setText(this->list_SNMPConfiguration.at(this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].SNMPConfig)) : Label05_EthIf->setText(QString::number(this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].SNMPConfig));
 
         EthIF->show();
         ui->tabWidget_EthernetInterfaces->addTab(EthIF,names);
@@ -499,17 +501,17 @@ int MainWindow::add_Hardware(){
 
 int MainWindow::get_HardwareInformation(int uuid){
     // Set the hardware information
-    ui->label_Hardware_Configured->setText(this->SysDump.Sections.Hardware.vNode[uuid].ModuleStatus.Configured);
-    ui->label_Hardware_EquipmentID->setText(this->SysDump.Sections.Hardware.vNode[uuid].IOInformation.EquipmentID);
-    ui->label_Hardware_Firmware->setText(this->SysDump.Sections.Hardware.vNode[uuid].IOInformation.FwVersion);
-    ui->label_Hardware_HwRevision->setText(this->SysDump.Sections.Hardware.vNode[uuid].IOInformation.HardwareRevision);
-    ui->label_Hardware_HwVariant->setText(this->SysDump.Sections.Hardware.vNode[uuid].IOInformation.HardwareVariant);
-    ui->label_Hardware_ModuleOk->setText(QString::number(this->SysDump.Sections.Hardware.vNode[uuid].ModuleStatus.ModuleOk));
+    ui->label_Hardware_Configured->setText(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(uuid)].ModuleStatus.Configured);
+    ui->label_Hardware_EquipmentID->setText(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(uuid)].IOInformation.EquipmentID);
+    ui->label_Hardware_Firmware->setText(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(uuid)].IOInformation.FwVersion);
+    ui->label_Hardware_HwRevision->setText(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(uuid)].IOInformation.HardwareRevision);
+    ui->label_Hardware_HwVariant->setText(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(uuid)].IOInformation.HardwareVariant);
+    ui->label_Hardware_ModuleOk->setText(QString::number(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(uuid)].ModuleStatus.ModuleOk));
     //(this->SysDump.Sections.Hardware.vNode[uuid].ModuleStatus.ModuleOk < this->list_ModuleOk.count()) ? ui->label_Hardware_ModuleOk->setText(this->list_ModuleOk.at(this->SysDump.Sections.Hardware.vNode[uuid].ModuleStatus.ModuleOk)) : ui->label_Hardware_ModuleOk->setText(QString::number(this->SysDump.Sections.Hardware.vNode[uuid].ModuleStatus.ModuleOk));
-    ui->label_Hardware_ModulePath->setText(this->SysDump.Sections.Hardware.vNode[uuid].IOInformation.ModulePath);
-    ui->label_Hardware_Plugged->setText(this->SysDump.Sections.Hardware.vNode[uuid].ModuleStatus.Plugged);
-    ui->label_Hardware_Supervised->setText(QString::number(this->SysDump.Sections.Hardware.vNode[uuid].ModuleStatus.Supervised));
-    ui->label_Hardware_Serialnumber->setText(this->SysDump.Sections.Hardware.vNode[uuid].IOInformation.Serialnumber);
+    ui->label_Hardware_ModulePath->setText(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(uuid)].IOInformation.ModulePath);
+    ui->label_Hardware_Plugged->setText(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(uuid)].ModuleStatus.Plugged);
+    ui->label_Hardware_Supervised->setText(QString::number(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(uuid)].ModuleStatus.Supervised));
+    ui->label_Hardware_Serialnumber->setText(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(uuid)].IOInformation.Serialnumber);
 
     // Clear channel information (is set when a channel is selected)
     ui->tree_Hardware_Channels->clear();
@@ -527,7 +529,7 @@ int MainWindow::get_HardwareInformation(int uuid){
     ui->tree_Hardware_Channels->clear();
 
     // add the channel information
-    for(unsigned int i=0;i<this->SysDump.Sections.Hardware.vNode[uuid].IOChannels.vChannel.size();i++){
+    for(unsigned int i=0;i<this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(uuid)].IOChannels.vChannel.size();i++){
         this->add_Hardware_Channel(uuid,&i);
     }
     return 0;
@@ -536,22 +538,22 @@ int MainWindow::get_HardwareInformation(int uuid){
 int MainWindow::add_Hardware_Channel(int HwNode, unsigned int *index){
     QTreeWidgetItem *treeItem = new QTreeWidgetItem(ui->tree_Hardware_Channels);
     QVariant UUID = *index;
-    treeItem->setText(0, this->SysDump.Sections.Hardware.vNode[HwNode].IOChannels.vChannel[*index].Name);
+    treeItem->setText(0, this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(HwNode)].IOChannels.vChannel[*index].Name);
     treeItem->setData(0,Qt::UserRole, UUID);
     return 0;
 }
 
 int MainWindow::get_HardwareChannelInformation(int HwNode, int uuid){
-    if((unsigned int)uuid < this->SysDump.Sections.Hardware.vNode[HwNode].IOChannels.vChannel.size()){
-        ui->label_Hardware_Channel_Diagnose->setText(this->SysDump.Sections.Hardware.vNode[HwNode].IOChannels.vChannel[uuid].Diagnose);
-        ui->label_Hardware_Channel_ForceStatus->setText(this->SysDump.Sections.Hardware.vNode[HwNode].IOChannels.vChannel[uuid].ForceStatus);
-        ui->label_Hardware_Channel_ForceValue->setText(this->SysDump.Sections.Hardware.vNode[HwNode].IOChannels.vChannel[uuid].ForceValue);
-        ui->label_Hardware_Channel_ID->setText(QString::number(this->SysDump.Sections.Hardware.vNode[HwNode].IOChannels.vChannel[uuid].ID));
-        ui->label_Hardware_Channel_IECType->setText(this->SysDump.Sections.Hardware.vNode[HwNode].IOChannels.vChannel[uuid].IECType);
-        ui->label_Hardware_Channel_IECValue->setText(this->SysDump.Sections.Hardware.vNode[HwNode].IOChannels.vChannel[uuid].IECValue);
-        ui->label_Hardware_Channel_Name->setText(this->SysDump.Sections.Hardware.vNode[HwNode].IOChannels.vChannel[uuid].Name);
-        ui->label_Hardware_Channel_PhysicalValue->setText(this->SysDump.Sections.Hardware.vNode[HwNode].IOChannels.vChannel[uuid].PhysicalValue);
-        (this->SysDump.Sections.Hardware.vNode[HwNode].IOChannels.vChannel[uuid].Type < this->list_ChannelType.count()) ? ui->label_Hardware_Channel_Type->setText(this->list_ChannelType.at(this->SysDump.Sections.Hardware.vNode[HwNode].IOChannels.vChannel[uuid].Type)) : ui->label_Hardware_Channel_Type->setText(QString::number(this->SysDump.Sections.Hardware.vNode[HwNode].IOChannels.vChannel[uuid].Type));
+    if(static_cast<unsigned int>(uuid) < this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(HwNode)].IOChannels.vChannel.size()){
+        ui->label_Hardware_Channel_Diagnose->setText(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(HwNode)].IOChannels.vChannel[static_cast<unsigned int>(uuid)].Diagnose);
+        ui->label_Hardware_Channel_ForceStatus->setText(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(HwNode)].IOChannels.vChannel[static_cast<unsigned int>(uuid)].ForceStatus);
+        ui->label_Hardware_Channel_ForceValue->setText(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(HwNode)].IOChannels.vChannel[static_cast<unsigned int>(uuid)].ForceValue);
+        ui->label_Hardware_Channel_ID->setText(QString::number(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(HwNode)].IOChannels.vChannel[static_cast<unsigned int>(uuid)].ID));
+        ui->label_Hardware_Channel_IECType->setText(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(HwNode)].IOChannels.vChannel[static_cast<unsigned int>(uuid)].IECType);
+        ui->label_Hardware_Channel_IECValue->setText(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(HwNode)].IOChannels.vChannel[static_cast<unsigned int>(uuid)].IECValue);
+        ui->label_Hardware_Channel_Name->setText(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(HwNode)].IOChannels.vChannel[static_cast<unsigned int>(uuid)].Name);
+        ui->label_Hardware_Channel_PhysicalValue->setText(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(HwNode)].IOChannels.vChannel[static_cast<unsigned int>(uuid)].PhysicalValue);
+        (this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(HwNode)].IOChannels.vChannel[static_cast<unsigned int>(uuid)].Type < this->list_ChannelType.count()) ? ui->label_Hardware_Channel_Type->setText(this->list_ChannelType.at(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(HwNode)].IOChannels.vChannel[static_cast<unsigned int>(uuid)].Type)) : ui->label_Hardware_Channel_Type->setText(QString::number(this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(HwNode)].IOChannels.vChannel[static_cast<unsigned int>(uuid)].Type));
     }
     return 0;
 }
@@ -561,7 +563,7 @@ int MainWindow::add_PartitionBar(int x, int y, int index){
     // Fonts
     QFont header( "MS Shell Dlg 2", 10, QFont::Bold);
     QFont normal( "MS Shell Dlg 2", 8, QFont::Normal);
-    int width = 0.8*ui->group_Memory_Partitions->width();
+    int width = static_cast<int>(0.8*ui->group_Memory_Partitions->width());
 
     // Create labels
     QLabel *partitionName = new QLabel(this);
@@ -574,14 +576,14 @@ int MainWindow::add_PartitionBar(int x, int y, int index){
 
     // Header
     partitionName->setFont(header);
-    partitionName->setText(this->SysDump.Sections.Memory.CompactFlash.vPartition[index].id + QString(": (") + this->SysDump.Sections.Memory.CompactFlash.vPartition[index].description + QString(")"));
+    partitionName->setText(this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].id + QString(": (") + this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].description + QString(")"));
     partitionName->setGeometry(x,y,PARTITION_LABEL_WIDTH,PARTITION_LABEL_HEIGHT);
 
     // Bargraph of used size
     QProgressBar *pBar = new QProgressBar(this);
     pBar->setMinimum(0);
-    pBar->setMaximum(this->SysDump.Sections.Memory.CompactFlash.vPartition[index].size);
-    pBar->setValue(this->SysDump.Sections.Memory.CompactFlash.vPartition[index].used);
+    pBar->setMaximum(static_cast<int>(this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].size));
+    pBar->setValue(static_cast<int>(this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].used));
     pBar->setGeometry(x,(y+PARTITION_LABEL_HEIGHT+5),width,30);
 
     // Size label / text
@@ -590,7 +592,7 @@ int MainWindow::add_PartitionBar(int x, int y, int index){
     partitionSizeText->setGeometry(x,(y+PARTITION_LABEL_HEIGHT+35),89,PARTITION_LABEL_HEIGHT);
     partitionSize->setFont(normal);
     partitionSize->setAlignment(Qt::AlignRight | Qt::AlignCenter);
-    writeByteToLabel(partitionSize,this->SysDump.Sections.Memory.CompactFlash.vPartition[index].size);
+    writeByteToLabel(partitionSize,this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].size);
     partitionSize->setGeometry((x+PARTITION_LABEL_WIDTH),(y+PARTITION_LABEL_HEIGHT+35),62,PARTITION_LABEL_HEIGHT);
 
     // Used label / text
@@ -599,7 +601,7 @@ int MainWindow::add_PartitionBar(int x, int y, int index){
     partitionUsedText->setGeometry(x,(y+2*PARTITION_LABEL_HEIGHT+35),89,PARTITION_LABEL_HEIGHT);
     partitionUsed->setFont(normal);
     partitionUsed->setAlignment(Qt::AlignRight | Qt::AlignCenter);
-    writeByteToLabel(partitionUsed,this->SysDump.Sections.Memory.CompactFlash.vPartition[index].used);
+    writeByteToLabel(partitionUsed,this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].used);
     partitionUsed->setGeometry((x+PARTITION_LABEL_WIDTH),(y+2*PARTITION_LABEL_HEIGHT+35),62,PARTITION_LABEL_HEIGHT);
 
     // Available label / text
@@ -608,7 +610,7 @@ int MainWindow::add_PartitionBar(int x, int y, int index){
     partitionAvailableText->setGeometry(x,(y+3*PARTITION_LABEL_HEIGHT+35),89,PARTITION_LABEL_HEIGHT);
     partitionAvailable->setFont(normal);
     partitionAvailable->setAlignment(Qt::AlignRight | Qt::AlignCenter);
-    writeByteToLabel(partitionAvailable,this->SysDump.Sections.Memory.CompactFlash.vPartition[index].available);
+    writeByteToLabel(partitionAvailable,this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].available);
     partitionAvailable->setGeometry((x+PARTITION_LABEL_WIDTH),(y+3*PARTITION_LABEL_HEIGHT+35),62,PARTITION_LABEL_HEIGHT);
 
     // Add the widgets to the grid layout (has ScrollArea!)
@@ -635,16 +637,16 @@ int MainWindow::add_ApplicationModule(unsigned int index){
 }
 
 int MainWindow::get_SoftwareModules(int uuid, int filter){
-    if((unsigned int)uuid < this->SysDump.Sections.Software.vAppModule.size()){
+    if(static_cast<unsigned int>(uuid) < this->SysDump.Sections.Software.vAppModule.size()){
         // Remove old stuff
         ui->table_Software->setRowCount(0);
         int ridx = 0;
 
         // Add new stuff
-        for(unsigned int i = 0;i<this->SysDump.Sections.Software.vAppModule[uuid].vModules.size();i++){
+        for(unsigned int i = 0;i<this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(uuid)].vModules.size();i++){
 
             // Check if filter is off, or ID applies to filter
-            if(this->SysDump.Sections.Software.vAppModule[uuid].vModules[i].type == filter || filter == 0){
+            if(this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(uuid)].vModules[i].type == filter || filter == 0){
 
                 ui->table_Software->insertRow(ridx);
                 ui->table_Software->setRowHeight(ridx,TABLE_ROW_HEIGHT);
@@ -654,40 +656,40 @@ int MainWindow::get_SoftwareModules(int uuid, int filter){
 
                     switch(cidx){
                         case 0:
-                            item->setText(this->SysDump.Sections.Software.vAppModule[uuid].vModules[i].name);
+                            item->setText(this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(uuid)].vModules[i].name);
                             break;
 
                         case 1:
-                            item->setText(this->SysDump.Sections.Software.vAppModule[uuid].vModules[i].version);
+                            item->setText(this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(uuid)].vModules[i].version);
                             break;
 
                         case 2:
-                            item->setText(this->SysDump.Sections.Software.vAppModule[uuid].vModules[i].timestamp);
+                            item->setText(this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(uuid)].vModules[i].timestamp);
                             break;
 
                         case 3:
-                            if(this->SysDump.Sections.Software.vAppModule[uuid].vModules[i].type==1)
+                            if(this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(uuid)].vModules[i].type==1)
                                 item->setText(tr("Cyclic object"));
-                            if(this->SysDump.Sections.Software.vAppModule[uuid].vModules[i].type==2)
+                            if(this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(uuid)].vModules[i].type==2)
                                 item->setText(tr("Data object"));
-                            if(this->SysDump.Sections.Software.vAppModule[uuid].vModules[i].type==3)
+                            if(this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(uuid)].vModules[i].type==3)
                                 item->setText(tr("Motion object"));
-                            if(this->SysDump.Sections.Software.vAppModule[uuid].vModules[i].type==4)
+                            if(this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(uuid)].vModules[i].type==4)
                                 item->setText(tr("Config object"));
-                            if(this->SysDump.Sections.Software.vAppModule[uuid].vModules[i].type==5)
+                            if(this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(uuid)].vModules[i].type==5)
                                 item->setText(tr("Other object"));
                             break;
 
                         case 4:
-                            item->setText(this->SysDump.Sections.Software.vAppModule[uuid].vModules[i].memory);
+                            item->setText(this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(uuid)].vModules[i].memory);
                             break;
 
                         case 5:
-                            item->setText(this->SysDump.Sections.Software.vAppModule[uuid].vModules[i].address);
+                            item->setText(this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(uuid)].vModules[i].address);
                             break;
 
                         case 6:
-                            item->setText(QString::number(this->SysDump.Sections.Software.vAppModule[uuid].vModules[i].size));
+                            item->setText(QString::number(this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(uuid)].vModules[i].size));
                             break;
 
                     default:
@@ -711,15 +713,15 @@ int MainWindow::add_TaskClass(unsigned int index){
     cyclePmLabel->setAlignment(Qt::AlignCenter);
     cyclePmLabel->setStyleSheet("background-color: rgba(255, 255, 255, 0);");
 
-    ui->table_TaskClasses->insertRow(index);
-    ui->table_TaskClasses->setRowHeight(index,TABLE_ROW_HEIGHT);
+    ui->table_TaskClasses->insertRow(static_cast<int>(index));
+    ui->table_TaskClasses->setRowHeight(static_cast<int>(index),TABLE_ROW_HEIGHT);
 
     for(int cidx=0;cidx<TASK_CLASS_TABLE_COLUMNS;cidx++){
         QTableWidgetItem* item = new QTableWidgetItem();
 
         switch(cidx){
             case 0:
-                ui->table_TaskClasses->setCellWidget(index,cidx,cyclePmLabel);
+                ui->table_TaskClasses->setCellWidget(static_cast<int>(index),cidx,cyclePmLabel);
                 break;
 
             case 1:
@@ -749,7 +751,7 @@ int MainWindow::add_TaskClass(unsigned int index){
         default:
             break;
         }
-        ui->table_TaskClasses->setItem(index,cidx,item);
+        ui->table_TaskClasses->setItem(static_cast<int>(index),cidx,item);
     }
 
     return 0;
@@ -889,8 +891,8 @@ int MainWindow::add_LoggerModules(){
             std::sort(this->vLogSortView.begin(), this->vLogSortView.end(), this->sort_LogSortByTimeStampRev);
 
             for(unsigned int j=0;j<this->vLogSortView.size();j++){
-                ui->table_Logger->insertRow(j);
-                ui->table_Logger->setRowHeight(j,TABLE_ROW_HEIGHT);
+                ui->table_Logger->insertRow(static_cast<int>(j));
+                ui->table_Logger->setRowHeight(static_cast<int>(j),TABLE_ROW_HEIGHT);
 
                 for(int cidx=0;cidx<LOGGER_TABLE_COLUMNS;cidx++){
                     QTableWidgetItem* item = new QTableWidgetItem();
@@ -903,7 +905,7 @@ int MainWindow::add_LoggerModules(){
                             if(this->vLogSortView[j].Level==3) levelLabel->setPixmap(level3);
                             levelLabel->setAlignment(Qt::AlignCenter);
                             levelLabel->setStyleSheet("background-color: rgba(255, 255, 255, 0);");
-                            ui->table_Logger->setCellWidget(j,cidx,levelLabel);
+                            ui->table_Logger->setCellWidget(static_cast<int>(j),cidx,levelLabel);
                             break;
 
                         case LOGGER_DATEX_COLUMN:
@@ -943,7 +945,7 @@ int MainWindow::add_LoggerModules(){
                         break;
                     }
                     item->setData(Qt::UserRole, j);
-                    ui->table_Logger->setItem(j,cidx,item);
+                    ui->table_Logger->setItem(static_cast<int>(j),cidx,item);
 
                 } // FOR COLUMNS
 
@@ -971,8 +973,8 @@ int MainWindow::add_LoggerModules(){
 
             for(unsigned int j=0;j<this->vLogSortViewV2.size();j++){
 
-                ui->table_Logger->insertRow(j);
-                ui->table_Logger->setRowHeight(j,TABLE_ROW_HEIGHT);
+                ui->table_Logger->insertRow(static_cast<int>(j));
+                ui->table_Logger->setRowHeight(static_cast<int>(j),TABLE_ROW_HEIGHT);
 
                 for(int cidx=0;cidx<LOGGER_V2_TABLE_COLUMNS;cidx++){
                     QTableWidgetItem* item = new QTableWidgetItem();
@@ -986,7 +988,7 @@ int MainWindow::add_LoggerModules(){
                             if(this->vLogSortViewV2[j].Severity==3) levelLabel->setPixmap(level3);
                             levelLabel->setAlignment(Qt::AlignCenter);
                             levelLabel->setStyleSheet("background-color: rgba(255, 255, 255, 0);");
-                            ui->table_Logger->setCellWidget(j,cidx,levelLabel);
+                            ui->table_Logger->setCellWidget(static_cast<int>(j),cidx,levelLabel);
                             break;
 
                         case LOGGER_V2_DATEX_COLUMN:
@@ -1033,7 +1035,7 @@ int MainWindow::add_LoggerModules(){
                         break;
                     }
                     item->setData(Qt::UserRole, j);
-                    ui->table_Logger->setItem(j,cidx,item);
+                    ui->table_Logger->setItem(static_cast<int>(j),cidx,item);
 
                 } // FOR COLUMNS
 
@@ -1054,14 +1056,14 @@ int MainWindow::draw_CpuUsage(){
 
     for(unsigned int i=0;i<this->SysDump.Sections.CpuUsage.vZoomInterval.size();i++){
         if(this->SysDump.Sections.CpuUsage.vZoomInterval[i].description == ui->combo_CpuUsage->currentText())
-            index = i;
+            index = static_cast<int>(i);
     }
 
     if(index >= 0){
         // Display Information
-        ui->label_CPUUsage_Average->setText(QString::number(this->SysDump.Sections.CpuUsage.vZoomInterval[index].average)+tr(" %"));
-        ui->label_CPUUsage_Maximum->setText(QString::number(this->SysDump.Sections.CpuUsage.vZoomInterval[index].maximum)+tr(" %"));
-        ui->label_CPUUsage_Id->setText(QString::number(this->SysDump.Sections.CpuUsage.vZoomInterval[index].id));
+        ui->label_CPUUsage_Average->setText(QString::number(this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].average)+tr(" %"));
+        ui->label_CPUUsage_Maximum->setText(QString::number(this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].maximum)+tr(" %"));
+        ui->label_CPUUsage_Id->setText(QString::number(this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].id));
 
         qDeleteAll(ui->tab_CPUUsage->findChildren<QwtPlot*>());
 
@@ -1084,15 +1086,15 @@ int MainWindow::draw_CpuUsage(){
         qwt_cpuUsage->setAxisTitle(QwtPlot::yLeft,"CPU Usage [%]");
         qwt_cpuUsage->setCanvasBackground( Qt::white );
 
-        if (this->SysDump.Sections.CpuUsage.vZoomInterval[index].values.vAverage.size()>0){
+        if (this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vAverage.size()>0){
             QwtPlotCurve *curveAverage = new QwtPlotCurve(Average);
 
             double *x = new double[200*sizeof(double)];
             double *y = new double[200*sizeof(double)];
 
-            for(unsigned int i=0;i<this->SysDump.Sections.CpuUsage.vZoomInterval[index].values.vAverage.size();i++){
-                x[i] = (double)200-(i+1);
-                y[i] = (double)this->SysDump.Sections.CpuUsage.vZoomInterval[index].values.vAverage[i];
+            for(unsigned int i=0;i<this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vAverage.size();i++){
+                x[i] = static_cast<double>(200-(i+1));
+                y[i] = static_cast<double>(this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vAverage[i]);
             }
 
             curveAverage->setRawSamples(x, y, 200);
@@ -1102,15 +1104,15 @@ int MainWindow::draw_CpuUsage(){
 
         }
 
-        if (this->SysDump.Sections.CpuUsage.vZoomInterval[index].values.vMaximum.size()>0){
+        if (this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum.size()>0){
             QwtPlotCurve *curveMaximum = new QwtPlotCurve(Maximum);
 
             double *xM = new double[200*sizeof(double)];
             double *yM = new double[200*sizeof(double)];
 
-            for(unsigned int i=0;i<this->SysDump.Sections.CpuUsage.vZoomInterval[index].values.vMaximum.size();i++){
-                xM[i] = (double)200-(i+1);
-                yM[i] = (double)this->SysDump.Sections.CpuUsage.vZoomInterval[index].values.vMaximum[i];
+            for(unsigned int i=0;i<this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum.size();i++){
+                xM[i] = static_cast<double>(200-(i+1));
+                yM[i] = static_cast<double>(this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum[i]);
             }
 
             curveMaximum->setRawSamples(xM, yM, 200);
@@ -1138,8 +1140,8 @@ int MainWindow::add_ProfilerModules(){
     ui->table_Profiler->setRowCount(0);
 
     for(unsigned int ridx=0;ridx<this->SysDump.Sections.Profiler.vModule.size();ridx++){
-        ui->table_Profiler->insertRow(ridx);
-        ui->table_Profiler->setRowHeight(ridx,TABLE_ROW_HEIGHT);
+        ui->table_Profiler->insertRow(static_cast<int>(ridx));
+        ui->table_Profiler->setRowHeight(static_cast<int>(ridx),TABLE_ROW_HEIGHT);
 
         for(int cidx=0;cidx<PROFILER_TABLE_COLUMNS;cidx++){
             QTableWidgetItem* item = new QTableWidgetItem();
@@ -1165,7 +1167,7 @@ int MainWindow::add_ProfilerModules(){
                     break;
 
             }
-            ui->table_Profiler->setItem(ridx,cidx,item);
+            ui->table_Profiler->setItem(static_cast<int>(ridx),cidx,item);
         }
     }
 
@@ -1220,6 +1222,7 @@ int MainWindow::draw_Overview(){
             LabelOutside_Heading = new clickLabel(i+1,this,ui->widget_overview_CPUMode);
             break;
         default:
+            LabelOutside_Heading = new clickLabel(i+1,this,this); // <- just to silence warnings...
             Outside[i] = new clickLabel(0,this);
         }
 
@@ -1383,10 +1386,10 @@ int MainWindow::add_AxisToUi(int x, int index){
     // Axis Name
     AxisName->setGeometry(x,ui->text_Axis_Name->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT_SMALL);
     AxisName->setAlignment(Qt::AlignHCenter);
-    if(this->SysDump.Sections.Motion.vAxis[index].Name.length() <= AXIS_TEXT_LENGTH){
-        AxisName->setText(this->SysDump.Sections.Motion.vAxis[index].Name);
+    if(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Name.length() <= AXIS_TEXT_LENGTH){
+        AxisName->setText(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Name);
     } else {
-        QStringRef subAxisName(&this->SysDump.Sections.Motion.vAxis[index].Name, 0, AXIS_TEXT_LENGTH);
+        QStringRef subAxisName(&this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Name, 0, AXIS_TEXT_LENGTH);
         AxisName->setText(subAxisName.toString()+QString(".."));
     }
     AxisName->show();
@@ -1394,10 +1397,10 @@ int MainWindow::add_AxisToUi(int x, int index){
     // Axis Drive
     AxisDrive->setGeometry(x,ui->text_Axis_Drive->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT_SMALL);
     AxisDrive->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
-    if(this->SysDump.Sections.Motion.vAxis[index].Drive.length() <= AXIS_TEXT_LENGTH){
-        AxisDrive->setText(this->SysDump.Sections.Motion.vAxis[index].Drive);
+    if(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Drive.length() <= AXIS_TEXT_LENGTH){
+        AxisDrive->setText(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Drive);
     } else {
-        QStringRef subAxisDrive(&this->SysDump.Sections.Motion.vAxis[index].Drive,0,AXIS_TEXT_LENGTH);
+        QStringRef subAxisDrive(&this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Drive,0,AXIS_TEXT_LENGTH);
         AxisDrive->setText(subAxisDrive.toString()+QString(".."));
     }
     AxisDrive->show();
@@ -1405,10 +1408,10 @@ int MainWindow::add_AxisToUi(int x, int index){
     // Axis Address
     AxisAddress->setGeometry(x,ui->text_Axis_Address->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT_SMALL);
     AxisAddress->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
-    if(this->SysDump.Sections.Motion.vAxis[index].Adress.length() <= AXIS_TEXT_LENGTH){
-        AxisDrive->setText(this->SysDump.Sections.Motion.vAxis[index].Adress);
+    if(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Adress.length() <= AXIS_TEXT_LENGTH){
+        AxisDrive->setText(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Adress);
     } else {
-        QStringRef subAxisAddress(&this->SysDump.Sections.Motion.vAxis[index].Adress,0,AXIS_TEXT_LENGTH);
+        QStringRef subAxisAddress(&this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Adress,0,AXIS_TEXT_LENGTH);
         AxisAddress->setText(subAxisAddress.toString()+QString(".."));
     }
     AxisAddress->show();
@@ -1418,7 +1421,7 @@ int MainWindow::add_AxisToUi(int x, int index){
     Homing->setGeometry(x,ui->text_Axis_Homing->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT_BIG);
     Homing->setStyleSheet(this->Styles.axisTopStyle);
     Homing->setAlignment(Qt::AlignCenter);
-    (this->SysDump.Sections.Motion.vAxis[index].Homing==true) ? Homing->setPixmap(QPixmap("://images/Axis_HomingOk.png")) : Homing->setPixmap(QPixmap("://images/Axis_HomingNOk.png"));
+    (this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Homing==true) ? Homing->setPixmap(QPixmap("://images/Axis_HomingOk.png")) : Homing->setPixmap(QPixmap("://images/Axis_HomingNOk.png"));
     Homing->show();
 
     // Controller
@@ -1426,7 +1429,7 @@ int MainWindow::add_AxisToUi(int x, int index){
     Controller->setGeometry(x,ui->text_Axis_Controller->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT_BIG);
     Controller->setStyleSheet(this->Styles.axisOrangeStyle);
     Controller->setAlignment(Qt::AlignCenter);
-    (this->SysDump.Sections.Motion.vAxis[index].Controller==true) ? Controller->setPixmap(QPixmap("://images/Axis_ControllerOn.png")) : Controller->setPixmap(QPixmap("://images/Axis_ControllerOff.png"));
+    (this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Controller==true) ? Controller->setPixmap(QPixmap("://images/Axis_ControllerOn.png")) : Controller->setPixmap(QPixmap("://images/Axis_ControllerOff.png"));
     Controller->show();
 
     // Simulation
@@ -1434,7 +1437,7 @@ int MainWindow::add_AxisToUi(int x, int index){
     Simulation->setGeometry(x,ui->text_Axis_Simulation->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT_BIG);
     Simulation->setStyleSheet(this->Styles.axisOrangeStyle);
     Simulation->setAlignment(Qt::AlignCenter);
-    (this->SysDump.Sections.Motion.vAxis[index].Simulation==true) ? Simulation->setPixmap(QPixmap("://images/Axis_SimulationOn.png")) : Simulation->setPixmap(QPixmap("://images/Axis_SimulationOff.png"));
+    (this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Simulation==true) ? Simulation->setPixmap(QPixmap("://images/Axis_SimulationOn.png")) : Simulation->setPixmap(QPixmap("://images/Axis_SimulationOff.png"));
     Simulation->show();
 
     // Movement Status
@@ -1442,7 +1445,7 @@ int MainWindow::add_AxisToUi(int x, int index){
     MovemenetStatus->setGeometry(x,ui->text_Axis_Movement->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT_BIG);
     MovemenetStatus->setStyleSheet(this->Styles.axisWhiteStyle);
     MovemenetStatus->setAlignment(Qt::AlignCenter);
-    (this->SysDump.Sections.Motion.vAxis[index].MovementStatus != 0) ? MovemenetStatus->setPixmap(QPixmap("://images/Axis_MovementOn.png")) : MovemenetStatus->setPixmap(QPixmap("://images/Axis_MovementOff.png"));
+    (this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].MovementStatus != 0) ? MovemenetStatus->setPixmap(QPixmap("://images/Axis_MovementOn.png")) : MovemenetStatus->setPixmap(QPixmap("://images/Axis_MovementOff.png"));
     MovemenetStatus->show();
 
     // Position
@@ -1450,7 +1453,7 @@ int MainWindow::add_AxisToUi(int x, int index){
     Position->setGeometry(x,ui->text_Axis_Position->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT);
     Position->setStyleSheet(this->Styles.axisWhiteStyle);
     Position->setAlignment(Qt::AlignCenter);
-    Position->setText(QString::number(this->SysDump.Sections.Motion.vAxis[index].ActPosition));
+    Position->setText(QString::number(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].ActPosition));
     Position->show();
 
     // Speed
@@ -1458,7 +1461,7 @@ int MainWindow::add_AxisToUi(int x, int index){
     Speed->setGeometry(x,ui->text_Axis_Speed->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT);
     Speed->setStyleSheet(this->Styles.axisWhiteStyle);
     Speed->setAlignment(Qt::AlignCenter);
-    Speed->setText(QString::number(this->SysDump.Sections.Motion.vAxis[index].ActSpeed));
+    Speed->setText(QString::number(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].ActSpeed));
     Speed->show();
 
     // Enable
@@ -1466,7 +1469,7 @@ int MainWindow::add_AxisToUi(int x, int index){
     Enable->setGeometry(x,ui->text_Axis_Enable->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT);
     Enable->setStyleSheet(this->Styles.axisOrangeStyle);
     Enable->setAlignment(Qt::AlignCenter);
-    (this->SysDump.Sections.Motion.vAxis[index].Enable != 0) ? Enable->setPixmap(QPixmap("://images/Axis_On.png")) : Enable->setPixmap(QPixmap("://images/Axis_Off.png"));
+    (this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Enable != 0) ? Enable->setPixmap(QPixmap("://images/Axis_On.png")) : Enable->setPixmap(QPixmap("://images/Axis_Off.png"));
     Enable->show();
 
     // Trigger 1
@@ -1474,7 +1477,7 @@ int MainWindow::add_AxisToUi(int x, int index){
     Trigger1->setGeometry(x,ui->text_Axis_Trigger1->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT);
     Trigger1->setStyleSheet(this->Styles.axisOrangeStyle);
     Trigger1->setAlignment(Qt::AlignCenter);
-    (this->SysDump.Sections.Motion.vAxis[index].Trigger1 != 0) ? Trigger1->setPixmap(QPixmap("://images/Axis_On.png")) : Trigger1->setPixmap(QPixmap("://images/Axis_Off.png"));
+    (this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Trigger1 != 0) ? Trigger1->setPixmap(QPixmap("://images/Axis_On.png")) : Trigger1->setPixmap(QPixmap("://images/Axis_Off.png"));
     Trigger1->show();
 
     // Trigger 2
@@ -1482,7 +1485,7 @@ int MainWindow::add_AxisToUi(int x, int index){
     Trigger2->setGeometry(x,ui->text_Axis_Trigger2->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT);
     Trigger2->setStyleSheet(this->Styles.axisOrangeStyle);
     Trigger2->setAlignment(Qt::AlignCenter);
-    (this->SysDump.Sections.Motion.vAxis[index].Trigger2 != 0) ? Trigger2->setPixmap(QPixmap("://images/Axis_On.png")) : Trigger2->setPixmap(QPixmap("://images/Axis_Off.png"));
+    (this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Trigger2 != 0) ? Trigger2->setPixmap(QPixmap("://images/Axis_On.png")) : Trigger2->setPixmap(QPixmap("://images/Axis_Off.png"));
     Trigger2->show();
 
     // Positive endswitch
@@ -1490,7 +1493,7 @@ int MainWindow::add_AxisToUi(int x, int index){
     PosEndSw->setGeometry(x,ui->text_Axis_PosEndSw->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT);
     PosEndSw->setStyleSheet(this->Styles.axisOrangeStyle);
     PosEndSw->setAlignment(Qt::AlignCenter);
-    (this->SysDump.Sections.Motion.vAxis[index].PosEndSw != 0) ? PosEndSw->setPixmap(QPixmap("://images/Axis_On.png")) : PosEndSw->setPixmap(QPixmap("://images/Axis_Off.png"));
+    (this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].PosEndSw != 0) ? PosEndSw->setPixmap(QPixmap("://images/Axis_On.png")) : PosEndSw->setPixmap(QPixmap("://images/Axis_Off.png"));
     PosEndSw->show();
 
     // Negative endswitch
@@ -1498,7 +1501,7 @@ int MainWindow::add_AxisToUi(int x, int index){
     NegEndSw->setGeometry(x,ui->text_Axis_NegEndSw->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT);
     NegEndSw->setStyleSheet(this->Styles.axisOrangeStyle);
     NegEndSw->setAlignment(Qt::AlignCenter);
-    (this->SysDump.Sections.Motion.vAxis[index].NegEndSw != 0) ? NegEndSw->setPixmap(QPixmap("://images/Axis_On.png")) : NegEndSw->setPixmap(QPixmap("://images/Axis_Off.png"));
+    (this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].NegEndSw != 0) ? NegEndSw->setPixmap(QPixmap("://images/Axis_On.png")) : NegEndSw->setPixmap(QPixmap("://images/Axis_Off.png"));
     NegEndSw->show();
 
     // Reference switch
@@ -1506,7 +1509,7 @@ int MainWindow::add_AxisToUi(int x, int index){
     RefSw->setGeometry(x,ui->text_Axis_RefSw->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT);
     RefSw->setStyleSheet(this->Styles.axisOrangeStyle);
     RefSw->setAlignment(Qt::AlignCenter);
-    (this->SysDump.Sections.Motion.vAxis[index].RefSw != 0) ? RefSw->setPixmap(QPixmap("://images/Axis_On.png")) : RefSw->setPixmap(QPixmap("://images/Axis_Off.png"));
+    (this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].RefSw != 0) ? RefSw->setPixmap(QPixmap("://images/Axis_On.png")) : RefSw->setPixmap(QPixmap("://images/Axis_Off.png"));
     RefSw->show();
 
     // Alarm
@@ -1514,7 +1517,7 @@ int MainWindow::add_AxisToUi(int x, int index){
     Alarm->setGeometry(x,ui->text_Axis_Alarm->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT_BIG);
     Alarm->setStyleSheet(this->Styles.axisBottomStyle);
     Alarm->setAlignment(Qt::AlignCenter);
-    (this->SysDump.Sections.Motion.vAxis[index].Alarm == true) ? Alarm->setPixmap(QPixmap("://images/Axis_AlarmActive.png")) : Alarm->setPixmap(QPixmap("://images/Axis_AlarmNActive.png"));
+    (this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Alarm == true) ? Alarm->setPixmap(QPixmap("://images/Axis_AlarmActive.png")) : Alarm->setPixmap(QPixmap("://images/Axis_AlarmNActive.png"));
     Alarm->show();
 
     return 0;
@@ -1528,13 +1531,13 @@ int MainWindow::add_AxisErrorsToUi(){
 
     for(unsigned int i=0;i<this->SysDump.Sections.Motion.vAxis.size();i++){
         if(this->SysDump.Sections.Motion.vAxis[i].Name == ui->combo_AxisError->currentText())
-            index = i;
+            index = static_cast<int>(i);
     }
 
     if(index >= 0){
-        for(unsigned int j=0;j<this->SysDump.Sections.Motion.vAxis[index].vAlarm.size();j++){
-            ui->table_AxisError->insertRow(j);
-            ui->table_AxisError->setRowHeight(j,TABLE_ROW_HEIGHT);
+        for(unsigned int j=0;j<this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm.size();j++){
+            ui->table_AxisError->insertRow(static_cast<int>(j));
+            ui->table_AxisError->setRowHeight(static_cast<int>(j),TABLE_ROW_HEIGHT);
 
             for(int cidx=0;cidx<AXISERR_TABLE_COLUMNS;cidx++){
                 QTableWidgetItem* item = new QTableWidgetItem();
@@ -1542,25 +1545,25 @@ int MainWindow::add_AxisErrorsToUi(){
 
                 switch(cidx){
                     case 0:
-                        item->setText(QString::number(this->SysDump.Sections.Motion.vAxis[index].vAlarm[j].ErrorNr));
+                        item->setText(QString::number(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[j].ErrorNr));
                         break;
 
                     case 1:
-                        item->setText(this->SysDump.Sections.Motion.vAxis[index].vAlarm[j].TimeStamp);
+                        item->setText(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[j].TimeStamp);
                         break;
 
                     case 2:
-                        item->setText(this->SysDump.Sections.Motion.vAxis[index].vAlarm[j].TextInfo);
+                        item->setText(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[j].TextInfo);
                         break;
 
                     case 3:
-                        item->setText(this->SysDump.Sections.Motion.vAxis[index].vAlarm[j].ErrorText);
+                        item->setText(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[j].ErrorText);
                         break;
 
                 default:
                     break;
                 }
-                ui->table_AxisError->setItem(j,cidx,item);
+                ui->table_AxisError->setItem(static_cast<int>(j),cidx,item);
             }
         }
     }
@@ -1571,11 +1574,11 @@ int MainWindow::add_AxisErrorsToUi(){
 void writeByteToLabel(QLabel *pLabel, long long size){
 
     if(size >= BYTE_PER_GB){
-        pLabel->setText(QString::number((qreal)size/BYTE_PER_GB,'f',3)+(" GB"));
+        pLabel->setText(QString::number(static_cast<qreal>(size)/BYTE_PER_GB,'f',3)+(" GB"));
     } else if(size >= BYTE_PER_MB){
-        pLabel->setText(QString::number((qreal)size/BYTE_PER_MB,'f',2)+(" MB"));
+        pLabel->setText(QString::number(static_cast<qreal>(size)/BYTE_PER_MB,'f',2)+(" MB"));
     } else if(size >= BYTE_PER_KB){
-        pLabel->setText(QString::number((qreal)size/BYTE_PER_KB,'f',2)+(" KByte"));
+        pLabel->setText(QString::number(static_cast<qreal>(size)/BYTE_PER_KB,'f',2)+(" KByte"));
     } else {
         pLabel->setText(QString::number(size)+(" Byte"));
     }

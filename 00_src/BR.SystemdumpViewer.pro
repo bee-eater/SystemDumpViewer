@@ -6,7 +6,7 @@
 
 QT       += core gui network printsupport
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 5): QT += widgets
 
 TARGET = BR.SystemdumpViewer
 TEMPLATE = app
@@ -53,11 +53,12 @@ RC_FILE = BR.SystemdumpViewer.rc
 CONFIG += qwt \
           c++11
 
-INCLUDEPATH += "$$_PRO_FILE_PWD_/libs/qwt/include"
+INCLUDEPATH += "$$PWD/libs/qwt/include"
 
 LIBS += -lws2_32 \
         -lpsapi \
-        "$$PWD/libs/qwt/libqwt.a"
+        "$$PWD/libs/qwt/libqwt.a" \
+        "$$PWD/libs/qwt/libqwtd.a"
 
 #-------------------------------------------------
 # Versioning

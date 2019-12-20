@@ -36,8 +36,8 @@ void OptionWindow::on_buttonBox_accepted()
     this->Main->settings->setValue("hwsearchfor",ui->combo_option_hwSearch->currentIndex());
     this->Main->settings->setValue("updateserver",ui->label_options_updateserver->text());
 
-    if((unsigned int)ui->combo_option_themes->currentIndex() < this->Main->vColorThemes.size())
-        this->Main->settings->setValue("themefile",this->Main->vColorThemes[ui->combo_option_themes->currentIndex()].filename);
+    if(static_cast<unsigned int>(ui->combo_option_themes->currentIndex()) < this->Main->vColorThemes.size())
+        this->Main->settings->setValue("themefile",this->Main->vColorThemes[static_cast<unsigned int>(ui->combo_option_themes->currentIndex())].filename);
 
     // Language update
     //qDebug() << this->lang_old << " - " <<this->Main->settings->value("languagefile").toString();
@@ -45,8 +45,8 @@ void OptionWindow::on_buttonBox_accepted()
         this->Main->updateLanguage(1);
 
     // Color Theme update
-    if((unsigned int)ui->combo_option_themes->currentIndex() < this->Main->vColorThemes.size()){
-        if(this->theme_old != this->Main->vColorThemes[ui->combo_option_themes->currentIndex()].filename)
+    if(static_cast<unsigned int>(ui->combo_option_themes->currentIndex()) < this->Main->vColorThemes.size()){
+        if(this->theme_old != this->Main->vColorThemes[static_cast<unsigned int>(ui->combo_option_themes->currentIndex())].filename)
             this->Main->updateColorTheme(ui->combo_option_themes->currentIndex());
     }
 

@@ -55,7 +55,7 @@ ReportWindow::~ReportWindow()
 
 void ReportWindow::on_btn_report_browsefile_released()
 {
-    QString filename = QFileDialog::getSaveFileName(NULL,tr("Save PDF report as..."),QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)+"\\Report_" + QDate::currentDate().toString("yyyyMMdd") + ".pdf","*.pdf");
+    QString filename = QFileDialog::getSaveFileName(nullptr,tr("Save PDF report as..."),QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)+"\\Report_" + QDate::currentDate().toString("yyyyMMdd") + ".pdf","*.pdf");
     this->reportFile = filename;
     ui->label_report_savefile->setText(this->reportFile);
 }

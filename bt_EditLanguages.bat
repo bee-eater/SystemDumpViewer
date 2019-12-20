@@ -21,7 +21,7 @@ echo.
 
 :again
 
-set dling=C:\Qt\Qt5.6.1\5.6\mingw49_32\bin\
+set dling=C:\Dev\Qt\v5.12.6\5.12.6\mingw73_32\bin\
 
 if "%errorlevel%"=="1" (
     echo.Ending program...

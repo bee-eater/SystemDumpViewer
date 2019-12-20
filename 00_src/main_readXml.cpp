@@ -112,7 +112,7 @@ bool MainWindow::get_SystemDumpMainInfo(xml_document<> *doc){
     xml_attribute<> *pAttribute;
     string tmpString;
 
-    while(pRoot != NULL){
+    while(pRoot != nullptr){
         tmpString = pRoot->name();
         std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
 
@@ -120,7 +120,7 @@ bool MainWindow::get_SystemDumpMainInfo(xml_document<> *doc){
         case SYSDUMP_DUMP:
             pAttribute = pRoot->first_attribute();
 
-            while(pAttribute != NULL){
+            while(pAttribute != nullptr){
                 tmpString = pAttribute->name();
                 std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
 
@@ -175,7 +175,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
     string tmpString, tmpString2;
 
-    while(pRoot != NULL){
+    while(pRoot != nullptr){
 
         // SWITCH THROUGH SECTIONS
         // -------------------------------------------------------------------------------
@@ -195,7 +195,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                 // SECTION VALUES
                 // ---------------------------------------------------------------------------
                 pItem = pRoot->first_node()->first_node();
-                while (pItem!=NULL) {
+                while (pItem!=nullptr) {
 
                     tmpString = pItem->name();
                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -207,7 +207,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                         // GET OPERATIONAL VALUES
                         // -------------------------------------------------------------------
                         pSubItem = pItem->first_node();
-                        while (pSubItem != NULL) {
+                        while (pSubItem != nullptr) {
 
                             result = this->get_StringsForIdAndValue(pSubItem,&tmpString,&tmpString2);
 
@@ -219,19 +219,19 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                         break;
 
                                     case VALUE_001_CPUMODE:
-                                        this->SysDump.Sections.Values.OperationalValues.CurrentCpuMode = (qint16)atoi(tmpString2.c_str());
+                                        this->SysDump.Sections.Values.OperationalValues.CurrentCpuMode = static_cast<qint16>(atoi(tmpString2.c_str()));
                                         break;
 
                                     case VALUE_001_BATTERYSTATUS:
-                                        this->SysDump.Sections.Values.OperationalValues.BatteryStatus = (qint16)atoi(tmpString2.c_str());
+                                        this->SysDump.Sections.Values.OperationalValues.BatteryStatus = static_cast<qint16>(atoi(tmpString2.c_str()));
                                         break;
 
                                     case VALUE_001_CPUTEMP:
-                                        this->SysDump.Sections.Values.OperationalValues.CPUtemperature = (qint16)atoi(tmpString2.c_str());
+                                        this->SysDump.Sections.Values.OperationalValues.CPUtemperature = static_cast<qint16>(atoi(tmpString2.c_str()));
                                         break;
 
                                     case VALUE_001_CPUUSAGE:
-                                        this->SysDump.Sections.Values.OperationalValues.CurrentCpuUsage = (qint16)atoi(tmpString2.c_str());
+                                        this->SysDump.Sections.Values.OperationalValues.CurrentCpuUsage = static_cast<qint16>(atoi(tmpString2.c_str()));
                                         break;
 
                                     case VALUE_001_TARGETTIME:
@@ -263,7 +263,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                         // GET TIME SYNCHRONISATION
                         // -------------------------------------------------------------------
                         pSubItem = pItem->first_node();
-                        while(pSubItem!=NULL){
+                        while(pSubItem!=nullptr){
 
                             tmpString = pSubItem->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -275,7 +275,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                 case VALUE_002_SERVER:
                                     pSubSubItem = pSubItem->first_node();
-                                    while(pSubSubItem!=NULL){
+                                    while(pSubSubItem!=nullptr){
                                         this->SysDump.Sections.Values.TimeSynchronisation.Server.SNTPserver = QString::fromStdString(pSubSubItem->first_attribute("value")->value());
                                         pSubSubItem = pSubSubItem->next_sibling();
                                     }
@@ -283,7 +283,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                 case VALUE_002_CLIENT:
                                     pSubSubItem = pSubItem->first_node();
-                                    while(pSubSubItem!=NULL){
+                                    while(pSubSubItem!=nullptr){
 
                                         result = this->get_StringsForIdAndValue(pSubSubItem,&tmpString,&tmpString2);
 
@@ -345,7 +345,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                         // GET SOFTWARE
                         // -------------------------------------------------------------------
                         pSubItem = pItem->first_node();
-                        while(pSubItem!=NULL){
+                        while(pSubItem!=nullptr){
 
                             result = this->get_StringsForIdAndValue(pSubItem,&tmpString,&tmpString2);
 
@@ -384,7 +384,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                         // GET CPU CONFIGURATION
                         // -------------------------------------------------------------------
                         pSubItem = pItem->first_node();
-                        while(pSubItem!=NULL){
+                        while(pSubItem!=nullptr){
 
                             tmpString = pSubItem->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -444,7 +444,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                             case VALUE_005_REBOOT:
                                 pSubSubItem = pSubItem->first_node();
-                                while(pSubSubItem!=0){
+                                while(pSubSubItem!=nullptr){
 
                                     result = this->get_StringsForIdAndValue(pSubSubItem,&tmpString,&tmpString2);
 
@@ -476,7 +476,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                             case VALUE_005_PRESERVE:
                                 pSubSubItem = pSubItem->first_node();
-                                while(pSubSubItem!=0){
+                                while(pSubSubItem!=nullptr){
 
                                     result = this->get_StringsForIdAndValue(pSubSubItem,&tmpString,&tmpString2);
 
@@ -514,7 +514,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                         // GET APPLICATION INFO
                         // -------------------------------------------------------------------
                         pSubItem = pItem->first_node();
-                        while(pSubItem!=NULL){
+                        while(pSubItem!=nullptr){
 
                             result = this->get_StringsForIdAndValue(pSubItem,&tmpString,&tmpString2);
 
@@ -557,7 +557,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                 // SECTION ETHERNET
                 // ---------------------------------------------------------------------------
                 pItem = pRoot->first_node()->first_node();
-                while (pItem!=NULL) {
+                while (pItem!=nullptr) {
 
                     tmpString = pItem->name();
                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -565,7 +565,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                     switch(map_010_Ethernet[tmpString]){
                     case ETHERNET_PARAM:
                         pSubItem = pItem->first_node();
-                        while (pSubItem!=NULL){
+                        while (pSubItem!=nullptr){
 
                             result = this->get_StringsForIdAndValue(pSubItem,&tmpString,&tmpString2);
 
@@ -593,7 +593,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                         this->SysDump.Sections.Ethernet.vInterface.push_back(sInterface());
 
                         pSubItem = pItem->first_node();
-                        while(pSubItem!=NULL){
+                        while(pSubItem!=nullptr){
                             this->SysDump.Sections.Ethernet.vInterface[index].InterfaceID = pItem->first_attribute("id",0,false)->value();
 
                             result = this->get_StringsForIdAndValue(pSubItem,&tmpString,&tmpString2);
@@ -655,7 +655,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                 // SECTION MEMORY
                 // ---------------------------------------------------------------------------
                 pItem = pRoot->first_node()->first_node();
-                while (pItem!=NULL) {
+                while (pItem!=nullptr) {
 
                     tmpString = pItem->name();
                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -663,7 +663,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                     switch(map_013_Memory[tmpString]){
                     case MEMORY_CF:
                         pAttribute = pItem->first_attribute();
-                        while(pAttribute != NULL){
+                        while(pAttribute != nullptr){
 
                             tmpString = pAttribute->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -696,14 +696,14 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                         }
 
                         pSubItem = pItem->first_node();
-                        while(pSubItem!=NULL){
+                        while(pSubItem!=nullptr){
                             cnt++;
                             index = cnt-1;
                             //result = this->add_MemoryCfPartition(cnt);
                             this->SysDump.Sections.Memory.CompactFlash.vPartition.push_back(sPartition());
 
                             pAttribute = pSubItem->first_attribute();
-                            while(pAttribute!=NULL){
+                            while(pAttribute!=nullptr){
 
                                 tmpString = pAttribute->name();
                                 std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -745,7 +745,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                     case MEMORY_DRAM:
                         pAttribute = pItem->first_attribute();
-                        while(pAttribute != NULL){
+                        while(pAttribute != nullptr){
 
                             tmpString = pAttribute->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -781,7 +781,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                     case MEMORY_SRAM:
                         // SRAM Attributes
                         pAttribute = pItem->first_attribute();
-                        while(pAttribute != NULL){
+                        while(pAttribute != nullptr){
 
                             tmpString = pAttribute->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -802,7 +802,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                         }
 
                         pSubItem = pItem->first_node();
-                        while(pSubItem != NULL){
+                        while(pSubItem != nullptr){
 
                             tmpString = pSubItem->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -810,7 +810,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                             switch(map_015_MemorySRAM[tmpString]){
                             case MEMORY_001_NOTCONFIGURED:
                                 pAttribute = pSubItem->first_attribute();
-                                while(pAttribute != NULL){
+                                while(pAttribute != nullptr){
 
                                     tmpString = pAttribute->name();
                                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -833,7 +833,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                             case MEMORY_001_USERRAM:
                                 pAttribute = pSubItem->first_attribute();
-                                while(pAttribute != NULL){
+                                while(pAttribute != nullptr){
 
                                     tmpString = pAttribute->name();
                                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -872,7 +872,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                             case MEMORY_001_REMMEM:
                                 pAttribute = pItem->first_attribute();
-                                while(pAttribute != NULL){
+                                while(pAttribute != nullptr){
 
                                     tmpString = pAttribute->name();
                                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -946,7 +946,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                 // SECTION TIMING
                 // ---------------------------------------------------------------------------
                 pItem = pRoot->first_node()->first_node();
-                while(pItem != NULL){
+                while(pItem != nullptr){
 
                     tmpString = pItem->name();
                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -954,7 +954,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                     switch(map_016_Timing[tmpString]){
                     case TIMING_TIMERCONF:
                         pAttribute = pItem->first_attribute();
-                        while(pAttribute != NULL){
+                        while(pAttribute != nullptr){
 
                             tmpString = pAttribute->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1001,7 +1001,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                     case TIMING_TASKCLASSCONF:
                         pSubItem = pItem->first_node();
-                        while(pSubItem != NULL){
+                        while(pSubItem != nullptr){
 
                             tmpString = pSubItem->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1013,7 +1013,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                 this->SysDump.Sections.Timing.vTaskClass.push_back(sTaskClass());
 
                                 pAttribute = pSubItem->first_attribute();
-                                while(pAttribute!=NULL){
+                                while(pAttribute!=nullptr){
 
                                     tmpString = pAttribute->name();
                                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1083,7 +1083,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                 // SECTION CPU USAGE
                 // -------------------------------------------------------------------
                 pItem = pRoot->first_node()->first_node();
-                while(pItem != NULL){
+                while(pItem != nullptr){
 
                     tmpString = pItem->name();
                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1095,7 +1095,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                         this->SysDump.Sections.CpuUsage.vZoomInterval.push_back(sZoomInterval());
 
                         pAttribute = pItem->first_attribute();
-                        while(pAttribute!=NULL){
+                        while(pAttribute!=nullptr){
 
                             tmpString = pAttribute->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1129,7 +1129,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                         // Get the Values
                         pSubItem = pItem->first_node();
-                        while(pSubItem != NULL){
+                        while(pSubItem != nullptr){
                             tmpString = pSubItem->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
 
@@ -1186,7 +1186,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                 // SECTION SOFTWARE
                 // -------------------------------------------------------------------
                 pItem = pRoot->first_node()->first_node();
-                while(pItem != NULL){
+                while(pItem != nullptr){
 
                     tmpString = pItem->name();
                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1200,7 +1200,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                         this->SysDump.Sections.Software.vAppModule[index].id = pItem->first_attribute("Id")->value();
                         pSubItem = pItem->first_node();
-                        while(pSubItem != NULL){
+                        while(pSubItem != nullptr){
 
                             tmpString = pSubItem->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1212,7 +1212,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                 this->SysDump.Sections.Software.vAppModule[index].vModules.push_back(sSoftwModule());
 
                                 pAttribute = pSubItem->first_attribute();
-                                while(pAttribute != NULL){
+                                while(pAttribute != nullptr){
 
                                     tmpString = pAttribute->name();
                                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1285,7 +1285,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                         this->SysDump.Sections.Software.vAppModule[0].vModules.push_back(sSoftwModule());
 
                         pAttribute = pItem->first_attribute();
-                        while(pAttribute != NULL){
+                        while(pAttribute != nullptr){
 
                             tmpString = pAttribute->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1353,7 +1353,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                 // SECTION HARDWARE
                 // -------------------------------------------------------------------
                 pItem = pRoot->first_node()->first_node();
-                while(pItem != NULL){
+                while(pItem != nullptr){
 
                     tmpString = pItem->name();
                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1370,7 +1370,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                         // ATTRIBUTES FROM NODE
                         // -------------------------------------------------------
                         pAttribute = pItem->first_attribute();
-                        while(pAttribute!=NULL){
+                        while(pAttribute!=nullptr){
 
                             tmpString = pAttribute->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1405,7 +1405,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                         // SUTITEMS FROM NODE
                         // -------------------------------------------------------
                         pSubItem = pItem->first_node();
-                        while(pSubItem != NULL){
+                        while(pSubItem != nullptr){
 
                             tmpString = pSubItem->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1413,7 +1413,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                             switch(map_022_HardwareNode[tmpString]){
                             case HARDWARE_000_MODULESTATUS:
                                 pAttribute = pSubItem->first_attribute();
-                                while(pAttribute != NULL){
+                                while(pAttribute != nullptr){
 
                                     tmpString = pAttribute->name();
                                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1448,7 +1448,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                             case HARDWARE_000_IOINFORMATION:
                                 pAttribute = pSubItem->first_attribute();
-                                while(pAttribute != NULL){
+                                while(pAttribute != nullptr){
 
                                     tmpString = pAttribute->name();
                                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1491,7 +1491,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                             case HARDWARE_000_IOINFO:
                                 pSubSubItem = pSubItem->first_node();
-                                while(pSubSubItem != NULL){
+                                while(pSubSubItem != nullptr){
 
                                     tmpString = pSubSubItem->name();
                                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1503,7 +1503,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                         this->SysDump.Sections.Hardware.vNode[index].IOChannels.vChannel.push_back(sChannel());
 
                                         pAttribute = pSubSubItem->first_attribute();
-                                        while(pAttribute != NULL){
+                                        while(pAttribute != nullptr){
 
                                             tmpString = pAttribute->name();
                                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1598,7 +1598,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                 // SECTION Motion
                 // -------------------------------------------------------------------
                 pItem = pRoot->first_node();
-                while(pItem != NULL){
+                while(pItem != nullptr){
 
                     tmpString = pItem->name();
                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1606,7 +1606,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                     switch(map_040_Motion[tmpString]){
                     case MOTION_000_MOTION:
                         pAttribute = pItem->first_attribute();
-                        while(pAttribute != NULL){
+                        while(pAttribute != nullptr){
 
                             tmpString = pAttribute->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1617,7 +1617,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                 if(this->SysDump.Sections.Motion.Available==true){
                                     pSubItem = pItem->first_node();
-                                    while(pSubItem != NULL){
+                                    while(pSubItem != nullptr){
 
                                         tmpString = pSubItem->name();
                                         std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1630,7 +1630,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                             this->SysDump.Sections.Motion.vAxis.push_back(sAxis());
 
                                             pAttribute2 = pSubItem->first_attribute();
-                                            while(pAttribute2 != NULL){
+                                            while(pAttribute2 != nullptr){
 
                                                 tmpString = pAttribute2->name();
                                                 std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1720,7 +1720,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                             if(this->SysDump.Sections.Motion.vAxis.size() > 0){
                                                 pSubSubItem = pSubItem->first_node();
-                                                while(pSubSubItem != NULL){
+                                                while(pSubSubItem != nullptr){
 
                                                     tmpString = pSubSubItem->name();
                                                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1732,7 +1732,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                                         this->SysDump.Sections.Motion.vAxis[index].vAlarm.push_back(sAlarm());
 
                                                         pAttribute2 = pSubSubItem->first_attribute();
-                                                        while(pAttribute2 != NULL){
+                                                        while(pAttribute2 != nullptr){
 
                                                             tmpString = pAttribute2->name();
                                                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1840,7 +1840,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                 // SECTION Logger
                 // -------------------------------------------------------------------
                 pItem = pRoot->first_node()->first_node();
-                while(pItem != NULL){
+                while(pItem != nullptr){
 
                     tmpString = pItem->name();
                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1854,7 +1854,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                         // Attributes
                         pAttribute = pItem->first_attribute();
-                        while(pAttribute != NULL){
+                        while(pAttribute != nullptr){
 
                             tmpString = pAttribute->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1888,7 +1888,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                         // Entries
                         pSubItem = pItem->first_node()->first_node();
-                        while(pSubItem != NULL){
+                        while(pSubItem != nullptr){
 
                             tmpString = pSubItem->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1905,7 +1905,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                     this->SysDump.Sections.Logger.vModule[index].vEntry.push_back(sLogModuleEntry());
 
                                     pAttribute = pSubItem->first_attribute();
-                                    while(pAttribute != NULL){
+                                    while(pAttribute != nullptr){
 
                                         tmpString = pAttribute->name();
                                         std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -1968,7 +1968,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                     this->SysDump.Sections.Logger.vModule[index].vEntryV2.push_back(sLogModuleEntryV2());
 
                                     pAttribute = pSubItem->first_attribute();
-                                    while(pAttribute != NULL){
+                                    while(pAttribute != nullptr){
 
                                         tmpString = pAttribute->name();
                                         std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -2066,7 +2066,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                 // SECTION Logger
                 // -------------------------------------------------------------------
                 pItem = pRoot->first_node()->first_node();
-                while(pItem != NULL){
+                while(pItem != nullptr){
 
                     tmpString = pItem->name();
                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
@@ -2078,7 +2078,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                         this->SysDump.Sections.Profiler.vModule.push_back(sProfModule());
 
                         pAttribute = pItem->first_attribute();
-                        while(pAttribute != NULL){
+                        while(pAttribute != nullptr){
 
                             tmpString = pAttribute->name();
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
