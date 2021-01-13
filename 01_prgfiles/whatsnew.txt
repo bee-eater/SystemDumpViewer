@@ -2,12 +2,11 @@
 <br/>
 <br/>
 <ul>
-    <li>Fixed bug in memory section (negative numbers)</li>
-    <li>Made hardware tree resizable</li>
-    <li>Loggers with v1.01.0 were not opened correctly</li>
-    <li>Fixed some minor bugs</li>
-	<li>Added new xml nodes: USB ARWin install, Userpartition install, Network install</li>
-    <li>Fixed a bug in hardware tree</li>
+    <li>Fixed partition size bargraph</li>
+    <li>Added CF serial number, CF model number, storage wear, NTP value strings</li>
+	<li>Show .tar.gz file in Title</li>
+	<li>Updated some code</li>
+    <li>Updated B&R Logo with ABB claim</li>
 </ul>
 <ul>
     <li>Added tar.gz file support</li>
@@ -16,5 +15,3 @@
 <br/>
 Just look around or check out the documentation! If you should experience any bugs or have some nice ideas I'd be happy if you'd let me know!
 <br/>
-<br/>
-The Author :-)

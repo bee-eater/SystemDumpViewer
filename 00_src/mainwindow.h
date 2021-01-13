@@ -265,10 +265,10 @@ public:
     enum en_SectionMemory {MEMORY_ERR, MEMORY_CF, MEMORY_DRAM, MEMORY_SRAM};
     static std::map<std::string, en_SectionMemory> map_013_Memory;
 
-    enum en_SectionMemoryCF {MEMORY_000_ERR, MEMORY_000_PARTITION};
+    enum en_SectionMemoryCF {MEMORY_000_ERR, MEMORY_000_PARTITION, MEMORY_000_HEALTH_DATA};
     static std::map<std::string, en_SectionMemoryCF> map_014_MemoryCF;
 
-    enum en_SectionMemoryCfAttributes {MEMORY_002_ERR, MEMORY_002_NUMOFPARTITIONS, MEMORY_002_NUMBEROFSECTORS, MEMORY_002_SIZE, MEMORY_002_SIZEPERSECTOR};
+    enum en_SectionMemoryCfAttributes {MEMORY_002_ERR, MEMORY_002_NUMOFPARTITIONS, MEMORY_002_NUMBEROFSECTORS, MEMORY_002_SIZE, MEMORY_002_SIZEPERSECTOR, MEMORY_002_SERIALNUM, MEMORY_002_MODELNUM, MEMORY_002_STORAGEWEAR};
     static std::map<std::string, en_SectionMemoryCfAttributes> map_029_CfAttributes;
 
     enum en_SectionMemoryCfPartitionAttributes {MEMORY_003_ERR, MEMORY_003_AVAILABLE, MEMORY_003_DESCRIPTION, MEMORY_003_ID, MEMORY_003_SIZE, MEMORY_003_USED};

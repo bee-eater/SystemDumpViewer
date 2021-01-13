@@ -72,7 +72,7 @@ OptionWindow::OptionWindow(QWidget *parent, MainWindow *w) :
             this->foundLanguages.append(tmpString);
         }
         ui->combo_option_language->clear();
-        if((bool)this->Main->settings->value("autolanguage",true).toBool()){
+        if(this->Main->settings->value("autolanguage",true).toBool()){
             ui->check_option_autolanguage->setChecked(1);
             ui->combo_option_language->setDisabled(1);
         } else {
@@ -105,29 +105,29 @@ OptionWindow::OptionWindow(QWidget *parent, MainWindow *w) :
             QString themeFilePath = QString("themes\\") + directoryTheme.entryList(nameFilterTheme).at(i);
             ini.LoadFile(themeFilePath.toStdString().c_str());
 
-            if((unsigned int)i >= this->Main->vColorThemes.size())
+            if(static_cast<unsigned int>(i) >= this->Main->vColorThemes.size())
                 this->Main->vColorThemes.push_back(sColorTheme());
 
-            this->Main->vColorThemes[i].filename         = directoryTheme.entryList(nameFilterTheme).at(i);
-            this->Main->vColorThemes[i].name             = QString::fromUtf8(ini.GetValue("SDVTheme", "name", "Untitled Theme"));
+            this->Main->vColorThemes[static_cast<unsigned int>(i)].filename         = directoryTheme.entryList(nameFilterTheme).at(i);
+            this->Main->vColorThemes[static_cast<unsigned int>(i)].name             = QString::fromUtf8(ini.GetValue("SDVTheme", "name", "Untitled Theme"));
 
-            this->Main->vColorThemes[i].cWindow          = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_Window", "245,245,245")));
-            this->Main->vColorThemes[i].cWindowText      = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_WindowText", "25,25,25")));
-            this->Main->vColorThemes[i].cBase            = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_Base", "235,235,235")));
-            this->Main->vColorThemes[i].cAlternateBase   = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_AlternateBase", "245,245,245")));
-            this->Main->vColorThemes[i].cToolTipBase     = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_ToolTipBase", "235,235,235")));
-            this->Main->vColorThemes[i].cToolTipText     = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_ToolTipText", "25,25,25")));
-            this->Main->vColorThemes[i].cText            = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_Text", "25,25,25")));
-            this->Main->vColorThemes[i].cButton          = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_Button", "245,245,245")));
-            this->Main->vColorThemes[i].cButtonText      = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_ButtonText", "25,25,25")));
-            this->Main->vColorThemes[i].cBrightText      = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_BrightText", "255,0,0")));
-            this->Main->vColorThemes[i].cLink            = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_Link", "255,128,0")));
-            this->Main->vColorThemes[i].cHighlight       = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_Highlight", "255,128,0")));
-            this->Main->vColorThemes[i].cHighlightedText = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_HighlightedText", "235,235,235")));
+            this->Main->vColorThemes[static_cast<unsigned int>(i)].cWindow          = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_Window", "245,245,245")));
+            this->Main->vColorThemes[static_cast<unsigned int>(i)].cWindowText      = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_WindowText", "25,25,25")));
+            this->Main->vColorThemes[static_cast<unsigned int>(i)].cBase            = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_Base", "235,235,235")));
+            this->Main->vColorThemes[static_cast<unsigned int>(i)].cAlternateBase   = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_AlternateBase", "245,245,245")));
+            this->Main->vColorThemes[static_cast<unsigned int>(i)].cToolTipBase     = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_ToolTipBase", "235,235,235")));
+            this->Main->vColorThemes[static_cast<unsigned int>(i)].cToolTipText     = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_ToolTipText", "25,25,25")));
+            this->Main->vColorThemes[static_cast<unsigned int>(i)].cText            = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_Text", "25,25,25")));
+            this->Main->vColorThemes[static_cast<unsigned int>(i)].cButton          = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_Button", "245,245,245")));
+            this->Main->vColorThemes[static_cast<unsigned int>(i)].cButtonText      = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_ButtonText", "25,25,25")));
+            this->Main->vColorThemes[static_cast<unsigned int>(i)].cBrightText      = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_BrightText", "255,0,0")));
+            this->Main->vColorThemes[static_cast<unsigned int>(i)].cLink            = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_Link", "255,128,0")));
+            this->Main->vColorThemes[static_cast<unsigned int>(i)].cHighlight       = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_Highlight", "255,128,0")));
+            this->Main->vColorThemes[static_cast<unsigned int>(i)].cHighlightedText = this->Main->QStringToQColor(QString::fromUtf8(ini.GetValue("SDVTheme", "col_HighlightedText", "235,235,235")));
 
-            ui->combo_option_themes->addItem(this->Main->vColorThemes[i].name);
+            ui->combo_option_themes->addItem(this->Main->vColorThemes[static_cast<unsigned int>(i)].name);
 
-            if(this->Main->vColorThemes[i].filename==this->Main->settings->value("themefile").toString())
+            if(this->Main->vColorThemes[static_cast<unsigned int>(i)].filename==this->Main->settings->value("themefile").toString())
                 ui->combo_option_themes->setCurrentIndex(i);
         }
     // <<<-----------------------------------------------------
@@ -148,10 +148,10 @@ OptionWindow::OptionWindow(QWidget *parent, MainWindow *w) :
 
     // Data storage
     // ----------------------------------------------------->>>
-        if((bool)this->Main->settings->value("keeptempfiles",true).toBool()){
+        if(this->Main->settings->value("keeptempfiles",true).toBool()){
             ui->check_option_keepFiles->setChecked(1);
         }
-        if((bool)this->Main->settings->value("downloaddatafiles",false).toBool()){
+        if(this->Main->settings->value("downloaddatafiles",false).toBool()){
             ui->check_option_downlaodData->setChecked(1);
         }
     // <<<-----------------------------------------------------

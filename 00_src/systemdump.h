@@ -208,6 +208,9 @@ using namespace std;
         qint64 NumberOfSectors;
         qint64 Size;
         qint64 SizePerSector;
+        QString SerialNumber;
+        QString ModelNumber;
+        qint16 StorageWear;
         std::vector<sPartition> vPartition;
         sCompactFlash(){
             this->Size = 0;

@@ -27,6 +27,9 @@ void MainWindow::reset_DumpInfo(){
     this->SysDump.Sections.Memory.CompactFlash.NumberOfSectors = 0;
     this->SysDump.Sections.Memory.CompactFlash.Size = 0;
     this->SysDump.Sections.Memory.CompactFlash.SizePerSector = 0;
+    this->SysDump.Sections.Memory.CompactFlash.SerialNumber = "";
+    this->SysDump.Sections.Memory.CompactFlash.ModelNumber = "";
+    this->SysDump.Sections.Memory.CompactFlash.StorageWear = 0;
     this->SysDump.Sections.Memory.DRAM.available = 0;
     this->SysDump.Sections.Memory.DRAM.LargestAvailableBlock = 0;
     this->SysDump.Sections.Memory.DRAM.size = 0;

@@ -177,6 +177,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
     int cnt = 0, subcnt = 0, index = 0, subindex = 0, result = 0;
 
+
     string tmpString, tmpString2;
 
     while(pRoot != nullptr){
@@ -314,11 +315,11 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                                     break;
 
                                                 case VALUE_003_SNTP_SYNC_INT:
-                                                    this->SysDump.Sections.Values.TimeSynchronisation.Client.SNTPsynchInterval = (qint16)atoi(tmpString2.c_str());
+                                                    this->SysDump.Sections.Values.TimeSynchronisation.Client.SNTPsynchInterval = static_cast<qint16>(atoi(tmpString2.c_str()));
                                                     break;
 
                                                 case VALUE_003_RTC_SYNC_INT:
-                                                    this->SysDump.Sections.Values.TimeSynchronisation.Client.RTCsynchInterval = (qint16)atoi(tmpString2.c_str());
+                                                    this->SysDump.Sections.Values.TimeSynchronisation.Client.RTCsynchInterval =  static_cast<qint16>(atoi(tmpString2.c_str()));
                                                     break;
 
                                                 case VALUE_003_ERR:
@@ -413,27 +414,27 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                         break;
 
                                     case VALUE_008_PROFILING:
-                                        this->SysDump.Sections.Values.CpuConfiguration.Profiling = (bool)atoi(tmpString2.c_str());
+                                        this->SysDump.Sections.Values.CpuConfiguration.Profiling = static_cast<bool>(atoi(tmpString2.c_str()));
                                         break;
 
                                     case VALUE_008_FTP:
-                                        this->SysDump.Sections.Values.CpuConfiguration.FTP = (bool)atoi(tmpString2.c_str());
+                                        this->SysDump.Sections.Values.CpuConfiguration.FTP = static_cast<bool>(atoi(tmpString2.c_str()));
                                         break;
 
                                     case VALUE_008_USBREMOTEINSTALL:
-                                        this->SysDump.Sections.Values.CpuConfiguration.USBremoteInstall = (bool)atoi(tmpString2.c_str());
+                                        this->SysDump.Sections.Values.CpuConfiguration.USBremoteInstall = static_cast<bool>(atoi(tmpString2.c_str()));
                                         break;
 
                                     case VALUE_008_CFREMOTEINSTALL:
-                                        this->SysDump.Sections.Values.CpuConfiguration.CFremoteInstall = (bool)atoi(tmpString2.c_str());
+                                        this->SysDump.Sections.Values.CpuConfiguration.CFremoteInstall = static_cast<bool>(atoi(tmpString2.c_str()));
                                         break;
 
                                     case VALUE_008_USBARWININSTALL:
-                                        this->SysDump.Sections.Values.CpuConfiguration.USBArwinInstall = (bool)atoi(tmpString2.c_str());
+                                        this->SysDump.Sections.Values.CpuConfiguration.USBArwinInstall = static_cast<bool>(atoi(tmpString2.c_str()));
                                         break;
 
                                     case VALUE_008_USERPARTITIONINSTALL:
-                                        this->SysDump.Sections.Values.CpuConfiguration.UserPartitionInstall = (bool)atoi(tmpString2.c_str());
+                                        this->SysDump.Sections.Values.CpuConfiguration.UserPartitionInstall = static_cast<bool>(atoi(tmpString2.c_str()));
                                         break;
 
                                     case VALUE_008_ERR:
@@ -455,15 +456,15 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                     if (result == 0){
                                         switch(map_006_CpuConfigurationReboot[tmpString]){
                                         case VALUE_006_RESET:
-                                            this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterReset = (qint16)atoi(tmpString2.c_str());
+                                            this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterReset = static_cast<qint16>(atoi(tmpString2.c_str()));
                                             break;
 
                                         case VALUE_006_PFAIL:
-                                            this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterPowerFail = (qint16)atoi(tmpString2.c_str());
+                                            this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterPowerFail = static_cast<qint16>(atoi(tmpString2.c_str()));
                                             break;
 
                                         case VALUE_006_CHANGECF:
-                                            this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterCFChange = (qint16)atoi(tmpString2.c_str());
+                                            this->SysDump.Sections.Values.CpuConfiguration.RebootMode.AfterCFChange = static_cast<qint16>(atoi(tmpString2.c_str()));
                                             break;
 
                                         case VALUE_006_ERR:
@@ -487,7 +488,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                     if (result == 0){
                                         switch(map_007_CpuConfigurationPreserve[tmpString]){
                                         case VALUE_007_CHANGECF:
-                                            this->SysDump.Sections.Values.CpuConfiguration.PreservePVMemory.AfterCFChange = (qint16)atoi(tmpString2.c_str());
+                                            this->SysDump.Sections.Values.CpuConfiguration.PreservePVMemory.AfterCFChange = static_cast<qint16>(atoi(tmpString2.c_str()));
                                             break;
 
                                         case VALUE_007_ERR:
@@ -529,7 +530,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                     break;
 
                                 case VALUE_009_APPSTATUS:
-                                    this->SysDump.Sections.Values.ApplicationInfo.ApplicationStatus = (qint16)atoi(tmpString2.c_str());
+                                    this->SysDump.Sections.Values.ApplicationInfo.ApplicationStatus = static_cast<qint16>(atoi(tmpString2.c_str()));
                                     break;
 
                                 case VALUE_009_ERR:
@@ -598,34 +599,34 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                         pSubItem = pItem->first_node();
                         while(pSubItem!=nullptr){
-                            this->SysDump.Sections.Ethernet.vInterface[index].InterfaceID = pItem->first_attribute("id",0,false)->value();
 
+                            this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].InterfaceID = pItem->first_attribute("id",0,false)->value();
                             result = this->get_StringsForIdAndValue(pSubItem,&tmpString,&tmpString2);
 
                             if (result == 0){
                                 switch(map_012_EthernetIf[tmpString]){
                                 case ETHERNET_001_IPADRESS:
-                                    this->SysDump.Sections.Ethernet.vInterface[index].IpAddress = QString::fromStdString(tmpString2.c_str());
+                                    this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].IpAddress = QString::fromStdString(tmpString2.c_str());
                                     break;
 
                                 case ETHERNET_001_SUBNET:
-                                    this->SysDump.Sections.Ethernet.vInterface[index].SubnetMask = QString::fromStdString(tmpString2.c_str());
+                                    this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].SubnetMask = QString::fromStdString(tmpString2.c_str());
                                     break;
 
                                 case ETHERNET_001_IPCONF:
-                                    this->SysDump.Sections.Ethernet.vInterface[index].IpConfig = (qint16)atoi(tmpString2.c_str());
+                                    this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].IpConfig = static_cast<qint16>(atoi(tmpString2.c_str()));
                                     break;
 
                                 case ETHERNET_001_SNMPCONF:
-                                    this->SysDump.Sections.Ethernet.vInterface[index].SNMPConfig = (qint16)atoi(tmpString2.c_str());
+                                    this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].SNMPConfig = static_cast<qint16>(atoi(tmpString2.c_str()));
                                     break;
 
                                 case ETHERNET_001_ETHREMOTEINSTALL:
-                                    this->SysDump.Sections.Ethernet.vInterface[index].EthernetRemoteInstall = (bool)atoi(tmpString2.c_str());
+                                    this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].EthernetRemoteInstall = static_cast<bool>(atoi(tmpString2.c_str()));
                                     break;
 
                                 case ETHERNET_001_NETWORKINSTALL:
-                                    this->SysDump.Sections.Ethernet.vInterface[index].NetworkInstall = (bool)atoi(tmpString2.c_str());
+                                    this->SysDump.Sections.Ethernet.vInterface[static_cast<unsigned int>(index)].NetworkInstall = static_cast<bool>(atoi(tmpString2.c_str()));
                                     break;
 
 
@@ -673,8 +674,9 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                             std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
 
                             switch (map_029_CfAttributes[tmpString]){
+
                             case MEMORY_002_NUMOFPARTITIONS:
-                                this->SysDump.Sections.Memory.CompactFlash.NumberOfPartitions = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.Memory.CompactFlash.NumberOfPartitions = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case MEMORY_002_SIZE:
@@ -689,62 +691,94 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                 this->SysDump.Sections.Memory.CompactFlash.SizePerSector = QString::fromStdString(pAttribute->value()).toLongLong();
                                 break;
 
+                            case MEMORY_002_SERIALNUM:
+                                this->SysDump.Sections.Memory.CompactFlash.SerialNumber = QString::fromStdString(pAttribute->value());
+                                break;
+
+                            case MEMORY_002_MODELNUM:
+                                this->SysDump.Sections.Memory.CompactFlash.ModelNumber = QString::fromStdString(pAttribute->value());
+                                break;
+
+                            case MEMORY_002_STORAGEWEAR:
+                                this->SysDump.Sections.Memory.CompactFlash.StorageWear = static_cast<qint16>(atoi(pAttribute->value()));
+                                break;
+
                             case MEMORY_002_ERR:
                                 this->ErrorNr = 20301;
                                 this->Error = QString::fromStdString(tmpString);
                                 break;
+
                             default:
                                 return 14;
                             }
                             pAttribute = pAttribute->next_attribute();
                         }
 
-                        pSubItem = pItem->first_node();
+                        // Get all subitems of memory cf
+                        pSubItem = pItem->first_node(); 
                         while(pSubItem!=nullptr){
-                            cnt++;
-                            index = cnt-1;
-                            //result = this->add_MemoryCfPartition(cnt);
-                            this->SysDump.Sections.Memory.CompactFlash.vPartition.push_back(sPartition());
 
-                            pAttribute = pSubItem->first_attribute();
-                            while(pAttribute!=nullptr){
+                            tmpString = pSubItem->name();
+                            std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
 
-                                tmpString = pAttribute->name();
-                                std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
+                            switch(map_014_MemoryCF[tmpString]){
+                            case MEMORY_000_PARTITION:
+                                cnt++;
+                                index = cnt-1;
+                                //result = this->add_MemoryCfPartition(cnt);
+                                this->SysDump.Sections.Memory.CompactFlash.vPartition.push_back(sPartition());
 
-                                switch(map_030_PartitionAttributes[tmpString]){
-                                case MEMORY_003_AVAILABLE:
-                                    this->SysDump.Sections.Memory.CompactFlash.vPartition[index].available = QString::fromUtf8(pAttribute->value()).toLongLong();
-                                    break;
+                                pAttribute = pSubItem->first_attribute();
+                                while(pAttribute!=nullptr){
 
-                                case MEMORY_003_DESCRIPTION:
-                                    this->SysDump.Sections.Memory.CompactFlash.vPartition[index].description = QString::fromStdString(pAttribute->value());
-                                    break;
+                                    tmpString = pAttribute->name();
+                                    std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
 
-                                case MEMORY_003_ID:
-                                    this->SysDump.Sections.Memory.CompactFlash.vPartition[index].id = QString::fromStdString(pAttribute->value());
-                                    break;
+                                    switch(map_030_PartitionAttributes[tmpString]){
+                                    case MEMORY_003_AVAILABLE:
+                                        this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].available = QString::fromUtf8(pAttribute->value()).toLongLong();
+                                        break;
 
-                                case MEMORY_003_SIZE:
-                                    this->SysDump.Sections.Memory.CompactFlash.vPartition[index].size = QString::fromStdString(pAttribute->value()).toLongLong();
-                                    break;
+                                    case MEMORY_003_DESCRIPTION:
+                                        this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].description = QString::fromStdString(pAttribute->value());
+                                        break;
 
-                                case MEMORY_003_USED:
-                                    this->SysDump.Sections.Memory.CompactFlash.vPartition[index].used = QString::fromStdString(pAttribute->value()).toLongLong();
-                                    break;
+                                    case MEMORY_003_ID:
+                                        this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].id = QString::fromStdString(pAttribute->value());
+                                        break;
 
-                                case MEMORY_003_ERR:
-                                    this->ErrorNr = 20302;
-                                    this->Error = QString::fromStdString(tmpString);
-                                    break;
-                                default:
-                                    return 15;
+                                    case MEMORY_003_SIZE:
+                                        this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].size = QString::fromStdString(pAttribute->value()).toLongLong();
+                                        break;
+
+                                    case MEMORY_003_USED:
+                                        this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].used = QString::fromStdString(pAttribute->value()).toLongLong();
+                                        break;
+
+                                    case MEMORY_003_ERR:
+                                        this->ErrorNr = 20302;
+                                        this->Error = QString::fromStdString(tmpString);
+                                        break;
+                                    default:
+                                        return 15;
+                                    }
+                                    pAttribute = pAttribute->next_attribute();
                                 }
-                                pAttribute = pAttribute->next_attribute();
+                                break;
+
+                            case MEMORY_000_HEALTH_DATA:
+
+                                break;
+
+
+                            default:
+                                return 52;
+
                             }
 
-                        pSubItem = pSubItem->next_sibling();
+                            pSubItem = pSubItem->next_sibling();
                         }
+
                         break;
 
                     case MEMORY_DRAM:
@@ -965,23 +999,23 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                             switch(map_036_TimingTimerConfiguration[tmpString]){
                             case TIMING_001_IDLETASKCLASS:
-                                this->SysDump.Sections.Timing.TimerConfig.IdleTaskClass = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.Timing.TimerConfig.IdleTaskClass = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case TIMING_001_MULTIPLEVALUE:
                                 // there only can be one attribute, multiple or dividing ...
                                 ui->text_TimerConf_mvostc->setText(tr("Multiple value of system timer cycle:"));
-                                this->SysDump.Sections.Timing.TimerConfig.MultipleValueOfSTC = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.Timing.TimerConfig.MultipleValueOfSTC = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case TIMING_001_DIVIDINGVALUE:
                                 // ... using the same var and changing the label
                                 ui->text_TimerConf_mvostc->setText(tr("Dividing value of system timer cycle:"));
-                                this->SysDump.Sections.Timing.TimerConfig.MultipleValueOfSTC = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.Timing.TimerConfig.MultipleValueOfSTC = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case TIMING_001_SYSTICK:
-                                this->SysDump.Sections.Timing.TimerConfig.systemTick = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.Timing.TimerConfig.systemTick = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case TIMING_001_SYSTIMER:
@@ -989,7 +1023,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                 break;
 
                             case TIMING_001_TCIDLETIME:
-                                this->SysDump.Sections.Timing.TimerConfig.TaskClassIdleTime = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.Timing.TimerConfig.TaskClassIdleTime = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case TIMING_001_ERR:
@@ -1024,27 +1058,27 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                     switch(map_037_TimingTaskClassConfiguration[tmpString]){
                                     case TIMING_002_CYCLETIME:
-                                        this->SysDump.Sections.Timing.vTaskClass[index].CycleTime = QString::fromStdString(pAttribute->value()).toLong();
+                                        this->SysDump.Sections.Timing.vTaskClass[static_cast<unsigned int>(index)].CycleTime = QString::fromStdString(pAttribute->value()).toLong();
                                         break;
 
                                     case TIMING_002_CYCLIC:
-                                        this->SysDump.Sections.Timing.vTaskClass[index].Cyclic = (qint16)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Timing.vTaskClass[static_cast<unsigned int>(index)].Cyclic = static_cast<qint16>(atoi(pAttribute->value()));
                                         break;
 
                                     case TIMING_002_INPUTDELAY:
-                                        this->SysDump.Sections.Timing.vTaskClass[index].InputDelay = QString::fromStdString(pAttribute->value());
+                                        this->SysDump.Sections.Timing.vTaskClass[static_cast<unsigned int>(index)].InputDelay = QString::fromStdString(pAttribute->value());
                                         break;
 
                                     case TIMING_002_OUTPUTDELAY:
-                                        this->SysDump.Sections.Timing.vTaskClass[index].OutputDelay = QString::fromStdString(pAttribute->value());
+                                        this->SysDump.Sections.Timing.vTaskClass[static_cast<unsigned int>(index)].OutputDelay = QString::fromStdString(pAttribute->value());
                                         break;
 
                                     case TIMING_002_STACK:
-                                        this->SysDump.Sections.Timing.vTaskClass[index].Stack = (qint16)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Timing.vTaskClass[static_cast<unsigned int>(index)].Stack = static_cast<qint16>(atoi(pAttribute->value()));
                                         break;
 
                                     case TIMING_002_TOLERANCE:
-                                        this->SysDump.Sections.Timing.vTaskClass[index].Tolerance = QString::fromStdString(pAttribute->value()).toLong();
+                                        this->SysDump.Sections.Timing.vTaskClass[static_cast<unsigned int>(index)].Tolerance = QString::fromStdString(pAttribute->value()).toLong();
                                         break;
 
                                     case TIMING_002_ERR:
@@ -1106,19 +1140,19 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                             switch(map_038_CpuUsageInterval[tmpString]){
                             case CPUUSAGE_000_AVERAGE:
-                                this->SysDump.Sections.CpuUsage.vZoomInterval[index].average = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].average = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case CPUUSAGE_000_DESCRIPTION:
-                                this->SysDump.Sections.CpuUsage.vZoomInterval[index].description = QString::fromStdString(pAttribute->value());
+                                this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].description = QString::fromStdString(pAttribute->value());
                                 break;
 
                             case CPUUSAGE_000_ID:
-                                this->SysDump.Sections.CpuUsage.vZoomInterval[index].id = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].id = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case CPUUSAGE_000_MAX:
-                                this->SysDump.Sections.CpuUsage.vZoomInterval[index].maximum = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].maximum = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case CPUUSAGE_000_ERR:
@@ -1144,7 +1178,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
 
                                     if(tmpString=="values"){
-                                        this->get_CpuUsageValues(&this->SysDump.Sections.CpuUsage.vZoomInterval[index].values.vAverage,pAttribute->value());
+                                        this->get_CpuUsageValues(&this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vAverage,pAttribute->value());
                                     }
                                     break;
 
@@ -1154,7 +1188,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
 
                                     if(tmpString=="values"){
-                                        this->get_CpuUsageValues(&this->SysDump.Sections.CpuUsage.vZoomInterval[index].values.vMaximum,pAttribute->value());
+                                        this->get_CpuUsageValues(&this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum,pAttribute->value());
                                     }
                                     break;
 
@@ -1202,7 +1236,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                         index = cnt-1;
                         this->SysDump.Sections.Software.vAppModule.push_back(sAppModule());
 
-                        this->SysDump.Sections.Software.vAppModule[index].id = pItem->first_attribute("Id")->value();
+                        this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(index)].id = pItem->first_attribute("Id")->value();
                         pSubItem = pItem->first_node();
                         while(pSubItem != nullptr){
 
@@ -1213,7 +1247,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                             case SOFTWARE_000_MODULE:
                                 subcnt++;
                                 subindex = subcnt-1;
-                                this->SysDump.Sections.Software.vAppModule[index].vModules.push_back(sSoftwModule());
+                                this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(index)].vModules.push_back(sSoftwModule());
 
                                 pAttribute = pSubItem->first_attribute();
                                 while(pAttribute != nullptr){
@@ -1223,35 +1257,35 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                     switch(map_039_ModuleAttributes[tmpString]){
                                     case SOFTWARE_001_ADRESS:
-                                        this->SysDump.Sections.Software.vAppModule[index].vModules[subindex].address = QString::fromStdString(pAttribute->value());
+                                        this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(index)].vModules[static_cast<unsigned int>(subindex)].address = QString::fromStdString(pAttribute->value());
                                         break;
 
                                     case SOFTWARE_001_ID:
-                                        this->SysDump.Sections.Software.vAppModule[index].vModules[subindex].id = (qint16)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(index)].vModules[static_cast<unsigned int>(subindex)].id = static_cast<qint16>(atoi(pAttribute->value()));
                                         break;
 
                                     case SOFTWARE_001_MEMORY:
-                                        this->SysDump.Sections.Software.vAppModule[index].vModules[subindex].memory = QString::fromStdString(pAttribute->value());
+                                        this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(index)].vModules[static_cast<unsigned int>(subindex)].memory = QString::fromStdString(pAttribute->value());
                                         break;
 
                                     case SOFTWARE_001_NAME:
-                                        this->SysDump.Sections.Software.vAppModule[index].vModules[subindex].name = QString::fromStdString(pAttribute->value());
+                                        this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(index)].vModules[static_cast<unsigned int>(subindex)].name = QString::fromStdString(pAttribute->value());
                                         break;
 
                                     case SOFTWARE_001_SIZE:
-                                        this->SysDump.Sections.Software.vAppModule[index].vModules[subindex].size = QString::fromStdString(pAttribute->value()).toLong();
+                                        this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(index)].vModules[static_cast<unsigned int>(subindex)].size = QString::fromStdString(pAttribute->value()).toLong();
                                         break;
 
                                     case SOFTWARE_001_TIMESTAMP:
-                                        this->SysDump.Sections.Software.vAppModule[index].vModules[subindex].timestamp = QString::fromStdString(pAttribute->value());
+                                        this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(index)].vModules[static_cast<unsigned int>(subindex)].timestamp = QString::fromStdString(pAttribute->value());
                                         break;
 
                                     case SOFTWARE_001_TYPE:
-                                        this->SysDump.Sections.Software.vAppModule[index].vModules[subindex].type = (qint16)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(index)].vModules[static_cast<unsigned int>(subindex)].type = static_cast<qint16>(atoi(pAttribute->value()));
                                         break;
 
                                     case SOFTWARE_001_VERSION:
-                                        this->SysDump.Sections.Software.vAppModule[index].vModules[subindex].version = QString::fromStdString(pAttribute->value());
+                                        this->SysDump.Sections.Software.vAppModule[static_cast<unsigned int>(index)].vModules[static_cast<unsigned int>(subindex)].version = QString::fromStdString(pAttribute->value());
                                         break;
 
                                     case SOFTWARE_001_ERR:
@@ -1296,35 +1330,35 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                             switch(map_039_ModuleAttributes[tmpString]){
                             case SOFTWARE_001_ADRESS:
-                                this->SysDump.Sections.Software.vAppModule[0].vModules[index].address = QString::fromStdString(pAttribute->value());
+                                this->SysDump.Sections.Software.vAppModule[0].vModules[static_cast<unsigned int>(index)].address = QString::fromStdString(pAttribute->value());
                                 break;
 
                             case SOFTWARE_001_ID:
-                                this->SysDump.Sections.Software.vAppModule[0].vModules[index].id = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.Software.vAppModule[0].vModules[static_cast<unsigned int>(index)].id = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case SOFTWARE_001_MEMORY:
-                                this->SysDump.Sections.Software.vAppModule[0].vModules[index].memory = QString::fromStdString(pAttribute->value());
+                                this->SysDump.Sections.Software.vAppModule[0].vModules[static_cast<unsigned int>(index)].memory = QString::fromStdString(pAttribute->value());
                                 break;
 
                             case SOFTWARE_001_NAME:
-                                this->SysDump.Sections.Software.vAppModule[0].vModules[index].name = QString::fromStdString(pAttribute->value());
+                                this->SysDump.Sections.Software.vAppModule[0].vModules[static_cast<unsigned int>(index)].name = QString::fromStdString(pAttribute->value());
                                 break;
 
                             case SOFTWARE_001_SIZE:
-                                this->SysDump.Sections.Software.vAppModule[0].vModules[index].size = QString::fromStdString(pAttribute->value()).toLong();
+                                this->SysDump.Sections.Software.vAppModule[0].vModules[static_cast<unsigned int>(index)].size = QString::fromStdString(pAttribute->value()).toLong();
                                 break;
 
                             case SOFTWARE_001_TIMESTAMP:
-                                this->SysDump.Sections.Software.vAppModule[0].vModules[index].timestamp = QString::fromStdString(pAttribute->value());
+                                this->SysDump.Sections.Software.vAppModule[0].vModules[static_cast<unsigned int>(index)].timestamp = QString::fromStdString(pAttribute->value());
                                 break;
 
                             case SOFTWARE_001_TYPE:
-                                this->SysDump.Sections.Software.vAppModule[0].vModules[index].type = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.Software.vAppModule[0].vModules[static_cast<unsigned int>(index)].type = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case SOFTWARE_001_VERSION:
-                                this->SysDump.Sections.Software.vAppModule[0].vModules[index].version = QString::fromStdString(pAttribute->value());
+                                this->SysDump.Sections.Software.vAppModule[0].vModules[static_cast<unsigned int>(index)].version = QString::fromStdString(pAttribute->value());
                                 break;
 
                             case SOFTWARE_001_ERR:
@@ -1381,19 +1415,19 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                             switch(map_023_HardwareNodeAttributes[tmpString]){
                             case HARDWARE_001_CONFIGURED:
-                                this->SysDump.Sections.Hardware.vNode[index].Configured = QString::fromStdString(pAttribute->value());
+                                this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].Configured = QString::fromStdString(pAttribute->value());
                                 break;
 
                             case HARDWARE_001_IOINFO:
-                                this->SysDump.Sections.Hardware.vNode[index].IOinfo = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOinfo = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case HARDWARE_001_ID:
-                                this->SysDump.Sections.Hardware.vNode[index].ID = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].ID = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case HARDWARE_001_STATUS:
-                                this->SysDump.Sections.Hardware.vNode[index].Status = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].Status = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case HARDWARE_001_ERR:
@@ -1424,19 +1458,19 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                     switch(map_024_HardwareModuleStatusAttributes[tmpString]){
                                     case HARDWARE_002_CONFIGURED:
-                                        this->SysDump.Sections.Hardware.vNode[index].ModuleStatus.Configured = QString::fromStdString(pAttribute->value());
+                                        this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].ModuleStatus.Configured = QString::fromStdString(pAttribute->value());
                                         break;
 
                                     case HARDWARE_002_MODULEOK:
-                                        this->SysDump.Sections.Hardware.vNode[index].ModuleStatus.ModuleOk = (qint16)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].ModuleStatus.ModuleOk = static_cast<qint16>(atoi(pAttribute->value()));
                                         break;
 
                                     case HARDWARE_002_PLUGGED:
-                                        this->SysDump.Sections.Hardware.vNode[index].ModuleStatus.Plugged = QString::fromStdString(pAttribute->value());
+                                        this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].ModuleStatus.Plugged = QString::fromStdString(pAttribute->value());
                                         break;
 
                                     case HARDWARE_002_SUPERVISED:
-                                        this->SysDump.Sections.Hardware.vNode[index].ModuleStatus.Supervised = (qint16)atoi(pAttribute->value());
+                                        this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].ModuleStatus.Supervised = static_cast<qint16>(atoi(pAttribute->value()));
                                         break;
 
                                     case HARDWARE_002_ERR:
@@ -1459,27 +1493,27 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                     switch(map_025_HardwareIOInfoAttributes[tmpString]){
                                     case HARDWARE_003_EQUIPMENTID:
-                                        this->SysDump.Sections.Hardware.vNode[index].IOInformation.EquipmentID = QString::fromStdString(pAttribute->value());
+                                        this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOInformation.EquipmentID = QString::fromStdString(pAttribute->value());
                                         break;
 
                                     case HARDWARE_003_FWVERSION:
-                                        this->SysDump.Sections.Hardware.vNode[index].IOInformation.FwVersion = QString::fromStdString(pAttribute->value());
+                                        this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOInformation.FwVersion = QString::fromStdString(pAttribute->value());
                                         break;
 
                                     case HARDWARE_003_HWREVISION:
-                                        this->SysDump.Sections.Hardware.vNode[index].IOInformation.HardwareRevision = QString::fromStdString(pAttribute->value());
+                                        this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOInformation.HardwareRevision = QString::fromStdString(pAttribute->value());
                                         break;
 
                                     case HARDWARE_003_HWVARIANT:
-                                        this->SysDump.Sections.Hardware.vNode[index].IOInformation.HardwareVariant = QString::fromStdString(pAttribute->value());
+                                        this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOInformation.HardwareVariant = QString::fromStdString(pAttribute->value());
                                         break;
 
                                     case HARDWARE_003_MODPATH:
-                                        this->SysDump.Sections.Hardware.vNode[index].IOInformation.ModulePath = QString::fromStdString(pAttribute->value());
+                                        this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOInformation.ModulePath = QString::fromStdString(pAttribute->value());
                                         break;
 
                                     case HARDWARE_003_SERIALNR:
-                                        this->SysDump.Sections.Hardware.vNode[index].IOInformation.Serialnumber = QString::fromStdString(pAttribute->value());
+                                        this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOInformation.Serialnumber = QString::fromStdString(pAttribute->value());
                                         break;
 
                                     case HARDWARE_003_ERR:
@@ -1504,7 +1538,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                     case HARDWARE_004_CHANNEL:
                                         subcnt++;
                                         subindex = subcnt-1;
-                                        this->SysDump.Sections.Hardware.vNode[index].IOChannels.vChannel.push_back(sChannel());
+                                        this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOChannels.vChannel.push_back(sChannel());
 
                                         pAttribute = pSubSubItem->first_attribute();
                                         while(pAttribute != nullptr){
@@ -1514,39 +1548,39 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                             switch(map_027_HardwareChannelAttributes[tmpString]){
                                             case HARDWARE_005_DIAGNOSE:
-                                                this->SysDump.Sections.Hardware.vNode[index].IOChannels.vChannel[subindex].Diagnose = QString::fromStdString(pAttribute->value());
+                                                this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOChannels.vChannel[static_cast<unsigned int>(subindex)].Diagnose = QString::fromStdString(pAttribute->value());
                                                 break;
 
                                             case HARDWARE_005_FORCESTATUS:
-                                                this->SysDump.Sections.Hardware.vNode[index].IOChannels.vChannel[subindex].ForceStatus = QString::fromStdString(pAttribute->value());
+                                                this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOChannels.vChannel[static_cast<unsigned int>(subindex)].ForceStatus = QString::fromStdString(pAttribute->value());
                                                 break;
 
                                             case HARDWARE_005_FORCEVALUE:
-                                                this->SysDump.Sections.Hardware.vNode[index].IOChannels.vChannel[subindex].ForceValue = QString::fromStdString(pAttribute->value());
+                                                this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOChannels.vChannel[static_cast<unsigned int>(subindex)].ForceValue = QString::fromStdString(pAttribute->value());
                                                 break;
 
                                             case HARDWARE_005_IECTYPE:
-                                                this->SysDump.Sections.Hardware.vNode[index].IOChannels.vChannel[subindex].IECType = QString::fromStdString(pAttribute->value());
+                                                this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOChannels.vChannel[static_cast<unsigned int>(subindex)].IECType = QString::fromStdString(pAttribute->value());
                                                 break;
 
                                             case HARDWARE_005_IECVALUE:
-                                                this->SysDump.Sections.Hardware.vNode[index].IOChannels.vChannel[subindex].IECValue = QString::fromStdString(pAttribute->value());
+                                                this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOChannels.vChannel[static_cast<unsigned int>(subindex)].IECValue = QString::fromStdString(pAttribute->value());
                                                 break;
 
                                             case HARDWARE_005_ID:
-                                                this->SysDump.Sections.Hardware.vNode[index].IOChannels.vChannel[subindex].ID = (qint16)atoi(pAttribute->value());
+                                                this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOChannels.vChannel[static_cast<unsigned int>(subindex)].ID = static_cast<qint16>(atoi(pAttribute->value()));
                                                 break;
 
                                             case HARDWARE_005_NAME:
-                                                this->SysDump.Sections.Hardware.vNode[index].IOChannels.vChannel[subindex].Name = QString::fromStdString(pAttribute->value());
+                                                this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOChannels.vChannel[static_cast<unsigned int>(subindex)].Name = QString::fromStdString(pAttribute->value());
                                                 break;
 
                                             case HARDWARE_005_PHYSICALVALUE:
-                                                this->SysDump.Sections.Hardware.vNode[index].IOChannels.vChannel[subindex].PhysicalValue = QString::fromStdString(pAttribute->value());
+                                                this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOChannels.vChannel[static_cast<unsigned int>(subindex)].PhysicalValue = QString::fromStdString(pAttribute->value());
                                                 break;
 
                                             case HARDWARE_005_TYPE:
-                                                this->SysDump.Sections.Hardware.vNode[index].IOChannels.vChannel[subindex].Type = (qint16)atoi(pAttribute->value());
+                                                this->SysDump.Sections.Hardware.vNode[static_cast<unsigned int>(index)].IOChannels.vChannel[static_cast<unsigned int>(subindex)].Type = static_cast<qint16>(atoi(pAttribute->value()));
                                                 break;
 
                                             case HARDWARE_005_ERR:
@@ -1617,7 +1651,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                             switch(map_041_MotionAttributes[tmpString]){
                             case MOTION_004_AVAILABLE:
-                                this->SysDump.Sections.Motion.Available = (bool)atoi(pAttribute->value());
+                                this->SysDump.Sections.Motion.Available = static_cast<bool>(atoi(pAttribute->value()));
 
                                 if(this->SysDump.Sections.Motion.Available==true){
                                     pSubItem = pItem->first_node();
@@ -1641,71 +1675,71 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                                 switch(map_045_MotionAxisAttribute[tmpString]){
                                                 case MOTION_001_ACTPOS:
-                                                    this->SysDump.Sections.Motion.vAxis[index].ActPosition = QString::fromStdString(pAttribute2->value()).toLong();
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].ActPosition = QString::fromStdString(pAttribute2->value()).toLong();
                                                     break;
 
                                                 case MOTION_001_ACTSPEED:
-                                                    this->SysDump.Sections.Motion.vAxis[index].ActSpeed = QString::fromStdString(pAttribute2->value()).toLong();
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].ActSpeed = QString::fromStdString(pAttribute2->value()).toLong();
                                                     break;
 
                                                 case MOTION_001_ADRESS:
-                                                    this->SysDump.Sections.Motion.vAxis[index].Adress = QString::fromStdString(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Adress = QString::fromStdString(pAttribute2->value());
                                                     break;
 
                                                 case MOTION_001_ALARM:
-                                                    this->SysDump.Sections.Motion.vAxis[index].Alarm = (bool)atoi(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Alarm = static_cast<bool>(atoi(pAttribute2->value()));
                                                     break;
 
                                                 case MOTION_001_CONTROLLER:
-                                                    this->SysDump.Sections.Motion.vAxis[index].Controller = (bool)atoi(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Controller = static_cast<bool>(atoi(pAttribute2->value()));
                                                     break;
 
                                                 case MOTION_001_DRIVE:
-                                                    this->SysDump.Sections.Motion.vAxis[index].Drive = QString::fromStdString(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Drive = QString::fromStdString(pAttribute2->value());
                                                     break;
 
                                                 case MOTION_001_ENABLE:
-                                                    this->SysDump.Sections.Motion.vAxis[index].Enable = (bool)atoi(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Enable = static_cast<bool>(atoi(pAttribute2->value()));
                                                     break;
 
                                                 case MOTION_001_HOMING:
-                                                    this->SysDump.Sections.Motion.vAxis[index].Homing = (bool)atoi(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Homing = static_cast<bool>(atoi(pAttribute2->value()));
                                                     break;
 
                                                 case MOTION_001_ID:
-                                                    this->SysDump.Sections.Motion.vAxis[index].ID = QString::fromStdString(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].ID = QString::fromStdString(pAttribute2->value());
                                                     break;
 
                                                 case MOTION_001_MOVEMENTSTATUS:
-                                                    this->SysDump.Sections.Motion.vAxis[index].MovementStatus = (qint16)atoi(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].MovementStatus = static_cast<qint16>(atoi(pAttribute2->value()));
                                                     break;
 
                                                 case MOTION_001_NAME:
-                                                    this->SysDump.Sections.Motion.vAxis[index].Name = QString::fromStdString(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Name = QString::fromStdString(pAttribute2->value());
                                                     break;
 
                                                 case MOTION_001_NEGENDSW:
-                                                    this->SysDump.Sections.Motion.vAxis[index].NegEndSw = (bool)atoi(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].NegEndSw = static_cast<bool>(atoi(pAttribute2->value()));
                                                     break;
 
                                                 case MOTION_001_POSENDSW:
-                                                    this->SysDump.Sections.Motion.vAxis[index].PosEndSw = (bool)atoi(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].PosEndSw = static_cast<bool>(atoi(pAttribute2->value()));
                                                     break;
 
                                                 case MOTION_001_REFSW:
-                                                    this->SysDump.Sections.Motion.vAxis[index].RefSw = (bool)atoi(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].RefSw = static_cast<bool>(atoi(pAttribute2->value()));
                                                     break;
 
                                                 case MOTION_001_SIMULATION:
-                                                    this->SysDump.Sections.Motion.vAxis[index].Simulation = (bool)atoi(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Simulation = static_cast<bool>(atoi(pAttribute2->value()));
                                                     break;
 
                                                 case MOTION_001_TRIGGER1:
-                                                    this->SysDump.Sections.Motion.vAxis[index].Trigger1 = (bool)atoi(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Trigger1 = static_cast<bool>(atoi(pAttribute2->value()));
                                                     break;
 
                                                 case MOTION_001_TRIGGER2:
-                                                    this->SysDump.Sections.Motion.vAxis[index].Trigger2 = (bool)atoi(pAttribute2->value());
+                                                    this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Trigger2 = static_cast<bool>(atoi(pAttribute2->value()));
                                                     break;
 
                                                 case MOTION_001_ERR:
@@ -1733,7 +1767,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                                     case MOTION_003_ERRORENTRY:
                                                         subcnt++;
                                                         subindex = subcnt-1;
-                                                        this->SysDump.Sections.Motion.vAxis[index].vAlarm.push_back(sAlarm());
+                                                        this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm.push_back(sAlarm());
 
                                                         pAttribute2 = pSubSubItem->first_attribute();
                                                         while(pAttribute2 != nullptr){
@@ -1743,35 +1777,35 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                                             switch(map_046_MotionAlarmAttributes[tmpString]){
                                                             case MOTION_002_ERRORNO:
-                                                                this->SysDump.Sections.Motion.vAxis[index].vAlarm[subindex].ErrorNr = (qint16)atoi(pAttribute2->value());
+                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].ErrorNr = static_cast<qint16>(atoi(pAttribute2->value()));
                                                                 break;
 
                                                             case MOTION_002_ERRORTEXT:
-                                                                this->SysDump.Sections.Motion.vAxis[index].vAlarm[subindex].ErrorText = QString::fromStdString(pAttribute2->value());
+                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].ErrorText = QString::fromStdString(pAttribute2->value());
                                                                 break;
 
                                                             case MOTION_002_ID:
-                                                                this->SysDump.Sections.Motion.vAxis[index].vAlarm[subindex].ID = (qint16)atoi(pAttribute2->value());
+                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].ID = static_cast<qint16>(atoi(pAttribute2->value()));
                                                                 break;
 
                                                             case MOTION_002_PARID:
-                                                                this->SysDump.Sections.Motion.vAxis[index].vAlarm[subindex].ParID = (qint16)atoi(pAttribute2->value());
+                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].ParID = static_cast<qint16>(atoi(pAttribute2->value()));
                                                                 break;
 
                                                             case MOTION_002_STATUS:
-                                                                this->SysDump.Sections.Motion.vAxis[index].vAlarm[subindex].Status = (qint16)atoi(pAttribute2->value());
+                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].Status = static_cast<qint16>(atoi(pAttribute2->value()));
                                                                 break;
 
                                                             case MOTION_002_TEXTINFO:
-                                                                this->SysDump.Sections.Motion.vAxis[index].vAlarm[subindex].TextInfo = QString::fromStdString(pAttribute2->value());
+                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].TextInfo = QString::fromStdString(pAttribute2->value());
                                                                 break;
 
                                                             case MOTION_002_TEXTPARID:
-                                                                this->SysDump.Sections.Motion.vAxis[index].vAlarm[subindex].TextParID = (qint16)atoi(pAttribute2->value());
+                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].TextParID = static_cast<qint16>(atoi(pAttribute2->value()));
                                                                 break;
 
                                                             case MOTION_002_TIMESTAMP:
-                                                                this->SysDump.Sections.Motion.vAxis[index].vAlarm[subindex].TimeStamp = QString::fromStdString(pAttribute2->value());
+                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].TimeStamp = QString::fromStdString(pAttribute2->value());
                                                                 break;
 
                                                             case MOTION_002_ERR:
@@ -1865,19 +1899,19 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                             switch(map_051_LoggerModuleAttributes[tmpString]){
                             case LOGGER_000_ADRESS:
-                                this->SysDump.Sections.Logger.vModule[index].Adress = QString::fromStdString(pAttribute->value());
+                                this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].Adress = QString::fromStdString(pAttribute->value());
                                 break;
 
                             case LOGGER_000_ID:
-                                this->SysDump.Sections.Logger.vModule[index].ID = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].ID = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case LOGGER_000_NAME:
-                                this->SysDump.Sections.Logger.vModule[index].Name = QString::fromStdString(pAttribute->value());
+                                this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].Name = QString::fromStdString(pAttribute->value());
                                 break;
 
                             case LOGGER_000_VERSION:
-                                this->SysDump.Sections.Logger.vModule[index].Version = QString::fromStdString(pAttribute->value());
+                                this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].Version = QString::fromStdString(pAttribute->value());
                                 break;
 
                             case LOGGER_000_ERR:
@@ -1904,9 +1938,9 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                 subindex = subcnt-1;
 
                                 // "OLD" Logger -> v1.00.0
-                                if(this->SysDump.Sections.Logger.vModule[index].Version==QString("1.00.0") || this->SysDump.Sections.Logger.vModule[index].Version==QString("1.01.0")){
+                                if(this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].Version==QString("1.00.0") || this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].Version==QString("1.01.0")){
 
-                                    this->SysDump.Sections.Logger.vModule[index].vEntry.push_back(sLogModuleEntry());
+                                    this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntry.push_back(sLogModuleEntry());
 
                                     pAttribute = pSubItem->first_attribute();
                                     while(pAttribute != nullptr){
@@ -1916,20 +1950,20 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                         switch(map_053_LoggerModuleEntryAttributes[tmpString]){
                                         case LOGGER_002_ASCIIDATA:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntry[subindex].ASCIIData = QString::fromStdString(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntry[static_cast<unsigned int>(subindex)].ASCIIData = QString::fromStdString(pAttribute->value());
                                             break;
 
                                         case LOGGER_002_BINARYDATA:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntry[subindex].BinaryData = QString::fromStdString(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntry[static_cast<unsigned int>(subindex)].BinaryData = QString::fromStdString(pAttribute->value());
                                             break;
 
                                         case LOGGER_002_ERRDESCRIPTION:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntry[subindex].ErrorDescription = QString::fromStdString(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntry[static_cast<unsigned int>(subindex)].ErrorDescription = QString::fromStdString(pAttribute->value());
                                             break;
 
                                         case LOGGER_002_EVENTID:
                                         case LOGGER_002_ERRORNR:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntry[subindex].ErrorNr = QString::fromStdString(pAttribute->value()).toLong();
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntry[static_cast<unsigned int>(subindex)].ErrorNr = QString::fromStdString(pAttribute->value()).toLong();
                                             break;
 
                                         case LOGGER_002_OBJECTID:
@@ -1937,19 +1971,19 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                             break;
 
                                         case LOGGER_002_ID:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntry[subindex].ID = QString::fromStdString(pAttribute->value()).toLong();
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntry[static_cast<unsigned int>(subindex)].ID = QString::fromStdString(pAttribute->value()).toLong();
                                             break;
 
                                         case LOGGER_002_LEVEL:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntry[subindex].Level = (qint16)atoi(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntry[static_cast<unsigned int>(subindex)].Level = static_cast<qint16>(atoi(pAttribute->value()));
                                             break;
 
                                         case LOGGER_002_OSTASK:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntry[subindex].OSTask = QString::fromStdString(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntry[static_cast<unsigned int>(subindex)].OSTask = QString::fromStdString(pAttribute->value());
                                             break;
 
                                         case LOGGER_002_TIMESTAMP:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntry[subindex].TimeStamp = QString::fromStdString(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntry[static_cast<unsigned int>(subindex)].TimeStamp = QString::fromStdString(pAttribute->value());
                                             break;
 
                                         case LOGGER_002_ERR:
@@ -1963,13 +1997,13 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                         pAttribute = pAttribute->next_attribute();
                                     }
 
-                                    this->SysDump.Sections.Logger.vModule[index].vEntry[subindex].Logger = this->SysDump.Sections.Logger.vModule[index].Name;
+                                    this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntry[static_cast<unsigned int>(subindex)].Logger = this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].Name;
 
                                 // END OF LOGGER v1.00.0
                                 } else {
 
                                     // LOGGER OTHER THAN V1.00.0 -> ("V1.02.0") or other
-                                    this->SysDump.Sections.Logger.vModule[index].vEntryV2.push_back(sLogModuleEntryV2());
+                                    this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntryV2.push_back(sLogModuleEntryV2());
 
                                     pAttribute = pSubItem->first_attribute();
                                     while(pAttribute != nullptr){
@@ -1980,47 +2014,47 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                         switch(map_054_LoggerModuleEntryAttributesV2[tmpString]){
 
                                         case LOGGER_202_ASCIIDATA:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].ASCIIData = QString::fromStdString(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntryV2[static_cast<unsigned int>(subindex)].ASCIIData = QString::fromStdString(pAttribute->value());
                                             break;
 
                                         case LOGGER_202_BINARYDATA:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].BinaryData = QString::fromStdString(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntryV2[static_cast<unsigned int>(subindex)].BinaryData = QString::fromStdString(pAttribute->value());
                                             break;
 
                                         case LOGGER_202_DESCRIPTION:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].Description = QString::fromStdString(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntryV2[static_cast<unsigned int>(subindex)].Description = QString::fromStdString(pAttribute->value());
                                             break;
 
                                         case LOGGER_202_ENTEREDBY:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].EnteredBy = QString::fromStdString(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntryV2[static_cast<unsigned int>(subindex)].EnteredBy = QString::fromStdString(pAttribute->value());
                                             break;
 
                                         case LOGGER_202_EVENTID:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].EventID = QString::fromStdString(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntryV2[static_cast<unsigned int>(subindex)].EventID = QString::fromStdString(pAttribute->value());
                                             break;
 
                                         case LOGGER_202_FACILITY:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].Facility = QString::fromStdString(pAttribute->value()).toLong();
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntryV2[static_cast<unsigned int>(subindex)].Facility = QString::fromStdString(pAttribute->value()).toLong();
                                             break;
 
                                         case LOGGER_202_ID:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].ID = QString::fromStdString(pAttribute->value()).toLong();
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntryV2[static_cast<unsigned int>(subindex)].ID = QString::fromStdString(pAttribute->value()).toLong();
                                             break;
 
                                         case LOGGER_202_INFO:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].Info = QString::fromStdString(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntryV2[static_cast<unsigned int>(subindex)].Info = QString::fromStdString(pAttribute->value());
                                             break;
 
                                         case LOGGER_202_ORIGINRECORDID:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].OriginRecID = QString::fromStdString(pAttribute->value()).toLong();
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntryV2[static_cast<unsigned int>(subindex)].OriginRecID = QString::fromStdString(pAttribute->value()).toLong();
                                             break;
 
                                         case LOGGER_202_SEVERITY:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].Severity = QString::fromStdString(pAttribute->value()).toLong();
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntryV2[static_cast<unsigned int>(subindex)].Severity = QString::fromStdString(pAttribute->value()).toLong();
                                             break;
 
                                         case LOGGER_202_TIMESTAMP:
-                                            this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].TimeStamp = QString::fromStdString(pAttribute->value());
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntryV2[static_cast<unsigned int>(subindex)].TimeStamp = QString::fromStdString(pAttribute->value());
                                             break;
 
                                         case LOGGER_202_ERR:
@@ -2034,7 +2068,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                         pAttribute = pAttribute->next_attribute();
                                     }
 
-                                    this->SysDump.Sections.Logger.vModule[index].vEntryV2[subindex].Logger = this->SysDump.Sections.Logger.vModule[index].Name;
+                                    this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntryV2[static_cast<unsigned int>(subindex)].Logger = this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].Name;
 
                                 } // END OF LOGGER V1.02.0 AND LATER
 
@@ -2089,19 +2123,19 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                             switch(map_061_ProfilerAttributes[tmpString]){
                             case PROFILER_000_ID:
-                                this->SysDump.Sections.Profiler.vModule[index].ID = (qint16)atoi(pAttribute->value());
+                                this->SysDump.Sections.Profiler.vModule[static_cast<unsigned int>(index)].ID = static_cast<qint16>(atoi(pAttribute->value()));
                                 break;
 
                             case PROFILER_000_NAME:
-                                this->SysDump.Sections.Profiler.vModule[index].Name = QString::fromStdString(pAttribute->value());
+                                this->SysDump.Sections.Profiler.vModule[static_cast<unsigned int>(index)].Name = QString::fromStdString(pAttribute->value());
                                 break;
 
                             case PROFILER_000_SIZE:
-                                this->SysDump.Sections.Profiler.vModule[index].Size = QString::fromStdString(pAttribute->value()).toLong();
+                                this->SysDump.Sections.Profiler.vModule[static_cast<unsigned int>(index)].Size = QString::fromStdString(pAttribute->value()).toLong();
                                 break;
 
                             case PROFILER_000_TIMESTAMP:
-                                this->SysDump.Sections.Profiler.vModule[index].TimeStamp = QString::fromStdString(pAttribute->value());
+                                this->SysDump.Sections.Profiler.vModule[static_cast<unsigned int>(index)].TimeStamp = QString::fromStdString(pAttribute->value());
                                 break;
 
                             case PROFILER_000_ERR:

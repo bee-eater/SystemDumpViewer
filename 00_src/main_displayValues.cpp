@@ -97,6 +97,8 @@ bool MainWindow::displayValues(){
             ui->label_Memory_Partitions_NoOfSectors->setText(QString::number(this->SysDump.Sections.Memory.CompactFlash.NumberOfSectors));
             writeByteToLabel(ui->label_Memory_Partitions_SizePerSector, this->SysDump.Sections.Memory.CompactFlash.SizePerSector);
             writeByteToLabel(ui->label_Memory_Partitions_TotalCapacity, this->SysDump.Sections.Memory.CompactFlash.Size);
+            ui->label_Memory_SerialNumber->setText(this->SysDump.Sections.Memory.CompactFlash.SerialNumber);
+            ui->label_Memory_ModelNumber->setText(this->SysDump.Sections.Memory.CompactFlash.ModelNumber);
             qDeleteAll(ui->gridLayoutPartitions->findChildren<QWidget*>());
             for(unsigned int i=0;i<this->SysDump.Sections.Memory.CompactFlash.vPartition.size();i++){
                 this->add_PartitionBar(10,(12+static_cast<int>(i)*(4*PARTITION_LABEL_HEIGHT+45)),static_cast<int>(i));
@@ -582,8 +584,9 @@ int MainWindow::add_PartitionBar(int x, int y, int index){
     // Bargraph of used size
     QProgressBar *pBar = new QProgressBar(this);
     pBar->setMinimum(0);
-    pBar->setMaximum(static_cast<int>(this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].size));
-    pBar->setValue(static_cast<int>(this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].used));
+    pBar->setMaximum(100); // 0 - 100%
+    int tmpValue = static_cast<int>((this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].used*100/this->SysDump.Sections.Memory.CompactFlash.vPartition[static_cast<unsigned int>(index)].size));
+    pBar->setValue(tmpValue);
     pBar->setGeometry(x,(y+PARTITION_LABEL_HEIGHT+5),width,30);
 
     // Size label / text

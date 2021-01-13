@@ -132,6 +132,7 @@ void MainWindow::init_Maps(){
     map_008_CpuConfigurationParam["usb remote install"] = VALUE_008_USBREMOTEINSTALL;
     map_008_CpuConfigurationParam["cf remote install"] = VALUE_008_CFREMOTEINSTALL;
     map_008_CpuConfigurationParam["usb/arwin install"] = VALUE_008_USBARWININSTALL;
+    map_008_CpuConfigurationParam["usb install"] = VALUE_008_USBARWININSTALL;
     map_008_CpuConfigurationParam["user-partition install"] = VALUE_008_USERPARTITIONINSTALL;
 
     map_009_ApplicationInfo["application link"] = VALUE_009_APPLINK;
@@ -154,6 +155,7 @@ void MainWindow::init_Maps(){
     map_013_Memory["sram"] = MEMORY_SRAM;
 
     map_014_MemoryCF["partition"] = MEMORY_000_PARTITION;
+    map_014_MemoryCF["health_data"] = MEMORY_000_HEALTH_DATA;
 
     map_015_MemorySRAM["not_configured"] = MEMORY_001_NOTCONFIGURED;
     map_015_MemorySRAM["userram"] = MEMORY_001_USERRAM;
@@ -163,6 +165,9 @@ void MainWindow::init_Maps(){
     map_029_CfAttributes["number_of_sectors"] = MEMORY_002_NUMBEROFSECTORS;
     map_029_CfAttributes["size"] = MEMORY_002_SIZE;
     map_029_CfAttributes["size_per_sector"] = MEMORY_002_SIZEPERSECTOR;
+    map_029_CfAttributes["serial_number"] = MEMORY_002_SERIALNUM;
+    map_029_CfAttributes["model_number"] = MEMORY_002_MODELNUM;
+    map_029_CfAttributes["storage_wear"] = MEMORY_002_STORAGEWEAR;
 
     map_030_PartitionAttributes["available"] = MEMORY_003_AVAILABLE;
     map_030_PartitionAttributes["description"] = MEMORY_003_DESCRIPTION;
