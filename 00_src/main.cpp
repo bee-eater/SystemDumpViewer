@@ -15,6 +15,8 @@ int main(int argc, char *argv[])
      */
     QDir::setCurrent(QApplication::applicationDirPath());
 
+    QCoreApplication::setApplicationName(QString("BR.SystemDumpViewer"));
+
     MainWindow w;
 
     w.show();

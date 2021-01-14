@@ -305,7 +305,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget_System">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <property name="tabsClosable">
            <bool>false</bool>
@@ -1650,8 +1650,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>196</width>
-                    <height>268</height>
+                    <width>98</width>
+                    <height>28</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -1723,7 +1723,7 @@
                   </font>
                  </property>
                  <property name="text">
-                  <string>Module number:</string>
+                  <string>Model number:</string>
                  </property>
                 </widget>
                </item>
@@ -4120,8 +4120,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>148</width>
-                    <height>135</height>
+                    <width>100</width>
+                    <height>30</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="vertLayoutLogger">

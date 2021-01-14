@@ -5,8 +5,9 @@
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="26"/>
-        <location filename="../main_readXml.cpp" line="32"/>
-        <location filename="../main_readXml.cpp" line="102"/>
+        <location filename="../main_readXml.cpp" line="33"/>
+        <location filename="../main_readXml.cpp" line="35"/>
+        <location filename="../main_readXml.cpp" line="106"/>
         <location filename="../mainwindow.cpp" line="948"/>
         <source>Systemdump Viewer</source>
         <translation>Зритель Система свалка</translation>
@@ -37,7 +38,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="73"/>
-        <location filename="../mainwindow.ui" line="3357"/>
+        <location filename="../mainwindow.ui" line="3561"/>
         <source>Motion</source>
         <translation>движение</translation>
     </message>
@@ -150,7 +151,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="693"/>
-        <location filename="../main_displayValues.cpp" line="1247"/>
+        <location filename="../main_displayValues.cpp" line="1257"/>
         <source>Host name:</source>
         <translation>Имя хоста:</translation>
     </message>
@@ -257,37 +258,37 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1242"/>
-        <location filename="../main_displayValues.cpp" line="300"/>
+        <location filename="../main_displayValues.cpp" line="308"/>
         <source>Remote install:</source>
         <translation>Удаленная установка:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1255"/>
-        <location filename="../main_displayValues.cpp" line="305"/>
+        <location filename="../main_displayValues.cpp" line="313"/>
         <source>Interface ID:</source>
         <translation>Интерфейс ID:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1268"/>
-        <location filename="../main_displayValues.cpp" line="310"/>
+        <location filename="../main_displayValues.cpp" line="318"/>
         <source>IP adress:</source>
         <translation>IP адрес:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1281"/>
-        <location filename="../main_displayValues.cpp" line="320"/>
+        <location filename="../main_displayValues.cpp" line="328"/>
         <source>IP configuration:</source>
         <translation>IP конфигурации:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1294"/>
-        <location filename="../main_displayValues.cpp" line="325"/>
+        <location filename="../main_displayValues.cpp" line="333"/>
         <source>SNMP configuration:</source>
         <translation>SNMP конфигурации:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1346"/>
-        <location filename="../main_displayValues.cpp" line="315"/>
+        <location filename="../main_displayValues.cpp" line="323"/>
         <source>SubNet mask:</source>
         <translation>Маска подсети:</translation>
     </message>
@@ -298,7 +299,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1420"/>
-        <location filename="../main_displayValues.cpp" line="176"/>
+        <location filename="../main_displayValues.cpp" line="184"/>
         <source>Memory</source>
         <translation>Память</translation>
     </message>
@@ -308,7 +309,12 @@
         <translation>Partition CF/HD</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1555"/>
+        <location filename="../mainwindow.ui" line="1781"/>
+        <source>Serial number:</source>
+        <translation>Серийный номер:</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1831"/>
         <source>Size per sector:</source>
         <translation>Размер в секторе:</translation>
     </message>
@@ -318,7 +324,7 @@
         <translation>Количество разделов:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1480"/>
+        <location filename="../mainwindow.ui" line="1455"/>
         <source>Number of sectors:</source>
         <translation>Количество секторов:</translation>
     </message>
@@ -328,268 +334,278 @@
         <translation>Общая вместимость:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1734"/>
+        <location filename="../mainwindow.ui" line="1899"/>
         <source>DRAM</source>
         <translation>DRAM</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1746"/>
-        <location filename="../mainwindow.ui" line="1862"/>
-        <location filename="../mainwindow.ui" line="1946"/>
-        <location filename="../mainwindow.ui" line="2143"/>
-        <location filename="../main_displayValues.cpp" line="585"/>
+        <location filename="../mainwindow.ui" line="1911"/>
+        <location filename="../mainwindow.ui" line="2027"/>
+        <location filename="../mainwindow.ui" line="2111"/>
+        <location filename="../mainwindow.ui" line="2308"/>
+        <location filename="../main_displayValues.cpp" line="594"/>
         <source>Size:</source>
         <translation>Размеры:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1790"/>
-        <location filename="../mainwindow.ui" line="1959"/>
-        <location filename="../main_displayValues.cpp" line="594"/>
+        <location filename="../mainwindow.ui" line="1955"/>
+        <location filename="../mainwindow.ui" line="2124"/>
+        <location filename="../main_displayValues.cpp" line="603"/>
         <source>Used:</source>
         <translation>Использовано:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1803"/>
-        <location filename="../mainwindow.ui" line="1972"/>
-        <location filename="../mainwindow.ui" line="2130"/>
-        <location filename="../main_displayValues.cpp" line="603"/>
+        <location filename="../mainwindow.ui" line="1968"/>
+        <location filename="../mainwindow.ui" line="2137"/>
+        <location filename="../mainwindow.ui" line="2295"/>
+        <location filename="../main_displayValues.cpp" line="612"/>
         <source>Available:</source>
         <translation>Доступен:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1850"/>
+        <location filename="../mainwindow.ui" line="2015"/>
         <source>SRAM</source>
         <translation>SRAM</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1875"/>
+        <location filename="../mainwindow.ui" line="2040"/>
         <source>Not configured:</source>
         <translation>Не настроен:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1920"/>
+        <location filename="../mainwindow.ui" line="2085"/>
         <source>USERRAM</source>
         <translation>USERRAM</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1933"/>
+        <location filename="../mainwindow.ui" line="2098"/>
         <source>REMMEM</source>
         <translation>REMMEM</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4129"/>
+        <location filename="../mainwindow.ui" line="4333"/>
         <source>Load .xml / tar.gz</source>
         <translation>открыто .xml / tar.gz</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4246"/>
+        <location filename="../mainwindow.ui" line="4450"/>
         <source>Save PDF Report ...</source>
         <translation>Сохранить PDF Отчет ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4255"/>
+        <location filename="../mainwindow.ui" line="4459"/>
         <source>Check for updates ...</source>
         <translation>Проверить наличие обновлений ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4234"/>
+        <location filename="../mainwindow.ui" line="4438"/>
         <location filename="../mainwindow.cpp" line="785"/>
         <source>Save all as ...</source>
         <translation>Сохранить все как ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4081"/>
+        <location filename="../mainwindow.ui" line="4285"/>
         <source>Export</source>
         <translation>Экспорт</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4120"/>
+        <location filename="../mainwindow.ui" line="4324"/>
         <source>Quit program</source>
         <translation>Выход программы</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4195"/>
+        <location filename="../mainwindow.ui" line="4399"/>
         <location filename="../mainwindow.cpp" line="1746"/>
         <location filename="../mainwindow.cpp" line="2081"/>
         <source>Load from PLC</source>
         <translation>Скачать с CPU</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4198"/>
+        <location filename="../mainwindow.ui" line="4402"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4207"/>
+        <location filename="../mainwindow.ui" line="4411"/>
         <source>Save position</source>
         <translation>Сохранить позицию</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4219"/>
+        <location filename="../mainwindow.ui" line="4423"/>
         <location filename="../mainwindow.cpp" line="765"/>
         <location filename="../mainwindow.cpp" line="1054"/>
         <source>Save .xml as ...</source>
         <translation>Сохранить .xml как ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4222"/>
+        <location filename="../mainwindow.ui" line="4426"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1777"/>
-        <location filename="../mainwindow.ui" line="1985"/>
-        <location filename="../mainwindow.ui" line="2169"/>
+        <location filename="../mainwindow.ui" line="1942"/>
+        <location filename="../mainwindow.ui" line="2150"/>
+        <location filename="../mainwindow.ui" line="2334"/>
         <source>Larg. avlbl. block:</source>
         <translation>Крупнейший блок:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1998"/>
-        <location filename="../mainwindow.ui" line="2156"/>
+        <location filename="../mainwindow.ui" line="1726"/>
+        <source>Model number:</source>
+        <translation>Номер модели:</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1861"/>
+        <source>Storage wear:</source>
+        <translation>Износ памяти:</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2163"/>
+        <location filename="../mainwindow.ui" line="2321"/>
         <source>Device:</source>
         <translation>Устройство:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2091"/>
+        <location filename="../mainwindow.ui" line="2256"/>
         <source>Rem. global:</source>
         <translation>REM. глобальная:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2104"/>
+        <location filename="../mainwindow.ui" line="2269"/>
         <source>Permanent:</source>
         <translation>Постоянный:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2117"/>
+        <location filename="../mainwindow.ui" line="2282"/>
         <source>Rem. local:</source>
         <translation>REM. местный:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2290"/>
+        <location filename="../mainwindow.ui" line="2455"/>
         <source>Timing</source>
         <translation>времени</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2305"/>
+        <location filename="../mainwindow.ui" line="2470"/>
         <source>Timer Configuration</source>
         <translation>Конфигурация Таймер</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2317"/>
+        <location filename="../mainwindow.ui" line="2482"/>
         <source>System timer:</source>
         <translation>Системный таймер:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2330"/>
+        <location filename="../mainwindow.ui" line="2495"/>
         <source>System tick:</source>
         <translation>Система тик:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2343"/>
-        <location filename="../main_readXml.cpp" line="969"/>
+        <location filename="../mainwindow.ui" line="2508"/>
+        <location filename="../main_readXml.cpp" line="1007"/>
         <source>Multiple value of system timer cycle:</source>
         <translation>Несколько значение цикла системного таймера:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2395"/>
+        <location filename="../mainwindow.ui" line="2560"/>
         <source>Task class idle time:</source>
         <translation>Класс задач простой:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2408"/>
+        <location filename="../mainwindow.ui" line="2573"/>
         <source>Idle task class:</source>
         <translation>Idle класс задача:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2453"/>
+        <location filename="../mainwindow.ui" line="2618"/>
         <source>CPU Usage</source>
         <translation>Использование ЦПУ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2465"/>
+        <location filename="../mainwindow.ui" line="2630"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2500"/>
+        <location filename="../mainwindow.ui" line="2665"/>
         <source>Average:</source>
         <translation>Средний:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2513"/>
+        <location filename="../mainwindow.ui" line="2678"/>
         <source>Maximum:</source>
         <translation>Максимум:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2588"/>
+        <location filename="../mainwindow.ui" line="2753"/>
         <source>Software</source>
         <translation>программное обеспечение</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2710"/>
+        <location filename="../mainwindow.ui" line="2875"/>
         <source>All objects</source>
         <comment>0</comment>
         <translation>Все объекты</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2715"/>
+        <location filename="../mainwindow.ui" line="2880"/>
         <source>Cyclic objects</source>
         <comment>1</comment>
         <translation>Циклические объекты</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2720"/>
+        <location filename="../mainwindow.ui" line="2885"/>
         <source>Data objects</source>
         <comment>2</comment>
         <translation>Объекты данных</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2725"/>
+        <location filename="../mainwindow.ui" line="2890"/>
         <source>Motion objects</source>
         <comment>3</comment>
         <translation>Объекты движения</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2730"/>
+        <location filename="../mainwindow.ui" line="2895"/>
         <source>Config objects</source>
         <comment>4</comment>
         <translation>Объекты Конфигурация</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2735"/>
+        <location filename="../mainwindow.ui" line="2900"/>
         <source>Other objects</source>
         <comment>5</comment>
         <translation>Другие объекты</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2683"/>
+        <location filename="../mainwindow.ui" line="2848"/>
         <source>Application Modules</source>
         <translation>Модули приложений</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2773"/>
+        <location filename="../mainwindow.ui" line="2938"/>
         <location filename="../mainwindow.cpp" line="161"/>
         <source>Hardware</source>
         <translation>аппаратное обеспечение</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2779"/>
+        <location filename="../mainwindow.ui" line="3242"/>
         <source>Channel Information</source>
         <translation>Информационный канал</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2791"/>
+        <location filename="../mainwindow.ui" line="3254"/>
         <source>Diagnose:</source>
         <translation>Диагностика:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2804"/>
+        <location filename="../mainwindow.ui" line="3267"/>
         <source>IEC type:</source>
         <translation>Тип IEC:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2487"/>
-        <location filename="../mainwindow.ui" line="2817"/>
+        <location filename="../mainwindow.ui" line="2652"/>
+        <location filename="../mainwindow.ui" line="3280"/>
         <source>ID:</source>
         <translation>ID:</translation>
     </message>
@@ -614,196 +630,196 @@
         <translation>CNC:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2830"/>
+        <location filename="../mainwindow.ui" line="3293"/>
         <source>Force status:</source>
         <translation>Принудительное положение:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2843"/>
+        <location filename="../mainwindow.ui" line="3306"/>
         <source>Force value:</source>
         <translation>Принудительное значение:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2856"/>
+        <location filename="../mainwindow.ui" line="3319"/>
         <source>IEC value:</source>
         <translation>Значение IEC:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2869"/>
-        <location filename="../mainwindow.ui" line="3467"/>
+        <location filename="../mainwindow.ui" line="3332"/>
+        <location filename="../mainwindow.ui" line="3671"/>
         <source>Name:</source>
         <translation>Название:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2882"/>
+        <location filename="../mainwindow.ui" line="3345"/>
         <source>Physical value:</source>
         <translation>Физическая величина:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2895"/>
-        <location filename="../main_displayValues.cpp" line="1242"/>
+        <location filename="../mainwindow.ui" line="3358"/>
+        <location filename="../main_displayValues.cpp" line="1252"/>
         <source>Type:</source>
         <translation>Тип: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3026"/>
+        <location filename="../mainwindow.ui" line="3079"/>
         <source>Module Details</source>
         <translation>Детали модуля</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3038"/>
+        <location filename="../mainwindow.ui" line="3091"/>
         <source>Firmware version:</source>
         <translation>Версия прошивки:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3051"/>
+        <location filename="../mainwindow.ui" line="3104"/>
         <source>B&amp;R serial number:</source>
         <translation>B&amp;R серийный номер:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3064"/>
+        <location filename="../mainwindow.ui" line="3117"/>
         <source>Module path:</source>
         <translation>Модуль путь:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3077"/>
+        <location filename="../mainwindow.ui" line="3130"/>
         <source>Equipment ID:</source>
         <translation>Оборудование ID:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3090"/>
+        <location filename="../mainwindow.ui" line="3143"/>
         <source>Hardware variant:</source>
         <translation>Оборудование вариант:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3103"/>
+        <location filename="../mainwindow.ui" line="3156"/>
         <source>Hardware revision:</source>
         <translation>Аппаратная версия:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3195"/>
+        <location filename="../mainwindow.ui" line="2956"/>
         <source>Module Status</source>
         <translation>Статус модуля</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3207"/>
+        <location filename="../mainwindow.ui" line="2968"/>
         <source>Module Ok:</source>
         <translation>Модуль Ok:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3220"/>
+        <location filename="../mainwindow.ui" line="2981"/>
         <source>Configured:</source>
         <translation>Настроен:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3233"/>
+        <location filename="../mainwindow.ui" line="2994"/>
         <source>Plugged:</source>
         <translation>Вставлено:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3285"/>
+        <location filename="../mainwindow.ui" line="3046"/>
         <source>Supervised:</source>
         <translation>наблюдать:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3307"/>
+        <location filename="../mainwindow.ui" line="3519"/>
         <source>IO Information</source>
         <translation>IO Информация</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3394"/>
+        <location filename="../mainwindow.ui" line="3598"/>
         <source>Negative endswitch</source>
         <translation>Отрицательный предел</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3420"/>
+        <location filename="../mainwindow.ui" line="3624"/>
         <source>Address:</source>
         <translation>Адрес:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3442"/>
+        <location filename="../mainwindow.ui" line="3646"/>
         <source>Simulation</source>
         <translation>Моделирование</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3489"/>
+        <location filename="../mainwindow.ui" line="3693"/>
         <source>Controller</source>
         <translation>Регулятор</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3511"/>
+        <location filename="../mainwindow.ui" line="3715"/>
         <source>Trigger 2</source>
         <translation>Trigger 2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3535"/>
+        <location filename="../mainwindow.ui" line="3739"/>
         <source>Alarm</source>
         <translation>Сигнализация</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3559"/>
+        <location filename="../mainwindow.ui" line="3763"/>
         <source>Homing</source>
         <translation>Cсылка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3581"/>
+        <location filename="../mainwindow.ui" line="3785"/>
         <source>Act. position [Units]</source>
         <translation>Факт. поло. [Единицы]</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3603"/>
+        <location filename="../mainwindow.ui" line="3807"/>
         <source>Positive endswitch</source>
         <translation>Отрицательный предел</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3625"/>
+        <location filename="../mainwindow.ui" line="3829"/>
         <source>Reference switch</source>
         <translation>Переключатель опорной</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3647"/>
+        <location filename="../mainwindow.ui" line="3851"/>
         <source>Act. speed [Units/s]</source>
         <translation>Факт. скор. [Единицы/s]</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3669"/>
+        <location filename="../mainwindow.ui" line="3873"/>
         <source>Movement status</source>
         <translation>Статус Движение</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3694"/>
+        <location filename="../mainwindow.ui" line="3898"/>
         <source>Drive:</source>
         <translation>Двигатель:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3716"/>
+        <location filename="../mainwindow.ui" line="3920"/>
         <source>Enable</source>
         <translation>Включить</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3738"/>
+        <location filename="../mainwindow.ui" line="3942"/>
         <source>Trigger 1</source>
         <translation>Trigger 1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3744"/>
+        <location filename="../mainwindow.ui" line="3948"/>
         <source>Axis Error</source>
         <translation>Ось Ошибка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3816"/>
-        <location filename="../main_displayValues.cpp" line="767"/>
-        <location filename="../main_displayValues.cpp" line="797"/>
+        <location filename="../mainwindow.ui" line="4020"/>
+        <location filename="../main_displayValues.cpp" line="776"/>
+        <location filename="../main_displayValues.cpp" line="806"/>
         <source>Logger</source>
         <translation>дневник</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="176"/>
+        <location filename="../main_displayValues.cpp" line="184"/>
         <source>Modules</source>
         <translation>Модули</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3860"/>
+        <location filename="../mainwindow.ui" line="4064"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Press F1 to open the &lt;br/&gt;selected error number &lt;br/&gt;in the B&amp;amp;R Online Help!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Нажмите F1, чтобы 
 открыть выбранный номер 
@@ -811,103 +827,98 @@
 Онлине Помощь!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3885"/>
+        <location filename="../mainwindow.ui" line="4089"/>
         <source>Logger-Modules</source>
         <translation>дневник модуль</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3983"/>
+        <location filename="../mainwindow.ui" line="4187"/>
         <source>Profiler</source>
         <translation>Profiler</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4034"/>
+        <location filename="../mainwindow.ui" line="4238"/>
         <source>File</source>
         <translation>Файла</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4041"/>
+        <location filename="../mainwindow.ui" line="4245"/>
         <source>Open recent ...</source>
         <translation>Недавно открылся ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4053"/>
+        <location filename="../mainwindow.ui" line="4257"/>
         <source>Open downloaded ...</source>
         <translation>Открыть скачал ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4066"/>
-        <location filename="../mainwindow.ui" line="4159"/>
+        <location filename="../mainwindow.ui" line="4270"/>
+        <location filename="../mainwindow.ui" line="4363"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4074"/>
+        <location filename="../mainwindow.ui" line="4278"/>
         <source>Extras</source>
         <translation>Экстра</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4088"/>
+        <location filename="../mainwindow.ui" line="4292"/>
         <source>Save data object</source>
         <translation>Сохранить объект данных</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4117"/>
+        <location filename="../mainwindow.ui" line="4321"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2082"/>
-        <source>Load .xml</source>
-        <translation>открыт .xml</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="4132"/>
+        <location filename="../mainwindow.ui" line="4336"/>
         <source>Opens a Systemdump.xml file</source>
         <translation>Открывает файл Systemdump.xml</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4135"/>
+        <location filename="../mainwindow.ui" line="4339"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4144"/>
+        <location filename="../mainwindow.ui" line="4348"/>
         <source>About</source>
         <translation>О нас</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4147"/>
+        <location filename="../mainwindow.ui" line="4351"/>
         <source>Shows program information</source>
         <translation>Показывает информацию о программе</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4150"/>
+        <location filename="../mainwindow.ui" line="4354"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4168"/>
+        <location filename="../mainwindow.ui" line="4372"/>
         <source>Options</source>
         <translation>Опции</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4171"/>
+        <location filename="../mainwindow.ui" line="4375"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4183"/>
+        <location filename="../mainwindow.ui" line="4387"/>
         <source>Close .xml</source>
         <translation>Закрыть .xml</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4186"/>
+        <location filename="../mainwindow.ui" line="4390"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="1269"/>
+        <location filename="../main_displayValues.cpp" line="1279"/>
         <location filename="../mainwindow.cpp" line="627"/>
         <location filename="../mainwindow.cpp" line="714"/>
         <location filename="../mainwindow.cpp" line="717"/>
@@ -938,7 +949,7 @@
         <translation>Загрузка %1 ...</translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="63"/>
+        <location filename="../main_readXml.cpp" line="67"/>
         <source>While loading the xml-file one or more
 attributes could not be read correctly!
 
@@ -953,7 +964,7 @@ Attribute: %2</source>
 Атрибут: %2</translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="64"/>
+        <location filename="../main_readXml.cpp" line="68"/>
         <location filename="../mainwindow.cpp" line="347"/>
         <location filename="../mainwindow.cpp" line="484"/>
         <location filename="../mainwindow.cpp" line="2075"/>
@@ -961,385 +972,356 @@ Attribute: %2</source>
         <translation>информация</translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="76"/>
+        <location filename="../main_readXml.cpp" line="80"/>
         <source>An error occured trying to open the xml-file!
 </source>
         <translation>Произошла ошибка при попытке открыть XML-файл!
 </translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="77"/>
-        <location filename="../main_readXml.cpp" line="87"/>
-        <location filename="../main_readXml.cpp" line="92"/>
-        <location filename="../main_readXml.cpp" line="103"/>
+        <location filename="../main_readXml.cpp" line="81"/>
+        <location filename="../main_readXml.cpp" line="91"/>
+        <location filename="../main_readXml.cpp" line="96"/>
+        <location filename="../main_readXml.cpp" line="107"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="86"/>
+        <location filename="../main_readXml.cpp" line="90"/>
         <source>No valid systemdump!</source>
         <translation>Нет действует Systemdump!</translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="92"/>
+        <location filename="../main_readXml.cpp" line="96"/>
         <source>No valid .xml file! Please verify that your file is not damaged!</source>
         <translation>Нет действует .xml файл! Пожалуйста, убедитесь, что ваш файл не поврежден!</translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="103"/>
+        <location filename="../main_readXml.cpp" line="107"/>
         <source>File not found!</source>
         <translation>Файл не найден!</translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="975"/>
+        <location filename="../main_readXml.cpp" line="1013"/>
         <source>Dividing value of system timer cycle:</source>
         <translation>Делитель от времени цикла системы:</translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="1283"/>
+        <location filename="../main_readXml.cpp" line="1321"/>
         <source>&lt;no module ...&gt;</source>
         <translation>&lt;Нет модуль ...&gt;</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="36"/>
+        <location filename="../main_displayValues.cpp" line="38"/>
         <source> °C</source>
         <translation> °C</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="47"/>
-        <location filename="../main_displayValues.cpp" line="52"/>
+        <location filename="../main_displayValues.cpp" line="49"/>
+        <location filename="../main_displayValues.cpp" line="54"/>
         <source>diagnose</source>
         <translation>диагностировать</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="57"/>
+        <location filename="../main_displayValues.cpp" line="59"/>
         <source>no</source>
         <translation>нет</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="57"/>
+        <location filename="../main_displayValues.cpp" line="59"/>
         <source>yes</source>
         <translation>да</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="58"/>
-        <location filename="../main_displayValues.cpp" line="59"/>
         <location filename="../main_displayValues.cpp" line="60"/>
         <location filename="../main_displayValues.cpp" line="61"/>
+        <location filename="../main_displayValues.cpp" line="62"/>
+        <location filename="../main_displayValues.cpp" line="63"/>
         <source>-</source>
         <translation>-</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="58"/>
-        <location filename="../main_displayValues.cpp" line="59"/>
         <location filename="../main_displayValues.cpp" line="60"/>
         <location filename="../main_displayValues.cpp" line="61"/>
-        <location filename="../main_displayValues.cpp" line="275"/>
-        <location filename="../main_displayValues.cpp" line="301"/>
+        <location filename="../main_displayValues.cpp" line="62"/>
+        <location filename="../main_displayValues.cpp" line="63"/>
+        <location filename="../main_displayValues.cpp" line="283"/>
+        <location filename="../main_displayValues.cpp" line="309"/>
         <source>enabled</source>
         <translation>включен</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="96"/>
-        <location filename="../main_displayValues.cpp" line="112"/>
-        <location filename="../main_displayValues.cpp" line="113"/>
-        <location filename="../main_displayValues.cpp" line="115"/>
-        <location filename="../main_displayValues.cpp" line="117"/>
-        <location filename="../main_displayValues.cpp" line="118"/>
-        <location filename="../main_displayValues.cpp" line="119"/>
-        <location filename="../main_displayValues.cpp" line="121"/>
-        <location filename="../main_displayValues.cpp" line="123"/>
-        <location filename="../main_displayValues.cpp" line="124"/>
-        <location filename="../main_displayValues.cpp" line="125"/>
-        <location filename="../main_displayValues.cpp" line="126"/>
-        <location filename="../main_displayValues.cpp" line="127"/>
-        <source> Byte</source>
-        <translation> байт</translation>
-    </message>
-    <message>
-        <location filename="../main_displayValues.cpp" line="97"/>
-        <location filename="../main_displayValues.cpp" line="103"/>
-        <location filename="../main_displayValues.cpp" line="105"/>
-        <location filename="../main_displayValues.cpp" line="107"/>
-        <location filename="../main_displayValues.cpp" line="109"/>
-        <location filename="../main_displayValues.cpp" line="589"/>
-        <location filename="../main_displayValues.cpp" line="598"/>
-        <location filename="../main_displayValues.cpp" line="607"/>
-        <source> MB</source>
-        <translation> мегабайт</translation>
-    </message>
-    <message>
-        <location filename="../main_displayValues.cpp" line="131"/>
-        <location filename="../main_displayValues.cpp" line="722"/>
+        <location filename="../main_displayValues.cpp" line="139"/>
+        <location filename="../main_displayValues.cpp" line="731"/>
         <source>Cyclic #</source>
         <translation>Циклическая #</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="133"/>
-        <location filename="../main_displayValues.cpp" line="135"/>
+        <location filename="../main_displayValues.cpp" line="141"/>
+        <location filename="../main_displayValues.cpp" line="143"/>
         <source> µs</source>
         <translation> микросекунд</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="141"/>
+        <location filename="../main_displayValues.cpp" line="149"/>
         <source>Task class</source>
         <translation>Задача-класса</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="141"/>
+        <location filename="../main_displayValues.cpp" line="149"/>
         <source>Cycle time</source>
         <translation>время цикла</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="141"/>
+        <location filename="../main_displayValues.cpp" line="149"/>
         <source>Tolerance</source>
         <translation>Толерантность</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="141"/>
+        <location filename="../main_displayValues.cpp" line="149"/>
         <source>Stack</source>
         <translation>Cтек</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="141"/>
+        <location filename="../main_displayValues.cpp" line="149"/>
         <source>Input delay</source>
         <translation>Задержка на входе</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="141"/>
+        <location filename="../main_displayValues.cpp" line="149"/>
         <source>Output delay</source>
         <translation>Задержка на выходе</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="176"/>
+        <location filename="../main_displayValues.cpp" line="184"/>
         <source>Version</source>
         <translation>Версия</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="176"/>
-        <location filename="../main_displayValues.cpp" line="224"/>
-        <location filename="../main_displayValues.cpp" line="252"/>
-        <location filename="../main_displayValues.cpp" line="767"/>
-        <location filename="../main_displayValues.cpp" line="797"/>
+        <location filename="../main_displayValues.cpp" line="184"/>
+        <location filename="../main_displayValues.cpp" line="232"/>
+        <location filename="../main_displayValues.cpp" line="260"/>
+        <location filename="../main_displayValues.cpp" line="776"/>
+        <location filename="../main_displayValues.cpp" line="806"/>
         <source>Date/Time</source>
         <translation>Дата, время</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="176"/>
+        <location filename="../main_displayValues.cpp" line="184"/>
         <source>Type</source>
         <translation>Тип:</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="176"/>
+        <location filename="../main_displayValues.cpp" line="184"/>
         <source>Adress</source>
         <translation>Адрес</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="176"/>
+        <location filename="../main_displayValues.cpp" line="184"/>
         <source>Size (Byte)</source>
         <translation>Размер (байт)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3319"/>
-        <location filename="../main_displayValues.cpp" line="199"/>
+        <location filename="../mainwindow.ui" line="3506"/>
+        <location filename="../main_displayValues.cpp" line="207"/>
         <source>Hardware Tree</source>
         <translation>Оборудование Дерево</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="224"/>
+        <location filename="../main_displayValues.cpp" line="232"/>
         <source>Text info</source>
         <translation>Текст информации</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="224"/>
+        <location filename="../main_displayValues.cpp" line="232"/>
         <source>Error text</source>
         <translation>Текст ошибки</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="224"/>
-        <location filename="../main_displayValues.cpp" line="767"/>
+        <location filename="../main_displayValues.cpp" line="232"/>
+        <location filename="../main_displayValues.cpp" line="776"/>
         <source>Error nr.</source>
         <translation>Oшибки nr.</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="767"/>
-        <location filename="../main_displayValues.cpp" line="797"/>
+        <location filename="../main_displayValues.cpp" line="776"/>
+        <location filename="../main_displayValues.cpp" line="806"/>
         <source>Lvl</source>
         <translation>Lvl</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="767"/>
+        <location filename="../main_displayValues.cpp" line="776"/>
         <source>OS Task</source>
         <translation>программа OS</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="767"/>
-        <location filename="../main_displayValues.cpp" line="797"/>
+        <location filename="../main_displayValues.cpp" line="776"/>
+        <location filename="../main_displayValues.cpp" line="806"/>
         <source>Description</source>
         <translation>Описание</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="767"/>
-        <location filename="../main_displayValues.cpp" line="797"/>
+        <location filename="../main_displayValues.cpp" line="776"/>
+        <location filename="../main_displayValues.cpp" line="806"/>
         <source>ASCII Data</source>
         <translation>ASCII данных</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="252"/>
+        <location filename="../main_displayValues.cpp" line="260"/>
         <source>Name</source>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="252"/>
+        <location filename="../main_displayValues.cpp" line="260"/>
         <source>Size</source>
         <translation>Размер</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="252"/>
+        <location filename="../main_displayValues.cpp" line="260"/>
         <source>ID</source>
         <translation>ID</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="275"/>
-        <location filename="../main_displayValues.cpp" line="301"/>
+        <location filename="../main_displayValues.cpp" line="283"/>
+        <location filename="../main_displayValues.cpp" line="309"/>
         <source>disabled</source>
         <translation>Отключено</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="284"/>
+        <location filename="../main_displayValues.cpp" line="292"/>
         <source>IF-</source>
         <translation>ИФ-</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="666"/>
+        <location filename="../main_displayValues.cpp" line="675"/>
         <source>Cyclic object</source>
         <translation>Циклический объект</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="668"/>
+        <location filename="../main_displayValues.cpp" line="677"/>
         <source>Data object</source>
         <translation>Объект данных</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="670"/>
+        <location filename="../main_displayValues.cpp" line="679"/>
         <source>Motion object</source>
         <translation>Объект движения</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="672"/>
+        <location filename="../main_displayValues.cpp" line="681"/>
         <source>Config object</source>
         <translation>Конфигурация объекта</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="674"/>
+        <location filename="../main_displayValues.cpp" line="683"/>
         <source>Other object</source>
         <translation>Другие объект</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="726"/>
-        <location filename="../main_displayValues.cpp" line="730"/>
+        <location filename="../main_displayValues.cpp" line="735"/>
+        <location filename="../main_displayValues.cpp" line="739"/>
         <source> ms</source>
         <translation> миллисекунда</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="734"/>
+        <location filename="../main_displayValues.cpp" line="743"/>
         <source> Bytes</source>
         <translation> Байт</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="767"/>
-        <location filename="../main_displayValues.cpp" line="797"/>
+        <location filename="../main_displayValues.cpp" line="776"/>
+        <location filename="../main_displayValues.cpp" line="806"/>
         <source>Event-ID</source>
         <translation>Код события</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="767"/>
+        <location filename="../main_displayValues.cpp" line="776"/>
         <source>Object-ID</source>
         <translation>ID объекта</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="797"/>
+        <location filename="../main_displayValues.cpp" line="806"/>
         <source>Fac.</source>
         <translation>объект</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="797"/>
+        <location filename="../main_displayValues.cpp" line="806"/>
         <source>Entered by</source>
         <translation>Введен</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="797"/>
+        <location filename="../main_displayValues.cpp" line="806"/>
         <source>Binary Data</source>
         <translation>Двоичные данные</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="797"/>
+        <location filename="../main_displayValues.cpp" line="806"/>
         <source>Info</source>
         <translation>Информация</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="797"/>
+        <location filename="../main_displayValues.cpp" line="806"/>
         <source>Origin Record</source>
         <translation>Происхождение ID</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="1058"/>
-        <location filename="../main_displayValues.cpp" line="1059"/>
+        <location filename="../main_displayValues.cpp" line="1067"/>
+        <location filename="../main_displayValues.cpp" line="1068"/>
         <source> %</source>
         <translation> %</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="1065"/>
+        <location filename="../main_displayValues.cpp" line="1074"/>
         <source>Average</source>
         <translation>Среднее</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="1067"/>
+        <location filename="../main_displayValues.cpp" line="1076"/>
         <source>Maximum</source>
         <translation>Максимум</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="1157"/>
+        <location filename="../main_displayValues.cpp" line="1166"/>
         <source>Byte</source>
         <translation>Байт</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="1237"/>
+        <location filename="../main_displayValues.cpp" line="1247"/>
         <source>Target</source>
         <translation>цель</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="1286"/>
+        <location filename="../main_displayValues.cpp" line="1296"/>
         <source>Axes: </source>
         <translation>Оси: </translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="1287"/>
+        <location filename="../main_displayValues.cpp" line="1297"/>
         <source>In Error: </source>
         <translation>В Error: </translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="1291"/>
+        <location filename="../main_displayValues.cpp" line="1301"/>
         <source>Axes: -</source>
         <translation>Оси: -</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="1292"/>
+        <location filename="../main_displayValues.cpp" line="1302"/>
         <source>In Error: -</source>
         <translation>В Error: -</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="1299"/>
+        <location filename="../main_displayValues.cpp" line="1309"/>
         <source>Application</source>
         <translation>Приложение</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="1306"/>
+        <location filename="../main_displayValues.cpp" line="1316"/>
         <source>CPU Mode</source>
         <translation>Режим CPU</translation>
     </message>
     <message>
-        <location filename="../main_displayValues.cpp" line="1356"/>
+        <location filename="../main_displayValues.cpp" line="1366"/>
         <source>System
 Dump</source>
         <translation>Система 
@@ -1597,6 +1579,7 @@ Error nr.: 30200&lt;/p&gt;</source>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1729"/>
+        <location filename="../mainwindow.cpp" line="2082"/>
         <source>Load .xml / .tar.gz</source>
         <translation>открыто .xml / tar.gz</translation>
     </message>

@@ -63,11 +63,12 @@ LIBS += -lws2_32 \
 # Versioning
 #-------------------------------------------------
 MAJOR = 2
-MINOR = 1
-#VERSION_HEADER = ../BR.SystemdumpViewer/cpp/version.h
+MINOR = 3
+BUGFIX = 0
+VERSION_HEADER = ..\github\00_src\version.h
 
 versiontarget.target = $$VERSION_HEADER
-#versiontarget.commands = ../BR.SystemdumpViewer/cpp/version.exe $$MAJOR $$MINOR $$VERSION_HEADER
+versiontarget.commands = ..\github\00_src\version.exe $$MAJOR $$MINOR $$BUGFIX $$VERSION_HEADER
 versiontarget.depends = FORCE
 
 PRE_TARGETDEPS += $$VERSION_HEADER
