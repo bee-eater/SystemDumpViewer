@@ -966,6 +966,7 @@ void MainWindow::on_actionClose_xml_triggered()
     ui->actionClose_xml->setDisabled(true);
     ui->actionSave_xml_as->setDisabled(true);
     ui->actionSave_PDF_Report->setDisabled(true);
+    ui->actionSave_Datapoints->setDisabled(true);
 
     // Clear all TreeViews!
     ui->tree_Hardware->setColumnCount(1);
@@ -1054,6 +1055,25 @@ void MainWindow::on_combo_AxisError_currentIndexChanged()
 void MainWindow::on_createPDFReport_triggered(){
     ReportWindow *winReport = new ReportWindow(this,this);
     winReport->show();
+}
+
+void MainWindow::on_createDatapointExport_triggered(){
+
+    QString DateStr = QString::number(QDate::currentDate().year()) + QString::number(QDate::currentDate().month())+ QString::number(QDate::currentDate().day());
+    QString filename = QFileDialog::getSaveFileName(this, "Datapoint export", "DatapointExport_" + DateStr + ".csv", "CSV files (.csv)", nullptr, nullptr);
+    QFile data(filename);
+
+    if(data.open(QFile::WriteOnly |QFile::Truncate))
+    {
+        QTextStream output(&data);
+        for(std::vector<sNode>::iterator md = this->SysDump.Sections.Hardware.vNode.begin(); md != this->SysDump.Sections.Hardware.vNode.end(); ++md) {
+            for(std::vector<sChannel>::iterator ch = md->IOChannels.vChannel.begin(); ch != md->IOChannels.vChannel.end(); ++ch) {
+                output << md->IOInformation.ModulePath + ";" + md->IOInformation.EquipmentID + ";" + ch->Name + ";" + ch->IECType + ";" + ch->PhysicalValue + "\r\n";
+            }
+        }
+
+    }
+
 }
 
 void MainWindow::on_download_dataObject(){
@@ -1600,6 +1620,9 @@ void MainWindow::setup_UI(){
 
     // Export pdf
     connect(ui->actionSave_PDF_Report,SIGNAL(triggered()),this,SLOT(on_createPDFReport_triggered()),Qt::UniqueConnection);
+
+    // Export datapoints
+    connect(ui->actionSave_Datapoints,SIGNAL(triggered()),this,SLOT(on_createDatapointExport_triggered()),Qt::UniqueConnection);
 
     // Connect Logger Table Clicked
     connect(ui->table_Logger->horizontalHeader(),SIGNAL(sectionClicked(int)), this,SLOT(on_logger_section_clicked(int)));

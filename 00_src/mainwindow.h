@@ -416,6 +416,7 @@ private slots:
     void on_logger_section_clicked(int cidx);
     void on_uiLabelClicked(int index);
     void on_createPDFReport_triggered();
+    void on_createDatapointExport_triggered();
 
     // RECENT FILES
     void on_recentFiles_clearList();

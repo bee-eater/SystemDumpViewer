@@ -102,5 +102,6 @@
         <file>images/brlogo.png</file>
         <file>images/brlogo2.png</file>
         <file>fonts/miso-regular.otf</file>
+        <file>images/csvExport.png</file>
     </qresource>
 </RCC>

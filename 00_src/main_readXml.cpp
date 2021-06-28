@@ -72,6 +72,7 @@ bool MainWindow::readXML(const char* filename, bool updateRecentFileNameList, QS
                         ui->actionClose_xml->setDisabled(false);
                         ui->actionSave_xml_as->setDisabled(false);
                         ui->actionSave_PDF_Report->setDisabled(false);
+                        ui->actionSave_Datapoints->setDisabled(false);
                         this->startScreenShow(false);
                         this->displayValues();
 

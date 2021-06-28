@@ -63,7 +63,7 @@ LIBS += -lws2_32 \
 # Versioning
 #-------------------------------------------------
 MAJOR = 2
-MINOR = 3
+MINOR = 4
 BUGFIX = 0
 VERSION_HEADER = ..\github\00_src\version.h
 

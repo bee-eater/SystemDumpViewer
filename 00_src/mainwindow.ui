@@ -4301,6 +4301,8 @@
     <addaction name="actionSave_all_as"/>
     <addaction name="separator"/>
     <addaction name="actionSave_PDF_Report"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave_Datapoints"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuExport"/>
@@ -4457,6 +4459,21 @@
    </property>
    <property name="text">
     <string>Check for updates ...</string>
+   </property>
+  </action>
+  <action name="actionSave_Datapoints">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/csvExport.png</normaloff>:/images/csvExport.png</iconset>
+   </property>
+   <property name="text">
+    <string>Datapoint Export ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Export a list of all datapoints to csv</string>
    </property>
   </action>
  </widget>
