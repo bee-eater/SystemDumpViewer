@@ -1068,7 +1068,7 @@ void MainWindow::on_createDatapointExport_triggered(){
         QTextStream output(&data);
         for(std::vector<sNode>::iterator md = this->SysDump.Sections.Hardware.vNode.begin(); md != this->SysDump.Sections.Hardware.vNode.end(); ++md) {
             for(std::vector<sChannel>::iterator ch = md->IOChannels.vChannel.begin(); ch != md->IOChannels.vChannel.end(); ++ch) {
-                output << md->IOInformation.ModulePath + ";" + md->IOInformation.EquipmentID + ";" + ch->Name + ";" + ch->IECType + ";" + ch->PhysicalValue + "\r\n";
+                output << md->IOInformation.ModulePath + ";" + md->IOInformation.EquipmentID + ";" + ch->Name + ";" + ch->IECType + ";" + ch->PhysicalValue + ";" + md->ModuleStatus.Plugged + ";" + QString::number(md->ModuleStatus.ModuleOk) + "\r\n";
             }
         }
 
