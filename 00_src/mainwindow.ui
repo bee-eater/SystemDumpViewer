@@ -305,7 +305,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget_System">
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <property name="tabsClosable">
            <bool>false</bool>
@@ -1650,8 +1650,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>98</width>
-                    <height>28</height>
+                    <width>196</width>
+                    <height>268</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -4053,22 +4053,45 @@
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>100</height>
+                <height>5</height>
                </size>
               </property>
              </spacer>
             </item>
             <item row="7" column="0">
              <widget class="QLabel" name="label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>150</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Press F1 to open the &lt;br/&gt;selected error number &lt;br/&gt;in the B&amp;amp;R Online Help!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>Press F1 to open the selected error number in the B&amp;R Online Help!
+
+Note: Only the last 100 entries are visible here! Open logger files in AS to see all entries!</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
             <item row="3" column="0">
              <widget class="QGroupBox" name="grp_LoggerModules">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -4082,7 +4105,7 @@
               <property name="maximumSize">
                <size>
                 <width>150</width>
-                <height>150</height>
+                <height>280</height>
                </size>
               </property>
               <property name="title">
@@ -4109,6 +4132,24 @@
                </property>
                <item>
                 <widget class="QScrollArea" name="scrollArea">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>150</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>150</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="frameShape">
                   <enum>QFrame::NoFrame</enum>
                  </property>
@@ -4120,8 +4161,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>100</width>
-                    <height>30</height>
+                    <width>150</width>
+                    <height>135</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="vertLayoutLogger">

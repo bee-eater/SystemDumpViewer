@@ -7,8 +7,8 @@
         <location filename="../mainwindow.ui" line="26"/>
         <location filename="../main_readXml.cpp" line="33"/>
         <location filename="../main_readXml.cpp" line="35"/>
-        <location filename="../main_readXml.cpp" line="106"/>
-        <location filename="../mainwindow.cpp" line="948"/>
+        <location filename="../main_readXml.cpp" line="107"/>
+        <location filename="../mainwindow.cpp" line="957"/>
         <source>Systemdump Viewer</source>
         <translation>Vidage du système spectateur</translation>
     </message>
@@ -319,6 +319,16 @@
         <translation>Taille par secteur:</translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="4484"/>
+        <source>Datapoint Export ...</source>
+        <translation>Exporter des points de données...</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="4487"/>
+        <source>Export a list of all datapoints to csv</source>
+        <translation>Exporte une liste de canaux de tous les modules</translation>
+    </message>
+    <message>
         <location filename="../mainwindow.ui" line="1605"/>
         <source>Number of partitions:</source>
         <translation>Nombre de partitions:</translation>
@@ -383,62 +393,62 @@
         <translation>REMMEM</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4333"/>
+        <location filename="../mainwindow.ui" line="4346"/>
         <source>Load .xml / tar.gz</source>
         <translation>Ouvrir.xml / tar.gz</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4450"/>
+        <location filename="../mainwindow.ui" line="4463"/>
         <source>Save PDF Report ...</source>
         <translation>Enregistrer PDF Rapport ..</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4459"/>
+        <location filename="../mainwindow.ui" line="4472"/>
         <source>Check for updates ...</source>
         <translation>Vérifiez les mises à jour ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4438"/>
-        <location filename="../mainwindow.cpp" line="785"/>
+        <location filename="../mainwindow.ui" line="4451"/>
+        <location filename="../mainwindow.cpp" line="794"/>
         <source>Save all as ...</source>
         <translation>Enregistrer tout comme ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4285"/>
+        <location filename="../mainwindow.ui" line="4296"/>
         <source>Export</source>
         <translation>Export</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4324"/>
+        <location filename="../mainwindow.ui" line="4337"/>
         <source>Quit program</source>
         <translation>Quitter le programme</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4399"/>
-        <location filename="../mainwindow.cpp" line="1746"/>
-        <location filename="../mainwindow.cpp" line="2081"/>
+        <location filename="../mainwindow.ui" line="4412"/>
+        <location filename="../mainwindow.cpp" line="1781"/>
+        <location filename="../mainwindow.cpp" line="2117"/>
         <source>Load from PLC</source>
         <translation>Télécharger de CPU</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4402"/>
+        <location filename="../mainwindow.ui" line="4415"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4411"/>
+        <location filename="../mainwindow.ui" line="4424"/>
         <source>Save position</source>
         <translation>Enregistrer position</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4423"/>
-        <location filename="../mainwindow.cpp" line="765"/>
-        <location filename="../mainwindow.cpp" line="1054"/>
+        <location filename="../mainwindow.ui" line="4436"/>
+        <location filename="../mainwindow.cpp" line="774"/>
+        <location filename="../mainwindow.cpp" line="1086"/>
         <source>Save .xml as ...</source>
         <translation>Enregistrer .xml comme ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4426"/>
+        <location filename="../mainwindow.ui" line="4439"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
@@ -492,7 +502,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2508"/>
-        <location filename="../main_readXml.cpp" line="1007"/>
+        <location filename="../main_readXml.cpp" line="1008"/>
         <source>Multiple value of system timer cycle:</source>
         <translation>Valeur multiple de cycle de minuterie du système:</translation>
     </message>
@@ -814,124 +824,128 @@
         <translation>Journal</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4064"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Press F1 to open the &lt;br/&gt;selected error number &lt;br/&gt;in the B&amp;amp;R Online Help!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;Html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot;font-weight:600;&quot;&gt;Appuyez sur F1 pour ouvrir le&lt;br/&gt;numéro de l&apos;erreur sélectionnée&lt;br/&gt;dans le B&amp;amp;R en ligne aider!&lt;/ span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <location filename="../mainwindow.ui" line="4070"/>
+        <source>Press F1 to open the selected error number in the B&amp;R Online Help!
+
+Note: Only the last 100 entries are visible here! Open logger files in AS to see all entries!</source>
+        <translation>Appuyez sur F1 pour ouvrir le numéro d&apos;erreur sélectionné dans l&apos;aide en ligne B&amp;R !
+
+Remarque: Seules les 100 dernières entrées sont visibles ici&#xa0;! Ouvrez les fichiers de consignation dans AS pour voir toutes les entrées!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4089"/>
+        <location filename="../mainwindow.ui" line="4100"/>
         <source>Logger-Modules</source>
         <translation>Modules du journal</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4187"/>
+        <location filename="../mainwindow.ui" line="4198"/>
         <source>Profiler</source>
         <translation>Profiler</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4238"/>
+        <location filename="../mainwindow.ui" line="4249"/>
         <source>File</source>
         <translation>Fichier</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4245"/>
+        <location filename="../mainwindow.ui" line="4256"/>
         <source>Open recent ...</source>
         <translation>Récemment ouvert ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4257"/>
+        <location filename="../mainwindow.ui" line="4268"/>
         <source>Open downloaded ...</source>
         <translation>Ouvrir téléchargé ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4270"/>
-        <location filename="../mainwindow.ui" line="4363"/>
+        <location filename="../mainwindow.ui" line="4281"/>
+        <location filename="../mainwindow.ui" line="4376"/>
         <source>Help</source>
         <translation>Aide</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4278"/>
+        <location filename="../mainwindow.ui" line="4289"/>
         <source>Extras</source>
         <translation>Extras</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4292"/>
+        <location filename="../mainwindow.ui" line="4303"/>
         <source>Save data object</source>
         <translation>Enregistrer objet de données</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4321"/>
+        <location filename="../mainwindow.ui" line="4334"/>
         <source>Exit</source>
         <translation>Sortir</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4336"/>
+        <location filename="../mainwindow.ui" line="4349"/>
         <source>Opens a Systemdump.xml file</source>
         <translation>Ouvre un fichier Systemdump.xml</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4339"/>
+        <location filename="../mainwindow.ui" line="4352"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4348"/>
+        <location filename="../mainwindow.ui" line="4361"/>
         <source>About</source>
         <translation>À propos</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4351"/>
+        <location filename="../mainwindow.ui" line="4364"/>
         <source>Shows program information</source>
         <translation>Affiche des informations de programme</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4354"/>
+        <location filename="../mainwindow.ui" line="4367"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4372"/>
+        <location filename="../mainwindow.ui" line="4385"/>
         <source>Options</source>
         <translation>Options</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4375"/>
+        <location filename="../mainwindow.ui" line="4388"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4387"/>
+        <location filename="../mainwindow.ui" line="4400"/>
         <source>Close .xml</source>
         <translation>Fermer .xml</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="4390"/>
+        <location filename="../mainwindow.ui" line="4403"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
         <location filename="../main_displayValues.cpp" line="1279"/>
-        <location filename="../mainwindow.cpp" line="627"/>
-        <location filename="../mainwindow.cpp" line="714"/>
-        <location filename="../mainwindow.cpp" line="717"/>
-        <location filename="../mainwindow.cpp" line="720"/>
-        <location filename="../mainwindow.cpp" line="725"/>
-        <location filename="../mainwindow.cpp" line="730"/>
-        <location filename="../mainwindow.cpp" line="733"/>
-        <location filename="../mainwindow.cpp" line="771"/>
-        <location filename="../mainwindow.cpp" line="789"/>
-        <location filename="../mainwindow.cpp" line="810"/>
-        <location filename="../mainwindow.cpp" line="878"/>
-        <location filename="../mainwindow.cpp" line="893"/>
-        <location filename="../mainwindow.cpp" line="900"/>
-        <location filename="../mainwindow.cpp" line="922"/>
-        <location filename="../mainwindow.cpp" line="928"/>
-        <location filename="../mainwindow.cpp" line="934"/>
-        <location filename="../mainwindow.cpp" line="938"/>
-        <location filename="../mainwindow.cpp" line="1060"/>
-        <location filename="../mainwindow.cpp" line="1441"/>
-        <location filename="../mainwindow.cpp" line="1444"/>
-        <location filename="../mainwindow.cpp" line="1858"/>
+        <location filename="../mainwindow.cpp" line="636"/>
+        <location filename="../mainwindow.cpp" line="723"/>
+        <location filename="../mainwindow.cpp" line="726"/>
+        <location filename="../mainwindow.cpp" line="729"/>
+        <location filename="../mainwindow.cpp" line="734"/>
+        <location filename="../mainwindow.cpp" line="739"/>
+        <location filename="../mainwindow.cpp" line="742"/>
+        <location filename="../mainwindow.cpp" line="780"/>
+        <location filename="../mainwindow.cpp" line="798"/>
+        <location filename="../mainwindow.cpp" line="819"/>
+        <location filename="../mainwindow.cpp" line="887"/>
+        <location filename="../mainwindow.cpp" line="902"/>
+        <location filename="../mainwindow.cpp" line="909"/>
+        <location filename="../mainwindow.cpp" line="931"/>
+        <location filename="../mainwindow.cpp" line="937"/>
+        <location filename="../mainwindow.cpp" line="943"/>
+        <location filename="../mainwindow.cpp" line="947"/>
+        <location filename="../mainwindow.cpp" line="1092"/>
+        <location filename="../mainwindow.cpp" line="1473"/>
+        <location filename="../mainwindow.cpp" line="1476"/>
+        <location filename="../mainwindow.cpp" line="1894"/>
         <source>Error!</source>
         <translation>Erreur!</translation>
     </message>
@@ -958,48 +972,48 @@ Attribut: %2</translation>
     <message>
         <location filename="../main_readXml.cpp" line="68"/>
         <location filename="../mainwindow.cpp" line="347"/>
-        <location filename="../mainwindow.cpp" line="484"/>
-        <location filename="../mainwindow.cpp" line="2075"/>
+        <location filename="../mainwindow.cpp" line="493"/>
+        <location filename="../mainwindow.cpp" line="2111"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="80"/>
+        <location filename="../main_readXml.cpp" line="81"/>
         <source>An error occured trying to open the xml-file!
 </source>
         <translation>Une erreur s&apos;est produite en essayant d&apos;ouvrir le fichier xml!
 </translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="81"/>
-        <location filename="../main_readXml.cpp" line="91"/>
-        <location filename="../main_readXml.cpp" line="96"/>
-        <location filename="../main_readXml.cpp" line="107"/>
+        <location filename="../main_readXml.cpp" line="82"/>
+        <location filename="../main_readXml.cpp" line="92"/>
+        <location filename="../main_readXml.cpp" line="97"/>
+        <location filename="../main_readXml.cpp" line="108"/>
         <source>Warning</source>
         <translation>Avertissement</translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="90"/>
+        <location filename="../main_readXml.cpp" line="91"/>
         <source>No valid systemdump!</source>
         <translation>Pas systemdump valide!</translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="96"/>
+        <location filename="../main_readXml.cpp" line="97"/>
         <source>No valid .xml file! Please verify that your file is not damaged!</source>
         <translation>Aucun fichier xml valide! S&apos;il vous plaît vérifier que votre fichier n&apos;est pas endommagé!</translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="107"/>
+        <location filename="../main_readXml.cpp" line="108"/>
         <source>File not found!</source>
         <translation>Fichier introuvable!</translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="1013"/>
+        <location filename="../main_readXml.cpp" line="1014"/>
         <source>Dividing value of system timer cycle:</source>
         <translation>Valeur séperateur de cycle de minuterie du système:</translation>
     </message>
     <message>
-        <location filename="../main_readXml.cpp" line="1321"/>
+        <location filename="../main_readXml.cpp" line="1322"/>
         <source>&lt;no module ...&gt;</source>
         <translation>&lt;Aucun module ...&gt;</translation>
     </message>
@@ -1325,7 +1339,7 @@ Dump</source>
 Dump</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="559"/>
+        <location filename="../mainwindow.cpp" line="568"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -1335,17 +1349,17 @@ Dump</translation>
         <translation>Seuls les fichiers xml peuvent être Ouverte en!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="588"/>
+        <location filename="../mainwindow.cpp" line="597"/>
         <source>This program uses parts of the following Projects: </source>
         <translation>Ce programme utilise des parties des projets suivants:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="745"/>
+        <location filename="../mainwindow.cpp" line="754"/>
         <source>Open Systemdump.xml ...</source>
         <translation>Ouvrir Systemdump.xml ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="585"/>
+        <location filename="../mainwindow.cpp" line="594"/>
         <source>About ...</source>
         <translation>A propos de ...</translation>
     </message>
@@ -1360,14 +1374,14 @@ Dump</translation>
         <translation>Supprimer les fichiers téléchargés ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="509"/>
-        <location filename="../mainwindow.cpp" line="534"/>
-        <location filename="../mainwindow.cpp" line="576"/>
+        <location filename="../mainwindow.cpp" line="518"/>
+        <location filename="../mainwindow.cpp" line="543"/>
+        <location filename="../mainwindow.cpp" line="585"/>
         <source>Timeout! No network connection or server not reachable!</source>
         <translation>Timeout! Pas de connexion réseau ou serveur injoignable!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="609"/>
+        <location filename="../mainwindow.cpp" line="618"/>
         <source>No Help found at:
 
 %1/help/BR.SystemdumpViewer.chm!!</source>
@@ -1376,21 +1390,21 @@ Dump</translation>
 %1/help/BR.SystemdumpViewer.chm!!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="769"/>
-        <location filename="../mainwindow.cpp" line="807"/>
-        <location filename="../mainwindow.cpp" line="1058"/>
+        <location filename="../mainwindow.cpp" line="778"/>
+        <location filename="../mainwindow.cpp" line="816"/>
+        <location filename="../mainwindow.cpp" line="1090"/>
         <source>%1 successfully saved!</source>
         <translation>%1 enregistré avec succès!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="771"/>
-        <location filename="../mainwindow.cpp" line="1060"/>
+        <location filename="../mainwindow.cpp" line="780"/>
+        <location filename="../mainwindow.cpp" line="1092"/>
         <source>Error saving the %1! Check paths!</source>
         <translation>
 Erreur de sauvegarde %1! Vérifiez les droits d&apos;accès!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1444"/>
+        <location filename="../mainwindow.cpp" line="1476"/>
         <source>&lt;p&gt;Help not opened! Check path and time in options!
 
 If your help is open, please report Bug!&lt;/p&gt;</source>
@@ -1399,24 +1413,24 @@ If your help is open, please report Bug!&lt;/p&gt;</source>
 Si votre aide est ouvert, s&apos;il vous plaît signaler Bug! &lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1481"/>
+        <location filename="../mainwindow.cpp" line="1513"/>
         <source>Clear list ...</source>
         <translation>Effacer la liste ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1858"/>
+        <location filename="../mainwindow.cpp" line="1894"/>
         <source>Error opening Help!
 Check path in options!</source>
         <translation>Erreur d&apos;ouverture de l&apos;aide!
 Vérifier chemin dans les options!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="950"/>
+        <location filename="../mainwindow.cpp" line="959"/>
         <source>Closing %1 ...</source>
         <translation>Fermeture %1 ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="618"/>
+        <location filename="../mainwindow.cpp" line="627"/>
         <source>Target PLC ...</source>
         <translation>CPU cible ...</translation>
     </message>
@@ -1451,76 +1465,76 @@ Vérifier chemin dans les options!</translation>
         <translation>ID de la machine</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="484"/>
+        <location filename="../mainwindow.cpp" line="493"/>
         <source>Update successfully installed! Thanks for using!</source>
         <translation>Mettre à jour installé avec succès! Merci d&apos;utiliser Systemdump Viewer!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="548"/>
+        <location filename="../mainwindow.cpp" line="557"/>
         <source>Downloading ...</source>
         <translation>Téléchargement ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="587"/>
+        <location filename="../mainwindow.cpp" line="596"/>
         <source>This application is not an official B&amp;R product! For this reason the use is at your own risk and there is NO claim on support or maintenance.</source>
         <translation>Cette application n&apos;est pas un produit officiel de B&amp;R! Pour cette raison, l&apos;utilisation est à vos propres risques et il n&apos;y a AUCUNE réclamation pour support ou maintenance.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="588"/>
+        <location filename="../mainwindow.cpp" line="597"/>
         <source>Developed with Qt 5.6</source>
         <translation>Développé avec Qt 5.6</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="588"/>
+        <location filename="../mainwindow.cpp" line="597"/>
         <source>This work is licensed under the</source>
         <translation>Ce travail est sous licence sous la</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="588"/>
+        <location filename="../mainwindow.cpp" line="597"/>
         <source>Visit us on</source>
         <translation>Nous rendre visite sur</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="610"/>
+        <location filename="../mainwindow.cpp" line="619"/>
         <source>Warning!</source>
         <translation>Attention!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="650"/>
+        <location filename="../mainwindow.cpp" line="659"/>
         <source>Waiting for PLC to create Systemdump ...</source>
         <translation>En attendant CPU pour créer Systemdump ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="746"/>
+        <location filename="../mainwindow.cpp" line="755"/>
         <source>Files (*.xml *tar.gz)</source>
         <translation>Fichiers Dump (* .xml * tar.gz)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="826"/>
+        <location filename="../mainwindow.cpp" line="835"/>
         <source>Position saved: x=%1, y=%2, width=%3, height=%4</source>
         <translation>Position sauvé: x = %1, y = %2, hauteur = %3, largeur = %4</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="873"/>
-        <location filename="../mainwindow.cpp" line="906"/>
+        <location filename="../mainwindow.cpp" line="882"/>
+        <location filename="../mainwindow.cpp" line="915"/>
         <source>Checking for updates ...</source>
         <translation>Vérification des mises à jour ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="873"/>
+        <location filename="../mainwindow.cpp" line="882"/>
         <source>Congratulations! You are using the newest version!</source>
         <translation>Félicitations! Vous utilisez déjà la version la plus récente!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="878"/>
-        <location filename="../mainwindow.cpp" line="893"/>
-        <location filename="../mainwindow.cpp" line="900"/>
-        <location filename="../mainwindow.cpp" line="928"/>
+        <location filename="../mainwindow.cpp" line="887"/>
+        <location filename="../mainwindow.cpp" line="902"/>
+        <location filename="../mainwindow.cpp" line="909"/>
+        <location filename="../mainwindow.cpp" line="937"/>
         <source>Error reading server answer!</source>
         <translation>Erreur de lecture de réponse du serveur!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="906"/>
+        <location filename="../mainwindow.cpp" line="915"/>
         <source>A newer version of this Application was found!
 
 Your version: %1
@@ -1535,38 +1549,38 @@ Nouvelle version: %2
 Voulez-vous télécharger et installer la plus récente Systemdump Viewer?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="922"/>
+        <location filename="../mainwindow.cpp" line="931"/>
         <source>Oooops... Something went wrong downloading the update!</source>
         <translation>Oups ... Un problème est survenu télécharger la mise à jour!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="938"/>
+        <location filename="../mainwindow.cpp" line="947"/>
         <source>No update server specified in options!</source>
         <translation>Aucun serveur de mise à jour spécifié dans les options!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1255"/>
-        <location filename="../mainwindow.cpp" line="1258"/>
+        <location filename="../mainwindow.cpp" line="1287"/>
+        <location filename="../mainwindow.cpp" line="1290"/>
         <source>Searching for hardware &quot;%1&quot; on B&amp;R homepage ...</source>
         <translation>Recherche matériel &quot;%1&quot; sur la page d&apos;accueil B&amp;R ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1267"/>
+        <location filename="../mainwindow.cpp" line="1299"/>
         <source>Searching for serial &quot;%1&quot; on B&amp;R homepage ...</source>
         <translation>Recherche numéro de série à &quot;% 1&quot; sur la page d&apos;accueil B&amp;R ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1284"/>
+        <location filename="../mainwindow.cpp" line="1316"/>
         <source>Copied serial &quot;%1&quot; to clipboard ...</source>
         <translation>Copié numéro de série &quot;%1&quot; le presse-papiers ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1435"/>
+        <location filename="../mainwindow.cpp" line="1467"/>
         <source>Successfully connected to B&amp;R help!</source>
         <translation>Succès relié à B&amp;R aide ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1441"/>
+        <location filename="../mainwindow.cpp" line="1473"/>
         <source>&lt;p&gt;Internal error!
 
 Error nr.: 30200&lt;/p&gt;</source>
@@ -1575,75 +1589,75 @@ Error nr.: 30200&lt;/p&gt;</source>
 Erreur no.: 30200&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1729"/>
-        <location filename="../mainwindow.cpp" line="2082"/>
+        <location filename="../mainwindow.cpp" line="1764"/>
+        <location filename="../mainwindow.cpp" line="2118"/>
         <source>Load .xml / .tar.gz</source>
         <translation>Ouvrir.xml / tar.gz</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1899"/>
+        <location filename="../mainwindow.cpp" line="1935"/>
         <source>Search &amp;Hardware on B&amp;&amp;R Homepage ...</source>
         <translation>Recherche &amp;matériel sur B&amp;&amp;R page d&apos;accueil ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1900"/>
+        <location filename="../mainwindow.cpp" line="1936"/>
         <source>Search &amp;Serialnumber on B&amp;&amp;R Homepage ...</source>
         <translation>Rechercher &amp;Numéro de série B&amp;&amp;R page d&apos;accueil ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1901"/>
+        <location filename="../mainwindow.cpp" line="1937"/>
         <source>S&amp;earch Hardware in B&amp;&amp;R Help ...</source>
         <translation>Recherche &amp;Hardware dans B&amp;&amp;R Aide ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1902"/>
+        <location filename="../mainwindow.cpp" line="1938"/>
         <source>&amp;Copy Serialnumber to clipboard ...</source>
         <translation>&amp;Copier Numéro de série dans le presse papier ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1905"/>
+        <location filename="../mainwindow.cpp" line="1941"/>
         <source>Search Hardware on B&amp;R Homepage ...</source>
         <translation>Recherche matériel sur B&amp;R page d&apos;accueil ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1906"/>
+        <location filename="../mainwindow.cpp" line="1942"/>
         <source>Search Serialnumber on B&amp;R Homepage ...</source>
         <translation>Rechercher Numéro de série B&amp;R page d&apos;accueil ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1907"/>
+        <location filename="../mainwindow.cpp" line="1943"/>
         <source>Search Hardware in B&amp;R Help ...</source>
         <translation>Recherche Hardware dans B&amp;R Aide ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1908"/>
+        <location filename="../mainwindow.cpp" line="1944"/>
         <source>Copy Serialnumber to clipboard ...</source>
         <translation>Rechercher Numéro de série B&amp;R page d&apos;accueil ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2075"/>
+        <location filename="../mainwindow.cpp" line="2111"/>
         <source>The language file %1 could not be found! Maybe the file is corrupt!</source>
         <translation>Le fichier de langue %1  n&apos;a pu être trouvée! Peut-être que le fichier est corrompu!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="619"/>
+        <location filename="../mainwindow.cpp" line="628"/>
         <source>IP Address:</source>
         <translation>Adresse IP:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="627"/>
+        <location filename="../mainwindow.cpp" line="636"/>
         <source>No valid IP-address!</source>
         <translation>Aucune adresse IP valide!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="559"/>
+        <location filename="../mainwindow.cpp" line="568"/>
         <source>Could not open %1 for writing: %2
 </source>
         <translation>Impossible d&apos;ouvrir %1 pour l&apos;écriture: %2</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="357"/>
-        <location filename="../mainwindow.cpp" line="789"/>
+        <location filename="../mainwindow.cpp" line="798"/>
         <source>7za.exe not found! Extract and open file manually!</source>
         <translation>7za.exe pas trouvé! Extraire et ouvrir le fichier manuellement!</translation>
     </message>
