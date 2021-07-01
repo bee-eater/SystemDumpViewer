@@ -14,6 +14,9 @@ void MainWindow::init_Names(){
     this->list_ModuleOk << "TRUE" << "TRUE" << "FALSE" << "UNDEF" << "UNDEF" << "UNDEF";
     this->list_ChannelType << "DO" << "DI" << "AO" << "AI";
 
+    // Status from modules
+    //ST_OK, ST_WARNING, ST_ERROR, ST_FAILURE, ST_INFO, ST_SUCCESS, ST_MISSMATCH, ST_NOTICE, ST_IGNORE
+
 }
 
 void MainWindow::init_Styles(){

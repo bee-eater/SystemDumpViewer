@@ -64,7 +64,7 @@ LIBS += -lws2_32 \
 #-------------------------------------------------
 MAJOR = 2
 MINOR = 4
-BUGFIX = 0
+BUGFIX = 1
 VERSION_HEADER = ..\github\00_src\version.h
 
 versiontarget.target = $$VERSION_HEADER

@@ -1063,9 +1063,12 @@ void MainWindow::on_createDatapointExport_triggered(){
     QString filename = QFileDialog::getSaveFileName(this, "Datapoint export", "DatapointExport_" + DateStr + ".csv", "CSV files (.csv)", nullptr, nullptr);
     QFile data(filename);
 
-    if(data.open(QFile::WriteOnly |QFile::Truncate))
-    {
+    if(data.open(QFile::WriteOnly | QFile::Truncate))
+    {     
         QTextStream output(&data);
+        // Add header line with column description
+        output << "ModulePath;EquipmentID;ChannelName;ChannelIECType;ChannelValue;ModulePlugged;ModuleOk\r\n";
+        // Add datapoints for all modules
         for(std::vector<sNode>::iterator md = this->SysDump.Sections.Hardware.vNode.begin(); md != this->SysDump.Sections.Hardware.vNode.end(); ++md) {
             for(std::vector<sChannel>::iterator ch = md->IOChannels.vChannel.begin(); ch != md->IOChannels.vChannel.end(); ++ch) {
                 output << md->IOInformation.ModulePath + ";" + md->IOInformation.EquipmentID + ";" + ch->Name + ";" + ch->IECType + ";" + ch->PhysicalValue + ";" + md->ModuleStatus.Plugged + ";" + QString::number(md->ModuleStatus.ModuleOk) + "\r\n";
