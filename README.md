@@ -32,25 +32,3 @@ Steps with bt_EditLanguages.bat to add translations
 4. Option 8 in batch: Copy to debug
 
 Now you should have up to date .qm files and the translation should work in your debug environment
-
-## Program structure 
-**A very brief overview :-)**
-
-### systemdump.h
-Here is the main systemdump structure defined for the member this->SysDump in the main class
-New values have to be added here.
-
-### main_mapXml.cpp
-In file main_mapXml.cpp there are the possible entries in the Systemdump.xml defined
-as mappings with lowercase texts and enums, so switch cases can be used.
-The std::maps and the enums themselves have to be defined in the mainwindow.h (Starting around line 212) aswell.
-
-### main_readXml.cpp
-In file main_readXml the values are read from the xml structure with the rapidxml library.
-The function get_SystemDumpSections(...) reads all the sections. The error number thrown if
-an unknown attribute is found defines the place in the code where to look for easier locating.
-See file errorNumbers.txt for (possibly incomplete) list of error Numbers.
-The values are written to this->SysDump...
-
-### main_displayValues.cpp
-Here the Values are displayed on the visu, using the values from this->SysDump
