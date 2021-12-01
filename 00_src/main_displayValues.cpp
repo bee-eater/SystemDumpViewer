@@ -1394,7 +1394,9 @@ int MainWindow::add_AxisToUi(int x, int index){
     } else {
         QStringRef subAxisName(&this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Name, 0, AXIS_TEXT_LENGTH);
         AxisName->setText(subAxisName.toString()+QString(".."));
+        AxisName->setToolTip(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Name);
     }
+    AxisName->setStyleSheet("QLabel { color : #35322f; } QToolTip { background: #5d5b59; color: #ff8800; border-width: 1px; border-color: #35322f; }");
     AxisName->show();
 
     // Axis Drive
@@ -1405,18 +1407,22 @@ int MainWindow::add_AxisToUi(int x, int index){
     } else {
         QStringRef subAxisDrive(&this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Drive,0,AXIS_TEXT_LENGTH);
         AxisDrive->setText(subAxisDrive.toString()+QString(".."));
+        AxisDrive->setToolTip(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Drive);
     }
+    AxisDrive->setStyleSheet("QLabel { color : #35322f; } QToolTip { background: #5d5b59; color: #ff8800; border-width: 1px; border-color: #35322f; }");
     AxisDrive->show();
 
     // Axis Address
     AxisAddress->setGeometry(x,ui->text_Axis_Address->y(),AXIS_LABEL_WIDTH,AXIS_LABEL_HEIGHT_SMALL);
     AxisAddress->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
     if(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Adress.length() <= AXIS_TEXT_LENGTH){
-        AxisDrive->setText(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Adress);
+        AxisAddress->setText(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Adress);
     } else {
         QStringRef subAxisAddress(&this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Adress,0,AXIS_TEXT_LENGTH);
         AxisAddress->setText(subAxisAddress.toString()+QString(".."));
+        AxisAddress->setToolTip(this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].Adress);
     }
+    AxisAddress->setStyleSheet("QLabel { color : #35322f; } QToolTip { background: #5d5b59; color: #ff8800; border-width: 1px; border-color: #35322f; }");
     AxisAddress->show();
 
     // Homing

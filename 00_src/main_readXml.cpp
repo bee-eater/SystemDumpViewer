@@ -245,11 +245,11 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                         break;
 
                                     case VALUE_001_OPHOURS:
-                                        this->SysDump.Sections.Values.OperationalValues.OperatingHours = QString::fromStdString(tmpString2.c_str()).toLong();
+                                        this->SysDump.Sections.Values.OperationalValues.OperatingHours = static_cast<qint32>(atoi(tmpString2.c_str()));
                                         break;
 
                                     case VALUE_001_POWERCYCLES:
-                                        this->SysDump.Sections.Values.OperationalValues.PowerOnCycles = QString::fromStdString(tmpString2.c_str()).toLong();
+                                        this->SysDump.Sections.Values.OperationalValues.PowerOnCycles = static_cast<qint32>(atoi(tmpString2.c_str()));
                                         break;
 
                                     case VALUE_001_ERR:
@@ -1778,7 +1778,7 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
                                                             switch(map_046_MotionAlarmAttributes[tmpString]){
                                                             case MOTION_002_ERRORNO:
-                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].ErrorNr = static_cast<qint16>(atoi(pAttribute2->value()));
+                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].ErrorNr = static_cast<qint32>(atoi(pAttribute2->value()));
                                                                 break;
 
                                                             case MOTION_002_ERRORTEXT:
@@ -1786,15 +1786,15 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                                                 break;
 
                                                             case MOTION_002_ID:
-                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].ID = static_cast<qint16>(atoi(pAttribute2->value()));
+                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].ID = static_cast<qint32>(atoi(pAttribute2->value()));
                                                                 break;
 
                                                             case MOTION_002_PARID:
-                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].ParID = static_cast<qint16>(atoi(pAttribute2->value()));
+                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].ParID = static_cast<qint32>(atoi(pAttribute2->value()));
                                                                 break;
 
                                                             case MOTION_002_STATUS:
-                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].Status = static_cast<qint16>(atoi(pAttribute2->value()));
+                                                                this->SysDump.Sections.Motion.vAxis[static_cast<unsigned int>(index)].vAlarm[static_cast<unsigned int>(subindex)].Status = static_cast<qint32>(atoi(pAttribute2->value()));
                                                                 break;
 
                                                             case MOTION_002_TEXTINFO:
