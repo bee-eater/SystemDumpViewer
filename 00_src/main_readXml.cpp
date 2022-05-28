@@ -910,47 +910,47 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                 break;
 
                             case MEMORY_001_REMMEM:
-                                pAttribute = pItem->first_attribute();
+                                pAttribute = pSubItem->first_attribute();
                                 while(pAttribute != nullptr){
 
                                     tmpString = pAttribute->name();
                                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
 
                                     switch(map_034_REMMEMAttributes[tmpString]){
-                                    case MEMORY_007_AVAILABLE:
-                                        this->SysDump.Sections.Memory.SRAM.REMMEM.available = QString::fromStdString(pAttribute->value()).toLongLong();
-                                        break;
+                                        case MEMORY_007_AVAILABLE:
+                                            this->SysDump.Sections.Memory.SRAM.REMMEM.available = QString::fromStdString(pAttribute->value()).toLongLong();
+                                            break;
 
-                                    case MEMORY_007_DEVICE:
-                                        this->SysDump.Sections.Memory.SRAM.REMMEM.device = QString::fromStdString(pAttribute->value());
-                                        break;
+                                        case MEMORY_007_DEVICE:
+                                            this->SysDump.Sections.Memory.SRAM.REMMEM.device = QString::fromStdString(pAttribute->value());
+                                            break;
 
-                                    case MEMORY_007_LARGESTBLOCK:
-                                        this->SysDump.Sections.Memory.SRAM.REMMEM.LargestAvailableBlock = QString::fromStdString(pAttribute->value()).toLongLong();
-                                        break;
+                                        case MEMORY_007_LARGESTBLOCK:
+                                            this->SysDump.Sections.Memory.SRAM.REMMEM.LargestAvailableBlock = QString::fromStdString(pAttribute->value()).toLongLong();
+                                            break;
 
-                                    case MEMORY_007_PERMANENT:
-                                        this->SysDump.Sections.Memory.SRAM.REMMEM.permanent = QString::fromStdString(pAttribute->value()).toLongLong();
-                                        break;
+                                        case MEMORY_007_PERMANENT:
+                                            this->SysDump.Sections.Memory.SRAM.REMMEM.permanent = QString::fromStdString(pAttribute->value()).toLongLong();
+                                            break;
 
-                                    case MEMORY_007_REMGLOBAL:
-                                        this->SysDump.Sections.Memory.SRAM.REMMEM.remGlobal = QString::fromStdString(pAttribute->value()).toLongLong();
-                                        break;
+                                        case MEMORY_007_REMGLOBAL:
+                                            this->SysDump.Sections.Memory.SRAM.REMMEM.remGlobal = QString::fromStdString(pAttribute->value()).toLongLong();
+                                            break;
 
-                                    case MEMORY_007_REMLOCAL:
-                                        this->SysDump.Sections.Memory.SRAM.REMMEM.remLocal = QString::fromStdString(pAttribute->value()).toLongLong();
-                                        break;
+                                        case MEMORY_007_REMLOCAL:
+                                            this->SysDump.Sections.Memory.SRAM.REMMEM.remLocal = QString::fromStdString(pAttribute->value()).toLongLong();
+                                            break;
 
-                                    case MEMORY_007_SIZE:
-                                        this->SysDump.Sections.Memory.SRAM.REMMEM.size = QString::fromStdString(pAttribute->value()).toLongLong();
-                                        break;
+                                        case MEMORY_007_SIZE:
+                                            this->SysDump.Sections.Memory.SRAM.REMMEM.size = QString::fromStdString(pAttribute->value()).toLongLong();
+                                            break;
 
-                                    case MEMORY_007_ERR:
-                                        this->ErrorNr = 20307;
-                                        this->Error = QString::fromStdString(tmpString);
-                                        break;
-                                    default:
-                                        return 20;
+                                        case MEMORY_007_ERR:
+                                            this->ErrorNr = 20307;
+                                            this->Error = QString::fromStdString(tmpString);
+                                            break;
+                                        default:
+                                            return 20;
                                     }
                                     pAttribute = pAttribute->next_attribute();
                                 }

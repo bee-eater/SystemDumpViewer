@@ -2,13 +2,14 @@
 <br/>
 <br/>
 <ul>
-	<li>Settings file location changed to AppData</li>
+    <li>Settings file location changed to AppData</li>
     <li>Fixed partition size bargraph</li>
     <li>Added CF serial number, CF model number, storage wear, NTP value strings</li>
-	<li>Show .tar.gz file in Title</li>
-	<li>Updated some code</li>
+    <li>Show .tar.gz file in Title</li>
+    <li>Updated some code</li>
     <li>Updated B&R Logo with ABB claim</li>
-	<li>Removed one digit from version number (was svn revision)</li>
+    <li>Removed one digit from version number (was svn revision)</li>
+    <li>Fixed bug: REMMEM not displayed correctly</li>
 </ul>
 <ul>
     <li>Added tar.gz file support</li>
