@@ -151,7 +151,7 @@ bool MainWindow::createPDFReport(int type, QString fileName, QString date){
                  QString htmlString = css + QString("<table width='100\%'>"
                                                     "<tr>"
                                                     "<td align='left' valign='bottom' style='font-size:14pt'>" + tr("Machine ID:") +" %1<br/>" + tr("Date:") + " %2</td>"
-                                                    "<td align='right'><img width='350' src='://images/brlogo2.png'/></td>"
+                                                    "<td align='right'><img width='200' src='://images/brlogo2.png'/></td>"
                                                     "</tr>"
                                                     "</table>"
                                                     "<p align='center' style='font-size:14pt;font-weight:bold'>%3</p>"
@@ -1794,7 +1794,7 @@ void MainWindow::startScreenInit(){
     this->start_sdvLogo->setText("SdV v" + Versions[0] + "." + Versions[1]);
 
     this->start_brLogo = new QLabel(this);
-    this->start_brLogo->resize(118,67);
+    this->start_brLogo->resize(118,79);
     xpos = (this->width() - (this->start_brLogo->width()+5));
     ypos = (ui->menuBar->height() + 5);
     this->start_brLogo->setText(QString("<html><img src='://images/brlogo.png'/></html>"));
