@@ -35,6 +35,8 @@
 #include <QStandardPaths>
 #include <QStyleFactory>
 #include <QTextDocument>
+#include <QGuiApplication>
+#include <QScreen>
 
 #include "qwt_plot.h"
 
@@ -1582,9 +1584,34 @@ void MainWindow::setStatusBarEnabled(bool enabled, QString statusMessage){
 }
 
 void MainWindow::setup_UI(){
-    // Restore window position
-    this->resize(settings->value("width",DEFAULT_WINDOW_WIDTH).toInt(),settings->value("height",DEFAULT_WINDOW_HEIGHT).toInt());
-    this->move(settings->value("xpos",(qApp->desktop()->width() - this->width())/2).toInt(),settings->value("ypos",(qApp->desktop()->height() - this->height())/2).toInt());
+
+    // Get primary screen size for initial value
+    QSize sSize = QGuiApplication::primaryScreen()->size();
+    qreal monWidth = sSize.width();
+    qreal monHeight = sSize.height();
+
+    // Get total desktop size to validate the saved position (all monitors together!)
+    QDesktopWidget desktop;
+    int totalHeight=desktop.geometry().height();
+    int totalWidth=desktop.geometry().width();
+
+    // Load positions and geometry from settings if saved
+    int xpos = settings->value("xpos",(monWidth - this->width())/2).toInt();
+    int ypos = settings->value("ypos",(monHeight - this->height())/2).toInt();
+    int width = settings->value("width",DEFAULT_WINDOW_WIDTH).toInt();
+    int height = settings->value("height",DEFAULT_WINDOW_HEIGHT).toInt();
+
+    // Make sure app is in visible area of the screen(s)
+    if(xpos + width > totalWidth){
+        xpos = totalWidth - width;
+    }
+    if(ypos + height > totalHeight){
+        ypos = totalHeight - height;
+    }
+
+    // Set window geometry and position
+    this->resize(width,height);
+    this->move(xpos, ypos);
 
     // Alternating Rows
     ui->table_AxisError->setAlternatingRowColors(true);

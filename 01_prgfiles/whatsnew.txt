@@ -10,6 +10,7 @@
     <li>Updated B&R Logo with ABB claim</li>
     <li>Removed one digit from version number (was svn revision)</li>
     <li>Fixed bug: REMMEM not displayed correctly</li>
+    <li>Improved app window startup positioning</li>
 </ul>
 <ul>
     <li>Added tar.gz file support</li>
