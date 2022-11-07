@@ -159,6 +159,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_General_Timestamp">
              <property name="geometry">
@@ -172,6 +175,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_General_Generator">
              <property name="geometry">
@@ -184,6 +190,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
             <widget class="QLabel" name="text_General_TimeStamp">
@@ -305,7 +314,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget_System">
           <property name="currentIndex">
-           <number>2</number>
+           <number>0</number>
           </property>
           <property name="tabsClosable">
            <bool>false</bool>
@@ -341,6 +350,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="text_Values_OPV_CPUMode">
              <property name="geometry">
@@ -366,6 +378,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
             <widget class="QLabel" name="text_Values_OPV_TargetTime">
@@ -406,6 +421,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_Values_OPV_TargetTime">
              <property name="geometry">
@@ -419,6 +437,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_Values_OPV_CPUTemp">
              <property name="geometry">
@@ -431,6 +452,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
             <widget class="QLabel" name="text_Values_OPV_CPUTemp">
@@ -484,6 +508,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="text_Values_OPV_PowerCycles">
              <property name="geometry">
@@ -509,6 +536,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
            </widget>
@@ -536,6 +566,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="text_Values_CPUConf_USBRemote">
              <property name="geometry">
@@ -562,6 +595,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_Values_CPUConf_ftp">
              <property name="geometry">
@@ -575,6 +611,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_Values_CPUConf_defdomain">
              <property name="geometry">
@@ -587,6 +626,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
             <widget class="QLabel" name="text_Values_CPUConf_AftReset">
@@ -614,6 +656,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_Values_CPUConf_powerfail">
              <property name="geometry">
@@ -627,6 +672,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_Values_CPUConf_afterReset">
              <property name="geometry">
@@ -639,6 +687,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
             <widget class="QLabel" name="text_Values_CPUConf_ModeSwitch">
@@ -665,6 +716,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
             <widget class="QLabel" name="text_Values_CPUConf_AftReset_2">
@@ -704,6 +758,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
             <widget class="QLabel" name="text_Values_CPUConf_DefaultDomain">
@@ -770,6 +827,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="text_Values_CPUConf_FTP">
              <property name="geometry">
@@ -795,6 +855,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
             <widget class="QLabel" name="text_Values_CPUConf_Profiling">
@@ -978,6 +1041,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_TimeSync_SNTPServer">
              <property name="geometry">
@@ -990,6 +1056,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
             <widget class="QLabel" name="label_TimeSync_SNTPClient">
@@ -1004,6 +1073,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_TimeSync_SNTPClient_Server1">
              <property name="geometry">
@@ -1016,6 +1088,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
             <widget class="QLabel" name="label_TimeSync_SNTPClient_rtcSync">
@@ -1030,6 +1105,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_TimeSync_SNTPClient_sntpSync">
              <property name="geometry">
@@ -1042,6 +1120,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
             <widget class="QLabel" name="label_TimeSync_SNTPClient_Server4">
@@ -1056,6 +1137,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_TimeSync_SNTPClient_Server3">
              <property name="geometry">
@@ -1069,6 +1153,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_TimeSync_SNTPClient_Server2">
              <property name="geometry">
@@ -1081,6 +1168,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
            </widget>
@@ -1160,6 +1250,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_Software_VC">
              <property name="geometry">
@@ -1172,6 +1265,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
             <widget class="QLabel" name="label_Software_MC">
@@ -1186,6 +1282,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_Software_CNC">
              <property name="geometry">
@@ -1198,6 +1297,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
            </widget>
@@ -1306,6 +1408,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_EthIf_IFID">
                <property name="geometry">
@@ -1319,6 +1424,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_EthIf_RemoteInstall">
                <property name="geometry">
@@ -1331,6 +1439,9 @@
                </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
               <widget class="QLabel" name="text_EthIf_Subnet">
@@ -1358,6 +1469,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_EthIf_SubnetMask">
                <property name="geometry">
@@ -1371,6 +1485,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_EthIf_SNMPConfig">
                <property name="geometry">
@@ -1383,6 +1500,9 @@
                </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
              </widget>
@@ -1479,6 +1599,9 @@
                  <property name="text">
                   <string/>
                  </property>
+                 <property name="textInteractionFlags">
+                  <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                 </property>
                 </widget>
                </item>
                <item row="3" column="1">
@@ -1503,6 +1626,9 @@
                  </property>
                  <property name="text">
                   <string/>
+                 </property>
+                 <property name="textInteractionFlags">
+                  <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                  </property>
                 </widget>
                </item>
@@ -1529,6 +1655,9 @@
                  <property name="text">
                   <string/>
                  </property>
+                 <property name="textInteractionFlags">
+                  <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                 </property>
                 </widget>
                </item>
                <item row="4" column="1">
@@ -1554,6 +1683,9 @@
                  <property name="text">
                   <string/>
                  </property>
+                 <property name="textInteractionFlags">
+                  <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                 </property>
                 </widget>
                </item>
                <item row="2" column="1">
@@ -1578,6 +1710,9 @@
                  </property>
                  <property name="text">
                   <string/>
+                 </property>
+                 <property name="textInteractionFlags">
+                  <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                  </property>
                 </widget>
                </item>
@@ -1805,6 +1940,9 @@
                  <property name="text">
                   <string/>
                  </property>
+                 <property name="textInteractionFlags">
+                  <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                 </property>
                 </widget>
                </item>
                <item row="2" column="0">
@@ -1885,6 +2023,9 @@
                  <property name="text">
                   <string/>
                  </property>
+                 <property name="textInteractionFlags">
+                  <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                 </property>
                 </widget>
                </item>
               </layout>
@@ -1922,6 +2063,9 @@
                </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
               <widget class="QLabel" name="text_Memory_DRAM_LBlock">
@@ -1980,6 +2124,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Memory_DRAM_available">
                <property name="geometry">
@@ -1993,6 +2140,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Memory_DRAM_LBlock">
                <property name="geometry">
@@ -2005,6 +2155,9 @@
                </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
              </widget>
@@ -2055,6 +2208,9 @@
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Memory_SRAM_NotUsed">
                <property name="geometry">
@@ -2070,6 +2226,9 @@
                </property>
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
               <widget class="QLabel" name="text_Memory_SRAM_USERRAM">
@@ -2178,6 +2337,9 @@
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Memory_USERRAM_Used">
                <property name="geometry">
@@ -2193,6 +2355,9 @@
                </property>
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
               <widget class="QLabel" name="label_Memory_USERRAM_Available">
@@ -2210,6 +2375,9 @@
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Memory_USERRAM_LBlock">
                <property name="geometry">
@@ -2226,6 +2394,9 @@
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Memory_USERRAM_Device">
                <property name="geometry">
@@ -2241,6 +2412,9 @@
                </property>
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
               <widget class="QLabel" name="text_Memory_SRAM_REMMEM_RemGlobal">
@@ -2349,6 +2523,9 @@
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Memory_SRAM_REMMEM_Available">
                <property name="geometry">
@@ -2364,6 +2541,9 @@
                </property>
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
               <widget class="QLabel" name="label_Memory_SRAM_REMMEM_Size">
@@ -2381,6 +2561,9 @@
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Memory_SRAM_REMMEM_RemLocal">
                <property name="geometry">
@@ -2396,6 +2579,9 @@
                </property>
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
               <widget class="QLabel" name="label_Memory_SRAM_REMMEM_Permanent">
@@ -2413,6 +2599,9 @@
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Memory_SRAM_REMMEM_Device">
                <property name="geometry">
@@ -2429,6 +2618,9 @@
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Memory_SRAM_REMMEM_LBlock">
                <property name="geometry">
@@ -2444,6 +2636,9 @@
                </property>
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
              </widget>
@@ -2520,6 +2715,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_TimerConf_mvostc">
                <property name="geometry">
@@ -2533,6 +2731,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_TimerConf_SystemTick">
                <property name="geometry">
@@ -2545,6 +2746,9 @@
                </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
               <widget class="QLabel" name="text_TimerConf_TaskClassIdleTime">
@@ -2585,6 +2789,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_TimerConf_TaskClassIdleTime">
                <property name="geometry">
@@ -2597,6 +2804,9 @@
                </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
              </widget>
@@ -2690,6 +2900,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_CPUUsage_Maximum">
              <property name="geometry">
@@ -2703,6 +2916,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
             </widget>
             <widget class="QLabel" name="label_CPUUsage_Average">
              <property name="geometry">
@@ -2715,6 +2931,9 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
              </property>
             </widget>
            </widget>
@@ -2980,6 +3199,9 @@
                <property name="text">
                 <string>Configured:</string>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="text_Hardware_Plugged">
                <property name="geometry">
@@ -3006,6 +3228,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Hardware_Configured">
                <property name="geometry">
@@ -3019,6 +3244,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Hardware_Plugged">
                <property name="geometry">
@@ -3031,6 +3259,9 @@
                </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
               <widget class="QLabel" name="text_Hardware_Supervised">
@@ -3057,6 +3288,9 @@
                </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
              </widget>
@@ -3168,6 +3402,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Hardware_Serialnumber">
                <property name="geometry">
@@ -3180,6 +3417,9 @@
                </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
               <widget class="QLabel" name="label_Hardware_Firmware">
@@ -3194,6 +3434,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Hardware_HwRevision">
                <property name="geometry">
@@ -3206,6 +3449,9 @@
                </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
               <widget class="QLabel" name="label_Hardware_HwVariant">
@@ -3220,6 +3466,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Hardware_EquipmentID">
                <property name="geometry">
@@ -3232,6 +3481,9 @@
                </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
              </widget>
@@ -3370,6 +3622,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Hardware_Channel_ForceStatus">
                <property name="geometry">
@@ -3382,6 +3637,9 @@
                </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
               <widget class="QLabel" name="label_Hardware_Channel_ForceValue">
@@ -3396,6 +3654,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Hardware_Channel_ID">
                <property name="geometry">
@@ -3408,6 +3669,9 @@
                </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
               <widget class="QLabel" name="label_Hardware_Channel_IECType">
@@ -3422,6 +3686,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Hardware_Channel_IECValue">
                <property name="geometry">
@@ -3434,6 +3701,9 @@
                </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
               <widget class="QLabel" name="label_Hardware_Channel_Name">
@@ -3448,6 +3718,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Hardware_Channel_PhysicalValue">
                <property name="geometry">
@@ -3461,6 +3734,9 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
               </widget>
               <widget class="QLabel" name="label_Hardware_Channel_Type">
                <property name="geometry">
@@ -3473,6 +3749,9 @@
                </property>
                <property name="text">
                 <string/>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
              </widget>
@@ -4162,7 +4441,7 @@ Note: Only the last 100 entries are visible here! Open logger files in AS to see
                     <x>0</x>
                     <y>0</y>
                     <width>150</width>
-                    <height>135</height>
+                    <height>30</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="vertLayoutLogger">
