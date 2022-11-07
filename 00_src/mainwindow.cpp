@@ -1632,9 +1632,9 @@ void MainWindow::setup_UI(){
 
     // Hardware Tree Selection Signals (for arrow keys)
     ui->tree_Hardware->setSelectionMode(QAbstractItemView::SingleSelection);
-    connect(ui->tree_Hardware, SIGNAL(itemSelectionChanged()), this, SLOT(on_tree_Hardware_selectionChanged()));
+    connect(ui->tree_Hardware, SIGNAL(itemSelectionChanged()), this, SLOT(on_tree_Hardware_selectionChanged()), Qt::QueuedConnection);
     ui->tree_Hardware_Channels->setSelectionMode(QAbstractItemView::SingleSelection);
-    connect(ui->tree_Hardware_Channels, SIGNAL(itemSelectionChanged()), this, SLOT(on_tree_Hardware_Channels_selectionChanged()));
+    connect(ui->tree_Hardware_Channels, SIGNAL(itemSelectionChanged()), this, SLOT(on_tree_Hardware_Channels_selectionChanged()), Qt::QueuedConnection);
 
     // Selection Mode for all Tables
     QList<QTableWidget *> uiTables = ui->centralWidget->findChildren<QTableWidget *>();
