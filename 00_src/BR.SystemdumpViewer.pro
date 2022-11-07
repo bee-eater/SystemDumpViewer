@@ -57,7 +57,9 @@ INCLUDEPATH += "$$PWD/libs/qwt/include"
 
 LIBS += -lws2_32 \
         -lpsapi \
-        "$$PWD/libs/qwt/libqwt.a"
+
+win32:CONFIG(release, debug|release): LIBS += "$$PWD/libs/qwt/libqwt.a"
+else:win32:CONFIG(debug, debug|release): LIBS += "$$PWD/libs/qwt/libqwtd.a"
 
 #-------------------------------------------------
 # Versioning
