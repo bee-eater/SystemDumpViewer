@@ -416,8 +416,10 @@ int MainWindow::add_Hardware(){
             this->vHardwareErrorPaths.push_back(QStringList());
             this->vHardwareErrorPaths[this->vHardwareErrorPaths.size()-1] = this->SysDump.Sections.Hardware.vNode[(*index)].IOInformation.ModulePath.split(QString("."));            
         } else {
-            this->SysDump.Sections.Hardware.HwError = true;
             treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_warn.png")));
+            this->SysDump.Sections.Hardware.HwError = true;
+            this->vHardwareErrorPaths.push_back(QStringList());
+            this->vHardwareErrorPaths[this->vHardwareErrorPaths.size()-1] = this->SysDump.Sections.Hardware.vNode[(*index)].IOInformation.ModulePath.split(QString("."));
         }
 
         // Search for childs
@@ -470,8 +472,10 @@ int MainWindow::add_Hardware(){
             this->vHardwareErrorPaths.push_back(QStringList());
             this->vHardwareErrorPaths[this->vHardwareErrorPaths.size()-1] = this->SysDump.Sections.Hardware.vNode[(*index)].IOInformation.ModulePath.split(QString("."));
         } else {
-            this->SysDump.Sections.Hardware.HwError = true;
             treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_warn.png")));
+            this->SysDump.Sections.Hardware.HwError = true;
+            this->vHardwareErrorPaths.push_back(QStringList());
+            this->vHardwareErrorPaths[this->vHardwareErrorPaths.size()-1] = this->SysDump.Sections.Hardware.vNode[(*index)].IOInformation.ModulePath.split(QString("."));
         }
 
         // Search for childs
