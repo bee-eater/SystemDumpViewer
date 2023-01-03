@@ -404,11 +404,12 @@ int MainWindow::add_Hardware(){
 
         // Set own icon
         // Status 0 / 1:    Configured = Plugged (ModuleOk 1/2) -> "check"
+        // Status 8:        Module that does not need config?! --> ZF configured / EnDat Motor plugged
         // Status 2:        not plugged -> "cross"
         // Status 5:        Something Plugged / not configured -> "question"
         if(this->SysDump.Sections.Hardware.vNode[*index].Status == 0 || this->SysDump.Sections.Hardware.vNode[*index].Status == 1){
             treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_ok.png")));
-        } else if(this->SysDump.Sections.Hardware.vNode[*index].Status == 8 && this->SysDump.Sections.Hardware.vNode[*index].ModuleStatus.Configured == "X20ZF0000"){
+        } else if(this->SysDump.Sections.Hardware.vNode[*index].Status == 8){
             treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_ok.png")));
         } else if(this->SysDump.Sections.Hardware.vNode[*index].Status == 2 && !(this->SysDump.Sections.Hardware.vNode[*index].ModuleStatus.Configured == "not configured")) {
             treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_err.png")));
@@ -460,11 +461,12 @@ int MainWindow::add_Hardware(){
 
         // Set own icon
         // Status 0 / 1:    Configured = Plugged (ModuleOk 1/2) -> "check"
+        // Status 8:        Module that does not need config?! --> ZF configured and nothing plugged or a plugged EnDat Motor have shown this value
         // Status 2:        not plugged -> "cross"
         // Status 5:        Something Plugged / not configured -> "question"
         if(this->SysDump.Sections.Hardware.vNode[*index].Status == 0 || this->SysDump.Sections.Hardware.vNode[*index].Status == 1){
             treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_ok.png")));
-        } else if(this->SysDump.Sections.Hardware.vNode[*index].Status == 8 && this->SysDump.Sections.Hardware.vNode[*index].ModuleStatus.Configured == "X20ZF0000"){
+        } else if(this->SysDump.Sections.Hardware.vNode[*index].Status == 8){
             treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_ok.png")));
         } else if(this->SysDump.Sections.Hardware.vNode[*index].Status == 2 && !(this->SysDump.Sections.Hardware.vNode[*index].ModuleStatus.Configured == "not configured")) {
             treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_err.png")));
