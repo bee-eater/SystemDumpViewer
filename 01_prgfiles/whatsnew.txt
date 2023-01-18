@@ -2,6 +2,7 @@
 <br/>
 <br/>
 <ul>
+    <li>Added update checking on github</li>
     <li>Settings file location changed to AppData</li>
     <li>Fixed partition size bargraph</li>
     <li>Added CF serial number, CF model number, storage wear, NTP value strings</li>

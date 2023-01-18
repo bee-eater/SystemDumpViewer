@@ -10,6 +10,7 @@
 #include <tlhelp32.h>
 #include <commctrl.h>
 #include <psapi.h>
+#include <sstream>
 
 #include <QClipboard>
 #include <QDebug>
@@ -37,6 +38,8 @@
 #include <QTextDocument>
 #include <QGuiApplication>
 #include <QScreen>
+#include <QtNetwork>
+#include <QSslSocket>
 
 #include "qwt_plot.h"
 
@@ -58,6 +61,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     // Set fixed size for window
     QWidget::setMinimumSize(DEFAULT_WINDOW_WIDTH,DEFAULT_WINDOW_HEIGHT);
+
+    // For update checking
+    update_nwm = new QNetworkAccessManager();
+    update_nw_request.setUrl(QUrl("https://api.github.com/repos/bee-eater/SystemDumpViewer/releases/latest"));
+    QObject::connect(update_nwm, SIGNAL(finished(QNetworkReply*)), this, SLOT(on_nwmCheckUpdate_finished(QNetworkReply*)));
 
     // Load the config.ini
     this->load_iniFile();
@@ -92,6 +100,12 @@ MainWindow::MainWindow(QWidget *parent) :
     // Initialize theme (<0 loads the saved themefile!)
     this->updateColorTheme(-1);
 
+    // Check for updates :: Updateserver just for displaying purposes in options...
+    this->settings->setValue("updateserver","https://api.github.com/repos/bee-eater/SystemDumpViewer/releases/latest");
+    if(this->settings->value("autoCheckUpdates",true).toBool()){
+        update_nwm->get(update_nw_request);
+    }
+
     qApp->installEventFilter(this);
 }
 
@@ -102,6 +116,7 @@ MainWindow::~MainWindow()
     }
 
     delete ui;
+    delete update_nwm;
 }
 
 bool MainWindow::check_IsHelpOpen()
@@ -840,115 +855,53 @@ void MainWindow::on_actionSave_position_triggered()
 
 void MainWindow::on_actionCheck_for_updates_triggered()
 {
-    xml_document<> doc;
-
-    // XML HEADER
-    xml_node<> *node = doc.allocate_node(node_declaration);
-    xml_attribute<> *attr = doc.allocate_attribute("version","1.0");
-    node->append_attribute(attr);
-    attr = doc.allocate_attribute("encoding","iso-8859-1");
-    node->append_attribute(attr);
-    doc.append_node(node);
-
-    // XML BODY
-    node=doc.allocate_node(node_element, "sdvWgMessage", "");
-    doc.append_node(node);
-    xml_node<> *subNode = doc.allocate_node(node_element, "Version", this->Version.toStdString().c_str());
-    node->append_node(subNode);
-
-    char buffer[512];
-    char *end = print(buffer, doc, 0);
-    *end = 0;
-
-    QString httpBody;
-    for(int i =0;i<512;i++){
-        httpBody.append(buffer[i]);
+    if(QSslSocket::supportsSsl()){
+        update_nwm->get(update_nw_request);
+    } else {
+        QMessageBox::critical(this,tr("Error!"),QString("Error checking for updates! (No SSL support)"));
     }
-    doc.clear();
+}
 
-    // SEND MESSAGE TO SERVER
-    QHttpPart textHttpPOSTBody;
-    QHttpMultiPart httpMultiPart;
-    textHttpPOSTBody.setBody(httpBody.toLatin1());
-    httpMultiPart.append(textHttpPOSTBody);
-    QString url;
 
-    if(this->settings->value("updateserver","").toString() != QString("")){
-        url = QString("http://" + this->settings->value("updateserver","").toString() + "/sdvupdate.php");
+void MainWindow::ParseVersion(int result[4], const std::string& input)
+{
+    std::istringstream parser(input);
+    parser >> result[0];
+    for(int idx = 1; idx < 4; idx++)
+    {
+        parser.get(); //Skip period
+        parser >> result[idx];
+    }
+}
 
-        if(this->netHttpPOST(url,&httpMultiPart)){
+bool MainWindow::LessThanVersion(const std::string& a,const std::string& b)
+{
+    int parsedA[4], parsedB[4];
+    ParseVersion(parsedA, a);
+    ParseVersion(parsedB, b);
+    return std::lexicographical_compare(parsedA, parsedA + 4, parsedB, parsedB + 4);
+}
 
-            qDebug() << this->netReplyPOST;
+void MainWindow::on_nwmCheckUpdate_finished(QNetworkReply *reply){
 
-            if(this->netReplyPOST == QString("sdvNoUpdate")){
-                QMessageBox::information(this,tr("Checking for updates ..."),tr("Congratulations! You are using the newest version!"));
-            } else {
-
-                // Check if starts with xml header!
-                if(this->netReplyPOST.indexOf("<?xml")!=0){
-                    QMessageBox::warning(this,tr("Error!"),tr("Error reading server answer!"));
-
-                } else {
-
-                    // Read version and download link
-                    QString newVersion;
-                    QString downloadLink;
-
-                    doc.parse<0>(this->netReplyPOST.toLocal8Bit().QByteArray::data());
-
-                    // Check nodes before accessing
-                    if(doc.first_node("sdvWgMessage") != nullptr){
-                        if(doc.first_node("sdvWgMessage")->first_node("Version") != nullptr) {
-                            newVersion = QString::fromUtf8(doc.first_node("sdvWgMessage")->first_node("Version")->value());
-                        } else {
-                            QMessageBox::warning(this,tr("Error!"),tr("Error reading server answer!"));
-                            return;
-                        }
-
-                        if(doc.first_node("sdvWgMessage")->first_node("Download") != nullptr) {
-                            downloadLink = QString::fromUtf8(doc.first_node("sdvWgMessage")->first_node("Download")->value());
-                        } else {
-                            QMessageBox::warning(this,tr("Error!"),tr("Error reading server answer!"));
-                            return;
-                        }
-
-                        // Ask for installation
-                        QMessageBox::StandardButton bUpdate;
-                        bUpdate = QMessageBox::question(this, tr("Checking for updates ..."), tr("A newer version of this Application was found!\n\nYour version: %1\nNew version: %2\n\nDo you want to download and install the newer Systemdump Viewer?").arg(this->Version,newVersion),
-                                                      QMessageBox::Yes|QMessageBox::No);
-
-                        if (bUpdate == QMessageBox::Yes) {
-                            if(!QDir(this->extractionPath).exists())
-                                QDir().mkdir(this->extractionPath);
-                            QString updateFile = this->extractionPath+"/"+QDir::cleanPath(downloadLink).split("/").at(QDir::cleanPath(downloadLink).split("/").size()-1);
-                            QStringList arguments;
-                            arguments.append("/SILENT");
-
-                            if(this->netHttpDownload(downloadLink,updateFile)){
-                                this->settings->setValue("updated",true);
-                                this->settings->setValue("updatefile",updateFile);
-                                this->trigger_ApplicationQt(updateFile,arguments);
-                                this->close();
-                            } else {
-                                QMessageBox::warning(this,tr("Error!"),tr("Oooops... Something went wrong downloading the update!"));
-                                return;
-                            }
-                        }
-
-                    } else {
-                        QMessageBox::warning(this,tr("Error!"),tr("Error reading server answer!"));
-                        return;
-                    }
-                }
-            }
-        } else {
-            QMessageBox::warning(this,tr("Error!"),this->netError);
-            return;
+    if (reply->error()) {
+        this->statusbar->showMessage(tr("Error checking for updates: ") + reply->errorString());
+        return;
+    }
+    QJsonDocument document = QJsonDocument::fromJson(reply->readAll());
+    QJsonObject rootObj = document.object();
+    QString version = rootObj["name"].toString();
+    version.remove(0,1);
+    qDebug() << this->Version << " :: " << version;
+    if(LessThanVersion(this->Version.toStdString(),version.toStdString())){
+        QMessageBox msgBox; msgBox.setText(tr("Found update!")); QAbstractButton* pButtonGetIt = msgBox.addButton(tr("Get it!"), QMessageBox::YesRole); msgBox.addButton(tr("Close"), QMessageBox::NoRole);
+        msgBox.exec();
+        if (msgBox.clickedButton()==pButtonGetIt) {
+            QDesktopServices::openUrl(QUrl("https://github.com/bee-eater/SystemDumpViewer/releases"));
         }
     } else {
-        QMessageBox::information(this,tr("Error!"),tr("No update server specified in options!"));
+        this->statusbar->showMessage(tr("You already have the newest version: ") + this->Version);
     }
-
 }
 
 void MainWindow::on_actionClose_xml_triggered()

@@ -436,6 +436,25 @@ padding: 10px; color: white;
          <string>Show splash screen at startup</string>
         </property>
        </widget>
+       <widget class="QCheckBox" name="check_option_autoCheckUpdates">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>250</y>
+          <width>300</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Check for updates on startup</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="page_paths">
        <widget class="QWidget" name="layoutWidget">
@@ -444,7 +463,7 @@ padding: 10px; color: white;
           <x>10</x>
           <y>114</y>
           <width>461</width>
-          <height>176</height>
+          <height>188</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
@@ -675,6 +694,9 @@ padding: 10px; color: white;
         </property>
        </widget>
        <widget class="QLineEdit" name="label_options_updateserver">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -682,6 +704,9 @@ padding: 10px; color: white;
           <width>459</width>
           <height>20</height>
          </rect>
+        </property>
+        <property name="text">
+         <string>https://github.com/bee-eater/SystemDumpViewer/releases/latest</string>
         </property>
        </widget>
       </widget>

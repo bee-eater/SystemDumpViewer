@@ -176,6 +176,11 @@ public:
     QGraphicsColorizeEffect reportBgEffect;
     QStringList languageFiles;                  /**< StringList with all available Language files */
 
+    // UPDATE CHECKING
+    QNetworkAccessManager *update_nwm;
+    QNetworkRequest update_nw_request;
+    void ParseVersion(int result[4], const std::string& input);
+    bool LessThanVersion(const std::string& a,const std::string& b);
 
     // READ AND DISPLAY XML
     bool readXML(const char* filename, bool updateRecentFileNameList = true, QString cWindowTitle = "");         /**< Function that reads the xml file */
@@ -436,8 +441,8 @@ private slots:
     void on_central_pressed_esc();
 
     // NETWORKING
+    void on_nwmCheckUpdate_finished(QNetworkReply *reply);
     void on_netAccManDownload_finished(QNetworkReply *netReply);
-
     void on_actionCheck_for_updates_triggered();
 
 public slots:

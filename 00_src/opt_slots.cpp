@@ -25,6 +25,7 @@ void OptionWindow::on_buttonBox_accepted()
     }
     this->Main->settings->setValue("keeptempfiles",(ui->check_option_keepFiles->checkState() == 2));
     this->Main->settings->setValue("downloaddatafiles",(ui->check_option_downlaodData->checkState() == 2));
+    this->Main->settings->setValue("autoCheckUpdates",(ui->check_option_autoCheckUpdates->checkState()==2));
     this->Main->settings->setValue("showsplash",(ui->check_option_splashScreen->checkState()==2));
     this->Main->settings->setValue("brhelpexplorer",ui->label_options_helpexplorer->text());
     this->Main->settings->setValue("brsearchwebprefix",ui->label_options_websearch_prefix->text());
@@ -34,7 +35,6 @@ void OptionWindow::on_buttonBox_accepted()
     this->Main->settings->setValue("ashelpwaittime",ui->label_options_timetowaitforhelp->text().toInt());
     this->Main->settings->setValue("hwdoubleclick",ui->combo_option_hardwaredoubleclick->currentIndex());
     this->Main->settings->setValue("hwsearchfor",ui->combo_option_hwSearch->currentIndex());
-    this->Main->settings->setValue("updateserver",ui->label_options_updateserver->text());
 
     if(static_cast<unsigned int>(ui->combo_option_themes->currentIndex()) < this->Main->vColorThemes.size())
         this->Main->settings->setValue("themefile",this->Main->vColorThemes[static_cast<unsigned int>(ui->combo_option_themes->currentIndex())].filename);

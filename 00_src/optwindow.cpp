@@ -45,7 +45,6 @@ OptionWindow::OptionWindow(QWidget *parent, MainWindow *w) :
         ui->label_options_serialsearch_prefix->setText(this->Main->settings->value("brsearchserprefix").toString());
         ui->label_options_serialsearch_suffix->setText(this->Main->settings->value("brsearchsersuffix").toString());
         ui->label_options_timetowaitforhelp->setText(this->Main->settings->value("ashelpwaittime").toString());
-        ui->label_options_updateserver->setText(this->Main->settings->value("updateserver").toString());
     // <<<-----------------------------------------------------
 
 
@@ -53,6 +52,14 @@ OptionWindow::OptionWindow(QWidget *parent, MainWindow *w) :
     // ----------------------------------------------------->>>
         ui->check_option_splashScreen->setChecked(this->Main->settings->value("showsplash",true).toBool());
     // <<<-----------------------------------------------------
+
+
+    // Update checking
+    // ----------------------------------------------------->>>
+        ui->check_option_autoCheckUpdates->setChecked(this->Main->settings->value("autoCheckUpdates",true).toBool());
+        ui->label_options_updateserver->setText(this->Main->settings->value("updateserver").toString());
+    // <<<-----------------------------------------------------
+
 
     // Load language files available
     // ----------------------------------------------------->>>
