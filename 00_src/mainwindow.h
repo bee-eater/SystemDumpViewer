@@ -181,6 +181,7 @@ public:
     // UPDATE CHECKING
     QNetworkAccessManager *update_nwm;
     QNetworkRequest update_nw_request;
+    bool updateClicked = false;
     void ParseVersion(int result[4], const std::string& input);
     bool LessThanVersion(const std::string& a,const std::string& b);
 

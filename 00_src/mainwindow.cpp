@@ -611,7 +611,7 @@ void MainWindow::on_actionAbout_triggered()
     about.setWindowTitle(tr("About ..."));
     about.setTextFormat(Qt::RichText);
     about.setText(QString("<br/><br/>")+tr("This application is not an official B&R product! For this reason the use is at your own risk and there is NO claim on support or maintenance.")+QString("<br/><br/>Version: %1 <br/><br/>App: %2").arg(this->Version,qApp->applicationFilePath()));
-    about.setInformativeText(tr("Developed with Qt 5.6")+QString("<br/><br/>")+tr("This program uses parts of the following Projects: ") + QString("<br/>- <a href='http://qwt.sf.net'>Qwt Project</a> (CPU-Usage graph)<br/>- <a href='http://rapidxml.sourceforge.net'>RapidXml</a><br/>- <a href='https://github.com/brofield/simpleini'>SimpleIni</a><br/><br/>Copyright %1 <a href='mailto:marcel_krausert@freenet.de'>Marcel Krausert</a> 2021").arg(QString::fromUtf8("\u00A9"))+QString("<br/><br/>")+tr("This work is licensed under the")+QString("<br/>&emsp;&emsp;&emsp;<a href='https://www.gnu.org/licenses/gpl-3.0.de.html'>GNU GENERAL PUBLIC LICENSE, Version 3</a><br/><br/>")+tr("Visit us on")+QString("<a href='https://github.com/bee-eater/SystemDumpViewer'> GitHub</a>!"));
+    about.setInformativeText(tr("Developed with Qt 5.6")+QString("<br/><br/>")+tr("This program uses parts of the following Projects: ") + QString("<br/>- <a href='http://qwt.sf.net'>Qwt Project</a> (CPU-Usage graph)<br/>- <a href='http://rapidxml.sourceforge.net'>RapidXml</a><br/>- <a href='https://github.com/brofield/simpleini'>SimpleIni</a><br/><br/>Copyright %1 <a href='mailto:marcel_krausert@freenet.de'>Marcel Krausert</a> 2023").arg(QString::fromUtf8("\u00A9"))+QString("<br/><br/>")+tr("This work is licensed under the")+QString("<br/>&emsp;&emsp;&emsp;<a href='https://www.gnu.org/licenses/gpl-3.0.de.html'>GNU GENERAL PUBLIC LICENSE, Version 3</a><br/><br/>")+tr("Visit us on")+QString("<a href='https://github.com/bee-eater/SystemDumpViewer'> GitHub</a>!"));
     about.setStandardButtons(QMessageBox::Ok);
     about.setIconPixmap(QPixmap("://images/about.png").scaledToWidth(128));
     about.setDefaultButton(QMessageBox::Ok);
@@ -856,6 +856,7 @@ void MainWindow::on_actionSave_position_triggered()
 void MainWindow::on_actionCheck_for_updates_triggered()
 {
     if(QSslSocket::supportsSsl()){
+        this->updateClicked = true;
         update_nwm->get(update_nw_request);
     } else {
         QMessageBox::critical(this,tr("Error!"),QString("Error checking for updates! (No SSL support)"));
@@ -890,18 +891,41 @@ void MainWindow::on_nwmCheckUpdate_finished(QNetworkReply *reply){
     }
     QJsonDocument document = QJsonDocument::fromJson(reply->readAll());
     QJsonObject rootObj = document.object();
+
     QString version = rootObj["name"].toString();
+    QString msg = rootObj["body"].toString();
+    if(msg == ""){
+        msg = tr("Found update!");
+    } else {
+        msg = "Changes: \n\n" + msg;
+    }
+
     version.remove(0,1);
     qDebug() << this->Version << " :: " << version;
+
+    QString ignore = this->settings->value("updateIgnoreVersion").toString();
+
     if(LessThanVersion(this->Version.toStdString(),version.toStdString())){
-        QMessageBox msgBox; msgBox.setText(tr("Found update!")); QAbstractButton* pButtonGetIt = msgBox.addButton(tr("Get it!"), QMessageBox::YesRole); msgBox.addButton(tr("Close"), QMessageBox::NoRole);
-        msgBox.exec();
-        if (msgBox.clickedButton()==pButtonGetIt) {
-            QDesktopServices::openUrl(QUrl("https://github.com/bee-eater/SystemDumpViewer/releases"));
+        if(LessThanVersion(ignore.toStdString(),version.toStdString()) || this->updateClicked){
+            QMessageBox msgBox;
+            QAbstractButton* pButtonGetIt = msgBox.addButton(tr("Get it!"), QMessageBox::YesRole);
+            QAbstractButton* pButtonIgnore = msgBox.addButton(tr("Ignore version"), QMessageBox::ActionRole);
+            msgBox.addButton(tr("Close"), QMessageBox::NoRole);
+            msgBox.setText(msg);
+            msgBox.exec();
+            if (msgBox.clickedButton()==pButtonGetIt){
+                QDesktopServices::openUrl(QUrl("https://github.com/bee-eater/SystemDumpViewer/releases"));
+            } else if(msgBox.clickedButton()==pButtonIgnore){
+                this->settings->setValue("updateIgnoreVersion", version);
+            }
+        } else {
+            this->statusbar->showMessage(tr("You chose to ignore this version: ") + ignore);
         }
     } else {
         this->statusbar->showMessage(tr("You already have the newest version: ") + this->Version);
     }
+
+    this->updateClicked = false;
 }
 
 void MainWindow::on_actionClose_xml_triggered()
