@@ -257,7 +257,7 @@ padding: 10px; color: white;
        </size>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="page_general">
        <widget class="QComboBox" name="combo_option_language">
@@ -364,7 +364,7 @@ padding: 10px; color: white;
          <rect>
           <x>10</x>
           <y>110</y>
-          <width>421</width>
+          <width>461</width>
           <height>21</height>
          </rect>
         </property>
@@ -383,7 +383,7 @@ padding: 10px; color: white;
          <rect>
           <x>10</x>
           <y>160</y>
-          <width>421</width>
+          <width>461</width>
           <height>21</height>
          </rect>
         </property>
@@ -422,7 +422,7 @@ padding: 10px; color: white;
          <rect>
           <x>10</x>
           <y>216</y>
-          <width>291</width>
+          <width>451</width>
           <height>21</height>
          </rect>
         </property>
@@ -441,7 +441,7 @@ padding: 10px; color: white;
          <rect>
           <x>10</x>
           <y>250</y>
-          <width>300</width>
+          <width>461</width>
           <height>21</height>
          </rect>
         </property>
@@ -586,7 +586,7 @@ padding: 10px; color: white;
          <rect>
           <x>10</x>
           <y>106</y>
-          <width>381</width>
+          <width>451</width>
           <height>21</height>
          </rect>
         </property>
