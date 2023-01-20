@@ -60,6 +60,10 @@ OptionWindow::OptionWindow(QWidget *parent, MainWindow *w) :
         ui->label_options_updateserver->setText(this->Main->settings->value("updateserver").toString());
     // <<<-----------------------------------------------------
 
+    // Load available help languages into dropdown
+    // ----------------------------------------------------->>>
+        loadHelpLanguages(this->Main->settings->value("brhelpexplorer").toString());
+    // <<<-----------------------------------------------------
 
     // Load language files available
     // ----------------------------------------------------->>>
@@ -179,4 +183,28 @@ void OptionWindow::on_navBarSelectionChanged(){
 OptionWindow::~OptionWindow()
 {
     delete ui;
+}
+
+void OptionWindow::loadHelpLanguages(QString helpExplorer){
+
+    QString helpLangIcon;
+    QStringList helpLanguages = this->Main->getInstalledHelpLanguages(helpExplorer);
+    if(helpLanguages.count() == 0){
+        ui->combo_option_helplanguage->clear();
+        ui->combo_option_helplanguage->addItem("--");
+        ui->combo_option_helplanguage->setToolTip(tr("No installed help was found in the help path provided! Please check the path above!"));
+        ui->combo_option_helplanguage->setDisabled(true);
+    } else {
+        ui->combo_option_helplanguage->clear();
+        ui->combo_option_helplanguage->setDisabled(false);
+        ui->combo_option_helplanguage->setToolTip(QString());
+        for(int i=0;i<helpLanguages.count();i++){
+            ui->combo_option_helplanguage->addItem(helpLanguages.at(i));
+            helpLangIcon = "://images/flag_" + helpLanguages.at(i) + ".png";
+            ui->combo_option_helplanguage->setItemIcon(i,QPixmap(helpLangIcon));
+            if(ui->combo_option_helplanguage->itemText(i) == this->Main->settings->value("brhelplang").toString())
+                ui->combo_option_helplanguage->setCurrentIndex(i);
+        }
+    }
+
 }

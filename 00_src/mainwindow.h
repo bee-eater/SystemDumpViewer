@@ -164,7 +164,6 @@ public:
     static const QString Version;               /**< String that contains the version information of the application */
     QStatusBar *statusbar;                      /**< MainWindow statusbar */
 
-
     // COLOR SCHEME AND LANGUAGE
     void updateLanguage(bool update=0);         /**< Updates the UI Langauge */
     void updateColorTheme(int themeIndex);      /**< Updates the color sheme of the UI */
@@ -175,6 +174,9 @@ public:
     QGraphicsColorizeEffect optionBgEffect;     /**< ColorEffect for the OptionBackground */
     QGraphicsColorizeEffect reportBgEffect;
     QStringList languageFiles;                  /**< StringList with all available Language files */
+
+    // HELP SYSTEM
+    QStringList getInstalledHelpLanguages(QString helpExplorer);
 
     // UPDATE CHECKING
     QNetworkAccessManager *update_nwm;
@@ -602,7 +604,7 @@ private:
 
     // HELPER FUNCTIONS
     char* pCharToUtf8(const char* charsrc); /**< Function to convert a const char * into a QString! Usage: QString::fromUtf8(pCharToUtf8(src)) */
-    bool start_Application(LPCTSTR lpApplicationName);
+    bool start_Application(LPCTSTR lpApplicationName, QString cmdArgs);
     int start_ApplicationQt(const QString &program, const QStringList &arguments);
     void trigger_ApplicationQt(const QString &program, const QStringList &arguments);
     static bool sort_LogSortByTimeStampRev(const sLogModuleEntry &lhs, const sLogModuleEntry  &rhs);

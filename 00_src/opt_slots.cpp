@@ -14,6 +14,7 @@ void OptionWindow::on_btn_options_browseBRhelp_released()
                                                     PathList.at(0), tr("Files (Br.Help.Explorer.exe)"));
     if(fileName != QString("")){
         ui->label_options_helpexplorer->setText(fileName);
+        loadHelpLanguages(fileName);
     }
 }
 
@@ -35,6 +36,11 @@ void OptionWindow::on_buttonBox_accepted()
     this->Main->settings->setValue("ashelpwaittime",ui->label_options_timetowaitforhelp->text().toInt());
     this->Main->settings->setValue("hwdoubleclick",ui->combo_option_hardwaredoubleclick->currentIndex());
     this->Main->settings->setValue("hwsearchfor",ui->combo_option_hwSearch->currentIndex());
+
+    if(ui->combo_option_helplanguage->currentText() == "en" || ui->combo_option_helplanguage->currentText() == "de"){
+        this->Main->settings->setValue("brhelplang",ui->combo_option_helplanguage->currentText());
+    }
+
 
     if(static_cast<unsigned int>(ui->combo_option_themes->currentIndex()) < this->Main->vColorThemes.size())
         this->Main->settings->setValue("themefile",this->Main->vColorThemes[static_cast<unsigned int>(ui->combo_option_themes->currentIndex())].filename);

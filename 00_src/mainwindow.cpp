@@ -1238,10 +1238,10 @@ void MainWindow::on_tree_Hardware_custom_openOnHomepage(){
     QVariant UUID = ui->tree_Hardware->currentItem()->data(0,Qt::UserRole);
     QString link;
     if(this->settings->value("hwsearchfor",0).toInt() == HW_PLUGGED){
-        link = this->settings->value("brsearchwebprefix","https://www.br-automation.com/de-de/search/?q=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].ModuleStatus.Plugged+this->settings->value("brsearchwebsuffix","").toString();
+        link = this->settings->value("brsearchwebprefix","https://www.br-automation.com/en/search/?q=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].ModuleStatus.Plugged+this->settings->value("brsearchwebsuffix","").toString();
         this->statusbar->showMessage(tr("Searching for hardware \"%1\" on B&R homepage ...").arg(this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].ModuleStatus.Plugged),DEFAULT_MESSAGE_TIME);
     } else {
-        link = this->settings->value("brsearchwebprefix","https://www.br-automation.com/de-de/search/?q=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].ModuleStatus.Configured+this->settings->value("brsearchwebsuffix","").toString();
+        link = this->settings->value("brsearchwebprefix","https://www.br-automation.com/en/search/?q=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].ModuleStatus.Configured+this->settings->value("brsearchwebsuffix","").toString();
         this->statusbar->showMessage(tr("Searching for hardware \"%1\" on B&R homepage ...").arg(this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].ModuleStatus.Configured),DEFAULT_MESSAGE_TIME);
     }
     QDesktopServices::openUrl(QUrl(link));
@@ -1391,9 +1391,18 @@ void MainWindow::openInBuRHelp(QString search){
     wchar_t ButtonCaption[MAX_PATH];
     //this->vASHelpHwnd.clear();
 
-    // Start B&R Help Explorer
+    // Get selected help language and create cmd args
+    QString helpLang = this->settings->value("brhelplang","").toString();
+    QString cmdArgs;
+    if(helpLang == "en" || helpLang == "de"){
+        cmdArgs = " /L=" + helpLang;
+    } else {
+        // If nothing configured / provided just ignore the language for now!
+        cmdArgs = "";
+    }
+
     if(!this->check_IsHelpOpen())
-        if(!this->start_Application(this->settings->value("brhelpexplorer").toString().toStdWString().c_str()))
+        if(!this->start_Application(this->settings->value("brhelpexplorer").toString().toStdWString().c_str(), cmdArgs))
             return;
 
     // Get hwnd
@@ -1432,6 +1441,32 @@ void MainWindow::openInBuRHelp(QString search){
     }
 
 }
+
+
+// Search for Help-xx\Data\brhelpcontent.xml files in configured help path
+QStringList MainWindow::getInstalledHelpLanguages(QString helpExplorer){
+
+    QStringList helpLangs;
+
+    if(QFile::exists(helpExplorer)){
+
+        QDir ASDir = QFileInfo(helpExplorer).absoluteDir();
+        ASDir.cdUp(); // remove bin-en / bin-de folder by going one up
+        QString ASPath = ASDir.absolutePath();
+        if(QFile::exists(ASPath + "\\Help-de\\Data\\brhelpcontent.xml")){
+            helpLangs.append("de");
+        }
+        if(QFile::exists(ASPath + "\\Help-en\\Data\\brhelpcontent.xml")){
+            helpLangs.append("en");
+        }
+
+    } else {
+        this->statusbar->showMessage(tr("Invalid path to help specified! Check options!"));
+    }
+
+    return helpLangs;
+}
+
 
 char* MainWindow::pCharToUtf8(const char *charsrc){
     return const_cast<char *> (charsrc);
@@ -1848,7 +1883,7 @@ void MainWindow::splashScreenShow(int time){
     splash.finish(this);
 }
 
-bool MainWindow::start_Application(LPCTSTR lpApplicationName)
+bool MainWindow::start_Application(LPCTSTR lpApplicationName, QString cmdArgs)
 {
     // additional information
     STARTUPINFO si;
@@ -1859,9 +1894,12 @@ bool MainWindow::start_Application(LPCTSTR lpApplicationName)
     si.cb = sizeof(si);
     ZeroMemory( &pi, sizeof(pi) );
 
+
+    LPTSTR lptArgs = (LPTSTR)cmdArgs.utf16();
+
      // start the program up
      if(!CreateProcess( lpApplicationName,   // the path
-     nullptr,           // Command line
+     lptArgs,           // Command line
      nullptr,           // Process handle not inheritable
      nullptr,           // Thread handle not inheritable
      FALSE,          // Set handle inheritance to FALSE

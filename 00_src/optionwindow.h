@@ -41,6 +41,7 @@ private:
     Qt::CheckState checkAutoLang_old;
 
     void init_maps();
+    void loadHelpLanguages(QString helpExplorer);
 
 };
 
