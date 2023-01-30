@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network printsupport
+QT       += core5compat gui network printsupport
 
 greaterThan(QT_MAJOR_VERSION, 5): QT += widgets
 
@@ -65,8 +65,8 @@ else:win32:CONFIG(debug, debug|release): LIBS += "$$PWD/libs/qwt/libqwtd.a"
 # Versioning
 #-------------------------------------------------
 MAJOR = 2
-MINOR = 4
-BUGFIX = 6
+MINOR = 5
+BUGFIX = 0
 VERSION_HEADER = ..\github\00_src\version.h
 
 versiontarget.target = $$VERSION_HEADER

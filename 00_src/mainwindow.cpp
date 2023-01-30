@@ -15,7 +15,7 @@
 #include <QClipboard>
 #include <QDebug>
 #include <QDesktopServices>
-#include <QDesktopWidget>
+#include <QScreen>
 #include <QDragEnterEvent>
 #include <QDropEvent>
 #include <QFileDialog>
@@ -152,12 +152,12 @@ bool MainWindow::createPDFReport(int type, QString fileName, QString date){
         /* TYP 1: HW + SERIALNUMBERS */
         if(fileName != QString("")){
                  QPrinter printer;
-                 printer.setOrientation(QPrinter::Portrait);
-                 printer.setPaperSize(QPrinter::A4);
+                 printer.setPageOrientation(QPageLayout::Portrait);
+                 printer.setPageSize(QPageSize::A4);
                  printer.setOutputFileName(fileName);
                  printer.setOutputFormat(QPrinter::PdfFormat);
 
-                 printer.setPageMargins(16, 16, 16, 16, QPrinter::Millimeter);
+                 printer.setPageMargins(QMargins(16, 16, 16, 16), QPageLayout::Millimeter);
 
                  QFile inputCss("css/report.css");
                  inputCss.open(QIODevice::ReadOnly);
@@ -207,7 +207,7 @@ bool MainWindow::createPDFReport(int type, QString fileName, QString date){
                  htmlString.append("</table>");
 
                  QTextDocument doc;
-                 doc.setPageSize(QSizeF(printer.pageRect().size()));
+                 doc.setPageSize(QPageSize(QPageSize::A4).sizePoints());
                  doc.setHtml(htmlString);
                  doc.print(&printer);
                  printer.newPage();
@@ -1039,7 +1039,7 @@ void MainWindow::on_createPDFReport_triggered(){
 void MainWindow::on_createDatapointExport_triggered(){
 
     QString DateStr = QString::number(QDate::currentDate().year()) + QString::number(QDate::currentDate().month())+ QString::number(QDate::currentDate().day());
-    QString filename = QFileDialog::getSaveFileName(this, "Datapoint export", "DatapointExport_" + DateStr + ".csv", "CSV files (.csv)", nullptr, nullptr);
+    QString filename = QFileDialog::getSaveFileName(this, "Datapoint export", "DatapointExport_" + DateStr + ".csv", "CSV files (.csv)", nullptr);
     QFile data(filename);
 
     if(data.open(QFile::WriteOnly | QFile::Truncate))
@@ -1603,9 +1603,9 @@ void MainWindow::setup_UI(){
     qreal monHeight = sSize.height();
 
     // Get total desktop size to validate the saved position (all monitors together!)
-    QDesktopWidget desktop;
-    int totalHeight=desktop.geometry().height();
-    int totalWidth=desktop.geometry().width();
+    QScreen *desktop = QGuiApplication::primaryScreen();
+    int totalHeight=desktop->geometry().height();
+    int totalWidth=desktop->geometry().width();
 
     // Load positions and geometry from settings if saved
     int xpos = settings->value("xpos",(monWidth - this->width())/2).toInt();
@@ -1952,7 +1952,7 @@ bool MainWindow::start_Application(LPCTSTR lpApplicationName, QString cmdArgs)
 
 int MainWindow::start_ApplicationQt(const QString &program, const QStringList &arguments){
     QProcess process;
-    process.setReadChannelMode(QProcess::ForwardedChannels);
+    //process.setReadChannelMode(QProcess::ForwardedChannels);
     process.start(program, arguments);
 
     if (!process.waitForFinished(-1))

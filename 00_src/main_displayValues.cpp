@@ -6,7 +6,6 @@
 #include <QStringRef>
 #include <QIcon>
 
-#include "qwt.h"
 #include "qwt_plot.h"
 #include "qwt_text.h"
 #include "qwt_plot_curve.h"
