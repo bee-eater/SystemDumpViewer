@@ -78,6 +78,9 @@
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">QListWidget 
 { 
@@ -98,7 +101,8 @@ background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(200,
 QListWidget::item 
 { 
 border-bottom: 2px groove gray; 
-padding: 10px; color: white; 
+color: white;
+padding: 10px;
 }
 </string>
      </property>
@@ -129,8 +133,17 @@ padding: 10px; color: white;
      <property name="isWrapping" stdset="0">
       <bool>false</bool>
      </property>
+     <property name="resizeMode">
+      <enum>QListView::Adjust</enum>
+     </property>
+     <property name="spacing">
+      <number>0</number>
+     </property>
      <property name="viewMode">
       <enum>QListView::IconMode</enum>
+     </property>
+     <property name="uniformItemSizes">
+      <bool>false</bool>
      </property>
      <property name="selectionRectVisible">
       <bool>false</bool>
@@ -221,7 +234,6 @@ padding: 10px; color: white;
       <property name="font">
        <font>
         <pointsize>18</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -287,7 +299,6 @@ padding: 10px; color: white;
         </property>
         <property name="font">
          <font>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -306,7 +317,6 @@ padding: 10px; color: white;
         </property>
         <property name="font">
          <font>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -370,7 +380,6 @@ padding: 10px; color: white;
         </property>
         <property name="font">
          <font>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -389,7 +398,6 @@ padding: 10px; color: white;
         </property>
         <property name="font">
          <font>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -428,7 +436,6 @@ padding: 10px; color: white;
         </property>
         <property name="font">
          <font>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -447,7 +454,6 @@ padding: 10px; color: white;
         </property>
         <property name="font">
          <font>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -471,7 +477,6 @@ padding: 10px; color: white;
           <widget class="QLabel" name="text_options_websearch_prefix">
            <property name="font">
             <font>
-             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -487,7 +492,6 @@ padding: 10px; color: white;
           <widget class="QLabel" name="text_options_websearch_suffix">
            <property name="font">
             <font>
-             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -503,7 +507,6 @@ padding: 10px; color: white;
           <widget class="QLabel" name="text_options_serialsearch_prefix">
            <property name="font">
             <font>
-             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -519,7 +522,6 @@ padding: 10px; color: white;
           <widget class="QLabel" name="text_options_serialsearch_suffix">
            <property name="font">
             <font>
-             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -544,7 +546,6 @@ padding: 10px; color: white;
         </property>
         <property name="font">
          <font>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -592,7 +593,6 @@ padding: 10px; color: white;
         </property>
         <property name="font">
          <font>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -611,7 +611,6 @@ padding: 10px; color: white;
         </property>
         <property name="font">
          <font>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -643,7 +642,6 @@ padding: 10px; color: white;
         </property>
         <property name="font">
          <font>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -680,7 +678,6 @@ padding: 10px; color: white;
         </property>
         <property name="font">
          <font>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -699,7 +696,6 @@ padding: 10px; color: white;
         </property>
         <property name="font">
          <font>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -720,7 +716,6 @@ padding: 10px; color: white;
         </property>
         <property name="font">
          <font>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
