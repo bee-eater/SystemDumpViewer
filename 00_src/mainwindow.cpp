@@ -1296,9 +1296,13 @@ void MainWindow::on_tree_Hardware_custom_copySerial(){
 }
 
 void MainWindow::on_tree_Hardware_Channels_selectionChanged(){
-    QVariant UUID = ui->tree_Hardware_Channels->currentItem()->data(ui->tree_Hardware_Channels->currentColumn(),Qt::UserRole);
-    QVariant HwNode = ui->tree_Hardware->currentItem()->data(ui->tree_Hardware_Channels->currentColumn(),Qt::UserRole);
-    this->get_HardwareChannelInformation(HwNode.toInt(), UUID.toInt());
+    if(ui->tree_Hardware_Channels != nullptr){
+        if(ui->tree_Hardware_Channels->currentItem() != nullptr){
+            QVariant UUID = ui->tree_Hardware_Channels->currentItem()->data(ui->tree_Hardware_Channels->currentColumn(),Qt::UserRole);
+            QVariant HwNode = ui->tree_Hardware->currentItem()->data(ui->tree_Hardware_Channels->currentColumn(),Qt::UserRole);
+            this->get_HardwareChannelInformation(HwNode.toInt(), UUID.toInt());
+        }
+    }
 }
 
 void MainWindow::on_tree_ApplicationModules_itemClicked(QTreeWidgetItem *item, int column)
