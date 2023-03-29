@@ -9,8 +9,8 @@ This project adheres to the Contributor Covenant [code of conduct](CONTRIBUTING.
 By participating, you are expected to uphold this code. Please report unacceptable behavior to [the owner](mailto:bee-eater@users.noreply.github.com).
 
 # How to compile
-1. Get Qt 5.12.6 from here: [Download](http://download.qt.io/official_releases/qt/5.12/5.12.6/qt-opensource-windows-x86-5.12.6.exe)
-1. Install Qt with mingw730_32
+1. Get Qt 6.4.2 via online installer from here: [Download](https://www.qt.io/download-open-source)
+1. Install Qt with 11.2.0
 1. Copy the qwt.dll from libs folder to you build/debug or build/release folder	
 
 If you want to use another Qt version, you'll have to compile Qwt first. [Tutorial](https://www.youtube.com/watch?v=ZqFKwF6q7jQ)
