@@ -1274,7 +1274,7 @@ void MainWindow::on_tree_Hardware_custom_openOnHomepage(){
 
 void MainWindow::on_tree_Hardware_custom_openSerialOnHomepage(){
     QVariant UUID = ui->tree_Hardware->currentItem()->data(0,Qt::UserRole);
-    QString link = this->settings->value("brsearchserprefix","https://www.br-automation.com/serial/").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].IOInformation.Serialnumber+this->settings->value("brsearchsersuffix","").toString();
+    QString link = this->settings->value("brsearchserprefix","https://www.br-automation.com/en/search/?q=").toString()+this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].IOInformation.Serialnumber+this->settings->value("brsearchsersuffix","").toString();
     this->statusbar->showMessage(tr("Searching for serial \"%1\" on B&R homepage ...").arg(this->SysDump.Sections.Hardware.vNode[UUID.toUInt()].IOInformation.Serialnumber),DEFAULT_MESSAGE_TIME);
     QDesktopServices::openUrl(QUrl(link));
 }
