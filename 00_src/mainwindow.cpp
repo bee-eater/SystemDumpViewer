@@ -1200,8 +1200,13 @@ void MainWindow::on_recen_openFile()
 }
 
 void MainWindow::on_tree_Hardware_selectionChanged(){
-    QVariant HwNode = ui->tree_Hardware->currentItem()->data(ui->tree_Hardware->currentColumn(),Qt::UserRole);
-    this->get_HardwareInformation(HwNode.toInt());
+    if(ui->tree_Hardware != nullptr){
+        if(ui->tree_Hardware->currentItem() != nullptr){
+            QVariant HwNode = ui->tree_Hardware->currentItem()->data(ui->tree_Hardware->currentColumn(),Qt::UserRole);
+            this->get_HardwareInformation(HwNode.toInt());
+        }
+    }
+
 }
 
 void MainWindow::on_tree_Hardware_itemDoubleClicked()
