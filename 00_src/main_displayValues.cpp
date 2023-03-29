@@ -402,24 +402,30 @@ int MainWindow::add_Hardware(){
         treeItem->setData(0,Qt::UserRole+2,this->SysDump.Sections.Hardware.vNode[(*index)].Status);
 
         // Set own icon
-        // Status 0 / 1:    Configured = Plugged (ModuleOk 1/2) -> "check"
-        // Status 8:        Module that does not need config?! --> ZF configured / EnDat Motor plugged
-        // Status 2:        not plugged -> "cross"
-        // Status 5:        Something Plugged / not configured -> "question"
-        if(this->SysDump.Sections.Hardware.vNode[*index].Status == 0 || this->SysDump.Sections.Hardware.vNode[*index].Status == 1){
-            treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_ok.png")));
-        } else if(this->SysDump.Sections.Hardware.vNode[*index].Status == 8){
-            treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_ok.png")));
-        } else if(this->SysDump.Sections.Hardware.vNode[*index].Status == 2 && !(this->SysDump.Sections.Hardware.vNode[*index].ModuleStatus.Configured == "not configured")) {
-            treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_err.png")));
-            this->SysDump.Sections.Hardware.HwError = true;
-            this->vHardwareErrorPaths.push_back(QStringList());
-            this->vHardwareErrorPaths[this->vHardwareErrorPaths.size()-1] = this->SysDump.Sections.Hardware.vNode[(*index)].IOInformation.ModulePath.split(QString("."));            
-        } else {
-            treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_warn.png")));
-            this->SysDump.Sections.Hardware.HwError = true;
-            this->vHardwareErrorPaths.push_back(QStringList());
-            this->vHardwareErrorPaths[this->vHardwareErrorPaths.size()-1] = this->SysDump.Sections.Hardware.vNode[(*index)].IOInformation.ModulePath.split(QString("."));
+        switch (this->SysDump.Sections.Hardware.vNode[*index].Status) {
+
+            case ST_OK:
+            case ST_WARNING:
+            case ST_IGNORE:
+                treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_ok.png")));
+                break;
+
+            case ST_ERROR:
+            case ST_FAILURE:
+            case ST_INFO:
+            case ST_SUCCESS:
+            case ST_MISSMATCH:
+            case ST_NOTICE:
+                if (!(this->SysDump.Sections.Hardware.vNode[*index].ModuleStatus.Configured == "not configured")) {
+                    treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_err.png")));
+                } else {
+                    treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_warn.png")));
+                }
+                this->SysDump.Sections.Hardware.HwError = true;
+                this->vHardwareErrorPaths.push_back(QStringList());
+                this->vHardwareErrorPaths[this->vHardwareErrorPaths.size()-1] += this->SysDump.Sections.Hardware.vNode[(*index)].IOInformation.ModulePath.split(QString("."));
+                break;
+
         }
 
         // Search for childs
@@ -459,24 +465,30 @@ int MainWindow::add_Hardware(){
         treeItem->setData(0,Qt::UserRole+2,this->SysDump.Sections.Hardware.vNode[(*index)].Status);
 
         // Set own icon
-        // Status 0 / 1:    Configured = Plugged (ModuleOk 1/2) -> "check"
-        // Status 8:        Module that does not need config?! --> ZF configured and nothing plugged or a plugged EnDat Motor have shown this value
-        // Status 2:        not plugged -> "cross"
-        // Status 5:        Something Plugged / not configured -> "question"
-        if(this->SysDump.Sections.Hardware.vNode[*index].Status == 0 || this->SysDump.Sections.Hardware.vNode[*index].Status == 1){
-            treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_ok.png")));
-        } else if(this->SysDump.Sections.Hardware.vNode[*index].Status == 8){
-            treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_ok.png")));
-        } else if(this->SysDump.Sections.Hardware.vNode[*index].Status == 2 && !(this->SysDump.Sections.Hardware.vNode[*index].ModuleStatus.Configured == "not configured")) {
-            treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_err.png")));
-            this->SysDump.Sections.Hardware.HwError = true;
-            this->vHardwareErrorPaths.push_back(QStringList());
-            this->vHardwareErrorPaths[this->vHardwareErrorPaths.size()-1] = this->SysDump.Sections.Hardware.vNode[(*index)].IOInformation.ModulePath.split(QString("."));
-        } else {
-            treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_warn.png")));
-            this->SysDump.Sections.Hardware.HwError = true;
-            this->vHardwareErrorPaths.push_back(QStringList());
-            this->vHardwareErrorPaths[this->vHardwareErrorPaths.size()-1] = this->SysDump.Sections.Hardware.vNode[(*index)].IOInformation.ModulePath.split(QString("."));
+        switch (this->SysDump.Sections.Hardware.vNode[*index].Status) {
+
+            case ST_OK:
+            case ST_WARNING:
+            case ST_IGNORE:
+                treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_ok.png")));
+                break;
+
+            case ST_ERROR:
+            case ST_FAILURE:
+            case ST_INFO:
+            case ST_SUCCESS:
+            case ST_MISSMATCH:
+            case ST_NOTICE:
+                if (!(this->SysDump.Sections.Hardware.vNode[*index].ModuleStatus.Configured == "not configured")) {
+                    treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_err.png")));
+                } else {
+                    treeItem->setIcon(0,QIcon(QPixmap("://images/hwtr_warn.png")));
+                }
+                this->SysDump.Sections.Hardware.HwError = true;
+                this->vHardwareErrorPaths.push_back(QStringList());
+                this->vHardwareErrorPaths[this->vHardwareErrorPaths.size()-1] += this->SysDump.Sections.Hardware.vNode[(*index)].IOInformation.ModulePath.split(QString("."));
+                break;
+
         }
 
         // Search for childs

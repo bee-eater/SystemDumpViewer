@@ -94,6 +94,20 @@
 #define BYTE_PER_MB 1048576
 #define BYTE_PER_KB 1024
 
+/*----------------------------------
+ *
+ * NODE STATUS
+ *
+ * -------------------------------*/
+#define ST_OK          0
+#define ST_WARNING     1
+#define ST_ERROR       2
+#define ST_FAILURE     3
+#define ST_INFO        4
+#define ST_SUCCESS     5
+#define ST_MISSMATCH   6
+#define ST_NOTICE      7
+#define ST_IGNORE      8
 
 /*----------------------------------
  *
