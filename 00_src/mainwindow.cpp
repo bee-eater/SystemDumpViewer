@@ -340,9 +340,9 @@ void MainWindow::dropEvent(QDropEvent* event)
         if(pathList[0].length() > 5){
 
             QFileInfo fileInfo(pathList[0]);
-            extension = fileInfo.completeSuffix();
+            QString fullName = fileInfo.absoluteFilePath();
 
-            if( extension == "xml")
+            if( fullName.endsWith(".xml"))
             {
                 // call a function to open the files
                 this->readXML(pathList[0].toUtf8());
@@ -353,7 +353,8 @@ void MainWindow::dropEvent(QDropEvent* event)
                 ui->tabWidget_Motion->setCurrentIndex(0);
 
             }
-            else if( extension == "tar.gz" ){
+            else if (fullName.endsWith(".tar.gz"))
+            {
                 readTarGz(pathList[0]);
                 // Set UI
                 ui->combo_SelectMenu->setCurrentIndex(0);
@@ -361,7 +362,7 @@ void MainWindow::dropEvent(QDropEvent* event)
                 ui->tabWidget_Motion->setCurrentIndex(0);
             }
             else {
-                QMessageBox::information(this,tr("Information"),tr("Only .xml files can be openend!"));
+                QMessageBox::warning(this,tr("Warning"),tr("Invalid file! Only .xml or .tar.gz files are allowed!"));
             }
         }
 
@@ -401,8 +402,11 @@ bool MainWindow::readTarGz(QString sourceFile)
     QDir::temp().mkdir("sdvtemp");  // create subdir
 
     bool result = extractTarGz(sourceFile, tempPath );  // extract .tar.gz to .tar
+    QString fullName = fileInfo.fileName();
+    QString tarName = fullName.mid(0,fullName.length()-3);
+
     if(result){
-        result = this->extractTarGz( tempPath+"/"+ fileInfo.baseName() + ".tar", tempPath ); // extract .tar
+        result = this->extractTarGz( tempPath+"/"+ tarName, tempPath ); // extract .tar
         if(result){
             this->readXML(QString( tempPath +"/Systemdump.xml").toStdString().c_str(), false,sourceFile);
             recentSetCurrentFile(sourceFile);
@@ -715,7 +719,6 @@ void MainWindow::on_actionLoad_from_PLC_triggered()
                                 QDir().mkdir(this->extractionPath+"/"+this->ipAddress);
 
                                 result = this->netHttpDownload(QString("http://"+this->ipAddress+"/sdm/cgiFileLoop.cgi?type=256"),QString(this->extractionPath+"/"+this->ipAddress+"/Systemdump.tar.gz"));
-                                //result = this->netHttpDownload(QString("http://download.thinkbroadband.com/50MB.zip"),QString(this->extractionPath+"/"+this->ipAddress+"/Systemdump.tar.gz"));
                                 if(result){
                                     result = this->extractTarGz(QString(this->extractionPath+"/"+this->ipAddress+"/Systemdump.tar.gz"),this->extractionPath+"/"+this->ipAddress);
                                     QDir().remove(this->extractionPath+"/"+this->ipAddress+"/Systemdump.tar.gz");
@@ -771,13 +774,18 @@ void MainWindow::on_actionLoad_xml_triggered()
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open Systemdump.xml ..."),
                                                     PathList.at(0), tr("Files (*.xml *tar.gz)"));
     if(QFile(fileName).exists() && fileName != QString("")){
-        QFileInfo fileInfo(fileName);
-        QString fileExtension = fileInfo.completeSuffix();
 
-        if( fileExtension == "xml")
-            this->readXML(fileName.toStdString().c_str());
+        QFileInfo fileInfo(fileName);
+        QString fullName = fileInfo.absoluteFilePath();
+
+        // Check ending manually since Qt can't know at which point the extension starts
+        if( fullName.endsWith(".xml"))
+            this->readXML(fullName.toStdString().c_str());
+        else if (fullName.endsWith(".tar.gz"))
+            readTarGz(fullName);
         else
-            readTarGz(fileName);
+            QMessageBox::warning(this,tr("Warning"),tr("Invalid file! Only .xml or .tar.gz files are allowed!"));
+
 
         // Set UI
         ui->combo_SelectMenu->setCurrentIndex(0);
