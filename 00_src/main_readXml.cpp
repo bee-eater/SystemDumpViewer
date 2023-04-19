@@ -39,69 +39,76 @@ bool MainWindow::readXML(const char* filename, bool updateRecentFileNameList, QS
         if( updateRecentFileNameList )
             recentSetCurrentFile(this->currentFileString);
 
-        std::ifstream file(filename);
-        if(file){
-            std::stringstream buffer;
-            buffer << file.rdbuf();
+        QFile file(filename);
+        if (!file.open(QIODevice::ReadOnly)) {
+            QString errMsg = file.errorString();
+            QMessageBox::warning(this, tr("Warning"), errMsg);
+            return 1;
+        } else {
+
+            QString buffer = file.readAll();
             file.close();
-            std::string content(buffer.str());
 
-            // Check if xml header is given
-            std::string xmltest = content.substr(0,5);
+            if(buffer.isEmpty()){
+                QMessageBox::warning(this,tr("Warning"),tr("No valid .xml file! Please verify that your file is not damaged!"));
+                return 1;
+            } else {
 
-            if (xmltest.compare("<?xml")==0){
+                std::string content(buffer.toStdString());
 
-                xml_document<> doc;
-                doc.parse<0>(&content[0]);
+                // Check if xml header is given
+                std::string xmltest = content.substr(0,5);
 
-                this->init_Maps();
+                if (xmltest.compare("<?xml")!=0){
+                    QMessageBox::warning(this,tr("Warning"),tr("No valid .xml file! Please verify that your file is not damaged!"));
+                    return 1;
+                } else {
+                    xml_document<> doc;
+                    doc.parse<0>(&content[0]);
 
-                result = this->get_SystemDumpMainInfo(&doc);
+                    this->init_Maps();
 
-                if (result == 0){
-                    result = this->get_SystemDumpSections(&doc);
+                    result = this->get_SystemDumpMainInfo(&doc);
 
-                    if(result==0){
+                    if (result == 0){
+                        result = this->get_SystemDumpSections(&doc);
 
-                        if (this->ErrorNr!=0){
-                            msgStr = tr("While loading the xml-file one or more\nattributes could not be read correctly!\n\nError nr.: %1\n\nAttribute: %2").arg(QString::number(this->ErrorNr),this->Error);
-                            QMessageBox::information(this,tr("Information"),msgStr);
+                        if(result==0){
+
+                            if (this->ErrorNr!=0){
+                                msgStr = tr("While loading the xml-file one or more\nattributes could not be read correctly!\n\nError nr.: %1\n\nAttribute: %2").arg(QString::number(this->ErrorNr),this->Error);
+                                QMessageBox::information(this,tr("Information"),msgStr);
+                            }
+
+                            // Enable menu entries
+                            ui->actionClose_xml->setDisabled(false);
+                            ui->actionSave_xml_as->setDisabled(false);
+                            ui->actionSave_PDF_Report->setDisabled(false);
+                            ui->actionSave_Datapoints->setDisabled(false);
+                            this->startScreenShow(false);
+                            this->displayValues();
+
+                        } else {
+
+                            msgStr = tr("An error occured trying to open the xml-file!\n");
+                            QMessageBox::warning(this,tr("Warning"),msgStr);
+                            return 1;
+
                         }
 
-                        // Enable menu entries
-                        ui->actionClose_xml->setDisabled(false);
-                        ui->actionSave_xml_as->setDisabled(false);
-                        ui->actionSave_PDF_Report->setDisabled(false);
-                        ui->actionSave_Datapoints->setDisabled(false);
-                        this->startScreenShow(false);
-                        this->displayValues();
+                        return 0;
 
                     } else {
 
-                        msgStr = tr("An error occured trying to open the xml-file!\n");
+                        msgStr = tr("No valid systemdump!");
                         QMessageBox::warning(this,tr("Warning"),msgStr);
                         return 1;
 
                     }
-
-                    return 0;
-
-                } else {
-
-                    msgStr = tr("No valid systemdump!");
-                    QMessageBox::warning(this,tr("Warning"),msgStr);
-                    return 1;
-
                 }
-            } else {
-                QMessageBox::warning(this,tr("Warning"),tr("No valid .xml file! Please verify that your file is not damaged!"));
-                return 1;
             }
         }
-        else
-        {
-            return 1;
-        }
+
     } else {
         // Reset window title
         setWindowTitle(tr("Systemdump Viewer"));
