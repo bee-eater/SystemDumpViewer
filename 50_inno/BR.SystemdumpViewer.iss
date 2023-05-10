@@ -4,7 +4,7 @@
 #define SetupBaseName   "Setup_SystemdumpViewer_"
 #define RelPath         "..\..\build\release\"
 #define PureFiles       "..\01_prgfiles"
-#define DLLS            "..\..\zz_dlls\5.12.6"
+#define DLLS            "..\..\zz_dlls\6.4.2"
 #define AppVersion      GetFileVersion(RelPath + MainBinaryName)
 #define AVF1            Copy(AppVersion, 1, Pos(".", AppVersion) - 1) + "_" + Copy(AppVersion, Pos(".", AppVersion) + 1)
 #define AVF2            Copy(AVF1,       1, Pos(".", AVF1      ) - 1) + "_" + Copy(AVF1      , Pos(".", AVF1      ) + 1)
