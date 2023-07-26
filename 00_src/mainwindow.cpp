@@ -500,8 +500,10 @@ void MainWindow::load_iniFile(){
 
     // Internal Settings
     this->recentIpAddresses = settings->value("recentIpList").toStringList();
-    this->extractionPath = settings->value("extPath","./temp").toString();
     this->themePath = settings->value("themePath","./themes/").toString();
+
+    // Use AppData path because of write restrictions to program folder
+    this->extractionPath = SDVBasePath + "/downloads/";
 
     // Es wurde ein Update durchgeführt
     if(this->settings->value("updated",false).toBool()){
@@ -615,7 +617,7 @@ void MainWindow::on_actionAbout_triggered()
     about.setWindowTitle(tr("About ..."));
     about.setTextFormat(Qt::RichText);
     about.setText(QString("<br/><br/>")+tr("This application is not an official B&R product! For this reason the use is at your own risk and there is NO claim on support or maintenance.")+QString("<br/><br/>Version: %1 <br/><br/>App: %2").arg(this->Version,qApp->applicationFilePath()));
-    about.setInformativeText(tr("Developed with Qt 5.6")+QString("<br/><br/>")+tr("This program uses parts of the following Projects: ") + QString("<br/>- <a href='http://qwt.sf.net'>Qwt Project</a> (CPU-Usage graph)<br/>- <a href='http://rapidxml.sourceforge.net'>RapidXml</a><br/>- <a href='https://github.com/brofield/simpleini'>SimpleIni</a><br/><br/>Copyright %1 <a href='mailto:marcel_krausert@freenet.de'>Marcel Krausert</a> 2023").arg(QString::fromUtf8("\u00A9"))+QString("<br/><br/>")+tr("This work is licensed under the")+QString("<br/>&emsp;&emsp;&emsp;<a href='https://www.gnu.org/licenses/gpl-3.0.de.html'>GNU GENERAL PUBLIC LICENSE, Version 3</a><br/><br/>")+tr("Visit us on")+QString("<a href='https://github.com/bee-eater/SystemDumpViewer'> GitHub</a>!"));
+    about.setInformativeText(tr("Developed with Qt 6.4.2")+QString("<br/><br/>")+tr("This program uses parts of the following Projects: ") + QString("<br/>- <a href='http://qwt.sf.net'>Qwt Project</a> (CPU-Usage graph)<br/>- <a href='http://rapidxml.sourceforge.net'>RapidXml</a><br/>- <a href='https://github.com/brofield/simpleini'>SimpleIni</a><br/><br/>Copyright %1 <a href='mailto:marcel_krausert@freenet.de'>Marcel Krausert</a> 2023").arg(QString::fromUtf8("\u00A9"))+QString("<br/><br/>")+tr("This work is licensed under the")+QString("<br/>&emsp;&emsp;&emsp;<a href='https://www.gnu.org/licenses/gpl-3.0.de.html'>GNU GENERAL PUBLIC LICENSE, Version 3</a><br/><br/>")+tr("Visit us on")+QString("<a href='https://github.com/bee-eater/SystemDumpViewer'> GitHub</a>!"));
     about.setStandardButtons(QMessageBox::Ok);
     about.setIconPixmap(QPixmap("://images/about.png").scaledToWidth(128));
     about.setDefaultButton(QMessageBox::Ok);
