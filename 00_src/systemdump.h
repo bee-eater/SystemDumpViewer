@@ -620,7 +620,7 @@ using namespace std;
 // Logger
 // --------------------------------
     /**
-     * @brief Attribute of logger entry for Logger Version 1.00.0
+     * @brief Attribute of logger entry for Logger Version 1.00.0 / 1.01.0
      */
     struct sLogModuleEntry{
         qint32 ID;                  /**< Number of entry in SystemDump */
@@ -632,6 +632,8 @@ using namespace std;
         QString OSTask;             /**< Source task of the error entry */
         QString TimeStamp;          /**< Timestamp of the error entry */
         QString Logger;             /**< Name of the logger that contains the entry. This parameter does NOT come from the XML, it is set manualy to ease the handling in the table view! */
+        QString EnteredBy;          /**< 1.01.0 B&R Module / mapp Component which entered this error */
+        qint32 Severity;            /**< 1.01.0 Severity shows if it is information, error or warning */
         sLogModuleEntry(){
             this->ASCIIData = QString("");
             this->BinaryData = QString("");
@@ -642,6 +644,8 @@ using namespace std;
             this->OSTask = QString("");
             this->TimeStamp = QString("");
             this->Logger = QString("");
+            this->EnteredBy = QString("");
+            this->Severity = 0;
         }
     };
 

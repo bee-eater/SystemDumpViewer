@@ -788,7 +788,7 @@ int MainWindow::get_LoggerModules(){
     // DEPENDING ON VERSION OF THE LOGGER, DIFFERENT COLUMNS ARE SET
     // FIRST LOGGER DECIDES VERSION FOR ALL!! NO DIFFERENT VERSIONS SUPPORTED AT THIS TIME!!
     if(this->SysDump.Sections.Logger.vModule.size()>0){
-        if(this->SysDump.Sections.Logger.vModule[0].Version=="1.00.0"){
+        if(this->SysDump.Sections.Logger.vModule[0].Version=="1.00.0" || this->SysDump.Sections.Logger.vModule[0].Version=="1.01.0"){
 
             // Get version of Automation Runtime (old Logger <> EventLogging)
             labels << tr("Lvl") << tr("Date/Time") << tr("Error nr.") << tr("Logger") << tr("Event-ID") << tr("Object-ID") << tr("OS Task") << tr("Description") << tr("ASCII Data");
@@ -921,9 +921,16 @@ int MainWindow::add_LoggerModules(){
 
                     switch(cidx){
                         case LOGGER_IMAGE_COLUMN:
-                            if(this->vLogSortView[j].Level==1) levelLabel->setPixmap(level1);
-                            if(this->vLogSortView[j].Level==2) levelLabel->setPixmap(level2);
-                            if(this->vLogSortView[j].Level==3) levelLabel->setPixmap(level3);
+                            if(this->SysDump.Sections.Logger.vModule[0].Version=="1.00.0"){
+                                if(this->vLogSortView[j].Level==1) levelLabel->setPixmap(level1);
+                                if(this->vLogSortView[j].Level==2) levelLabel->setPixmap(level2);
+                                if(this->vLogSortView[j].Level==3) levelLabel->setPixmap(level3);
+                            } else { // 1.01.0 extension
+                                if(this->vLogSortView[j].Severity==0) levelLabel->setPixmap(level0);
+                                if(this->vLogSortView[j].Severity==1) levelLabel->setPixmap(level1);
+                                if(this->vLogSortView[j].Severity==2) levelLabel->setPixmap(level2);
+                                if(this->vLogSortView[j].Severity==3) levelLabel->setPixmap(level3);
+                            }
                             levelLabel->setAlignment(Qt::AlignCenter);
                             levelLabel->setStyleSheet("background-color: rgba(255, 255, 255, 0);");
                             ui->table_Logger->setCellWidget(static_cast<int>(j),cidx,levelLabel);
@@ -935,7 +942,11 @@ int MainWindow::add_LoggerModules(){
 
                         case LOGGER_EVENT_COLUMN:
                         case LOGGER_ERRNO_COLUMN:
-                            item->setData(0,this->vLogSortView[j].ErrorNr);
+                            if(this->SysDump.Sections.Logger.vModule[0].Version=="1.00.0"){
+                                item->setData(0,this->vLogSortView[j].ErrorNr);
+                            } else {
+                                item->setData(0,this->vLogSortView[j].ID); // for 1.01.0 luck, ID comes after Id --> SDV gets all attributes in lower case, to avoid case sensitivity
+                            }
                             break;
 
                         case LOGGER_LOGGR_COLUMN:

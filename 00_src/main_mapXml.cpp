@@ -332,6 +332,8 @@ void MainWindow::init_Maps(){
     map_053_LoggerModuleEntryAttributes["timestamp"] = LOGGER_002_TIMESTAMP;
     map_053_LoggerModuleEntryAttributes["event_id"] = LOGGER_002_EVENTID;
     map_053_LoggerModuleEntryAttributes["object_id"] = LOGGER_002_OBJECTID;
+    map_053_LoggerModuleEntryAttributes["entered_by"] = LOGGER_002_ENTEREDBY; // 1.01.0
+    map_053_LoggerModuleEntryAttributes["severity"] = LOGGER_002_SEVERITY;    // 1.01.0
 
     // Logger version 1.02.0 and later
     map_054_LoggerModuleEntryAttributesV2["id"] = LOGGER_202_ID;

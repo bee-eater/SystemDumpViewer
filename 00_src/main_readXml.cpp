@@ -1994,6 +1994,14 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                                             this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntry[static_cast<unsigned int>(subindex)].TimeStamp = QString::fromStdString(pAttribute->value());
                                             break;
 
+                                        case LOGGER_002_ENTEREDBY:
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntry[static_cast<unsigned int>(subindex)].EnteredBy = QString::fromStdString(pAttribute->value());
+                                            break;
+
+                                        case LOGGER_002_SEVERITY:
+                                            this->SysDump.Sections.Logger.vModule[static_cast<unsigned int>(index)].vEntry[static_cast<unsigned int>(subindex)].Severity = QString::fromStdString(pAttribute->value()).toLong();
+                                            break;
+
                                         case LOGGER_002_ERR:
                                             this->ErrorNr = 20904;
                                             this->Error = QString::fromStdString(tmpString);
