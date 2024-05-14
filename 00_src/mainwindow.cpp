@@ -651,14 +651,21 @@ void MainWindow::on_actionLoad_from_PLC_triggered()
                                             tr("IP Address:"), this->recentIpAddresses,0,true,&ok);
 
     if(ok){
+        QStringList adr_lst = this->ipAddress.split(':');
+        QHostAddress address(adr_lst[0]);
+        QString host = adr_lst[0];
 
-        // Check ip address format
-        unsigned long enteredIP = inet_addr(this->ipAddress.toStdString().c_str());
+        bool port_ok = true;
+        int port = 80;
+        if (adr_lst.count() == 2){
+            port = adr_lst[1].toInt(&port_ok, 10);
+        }
 
-        if((enteredIP == INADDR_NONE || enteredIP == INADDR_ANY) && this->ipAddress != QString("")){
+        if (QAbstractSocket::IPv4Protocol != address.protocol() || adr_lst.count() > 2 || !port_ok || port < 0 || port > 65535){
             QMessageBox::warning(this,tr("Error!"),tr("No valid IP-address!"));
             return;
         }
+
 
         // if empty -> cancelled
         if(this->ipAddress != ""){
@@ -715,22 +722,22 @@ void MainWindow::on_actionLoad_from_PLC_triggered()
                                 if(!QDir(this->extractionPath).exists())
                                     QDir().mkdir(this->extractionPath);
 
-                                if(QDir(this->extractionPath+"/"+this->ipAddress).exists())
-                                    QDir(this->extractionPath+"/"+this->ipAddress).removeRecursively();
+                                if(QDir(this->extractionPath+"/"+host).exists())
+                                    QDir(this->extractionPath+"/"+host).removeRecursively();
 
-                                QDir().mkdir(this->extractionPath+"/"+this->ipAddress);
+                                QDir().mkdir(this->extractionPath+"/"+host);
 
-                                result = this->netHttpDownload(QString("http://"+this->ipAddress+"/sdm/cgiFileLoop.cgi?type=256"),QString(this->extractionPath+"/"+this->ipAddress+"/Systemdump.tar.gz"));
+                                result = this->netHttpDownload(QString("http://"+this->ipAddress+"/sdm/cgiFileLoop.cgi?type=256"),QString(this->extractionPath+"/"+host+"/Systemdump.tar.gz"));
                                 if(result){
-                                    result = this->extractTarGz(QString(this->extractionPath+"/"+this->ipAddress+"/Systemdump.tar.gz"),this->extractionPath+"/"+this->ipAddress);
+                                    result = this->extractTarGz(QString(this->extractionPath+"/"+host+"/Systemdump.tar.gz"),this->extractionPath+"/"+host);
                                     QDir().remove(this->extractionPath+"/"+this->ipAddress+"/Systemdump.tar.gz");
                                     if(result){
-                                        result = this->extractTarGz(QString(this->extractionPath+"/"+this->ipAddress+"/Systemdump.tar"),this->extractionPath+"/"+this->ipAddress);
-                                        QDir().remove(this->extractionPath+"/"+this->ipAddress+"/Systemdump.tar");
+                                        result = this->extractTarGz(QString(this->extractionPath+"/"+host+"/Systemdump.tar"),this->extractionPath+"/"+host);
+                                        QDir().remove(this->extractionPath+"/"+host+"/Systemdump.tar");
                                         if(result){
 
                                             QString rememberedIP = this->ipAddress;
-                                            this->readXML(QString(this->extractionPath+"/"+this->ipAddress+"/Systemdump.xml").toStdString().c_str());
+                                            this->readXML(QString(this->extractionPath+"/"+host+"/Systemdump.xml").toStdString().c_str());
                                             this->ipAddress = rememberedIP;
 
                                             this->downloadedUpdateList();
