@@ -168,7 +168,7 @@ bool MainWindow::displayValues(){
         // Add filter entries
             ui->combo_CpuUsage->clear();
 
-            for( auto zi : SysDump.Sections.CpuUsage.vZoomInterval )
+            for( auto zi : SysDump.Sections.CpuUsage.vCore[0].vZoomInterval)
             {
                 ui->combo_CpuUsage->addItem(zi.description);
             }
@@ -1086,16 +1086,16 @@ int MainWindow::draw_CpuUsage(){
 
     int index=-1;
 
-    for(unsigned int i=0;i<this->SysDump.Sections.CpuUsage.vZoomInterval.size();i++){
-        if(this->SysDump.Sections.CpuUsage.vZoomInterval[i].description == ui->combo_CpuUsage->currentText())
+    for(unsigned int i=0;i<this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval.size();i++){
+        if(this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[i].description == ui->combo_CpuUsage->currentText())
             index = static_cast<int>(i);
     }
 
     if(index >= 0){
         // Display Information
-        ui->label_CPUUsage_Average->setText(QString::number(this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].average)+tr(" %"));
-        ui->label_CPUUsage_Maximum->setText(QString::number(this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].maximum)+tr(" %"));
-        ui->label_CPUUsage_Id->setText(QString::number(this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].id));
+        ui->label_CPUUsage_Average->setText(QString::number(this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].average)+tr(" %"));
+        ui->label_CPUUsage_Maximum->setText(QString::number(this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].maximum)+tr(" %"));
+        ui->label_CPUUsage_Id->setText(QString::number(this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].id));
 
         qDeleteAll(ui->tab_CPUUsage->findChildren<QwtPlot*>());
 
@@ -1118,15 +1118,15 @@ int MainWindow::draw_CpuUsage(){
         qwt_cpuUsage->setAxisTitle(QwtPlot::yLeft,"CPU Usage [%]");
         qwt_cpuUsage->setCanvasBackground( Qt::white );
 
-        if (this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vAverage.size()>0){
+        if (this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].values.vAverage.size()>0){
             QwtPlotCurve *curveAverage = new QwtPlotCurve(Average);
 
             double *x = new double[200*sizeof(double)];
             double *y = new double[200*sizeof(double)];
 
-            for(unsigned int i=0;i<this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vAverage.size();i++){
+            for(unsigned int i=0;i<this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].values.vAverage.size();i++){
                 x[i] = static_cast<double>(200-(i+1));
-                y[i] = static_cast<double>(this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vAverage[i]);
+                y[i] = static_cast<double>(this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].values.vAverage[i]);
             }
 
             curveAverage->setRawSamples(x, y, 200);
@@ -1136,15 +1136,15 @@ int MainWindow::draw_CpuUsage(){
 
         }
 
-        if (this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum.size()>0){
+        if (this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum.size()>0){
             QwtPlotCurve *curveMaximum = new QwtPlotCurve(Maximum);
 
             double *xM = new double[200*sizeof(double)];
             double *yM = new double[200*sizeof(double)];
 
-            for(unsigned int i=0;i<this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum.size();i++){
+            for(unsigned int i=0;i<this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum.size();i++){
                 xM[i] = static_cast<double>(200-(i+1));
-                yM[i] = static_cast<double>(this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum[i]);
+                yM[i] = static_cast<double>(this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum[i]);
             }
 
             curveMaximum->setRawSamples(xM, yM, 200);

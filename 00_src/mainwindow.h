@@ -326,8 +326,11 @@ public:
     enum en_SectionTimingTaskClassConfig {TIMING_002_ERR, TIMING_002_CYCLETIME, TIMING_002_CYCLIC, TIMING_002_INPUTDELAY, TIMING_002_OUTPUTDELAY, TIMING_002_STACK, TIMING_002_TOLERANCE};
     static std::map<std::string, en_SectionTimingTaskClassConfig> map_037_TimingTaskClassConfiguration;
 
-    enum en_SectionCpuUsage {CPUUSAGE_ERR, CPUUSAGE_INTERVAL};
+    enum en_SectionCpuUsage {CPUUSAGE_ERR, CPUUSAGE_INTERVAL, CPUUSAGE_CORE};
     static std::map<std::string, en_SectionCpuUsage> map_018_CpuUsage;
+
+    enum en_SectionCpuUsageCore {CPUUSAGECORE_ERR, CPUUSAGECORE_ID};
+    static std::map<std::string, en_SectionCpuUsageCore> map_062_CpuUsageCore;
 
     enum en_SectionCpuUsageInterval {CPUUSAGE_000_ERR, CPUUSAGE_000_AVERAGE, CPUUSAGE_000_DESCRIPTION, CPUUSAGE_000_ID, CPUUSAGE_000_MAX};
     static std::map<std::string, en_SectionCpuUsageInterval> map_038_CpuUsageInterval;
@@ -520,6 +523,7 @@ private:
     int get_HardwareChannelInformation(int HwNode, int uuid);
     int get_SoftwareModules(int uuid, int filter);
     int get_CpuUsageValues(vector<int>* values, char* cValues);
+    int get_CoreInterval(xml_node<>*pItem, int index);
     int get_LoggerModules();
     int get_StringsForIdAndValue(xml_node<> *pItem, string * const &tmpString, string * const &tmpString2);
 
