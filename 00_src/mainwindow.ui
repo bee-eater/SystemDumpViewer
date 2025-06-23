@@ -1784,8 +1784,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>98</width>
-                    <height>28</height>
+                    <width>196</width>
+                    <height>259</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -2982,7 +2982,7 @@
             <item>
              <widget class="QGroupBox" name="group_CpuUsageGraphs">
               <property name="title">
-               <string>GroupBox</string>
+               <string>Core usage</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_8"/>
              </widget>
