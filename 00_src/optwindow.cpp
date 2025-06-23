@@ -53,6 +53,10 @@ OptionWindow::OptionWindow(QWidget *parent, MainWindow *w) :
         ui->check_option_splashScreen->setChecked(this->Main->settings->value("showsplash",true).toBool());
     // <<<-----------------------------------------------------
 
+    // Networking
+    // ----------------------------------------------------->>>
+        ui->check_option_ignoresslerrors->setChecked(this->Main->settings->value("ignoreSSLerrors",true).toBool());
+    // <<<-----------------------------------------------------
 
     // Update checking
     // ----------------------------------------------------->>>

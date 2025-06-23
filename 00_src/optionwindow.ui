@@ -739,6 +739,24 @@ padding: 10px;
          <string>https://github.com/bee-eater/SystemDumpViewer/releases/latest</string>
         </property>
        </widget>
+       <widget class="QCheckBox" name="check_option_ignoresslerrors">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>70</y>
+          <width>451</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Ignore SSL errors</string>
+        </property>
+       </widget>
       </widget>
      </widget>
      <widget class="QGraphicsView" name="graphic_option_bg">

@@ -36,6 +36,7 @@ void OptionWindow::on_buttonBox_accepted()
     this->Main->settings->setValue("ashelpwaittime",ui->label_options_timetowaitforhelp->text().toInt());
     this->Main->settings->setValue("hwdoubleclick",ui->combo_option_hardwaredoubleclick->currentIndex());
     this->Main->settings->setValue("hwsearchfor",ui->combo_option_hwSearch->currentIndex());
+    this->Main->settings->setValue("ignoreSSLerrors",(ui->check_option_ignoresslerrors->checkState()==2));
 
     if(ui->combo_option_helplanguage->currentText() == "en" || ui->combo_option_helplanguage->currentText() == "de"){
         this->Main->settings->setValue("brhelplang",ui->combo_option_helplanguage->currentText());

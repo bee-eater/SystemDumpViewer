@@ -67,6 +67,11 @@ MainWindow::MainWindow(QWidget *parent) :
     update_nw_request.setUrl(QUrl("https://api.github.com/repos/bee-eater/SystemDumpViewer/releases/latest"));
     QObject::connect(update_nwm, SIGNAL(finished(QNetworkReply*)), this, SLOT(on_nwmCheckUpdate_finished(QNetworkReply*)));
 
+    // Connect for SSL evaluation
+    QObject::connect(&netAccManGET, &QNetworkAccessManager::sslErrors, this, &MainWindow::onIgnoreSslErrors);
+    QObject::connect(&netAccManPOST, &QNetworkAccessManager::sslErrors, this, &MainWindow::onIgnoreSslErrors);
+    QObject::connect(&netAccManDownload, &QNetworkAccessManager::sslErrors, this, &MainWindow::onIgnoreSslErrors);
+
     // Load the config.ini
     this->load_iniFile();
 
@@ -644,14 +649,29 @@ void MainWindow::on_actionHelp_triggered()
 
 }
 
+void MainWindow::onIgnoreSslErrors(QNetworkReply* reply, const QList<QSslError>& errors)
+{
+    Q_UNUSED(errors);
+    if(this->settings->value("ignoreSSLerrors",true).toBool())
+        reply->ignoreSslErrors();
+}
+
 void MainWindow::on_actionLoad_from_PLC_triggered()
 {
     bool ok;
     this->ipAddress = QInputDialog::getItem(this ,tr("Target PLC ..."),
-                                            tr("IP Address:"), this->recentIpAddresses,0,true,&ok);
+                                            tr("URL (e.g. http://127.0.0.1):"), this->recentIpAddresses,0,true,&ok);
 
     if(ok){
-        QStringList adr_lst = this->ipAddress.split(':');
+
+        QStringList url_lst = this->ipAddress.split("://");
+        QStringList adr_lst;
+        if(url_lst.size() > 1){
+            adr_lst = url_lst[1].split(':');
+        } else {
+            adr_lst = this->ipAddress.split(':');
+        }
+
         QHostAddress address(adr_lst[0]);
         QString host = adr_lst[0];
 
@@ -670,10 +690,14 @@ void MainWindow::on_actionLoad_from_PLC_triggered()
         // if empty -> cancelled
         if(this->ipAddress != ""){
 
+            if(!this->ipAddress.startsWith("http")){
+                this->ipAddress = "http://" + this->ipAddress;
+            }
+
             // Add to list of recent ip addresses
             this->recentSetCurrentIpAddress(this->ipAddress);
 
-            bool result = this->netHttpGET(QString("http://" + this->ipAddress + "/sdm/svg.cgi?type=systemdump&action=delete&datafile=0&size=0"));
+            bool result = this->netHttpGET(QString(this->ipAddress + "/sdm/svg.cgi?type=systemdump&action=delete&datafile=0&size=0"));
             if(result){
                 QString downloadData;
                 if(this->settings->value("downloaddatafiles",false).toBool()){
@@ -681,7 +705,7 @@ void MainWindow::on_actionLoad_from_PLC_triggered()
                 } else {
                     downloadData = QString("0");
                 }
-                result = this->netHttpGET(QString("http://" + this->ipAddress + "/sdm/svg.cgi?type=systemdump&action=start&datafile=%1&size=0").arg(downloadData));
+                result = this->netHttpGET(QString(this->ipAddress + "/sdm/svg.cgi?type=systemdump&action=start&datafile=%1&size=0").arg(downloadData));
                 if(result){
                     // Nachfragen und warten bis fertig
                     int liveSign = 0;
@@ -694,7 +718,7 @@ void MainWindow::on_actionLoad_from_PLC_triggered()
                         textHttpPOSTBody.setBody(QString("<sdmWgMessage><GuiManager><guiManager><LifeSign>" + QString::number(liveSign) + "</LifeSign></guiManager></GuiManager><Edit><SDM_sysDump_progress></SDM_sysDump_progress><SDM_sysDump_existing></SDM_sysDump_existing></Edit><DynObjMgr><SDMDynObjMgr></SDMDynObjMgr></DynObjMgr></sdmWgMessage>").toLatin1());
                         httpPart.append(textHttpPOSTBody);
 
-                        result = this->netHttpPOST(QString("http://" + this->ipAddress + "/sdm/cgi-bin/sdmWG.cgi"), &httpPart);
+                        result = this->netHttpPOST(QString(this->ipAddress + "/sdm/cgi-bin/sdmWG.cgi"), &httpPart);
 
                         if(result){
                             liveSign = liveSign+2;
@@ -727,7 +751,7 @@ void MainWindow::on_actionLoad_from_PLC_triggered()
 
                                 QDir().mkdir(this->extractionPath+"/"+host);
 
-                                result = this->netHttpDownload(QString("http://"+this->ipAddress+"/sdm/cgiFileLoop.cgi?type=256"),QString(this->extractionPath+"/"+host+"/Systemdump.tar.gz"));
+                                result = this->netHttpDownload(QString(this->ipAddress+"/sdm/cgiFileLoop.cgi?type=256"),QString(this->extractionPath+"/"+host+"/Systemdump.tar.gz"));
                                 if(result){
                                     result = this->extractTarGz(QString(this->extractionPath+"/"+host+"/Systemdump.tar.gz"),this->extractionPath+"/"+host);
                                     QDir().remove(this->extractionPath+"/"+this->ipAddress+"/Systemdump.tar.gz");
