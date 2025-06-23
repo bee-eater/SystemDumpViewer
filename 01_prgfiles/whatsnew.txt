@@ -2,23 +2,17 @@
 <br/>
 <br/>
 <ul>
+    <li>Added multicore support in CPU usage graphs</li>
+    <li>Allow usage of https</li>
     <li>Added update checking on github</li>
     <li>Settings file location changed to AppData</li>
-    <li>Fixed partition size bargraph</li>
-    <li>Added CF serial number, CF model number, storage wear, NTP value strings</li>
-    <li>Show .tar.gz file in Title</li>
-    <li>Updated some code</li>
-    <li>Updated B&R Logo with ABB claim</li>
-    <li>Removed one digit from version number (was svn revision)</li>
-    <li>Fixed bug: REMMEM not displayed correctly</li>
-    <li>Improved app window startup positioning</li>
 </ul>
 <ul>
     <li>Added tar.gz file support</li>
-	<li>Support of umlauts in files / paths</li>
-	<li>Support of additional dots in filenames</li>
-	<li>Fixed logger issues for 1.01.0</li>
-	<li>Using AppData path as base for downloads</li>
+    <li>Support of umlauts in files / paths</li>
+    <li>Support of additional dots in filenames</li>
+    <li>Fixed logger issues for 1.01.0</li>
+    <li>Using AppData path as base for downloads</li>
 </ul>
 <br/>
 <br/>
