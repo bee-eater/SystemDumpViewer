@@ -9,11 +9,12 @@
 #include "qwt_plot.h"
 #include "qwt_text.h"
 #include "qwt_plot_curve.h"
-#include "qwt_legend.h"
 #include "qwt_abstract_scale_draw.h"
 #include "qwt_scale_draw.h"
 #include "qwt_plot_grid.h"
 #include "qwt_plot_picker.h"
+
+#include <./includes/UsagePlotPicker.hpp>
 
 #include <algorithm>
 
@@ -1084,6 +1085,8 @@ int MainWindow::add_LoggerModules(){
 
 int MainWindow::draw_CpuUsage(){
 
+    QVector<double> intervalSeconds = {3*60,15*60,60*60,5*3600,15*3600,30*3600,60*3600,7*24*3600,14*24*3600,30*24*3600};
+
     int index=-1;
 
     for(unsigned int i=0;i<this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval.size();i++){
@@ -1092,73 +1095,130 @@ int MainWindow::draw_CpuUsage(){
     }
 
     if(index >= 0){
-        // Display Information
-        ui->label_CPUUsage_Average->setText(QString::number(this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].average)+tr(" %"));
-        ui->label_CPUUsage_Maximum->setText(QString::number(this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].maximum)+tr(" %"));
-        ui->label_CPUUsage_Id->setText(QString::number(this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].id));
 
-        qDeleteAll(ui->tab_CPUUsage->findChildren<QwtPlot*>());
-
-        QwtText Average;
-        Average.setText(tr("Average"));
-        QwtText Maximum;
-        Maximum.setText(tr("Maximum"));
-
-        QwtPlot *qwt_cpuUsage = new QwtPlot(ui->tab_CPUUsage);
-        QwtLegend *legend = new QwtLegend();
-        QwtPlotGrid *grid = new QwtPlotGrid();
-        grid->setPen(Qt::gray);
-        grid->attach(qwt_cpuUsage);
-
-        // Plot Configuration
-        qwt_cpuUsage->setMouseTracking(true);
-        qwt_cpuUsage->setGeometry(15,100,660,330);
-        qwt_cpuUsage->setAxisScale(QwtPlot::yLeft,0.0,100.0,20);
-        qwt_cpuUsage->setAxisTitle(QwtPlot::xBottom,"Time");
-        qwt_cpuUsage->setAxisTitle(QwtPlot::yLeft,"CPU Usage [%]");
-        qwt_cpuUsage->setCanvasBackground( Qt::white );
-
-        if (this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].values.vAverage.size()>0){
-            QwtPlotCurve *curveAverage = new QwtPlotCurve(Average);
-
-            double *x = new double[200*sizeof(double)];
-            double *y = new double[200*sizeof(double)];
-
-            for(unsigned int i=0;i<this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].values.vAverage.size();i++){
-                x[i] = static_cast<double>(200-(i+1));
-                y[i] = static_cast<double>(this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].values.vAverage[i]);
+        QGridLayout *layout = qobject_cast<QGridLayout*>(ui->group_CpuUsageGraphs->layout());
+        if (!layout) {
+            layout = new QGridLayout(ui->group_CpuUsageGraphs);
+            ui->group_CpuUsageGraphs->setLayout(layout);
+        }
+        while (QLayoutItem* item = layout->takeAt(0)) {
+            if (item->widget()) {
+                item->widget()->deleteLater();
             }
-
-            curveAverage->setRawSamples(x, y, 200);
-            curveAverage->setPen(QPen("#ff8800"));
-            curveAverage->attach(qwt_cpuUsage);
-        } else {
-
+            delete item;
         }
 
-        if (this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum.size()>0){
-            QwtPlotCurve *curveMaximum = new QwtPlotCurve(Maximum);
+        int coreCount = static_cast<int>(this->SysDump.Sections.CpuUsage.vCore.size());
 
-            double *xM = new double[200*sizeof(double)];
-            double *yM = new double[200*sizeof(double)];
+        // Determine number of rows and columns (e.g. square layout)
+        int columns = std::ceil(std::sqrt(coreCount));
+        //int rows = std::ceil(static_cast<float>(coreCount) / columns);
 
-            for(unsigned int i=0;i<this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum.size();i++){
-                xM[i] = static_cast<double>(200-(i+1));
-                yM[i] = static_cast<double>(this->SysDump.Sections.CpuUsage.vCore[0].vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum[i]);
+        // One plot for each core
+        for(unsigned int u=0; u<this->SysDump.Sections.CpuUsage.vCore.size(); u++){
+
+            QwtText Average;
+            Average.setText(tr("Average"));
+            QwtText Maximum;
+            Maximum.setText(tr("Maximum"));
+
+            QwtPlot *qwt_cpuUsage = new QwtPlot(ui->group_CpuUsageGraphs);
+
+            // Create label + plot vertical layout
+            QVBoxLayout *vbox = new QVBoxLayout();
+
+            QString labelText = tr("Core %1 (Avg: %2%, Max: %3%)")
+                                    .arg(u)
+                                    .arg(this->SysDump.Sections.CpuUsage.vCore[u].vZoomInterval[static_cast<unsigned int>(index)].average)
+                                    .arg(this->SysDump.Sections.CpuUsage.vCore[u].vZoomInterval[static_cast<unsigned int>(index)].maximum);
+
+            QLabel *label = new QLabel(labelText);
+            label->setAlignment(Qt::AlignHCenter);
+            vbox->addWidget(label);
+            vbox->addWidget(qwt_cpuUsage);
+
+            // Wrap vbox in a container widget
+            QWidget *container = new QWidget();
+            container->setLayout(vbox);
+
+            // Add the container to the grid layout
+            int row = u / columns;
+            int col = u % columns;
+            layout->addWidget(container, row, col);
+
+            //QwtLegend *legend = new QwtLegend();
+            QwtPlotGrid *grid = new QwtPlotGrid();
+            grid->setPen(Qt::gray);
+            grid->attach(qwt_cpuUsage);
+
+            // Plot Configuration
+            qwt_cpuUsage->setMouseTracking(true);
+            qwt_cpuUsage->setAxisScale(QwtPlot::yLeft,0.0,100.0,20);
+            //qwt_cpuUsage->setAxisTitle(QwtPlot::xBottom,"Time");
+            //qwt_cpuUsage->setAxisTitle(QwtPlot::yLeft,"CPU Usage [%]");
+            qwt_cpuUsage->setCanvasBackground( Qt::white );
+
+            if (this->SysDump.Sections.CpuUsage.vCore[u].vZoomInterval[static_cast<unsigned int>(index)].values.vAverage.size()>0){
+
+                const auto& vAverage = this->SysDump.Sections.CpuUsage.vCore[u].vZoomInterval[static_cast<unsigned int>(index)].values.vAverage;
+                unsigned int nPoints = static_cast<unsigned int>(vAverage.size());
+
+                if (nPoints > 0) {
+                    QVector<double> x(nPoints);
+                    QVector<double> y(nPoints);
+
+                    for (unsigned int i = 0; i < nPoints; ++i) {
+                        x[i] = static_cast<double>(nPoints - (i + 1));
+                        y[i] = static_cast<double>(vAverage[i]);
+                    }
+
+                    QwtPlotCurve *curveAverage = new QwtPlotCurve(Average);
+                    curveAverage->setSamples(x, y);  // Uses QVector directly
+                    curveAverage->setPen(QPen(QColor(255, 136, 0)));
+                    curveAverage->attach(qwt_cpuUsage);
+                }
+
+            } else {
+
             }
 
-            curveMaximum->setRawSamples(xM, yM, 200);
-            curveMaximum->setPen(QPen("#7b7c7e"));
-            curveMaximum->attach(qwt_cpuUsage);
-        } else {
+            if (this->SysDump.Sections.CpuUsage.vCore[u].vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum.size()>0){
+
+                const auto& vMaximum = this->SysDump.Sections.CpuUsage.vCore[u].vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum;
+                unsigned int nPointsM = static_cast<unsigned int>(vMaximum.size());
+
+                if (nPointsM > 0) {
+                    QVector<double> xM(nPointsM);
+                    QVector<double> yM(nPointsM);
+
+                    for (unsigned int i = 0; i < nPointsM; ++i) {
+                        xM[i] = static_cast<double>(nPointsM - (i + 1));
+                        yM[i] = static_cast<double>(vMaximum[i]);
+                    }
+
+                    QwtPlotCurve *curveMaximum = new QwtPlotCurve(Maximum);
+                    curveMaximum->setSamples(xM, yM);
+                    curveMaximum->setPen(QPen(QColor(123, 124, 126)));
+                    curveMaximum->attach(qwt_cpuUsage);
+
+                }
+
+            } else {
+
+            }
+            //qwt_cpuUsage->insertLegend(legend, QwtPlot::RightLegend);
+            qwt_cpuUsage->axisScaleDraw(QwtPlot::xBottom)->enableComponent(QwtAbstractScaleDraw::Labels, false );
+            qwt_cpuUsage->canvas()->setMouseTracking(true);
+            qwt_cpuUsage->show();
+
+            if(index < intervalSeconds.count()){
+                int baseSeconds = intervalSeconds[index]; // Get seconds for this interval
+                UsagePlotPicker *picker = new UsagePlotPicker(baseSeconds, qwt_cpuUsage);
+                picker->setEnabled(true);
+                picker->setParent(qwt_cpuUsage->canvas());
+            }
 
         }
-        qwt_cpuUsage->insertLegend(legend, QwtPlot::RightLegend);
-        qwt_cpuUsage->axisScaleDraw(QwtPlot::xBottom)->enableComponent(QwtAbstractScaleDraw::Labels, false );
-        qwt_cpuUsage->show();
-
-        QwtPlotPicker *picker = new QwtPlotPicker(qwt_cpuUsage->xBottom,qwt_cpuUsage->yLeft, QwtPlotPicker::EllipseRubberBand, QwtPicker::AlwaysOn,(qwt_cpuUsage->canvas()));
-        picker->setParent(qwt_cpuUsage->canvas());
 
     } else {
 

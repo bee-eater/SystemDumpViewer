@@ -44,7 +44,6 @@
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -1785,8 +1784,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>196</width>
-                    <height>268</height>
+                    <width>98</width>
+                    <height>28</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -2824,119 +2823,147 @@
            </layout>
           </widget>
           <widget class="QWidget" name="tab_CPUUsage">
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
            <attribute name="title">
             <string>CPU Usage</string>
            </attribute>
-           <widget class="QGroupBox" name="group_UsageBox">
-            <property name="geometry">
-             <rect>
-              <x>8</x>
-              <y>8</y>
-              <width>377</width>
-              <height>81</height>
-             </rect>
-            </property>
-            <property name="title">
-             <string>Settings</string>
-            </property>
-            <widget class="QComboBox" name="combo_CpuUsage">
-             <property name="geometry">
-              <rect>
-               <x>16</x>
-               <y>38</y>
-               <width>121</width>
-               <height>21</height>
-              </rect>
-             </property>
-            </widget>
-            <widget class="QLabel" name="text_CPUUsage_Id">
-             <property name="geometry">
-              <rect>
-               <x>184</x>
-               <y>20</y>
-               <width>111</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>ID:</string>
-             </property>
-            </widget>
-            <widget class="QLabel" name="text_CPUUsage_Average">
-             <property name="geometry">
-              <rect>
-               <x>184</x>
-               <y>36</y>
-               <width>111</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Average:</string>
-             </property>
-            </widget>
-            <widget class="QLabel" name="text_CPUUsage_Maximum">
-             <property name="geometry">
-              <rect>
-               <x>184</x>
-               <y>52</y>
-               <width>111</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Maximum:</string>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_CPUUsage_Id">
-             <property name="geometry">
-              <rect>
-               <x>256</x>
-               <y>20</y>
-               <width>105</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="textInteractionFlags">
-              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_CPUUsage_Maximum">
-             <property name="geometry">
-              <rect>
-               <x>256</x>
-               <y>52</y>
-               <width>105</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="textInteractionFlags">
-              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_CPUUsage_Average">
-             <property name="geometry">
-              <rect>
-               <x>256</x>
-               <y>36</y>
-               <width>105</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="textInteractionFlags">
-              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-             </property>
-            </widget>
-           </widget>
+           <layout class="QVBoxLayout" name="verticalLayout_15">
+            <item>
+             <widget class="QWidget" name="group_UsageBox" native="true">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="sizeIncrement">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_6">
+               <item row="2" column="4">
+                <widget class="QFrame" name="frm_LegendMax">
+                 <property name="minimumSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(123, 124, 126); 
+</string>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="3">
+                <widget class="QLabel" name="label_LegendAverage">
+                 <property name="text">
+                  <string>Average</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QComboBox" name="combo_CpuUsage">
+                 <property name="minimumSize">
+                  <size>
+                   <width>125</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>125</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QFrame" name="frm_LegendAverage">
+                 <property name="minimumSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 136, 0); 
+</string>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="5">
+                <widget class="QLabel" name="label_LegendMax">
+                 <property name="text">
+                  <string>Maximum</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <spacer name="horizontalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="group_CpuUsageGraphs">
+              <property name="title">
+               <string>GroupBox</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_8"/>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </widget>
         </item>
@@ -4538,7 +4565,7 @@ Note: Only the last 100 entries are visible here! Open logger files in AS to see
      <x>0</x>
      <y>0</y>
      <width>708</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -4814,7 +4841,6 @@ Note: Only the last 100 entries are visible here! Open logger files in AS to see
   <tabstop>tabWidget_Profiler</tabstop>
   <tabstop>table_Profiler</tabstop>
   <tabstop>table_TaskClasses</tabstop>
-  <tabstop>combo_CpuUsage</tabstop>
   <tabstop>combo_AxisError</tabstop>
   <tabstop>table_AxisError</tabstop>
  </tabstops>

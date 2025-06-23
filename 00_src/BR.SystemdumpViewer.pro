@@ -12,6 +12,7 @@ TARGET = BR.SystemdumpViewer
 TEMPLATE = app
 
 SOURCES += main.cpp\
+    UsagePlotPicker.cpp \
     cL_clickedLabel.cpp \
     main_displayValues.cpp \
     main_mapXml.cpp \
@@ -30,6 +31,7 @@ RESOURCES += \
 
 
 HEADERS  += mainwindow.h \
+    includes/UsagePlotPicker.hpp \
     systemdump.h \
     includes/rapidxml_utils.hpp \
     includes/clickLabel.h \

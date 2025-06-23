@@ -122,10 +122,6 @@ void MainWindow::reset_UI(){
     ui->label_Hardware_Plugged->clear();
     ui->label_Hardware_Serialnumber->clear();
 
-    ui->label_CPUUsage_Average->clear();
-    ui->label_CPUUsage_Id->clear();
-    ui->label_CPUUsage_Maximum->clear();
-
     ui->combo_SelectMenu->setCurrentIndex(0);
     ui->tabWidget_System->setCurrentIndex(0);
     ui->tabWidget_Motion->setCurrentIndex(0);
