@@ -3,10 +3,22 @@ Viewer for SystemDump.xml files of [B&amp;R](https://www.br-automation.com) PLCs
 
 ![SystemDumpViewer](https://github.com/bee-eater/SystemDumpViewer/blob/master/99_projinfo/Screenshot_StartScreen.png)
 
-# Contributors welcome
+## 💖 Help Me Keep This Project Going
 
-This project adheres to the Contributor Covenant [code of conduct](CONTRIBUTING.md).
-By participating, you are expected to uphold this code. Please report unacceptable behavior to [the owner](mailto:bee-eater@users.noreply.github.com).
+Maintaining and improving this project takes time, energy, and resources. If you’ve found it useful, inspiring, or valuable in any way, consider supporting its continued development:
+
+### 🙌 Ways You Can Help
+
+- **Give a ⭐ on GitHub** – It really helps increase visibility!
+- **Share the project** – Spread the word among colleagues.
+- **Open issues** – Found a bug or have a feature suggestion? Open an issue and let me know!
+- **Contribute** – Pull requests are always welcome. Check out the [contributing guide](CONTRIBUTING.md) to get started.
+- **Support financially** – If you’d like to support this work directly, consider:
+
+  - ❤️ [Sponsor me on GitHub](https://github.com/sponsors/bee-eater)
+  - 🧡 [Donate via PayPal](https://www.paypal.com/donate/?hosted_button_id=MUS7QJU8YB9CY)
+
+Your support makes a real difference — thank you!
 
 # How to compile
 1. Get Qt 6.4.2 via online installer from here: [Download](https://www.qt.io/download-open-source)
