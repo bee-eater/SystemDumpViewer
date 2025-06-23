@@ -192,6 +192,9 @@ public:
     // HELP SYSTEM
     QStringList getInstalledHelpLanguages(QString helpExplorer);
 
+    // NETWORK
+    QNetworkAccessManager *nwm;
+
     // UPDATE CHECKING
     QNetworkAccessManager *update_nwm;
     QNetworkRequest update_nw_request;
@@ -462,6 +465,7 @@ private slots:
 
     // NETWORKING
     void on_nwmCheckUpdate_finished(QNetworkReply *reply);
+    void onIgnoreSslErrors(QNetworkReply* reply, const QList<QSslError>& errors);
     void on_netAccManDownload_finished(QNetworkReply *netReply);
     void on_actionCheck_for_updates_triggered();
 
