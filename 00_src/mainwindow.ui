@@ -313,7 +313,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget_System">
           <property name="currentIndex">
-           <number>0</number>
+           <number>3</number>
           </property>
           <property name="tabsClosable">
            <bool>false</bool>
@@ -2885,6 +2885,18 @@
                </item>
                <item row="2" column="3">
                 <widget class="QLabel" name="label_LegendAverage">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string>Average</string>
                  </property>
@@ -2934,6 +2946,18 @@
                </item>
                <item row="2" column="5">
                 <widget class="QLabel" name="label_LegendMax">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string>Maximum</string>
                  </property>
