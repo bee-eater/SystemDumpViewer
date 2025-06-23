@@ -57,6 +57,8 @@ std::map<std::string, MainWindow::en_LoggerModuleEntryAttributes> MainWindow::ma
 std::map<std::string, MainWindow::en_LoggerModuleEntryAttributesV2> MainWindow::map_054_LoggerModuleEntryAttributesV2;
 std::map<std::string, MainWindow::en_Profiler> MainWindow::map_060_Profiler;
 std::map<std::string, MainWindow::en_ProfilerAttributes> MainWindow::map_061_ProfilerAttributes;
+std::map<std::string, MainWindow::en_SectionCpuUsageCore> MainWindow::map_062_CpuUsageCore;
+
 
 void MainWindow::init_Maps(){
     map_SystemDump["systemdump"] = SYSDUMP_DUMP;
@@ -217,7 +219,10 @@ void MainWindow::init_Maps(){
     map_037_TimingTaskClassConfiguration["stack"] = TIMING_002_STACK;
     map_037_TimingTaskClassConfiguration["tolerance"] = TIMING_002_TOLERANCE;
 
+    map_062_CpuUsageCore["id"] = CPUUSAGECORE_ID;
+
     map_018_CpuUsage["zoom_interval"] = CPUUSAGE_INTERVAL;
+    map_018_CpuUsage["core"] = CPUUSAGE_CORE;
 
     map_038_CpuUsageInterval["average"] = CPUUSAGE_000_AVERAGE;
     map_038_CpuUsageInterval["description"] = CPUUSAGE_000_DESCRIPTION;

@@ -382,9 +382,22 @@ using namespace std;
     /**
      * @brief The sCpuUsage struct
      */
-    struct sCpuUsage{
+    struct sCpuUsageCore{
+        qint16 id;
         std::vector<sZoomInterval> vZoomInterval;
+        sCpuUsageCore(){
+            this->id = 0;
+            this->vZoomInterval.swap(this->vZoomInterval);
+        }
     };
+
+    /**
+     * @brief The sCpuUsage struct
+     */
+    struct sCpuUsage{
+        std::vector<sCpuUsageCore> vCore;
+    };
+
 
 // Software
 // --------------------------------

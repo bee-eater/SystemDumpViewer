@@ -12,6 +12,7 @@ TARGET = BR.SystemdumpViewer
 TEMPLATE = app
 
 SOURCES += main.cpp\
+    UsagePlotPicker.cpp \
     cL_clickedLabel.cpp \
     main_displayValues.cpp \
     main_mapXml.cpp \
@@ -30,6 +31,7 @@ RESOURCES += \
 
 
 HEADERS  += mainwindow.h \
+    includes/UsagePlotPicker.hpp \
     systemdump.h \
     includes/rapidxml_utils.hpp \
     includes/clickLabel.h \
@@ -66,7 +68,7 @@ else:win32:CONFIG(debug, debug|release): LIBS += "$$PWD/libs/qwt/libqwtd.a"
 #-------------------------------------------------
 MAJOR = 2
 MINOR = 5
-BUGFIX = 3
+BUGFIX = 4
 VERSION_HEADER = ..\github\00_src\version.h
 
 versiontarget.target = $$VERSION_HEADER

@@ -872,9 +872,16 @@ void MainWindow::on_actionSave_position_triggered()
 
 void MainWindow::on_actionCheck_for_updates_triggered()
 {
+    // Requires:
+    // libcrypto-1_1-x64.dll
+    // libssl-1_1-x64.dll
+    // tls/qcertonlybackend.dll
+    // tls/qopensslbackend.dll
+    // tls/qschannelbackend.dll
     if(QSslSocket::supportsSsl()){
         this->updateClicked = true;
         update_nwm->get(update_nw_request);
+        // --> on_nwmCheckUpdate_finished(...)
     } else {
         QMessageBox::critical(this,tr("Error!"),QString("Error checking for updates! (No SSL support)"));
     }

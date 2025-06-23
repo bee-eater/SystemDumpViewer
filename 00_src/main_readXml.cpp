@@ -185,7 +185,6 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
 
     int cnt = 0, subcnt = 0, index = 0, subindex = 0, result = 0;
 
-
     string tmpString, tmpString2;
 
     while(pRoot != nullptr){
@@ -1135,88 +1134,98 @@ int MainWindow::get_SystemDumpSections(xml_document<> *doc){
                     std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
 
                     switch(map_018_CpuUsage[tmpString]){
-                    case CPUUSAGE_INTERVAL:
-                        cnt++;
-                        index = cnt-1;
-                        this->SysDump.Sections.CpuUsage.vZoomInterval.push_back(sZoomInterval());
 
-                        pAttribute = pItem->first_attribute();
-                        while(pAttribute!=nullptr){
+                        // The interval is directly within CPU-Usage --> Older versions / Single core
+                        case CPUUSAGE_INTERVAL:
+                            cnt++;
+                            index = cnt-1;
 
-                            tmpString = pAttribute->name();
-                            std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
-
-                            switch(map_038_CpuUsageInterval[tmpString]){
-                            case CPUUSAGE_000_AVERAGE:
-                                this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].average = static_cast<qint16>(atoi(pAttribute->value()));
-                                break;
-
-                            case CPUUSAGE_000_DESCRIPTION:
-                                this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].description = QString::fromStdString(pAttribute->value());
-                                break;
-
-                            case CPUUSAGE_000_ID:
-                                this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].id = static_cast<qint16>(atoi(pAttribute->value()));
-                                break;
-
-                            case CPUUSAGE_000_MAX:
-                                this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].maximum = static_cast<qint16>(atoi(pAttribute->value()));
-                                break;
-
-                            case CPUUSAGE_000_ERR:
-                                this->ErrorNr = 20501;
-                                this->Error = QString::fromStdString(tmpString);
-                                break;
-                            default:
-                                return 27;
+                            // Single core --> use core 0
+                            if(this->SysDump.Sections.CpuUsage.vCore.size() == 0){
+                                this->SysDump.Sections.CpuUsage.vCore.push_back(sCpuUsageCore());
                             }
-                            pAttribute = pAttribute->next_attribute();
-                        }
+                            result = get_CoreInterval(pItem, index);
+                            if(result != 0){
+                                return result;
+                            }
+                            break;
 
-                        // Get the Values
-                        pSubItem = pItem->first_node();
-                        while(pSubItem != nullptr){
-                            tmpString = pSubItem->name();
-                            std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
+                        // Core section found --> New versions / multi-core
+                        case CPUUSAGE_CORE:
 
-                            switch(map_038_CpuUsageValues[tmpString]){
-                                case CPUUSAGE_001_AVERAGE:
-                                    pAttribute = pSubItem->first_attribute();
-                                    tmpString = pAttribute->name();
-                                    std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
+                            // Reset count for each core
+                            cnt++;
+                            index = cnt-1;
 
-                                    if(tmpString=="values"){
-                                        this->get_CpuUsageValues(&this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vAverage,pAttribute->value());
-                                    }
+                            subcnt = 0;
+
+                            // Multi core --> Found a core
+                            this->SysDump.Sections.CpuUsage.vCore.push_back(sCpuUsageCore());
+
+                            // Get core attributes (e.g. id)
+                            pAttribute = pItem->first_attribute();
+                            while(pAttribute!=nullptr){
+
+                                tmpString = pAttribute->name();
+                                std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
+
+                                switch(map_062_CpuUsageCore[tmpString]){
+                                case CPUUSAGECORE_ID:
+                                    this->SysDump.Sections.CpuUsage.vCore[static_cast<unsigned int>(index)].id = static_cast<qint16>(atoi(pAttribute->value()));
                                     break;
 
-                                case CPUUSAGE_001_MAXIMUM:
-                                    pAttribute = pSubItem->first_attribute();
-                                    tmpString = pAttribute->name();
-                                    std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
+                                case CPUUSAGECORE_ERR:
+                                    this->ErrorNr = 20501;
+                                    this->Error = QString::fromStdString(tmpString);
+                                    break;
+                                default:
+                                    return 27;
+                                }
+                                pAttribute = pAttribute->next_attribute();
+                            }
 
-                                    if(tmpString=="values"){
-                                        this->get_CpuUsageValues(&this->SysDump.Sections.CpuUsage.vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum,pAttribute->value());
+                            // Get core child nodes (e.g. intervals)
+                            pSubItem = pItem->first_node();
+                            while(pSubItem != nullptr){
+
+                                tmpString = pSubItem->name();
+                                std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
+
+                                switch(map_018_CpuUsage[tmpString]){
+
+                                case CPUUSAGE_INTERVAL:
+
+                                    subcnt++;
+                                    subindex = subcnt-1;
+
+                                    result = get_CoreInterval(pSubItem, subindex);
+                                    if(result != 0){
+                                        return result;
                                     }
+
                                     break;
 
-                                case CPUUSAGE_001_ERR:
-                                    this->ErrorNr = 20503;
+                                case CPUUSAGE_ERR:
+                                    this->ErrorNr = 20504;
                                     this->Error = QString::fromStdString(tmpString);
                                     break;
 
-                                default:
-                                    return 27;
+                                case CPUUSAGE_CORE:
+                                    this->ErrorNr = 20505;
+                                    this->Error = QString::fromStdString(tmpString);
+                                    break;
 
+                                }
+
+                                pSubItem = pSubItem->next_sibling();
                             }
-                            pSubItem = pSubItem->next_sibling();
-                        }
-                        break;
+                            break;
 
-                    case CPUUSAGE_ERR:
-                        this->ErrorNr = 20502;
-                        this->Error = QString::fromStdString(tmpString);
-                        break;
+                        case CPUUSAGE_ERR:
+                            this->ErrorNr = 20502;
+                            this->Error = QString::fromStdString(tmpString);
+                            break;
+
                     default:
                         return 28;
                     }
@@ -2244,5 +2253,90 @@ int MainWindow::get_CpuUsageValues(vector<int> *values, char *cValues){
         if (ss.peek() == ',')
             ss.ignore();
     }
+    return 0;
+}
+
+int MainWindow::get_CoreInterval(xml_node<>*pItem, int index){
+
+    unsigned long long core_count;
+    xml_attribute<> *pAttribute;
+    xml_node<> *pSubItem;
+    string tmpString;
+
+    core_count = this->SysDump.Sections.CpuUsage.vCore.size()-1;
+    this->SysDump.Sections.CpuUsage.vCore[core_count].vZoomInterval.push_back(sZoomInterval());
+
+    pAttribute = pItem->first_attribute();
+    while(pAttribute!=nullptr){
+
+        tmpString = pAttribute->name();
+        std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
+
+        switch(map_038_CpuUsageInterval[tmpString]){
+        case CPUUSAGE_000_AVERAGE:
+            this->SysDump.Sections.CpuUsage.vCore[core_count].vZoomInterval[static_cast<unsigned int>(index)].average = static_cast<qint16>(atoi(pAttribute->value()));
+            break;
+
+        case CPUUSAGE_000_DESCRIPTION:
+            this->SysDump.Sections.CpuUsage.vCore[core_count].vZoomInterval[static_cast<unsigned int>(index)].description = QString::fromStdString(pAttribute->value());
+            break;
+
+        case CPUUSAGE_000_ID:
+            this->SysDump.Sections.CpuUsage.vCore[core_count].vZoomInterval[static_cast<unsigned int>(index)].id = static_cast<qint16>(atoi(pAttribute->value()));
+            break;
+
+        case CPUUSAGE_000_MAX:
+            this->SysDump.Sections.CpuUsage.vCore[core_count].vZoomInterval[static_cast<unsigned int>(index)].maximum = static_cast<qint16>(atoi(pAttribute->value()));
+            break;
+
+        case CPUUSAGE_000_ERR:
+            this->ErrorNr = 20501;
+            this->Error = QString::fromStdString(tmpString);
+            break;
+        default:
+            return 27;
+        }
+        pAttribute = pAttribute->next_attribute();
+    }
+
+    // Get the Values
+    pSubItem = pItem->first_node();
+    while(pSubItem != nullptr){
+        tmpString = pSubItem->name();
+        std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
+
+        switch(map_038_CpuUsageValues[tmpString]){
+        case CPUUSAGE_001_AVERAGE:
+            pAttribute = pSubItem->first_attribute();
+            tmpString = pAttribute->name();
+            std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
+
+            if(tmpString=="values"){
+                this->get_CpuUsageValues(&this->SysDump.Sections.CpuUsage.vCore[core_count].vZoomInterval[static_cast<unsigned int>(index)].values.vAverage,pAttribute->value());
+            }
+            break;
+
+        case CPUUSAGE_001_MAXIMUM:
+            pAttribute = pSubItem->first_attribute();
+            tmpString = pAttribute->name();
+            std::transform(tmpString.begin(), tmpString.end(), tmpString.begin(), ::tolower);
+
+            if(tmpString=="values"){
+                this->get_CpuUsageValues(&this->SysDump.Sections.CpuUsage.vCore[core_count].vZoomInterval[static_cast<unsigned int>(index)].values.vMaximum,pAttribute->value());
+            }
+            break;
+
+        case CPUUSAGE_001_ERR:
+            this->ErrorNr = 20503;
+            this->Error = QString::fromStdString(tmpString);
+            break;
+
+        default:
+            return 27;
+
+        }
+        pSubItem = pSubItem->next_sibling();
+    }
+
     return 0;
 }

@@ -6,7 +6,8 @@ void MainWindow::reset_DumpInfo(){
     std::vector<sInterface>().swap(this->SysDump.Sections.Ethernet.vInterface);
     std::vector<sPartition>().swap(this->SysDump.Sections.Memory.CompactFlash.vPartition);
     std::vector<sTaskClass>().swap(this->SysDump.Sections.Timing.vTaskClass);
-    std::vector<sZoomInterval>().swap(this->SysDump.Sections.CpuUsage.vZoomInterval);
+
+    std::vector<sCpuUsageCore>().swap(this->SysDump.Sections.CpuUsage.vCore);
     std::vector<sAppModule>().swap(this->SysDump.Sections.Software.vAppModule);
     std::vector<sNode>().swap(this->SysDump.Sections.Hardware.vNode);
     std::vector<sAxis>().swap(this->SysDump.Sections.Motion.vAxis);
@@ -120,10 +121,6 @@ void MainWindow::reset_UI(){
     ui->label_Hardware_ModulePath->clear();
     ui->label_Hardware_Plugged->clear();
     ui->label_Hardware_Serialnumber->clear();
-
-    ui->label_CPUUsage_Average->clear();
-    ui->label_CPUUsage_Id->clear();
-    ui->label_CPUUsage_Maximum->clear();
 
     ui->combo_SelectMenu->setCurrentIndex(0);
     ui->tabWidget_System->setCurrentIndex(0);
