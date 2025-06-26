@@ -1,9 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "optionwindow.h"
-#include "ui_optionwindow.h"
 #include "reportsettings.h"
-#include "ui_reportsettings.h"
 
 #include <windowsx.h>
 #include <cstdio>
@@ -40,6 +38,10 @@
 #include <QScreen>
 #include <QtNetwork>
 #include <QSslSocket>
+
+#include <QtWidgets/QAbstractButton>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QWidget>
 
 #include "qwt_plot.h"
 
@@ -933,47 +935,54 @@ bool MainWindow::LessThanVersion(const std::string& a,const std::string& b)
 
 void MainWindow::on_nwmCheckUpdate_finished(QNetworkReply *reply){
 
-    if (reply->error()) {
-        this->statusbar->showMessage(tr("Error checking for updates: ") + reply->errorString());
-        return;
-    }
-    QJsonDocument document = QJsonDocument::fromJson(reply->readAll());
-    QJsonObject rootObj = document.object();
+    try {
+        if (reply->error()) {
+            this->statusbar->showMessage(tr("Error checking for updates: ") + reply->errorString());
+            return;
+        }
+        QJsonDocument document = QJsonDocument::fromJson(reply->readAll());
+        QJsonObject rootObj = document.object();
 
-    QString version = rootObj["name"].toString();
-    QString msg = rootObj["body"].toString();
-    if(msg == ""){
-        msg = tr("Found update!");
-    } else {
-        msg = "Changes: \n\n" + msg;
-    }
+        QString version = rootObj["name"].toString();
+        QString msg = rootObj["body"].toString();
+        if(msg == ""){
+            msg = tr("Found update!");
+        } else {
+            msg = "Changes: \n\n" + msg;
+        }
 
-    version.remove(0,1);
-    qDebug() << this->Version << " :: " << version;
+        version.remove(0,1);
+        qDebug() << this->Version << " :: " << version;
 
-    QString ignore = this->settings->value("updateIgnoreVersion").toString();
+        QString ignore = this->settings->value("updateIgnoreVersion").toString();
 
-    if(LessThanVersion(this->Version.toStdString(),version.toStdString())){
-        if(LessThanVersion(ignore.toStdString(),version.toStdString()) || this->updateClicked){
-            QMessageBox msgBox;
-            QAbstractButton* pButtonGetIt = msgBox.addButton(tr("Get it!"), QMessageBox::YesRole);
-            QAbstractButton* pButtonIgnore = msgBox.addButton(tr("Ignore version"), QMessageBox::ActionRole);
-            msgBox.addButton(tr("Close"), QMessageBox::NoRole);
-            msgBox.setText(msg);
-            msgBox.exec();
-            if (msgBox.clickedButton()==pButtonGetIt){
-                QDesktopServices::openUrl(QUrl("https://github.com/bee-eater/SystemDumpViewer/releases"));
-            } else if(msgBox.clickedButton()==pButtonIgnore){
-                this->settings->setValue("updateIgnoreVersion", version);
+        if(LessThanVersion(this->Version.toStdString(),version.toStdString())){
+            if(LessThanVersion(ignore.toStdString(),version.toStdString()) || this->updateClicked){
+                QMessageBox msgBox;
+                QAbstractButton* pButtonGetIt = msgBox.addButton(tr("Get it!"), QMessageBox::YesRole);
+                QAbstractButton* pButtonIgnore = msgBox.addButton(tr("Ignore version"), QMessageBox::ActionRole);
+                msgBox.addButton(tr("Close"), QMessageBox::NoRole);
+                msgBox.setText(msg);
+                msgBox.exec();
+                if (msgBox.clickedButton()==pButtonGetIt){
+                    QDesktopServices::openUrl(QUrl("https://github.com/bee-eater/SystemDumpViewer/releases"));
+                } else if(msgBox.clickedButton()==pButtonIgnore){
+                    this->settings->setValue("updateIgnoreVersion", version);
+                }
+            } else {
+                this->statusbar->showMessage(tr("You chose to ignore this version: ") + ignore);
             }
         } else {
-            this->statusbar->showMessage(tr("You chose to ignore this version: ") + ignore);
+            this->statusbar->showMessage(tr("You already have the newest version: ") + this->Version);
         }
-    } else {
-        this->statusbar->showMessage(tr("You already have the newest version: ") + this->Version);
-    }
 
-    this->updateClicked = false;
+        this->updateClicked = false;
+
+    } catch (const std::exception& e) {
+        qWarning() << "Caught std::exception:" << e.what();
+    }catch (...){
+        qWarning() << "Caught unknown exception";
+    }
 }
 
 void MainWindow::on_actionClose_xml_triggered()

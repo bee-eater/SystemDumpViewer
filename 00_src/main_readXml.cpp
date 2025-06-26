@@ -63,15 +63,45 @@ bool MainWindow::readXML(const char* filename, bool updateRecentFileNameList, QS
                     QMessageBox::warning(this,tr("Warning"),tr("No valid .xml file! Please verify that your file is not damaged!"));
                     return 1;
                 } else {
+
                     xml_document<> doc;
-                    doc.parse<0>(&content[0]);
+
+                    try{
+                        doc.parse<0>(&content[0]);
+                    } catch (const std::exception& e) {
+                        QMessageBox::warning(this,tr("Warning"),tr("No valid .xml file! Please verify that your file is not damaged!"));
+                        qWarning() << "Caught std::exception:" << e.what();
+                        return 1;
+                    }catch (...){
+                        QMessageBox::warning(this,tr("Warning"),tr("No valid .xml file! Please verify that your file is not damaged!"));
+                        return 1;
+                    }
 
                     this->init_Maps();
 
-                    result = this->get_SystemDumpMainInfo(&doc);
+                    try{
+                        result = this->get_SystemDumpMainInfo(&doc);
+                    } catch (const std::exception& e) {
+                        QMessageBox::warning(this,tr("Warning"),tr("No valid .xml file! Please verify that your file is not damaged!"));
+                        qWarning() << "Caught std::exception:" << e.what();
+                        return 1;
+                    }catch (...){
+                        QMessageBox::warning(this,tr("Warning"),tr("No valid .xml file! Please verify that your file is not damaged!"));
+                        return 1;
+                    }
 
                     if (result == 0){
-                        result = this->get_SystemDumpSections(&doc);
+                        try{
+                            result = this->get_SystemDumpSections(&doc);
+                        } catch (const std::exception& e) {
+                            QMessageBox::warning(this,tr("Warning"),tr("No valid .xml file! Please verify that your file is not damaged!"));
+                            qWarning() << "Caught std::exception:" << e.what();
+                            return 1;
+                        }catch (...){
+                            QMessageBox::warning(this,tr("Warning"),tr("No valid .xml file! Please verify that your file is not damaged!"));
+                            return 1;
+                        }
+
 
                         if(result==0){
 
